@@ -1,6 +1,14 @@
-# TReX-System
-*A Lua Based Self-Healing System for Achaea*
+# TReX
+ - *A Lua Based Self-Healing System for Achaea*
 
- - TReX was designed for use with Mudlet
-*A cross-platform, open source, and super fast MUD client with scripting in Lua* http://mudlet.org
-
+## Requirements
+ - Mudlet 3.0 +
+ - http://mudlet.org
+ - https://github.com/Mudlet/Mudlet#mudlet
+ 
+### Features
+ - Serverside/GMCP
+ - Multiclass Ready
+ - Modularly Developed
+ - Designed 4 Combat
+ 
