@@ -1,5 +1,5 @@
 # TReX
- - *A Lua Based Self-Healing System for Achaea*
+ *A Lua Based Self-Healing System for Achaea*
 
 ## Requirements
  - Mudlet 3.0 +
