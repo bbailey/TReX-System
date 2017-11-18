@@ -1,5 +1,7 @@
 # TReX
  *A Lua Based Self-Healing System for Achaea*
+ https://www.achaea.com
+ https://www.ironrealms.com
 
 ## Requirements
  - Mudlet 3.0 +
