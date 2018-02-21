@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.001">
+    <TriggerPackage/>
+    <TimerPackage/>
+    <AliasPackage/>
+    <ActionPackage/>
+    <ScriptPackage/>
+    <KeyPackage>
+        <KeyGroup isActive="yes" isFolder="yes">
+            <name>TReX</name>
+            <packageName>TReX</packageName>
+            <script></script>
+            <command></command>
+            <keyCode>0</keyCode>
+            <keyModifier>0</keyModifier>
+            <KeyGroup isActive="yes" isFolder="yes">
+                <name>compass</name>
+                <packageName></packageName>
+                <script></script>
+                <command></command>
+                <keyCode>-1</keyCode>
+                <keyModifier>-1</keyModifier>
+                <Key isActive="yes" isFolder="no">
+                    <name>north</name>
+                    <packageName></packageName>
+                    <script>if huntVar.on then
+	t.send(&quot;cq all##queue add eqbal go north&quot;)
+elseif gmcp.Room.Info.environment == &quot;Vessel&quot; then
+	expandAlias(&quot;c n&quot;)
+else
+	TReX.config.compass(&quot;n&quot;)
+end
+</script>
+                    <command></command>
+                    <keyCode>56</keyCode>
+                    <keyModifier>536870912</keyModifier>
+                </Key>
+                <Key isActive="yes" isFolder="no">
+                    <name>south</name>
+                    <packageName></packageName>
+                    <script>if huntVar.on then
+	t.send(&quot;cq all##queue add eqbal go south&quot;)
+elseif gmcp.Room.Info.environment == &quot;Vessel&quot; then
+	expandAlias(&quot;c s&quot;)
+else
+	TReX.config.compass(&quot;s&quot;)
+end
+</script>
+                    <command></command>
+                    <keyCode>50</keyCode>
+                    <keyModifier>536870912</keyModifier>
+                </Key>
+                <Key isActive="yes" isFolder="no">
+                    <name>east</name>
+                    <packageName></packageName>
+                    <script>if huntVar.on then
+	t.send(&quot;cq all##queue add eqbal go east&quot;)
+elseif gmcp.Room.Info.environment == &quot;Vessel&quot; then
+	expandAlias(&quot;c e&quot;)
+else
+	TReX.config.compass(&quot;e&quot;)
+end
+</script>
+                    <command></command>
+                    <keyCode>54</keyCode>
+                    <keyModifier>536870912</keyModifier>
+                </Key>
+                <Key isActive="yes" isFolder="no">
+                    <name>west</name>
+                    <packageName></packageName>
+                    <script>if huntVar.on then
+	t.send(&quot;cq all##queue add eqbal go west&quot;)
+elseif gmcp.Room.Info.environment == &quot;Vessel&quot; then
+	expandAlias(&quot;c w&quot;)
+else
+	TReX.config.compass(&quot;w&quot;)
+end</script>
+                    <command></command>
+                    <keyCode>52</keyCode>
+                    <keyModifier>536870912</keyModifier>
+                </Key>
+                <Key isActive="yes" isFolder="no">
+                    <name>northeast</name>
+                    <packageName></packageName>
+                    <script>if huntVar.on then
+	t.send(&quot;cq all##queue add eqbal go northeast&quot;)
+elseif gmcp.Room.Info.environment == &quot;Vessel&quot; then
+	expandAlias(&quot;c ne&quot;)
+else
+	TReX.config.compass(&quot;ne&quot;)
+end
+</script>
+                    <command></command>
+                    <keyCode>57</keyCode>
+                    <keyModifier>536870912</keyModifier>
+                </Key>
+                <Key isActive="yes" isFolder="no">
+                    <name>southeast</name>
+                    <packageName></packageName>
+                    <script>if huntVar.on then
+	t.send(&quot;cq all##queue add eqbal go southeast&quot;)
+elseif gmcp.Room.Info.environment == &quot;Vessel&quot; then
+	expandAlias(&quot;c se&quot;)
+else
+	TReX.config.compass(&quot;se&quot;)
+end</script>
+                    <command></command>
+                    <keyCode>51</keyCode>
+                    <keyModifier>536870912</keyModifier>
+                </Key>
+                <Key isActive="yes" isFolder="no">
+                    <name>southwest</name>
+                    <packageName></packageName>
+                    <script>if huntVar.on then
+	t.send(&quot;cq all##queue add eqbal go southwest&quot;)
+elseif gmcp.Room.Info.environment == &quot;Vessel&quot; then
+	expandAlias(&quot;c sw&quot;)
+else
+	TReX.config.compass(&quot;sw&quot;)
+end</script>
+                    <command></command>
+                    <keyCode>49</keyCode>
+                    <keyModifier>536870912</keyModifier>
+                </Key>
+                <Key isActive="yes" isFolder="no">
+                    <name>northwest</name>
+                    <packageName></packageName>
+                    <script>if huntVar.on then
+	t.send(&quot;cq all##queue add eqbal go northwest&quot;)
+elseif gmcp.Room.Info.environment == &quot;Vessel&quot; then
+	expandAlias(&quot;c nw&quot;)
+else
+	TReX.config.compass(&quot;nw&quot;)
+end</script>
+                    <command></command>
+                    <keyCode>55</keyCode>
+                    <keyModifier>536870912</keyModifier>
+                </Key>
+                <Key isActive="yes" isFolder="no">
+                    <name>up</name>
+                    <packageName></packageName>
+                    <script>if huntVar.on then
+	t.send(&quot;cq all##queue add eqbal go up&quot;)
+elseif string.starts(gmcp.Room.Info.name,&quot;Quarterdeck &quot;) then
+	t.send(&quot;climb mast&quot;)
+	return
+elseif gmcp.Room.Info.environment == &quot;Vessel&quot; then
+	send(&quot;queue add eqbal up&quot;)
+	return
+else
+	TReX.config.compass(&quot;up&quot;)
+end</script>
+                    <command></command>
+                    <keyCode>45</keyCode>
+                    <keyModifier>536870912</keyModifier>
+                </Key>
+                <Key isActive="yes" isFolder="no">
+                    <name>down</name>
+                    <packageName></packageName>
+                    <script>if huntVar.on then
+	t.send(&quot;cq all##queue add eqbal go down&quot;)
+
+elseif gmcp.Room.Info.name == &quot;Crow's nest&quot; then
+	t.send(&quot;climb mast&quot;)
+
+elseif gmcp.Room.Info.name == &quot;In the rigging above Ship bow&quot; then
+	send(&quot;queue add eqbal down&quot;)
+	
+elseif gmcp.Room.Info.name == &quot;In the rigging above Main deck&quot; then
+	send(&quot;queue add eqbal down&quot;)
+	
+elseif gmcp.Room.Info.name == &quot;In the rigging above Stern&quot; then
+	send(&quot;queue add eqbal down&quot;)	
+
+elseif gmcp.Room.Info.name == &quot;In the rigging above Side deck&quot; then
+	send(&quot;queue add eqbal down&quot;)	
+	
+elseif gmcp.Room.Info.environment == &quot;Vessel&quot; then
+	send(&quot;queue add eqbal down&quot;)
+
+else
+	TReX.config.compass(&quot;down&quot;)
+end</script>
+                    <command></command>
+                    <keyCode>43</keyCode>
+                    <keyModifier>536870912</keyModifier>
+                </Key>
+                <Key isActive="yes" isFolder="no">
+                    <name>in</name>
+                    <packageName></packageName>
+                    <script>if huntVar.on then
+	t.send(&quot;cq all##queue add eqbal go in&quot;)
+elseif gmcp.Room.Info.environment == &quot;Vessel&quot; then
+		t.send(&quot;queue add eqbal in&quot;)
+else
+	TReX.config.compass(&quot;in&quot;)
+end</script>
+                    <command></command>
+                    <keyCode>47</keyCode>
+                    <keyModifier>536870912</keyModifier>
+                </Key>
+                <Key isActive="yes" isFolder="no">
+                    <name>out</name>
+                    <packageName></packageName>
+                    <script>if huntVar.on then
+	t.send(&quot;cq all##queue add eqbal go out&quot;)
+elseif gmcp.Room.Info.environment == &quot;Vessel&quot; then
+		t.send(&quot;queue add eqbal out&quot;)
+else
+	TReX.config.compass(&quot;out&quot;)
+end</script>
+                    <command></command>
+                    <keyCode>42</keyCode>
+                    <keyModifier>536870912</keyModifier>
+                </Key>
+            </KeyGroup>
+            <KeyGroup isActive="yes" isFolder="yes">
+                <name>hunting</name>
+                <packageName></packageName>
+                <script></script>
+                <command></command>
+                <keyCode>72</keyCode>
+                <keyModifier>0</keyModifier>
+                <Key isActive="yes" isFolder="no">
+                    <name>start the killing spree</name>
+                    <packageName></packageName>
+                    <script>
+  if not huntVar.on then 
+  	huntVar.on = true 
+  end
+  if not huntVar.targetGone then
+  	t.serverside.green_echo(&quot;&lt;green&gt;[&lt;white&gt;Data&lt;green&gt;]&lt;white&gt;: Level: &lt;green&gt;&quot;..gmcp.Char.Status.level) 
+  	TReX.hunting.rotation()
+  else
+		t.serverside.green_echo(&quot;Room Cleared&quot;, false)
+	end	
+		
+</script>
+                    <command></command>
+                    <keyCode>96</keyCode>
+                    <keyModifier>0</keyModifier>
+                </Key>
+            </KeyGroup>
+        </KeyGroup>
+    </KeyPackage>
+    <HelpPackage>
+        <helpURL></helpURL>
+    </HelpPackage>
+</MudletPackage>
