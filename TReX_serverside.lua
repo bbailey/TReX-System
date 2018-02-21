@@ -542,8 +542,6 @@ send("queue add eqbal diagnose")
 			end
 
 		end
-		
-		t.serverside.gmcpAffShow()
 	
     if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.diagnose ) ") end
     
@@ -711,7 +709,7 @@ wake = { type = "wake" },
 toggle = { type = "toggle" },
 herb = { type = "herb" },
 misc = { type = "misc" },
-rage = { type = "balance" }
+rage = { type = "balance"},
 eruption = { type = "balance"},
 purify = { type = "balance"},
 slough = { type = "balance"},
@@ -752,20 +750,6 @@ TReX.lock.clear()
     end
 	
 	
-    --asthma weariness slickness check
-   -- if t.affs.slickness and ((t.affs.asthma and t.affs.weariness) or (t.affs.asthma and not (t.affs.sensitivity or t.affs.clumsiness or t.affs.hypochondria))) then --1 scenario
-       -- TReX.prios.switchPrios("asthma", 3)
-       -- TReX.prios.switchPrios("paralysis", 4)
-   -- elseif t.affs.asthma and t.affs.hellsight then
-       -- TReX.prios.switchPrios("hellsight", 3, 1)
-       -- TReX.prios.switchPrios("asthma", 4)
-       -- TReX.prios.switchPrios("paralysis", 5)
-   -- end
-    -- --confusion and disrupt
-   -- if t.affs.confusion and t.affs.disrupted and (t.bals.focus or t.affs.impatience) and not t.affs.whisperingmadness then --2 scenario
-       -- TReX.prios.switchPrios("confusion", 2, 1)
-       -- TReX.prios.switchPrios("paralysis", 3, 1)
-   -- end
    
 --[[TRUE LOCK]]	
 	if (t.affs.impatience) and (t.affs.asthma) and (t.affs.slickness) and (t.affs.anorexia) and (t.affs.paralysis) and (t.affs.confusion) and (t.affs.disruption) then 
@@ -776,14 +760,6 @@ TReX.lock.clear()
 --[[HARD LOCK]]		
 	if (t.affs.impatience) and (t.affs.asthma) and (t.affs.slickness) and (t.affs.anorexia) and (t.affs.paralysis) then 
 		t.lock["hard"] = true
-		--if not table.is_empty(tgz.bard.harmonics.table) and tgz.bard.harmonics.table_check then
-		--	if t.bals.eq and t.bals.bal then
-		--		t.send("call harmonics")
-			--	TReX.serverside.lock_class_skill_check()
-			--	tgz.bard.harmonics.table_check = false
-		--	end
-		--end
-		--TReX.serverside.lock_class_skill_check()
 			return
 	end
 --[[VENOM LOCK]]	
@@ -811,17 +787,10 @@ end--[[func]]
 TReX.serverside.lock_class_skill_check=function()
 local queue_kelp = false
 
-	--if t.bals["tree"] then
-		if t.serverside["settings_default"].tree ~= "Yes" then
-			t.serverside["settings_default"].tree = "Yes"
-			t.send("curing tree on", false) 
-		end
-	--else
-	--	if t.serverside["settings_default"].tree ~= "No" then
-	--		t.serverside["settings_default"].tree = "No"
-	--		t.send("curing tree off", false) 
-	--	end
-	--end
+	if t.serverside["settings_default"].tree ~= "Yes" then
+		t.serverside["settings_default"].tree = "Yes"
+		t.send("curing tree on", false) 
+	end
 
 	for _,v in pairs({"Runewarden","Infernal","Paladin","Blademaster","Monk","Sentinel","Druid"}) do
 		if TReX.s.class == v then
@@ -1857,8 +1826,6 @@ end
 	
 TReX.serverside.affadd=function(aff)
 
-if table.contains({t.serverside.gmcp_aff_table}, aff) then return end
-
 	if t.serverside["settings"].installed then
 
 		local affInfo = t.serverside.afflictions[aff]
@@ -1933,8 +1900,6 @@ if table.contains({t.serverside.gmcp_aff_table}, aff) then return end
 end 
 			
 t.serverside.gmcpAffAdded=function(aff) -- motherboard gmcp aff add 
-
-if table.contains({t.serverside.gmcp_aff_table}, aff) then return end
 
 	if t.serverside["settings"].installed then
 
@@ -2829,7 +2794,7 @@ t.serverside.afflictions = {
   numbedrightarm  = {"time"},
   slimeobscure = {"time"},
   damagedrightarm = {"restorationarms","physical"},
-  peace = {"rage", "bellwort", "dheal",  "might",  "salt", "bloodboil", "shrugging", "daina", "accelerate", "tree", "fool", "mental"},
+  peace = {"rage", "bellwort", "dheal",  "might",  "salt",   "bloodboil", "shrugging", "daina", "accelerate", "tree", "fool", "mental"},
   stupidity = {"goldenseal", "dheal", "focus", "might", "accelerate", "shrugging", "tree", "fool", "mental"},
   mangledleftarm = {"restorationarms","physical"},
   hamstrung = {"time"},
@@ -3099,27 +3064,25 @@ TReX.serverside.treeAffLost=function(event, affliction)
 	end-- if installed	
 end --func
 
--- TReX.serverside.toggleAutoTree=function()
-  -- if t.serverside["settings_default"].tree then
-    -- TReX.serverside.autoTreeOff()
-  -- else
-    -- TReX.serverside.autoTreeOn()
-  -- end
--- end
+TReX.serverside.toggleAutoTree=function()
+  if t.serverside["settings_default"].tree then
+    TReX.serverside.autoTreeOff()
+  else
+    TReX.serverside.autoTreeOn()
+  end
+end
 
 TReX.serverside.autoTreeOn=function()
-	if not tree then
-		if t.bals.tree then
-			send("curing tree on", false)
-			tree = true
-		end
+	if t.serverside["settings_default"].tree ~= "Yes" then
+		t.send("curing tree on", false)
+		t.serverside["settings_default"].tree = "Yes"
 	end
 end
 
 TReX.serverside.autoTreeOff=function()
-	if tree then
-		send("curing tree off", false)
-		tree = false
+	if t.serverside["settings_default"].tree ~= "No" then
+		t.send("curing tree off", false)
+		t.serverside["settings_default"].tree = "No"
 	end
 end
 
