@@ -171,6 +171,8 @@ end -- func
 
 
 TReX.defs.list=function()
+TReX.s.class_spec()
+TReX.s.class_check()
 def_list = {
 	free = { 			
 		--["meditate"] = {["name"] = "meditate", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},	
@@ -214,149 +216,169 @@ def_list = {
 	},
 }
 	if TReX.s.class == "Alchemist" then 
-		def_list.class["astronomy"] = {["name"] = "astronomy", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["mercury"] = {["name"] = "mercury", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["sulphur"] = {["name"] = "sulphur", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["tin"] = {["name"] = "tin", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["compoundmask"] = {["name"] = "compoundmask", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["enhancedform"] = {["name"] = "enhancedform", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["ironform"] = {["name"] = "ironform", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
+		def_list.class ={			
+			["astronomy"] = {["name"] = "astronomy", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["mercury"] = {["name"] = "mercury", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["sulphur"] = {["name"] = "sulphur", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["tin"] = {["name"] = "tin", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			--["compoundmask"] = {["name"] = "Compoundmask", ["keepup"] = true, ["defup"] = true, ["enabled"] = true},
+			--["enhancedform"] = {["name"] = "Enhancedform", ["keepup"] = true, ["defup"] = true, ["enabled"] = true},
+			--["ironform"] = {["name"] = "Ironform", ["keepup"] = true, ["defup"] = true, ["enabled"] = true},
+		}
 	end
 	
 	if TReX.s.class == "Apostate" then 
-		def_list.class["demonarmour"] = {["name"] = "demonarmour", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["deathaura"] = {["name"] = "deathaura", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["putrefaction"] = {["name"] = "putrefaction", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["vengeance"] = {["name"] = "vengeance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["truestare"] = {["name"] = "truestare", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
+		def_list.class ={
+			["demonarmour"] = {["name"] = "demonarmour", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
+			["deathaura"] = {["name"] = "deathaura", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
+			["putrefaction"] = {["name"] = "putrefaction", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["vengeance"] = {["name"] = "vengeance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},  		
+			["truestare"] = {["name"] = "truestare", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}, 			
+		}
 	end
 
 	--Bard
 	if TReX.s.class == "Bard" then
-		def_list.class["acrobatics"] = {["name"] = "acrobatics", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["dodging"] = {["name"] = "dodging", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["arrowcatching"] = {["name"] = "arrowcatching", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["balancing"] = {["name"] = "balancing", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["heartsfury"] = {["name"] = "heartsfury", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["drunkensailor"] = {["name"] = "drunkensailor", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["lay"] = {["name"] = "lay", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}	
-		def_list.class["songbird"] = {["name"] = "songbird", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["tune"] = {["name"] = "tune", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["aria"] = {["name"] = "aria", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}			
+		def_list.class ={			
+			["acrobatics"] = {["name"] = "acrobatics", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["dodging"] = {["name"] = "dodging", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["arrowcatching"] = {["name"] = "arrowcatching", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["balancing"] = {["name"] = "balancing", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["heartsfury"] = {["name"] = "heartsfury", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["drunkensailor"] = {["name"] = "drunkensailor", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["lay"] = {["name"] = "lay", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
+			["songbird"] = {["name"] = "songbird", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["tune"] = {["name"] = "tune", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["aria"] = {["name"] = "aria", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true,},
+			["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
+		}			
 	end
 	
 	--Blademaster
 	if TReX.s.class == "Blademaster" then
-		def_list.class["dodging"] = {["name"] = "dodging", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["immunity"] = {["name"] = "immunity", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["projectiles"] = {["name"] = "projectiles", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["mindnet"] = {["name"] = "mindnet", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["weathering"] = {["name"] = "weathering", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["consciousness"] = {["name"] = "consciousness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["toughness"] = {["name"] = "toughness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}	
-		def_list.class["waterwalking"] = {["name"] = "waterwalking", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["standingfirm"] = {["name"] = "standingfirm", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["constitution"] = {["name"] = "constitution", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["retaliation"] = {["name"] = "retaliation", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}	
-		def_list.class["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["shinbinding"] = {["name"] = "shinbinding", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["shintrance"] = {["name"] = "shintrance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["shinclarity"] = {["name"] = "shinclarity", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}			
+		def_list.class ={			
+			["dodging"] = {["name"] = "dodging", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["immunity"] = {["name"] = "immunity", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["projectiles"] = {["name"] = "projectiles", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["mindnet"] = {["name"] = "mindnet", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["weathering"] = {["name"] = "weathering", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["consciousness"] = {["name"] = "consciousness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["toughness"] = {["name"] = "toughness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["waterwalking"] = {["name"] = "waterwalking", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["standingfirm"] = {["name"] = "standingfirm", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["constitution"] = {["name"] = "constitution", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
+			["retaliation"] = {["name"] = "retaliation", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
+			["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
+			["shinbinding"] = {["name"] = "shinbinding", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shintrance"] = {["name"] = "shintrance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shinclarity"] = {["name"] = "shinclarity", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+		}		
 	end
 
 
 	if TReX.s.class == "Depthswalker" then
-		def_list.class["disperse"] = {["name"] = "disperse", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["bodyaugment"] = {["name"] = "bodyaugment", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["precision"] = {["name"] = "precision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["durability"] = {["name"] = "durability", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["antiforce"] = {["name"] = "antiforce", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["shadowveil"] = {["name"] = "shadowveil", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["bloodquell"] = {["name"] = "bloodquell", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
+		def_list.class ={			
+			["disperse"] = {["name"] = "disperse", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["bodyaugment"] = {["name"] = "bodyaugment", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["precision"] = {["name"] = "precision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["durability"] = {["name"] = "durability ", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["antiforce"] = {["name"] = "antiforce", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shadowveil"] = {["name"] = "shadowveil", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["bloodquell"] = {["name"] = "bloodquell", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+		}
 	end
 
 
 	--Infernal
 	 if TReX.s.class == "Infernal" then
-		def_list.class["weathering"] = {["name"] = "weathering", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["fury"] = {["name"] = "fury", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["standingfirm"] = {["name"] = "standingfirm", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["deathaura"] = {["name"] = "deathaura", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}	
-		def_list.class["resistance"] = {["name"] = "resistance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["putrefaction"] = {["name"] = "putrefaction", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["blademastery"] = {["name"] = "blademastery", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["deflect"] = {["name"] = "deflect", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["vengeance"] = {["name"] = "vengeance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}		
+         def_list.class ={            
+             ["weathering"] = {["name"] = "weathering", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+             ["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+             ["fury"] = {["name"] = "fury", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+             ["standingfirm"] = {["name"] = "standingfirm", ["keepup"] = false, ["defup"] = true, ["serverside"]=true, ["enabled"] = true},
+             ["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
+             ["deathaura"] = {["name"] = "deathaura", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
+             ["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+             ["resistance"] = {["name"] = "resistance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			 ["putrefaction"] = {["name"] = "putrefaction", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			 ["blademastery"] = {["name"] = "blademastery", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			 ["deflect"] = {["name"] = "deflect", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			 ["vengeance"] = {["name"] = "vengeance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},            
+         }	
     end
 
 	if TReX.s.class == "Jester" then
-		def_list.class["slippery"] = {["name"] = "slippery", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["balancing"] = {["name"] = "balancing", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["arrowcatching"] = {["name"] = "arrowcatching", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["deviltarot"] = {["name"] = "deviltarot", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["acrobatics"] = {["name"] = "acrobatics", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
+		def_list.class = {
+			["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["slippery"] = {["name"] = "slippery", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["balancing"] = {["name"] = "balancing", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["arrowcatching"] = {["name"] = "arrowcatching", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["deviltarot"] = {["name"] = "deviltarot", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true,},
+			["acrobatics"] = {["name"] = "acrobatics", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},			
+		}
 	end
 
 	-- Magi
 	if TReX.s.class == "Magi" then
 		def_list.needs_full_bal["simultaneity"] = {["name"] = "simultaneity", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
-		def_list.needs_full_bal["binding"] = {["name"] = "binding", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
-		def_list.class["fortify"] = {["name"] = "fortify", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["chargeshield"] = {["name"] = "chargeshield", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["diamondskin"] = {["name"] = "diamondskin", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		--def_list.class["stonefist"] = {["name"] = "stonefist", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["stoneskin"] = {["name"] = "stoneskin", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["efreeti"] = {["name"] = "efreeti", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["waterweird"] = {["name"] = "waterweird", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}	
+		def_list.class ={
+			["binding"] = {["name"] = "bind all", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
+			["fortify"] = {["name"] = "fortify", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
+			["chargeshield"] = {["name"] = "chargeshield", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["diamondskin"] = {["name"] = "diamondskin", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			--["stonefist"] = {["name"] = "Stone Fist", ["keepup"] = false, ["defup"] = true, ["serverside"]=true, ["enabled"] = true},  
+			["stoneskin"] = {["name"] = "stoneskin", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["efreeti"] = {["name"] = "efreeti", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["waterweird"] = {["name"] = "waterweird", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+		}
 	end
 	
 	-- Monk
 	if TReX.s.class == "Monk" then
-		def_list.class["vitality"] = {["name"] = "vitality", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
-		def_list.class["immunity"] = {["name"] = "immunity", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
-		def_list.class["bodyblock"] = {["name"] = "bodyblock", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["evadeblock"] = {["name"] = "evadeblock", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["pinchblock"] = {["name"] = "pinchblock", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["numbness"] = {["name"] = "numbness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["kaiboost"] = {["name"] = "kaiboost", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["kaitrance"] = {["name"] = "kaitrance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["regeneration"] = {["name"] = "regeneration", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["boostedregeneration"] = {["name"] = "boostedregeneration", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["mindcloak"] = {["name"] = "mindcloak", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["constitution"] = {["name"] = "constitution", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["consciousness"] = {["name"] = "consciousness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["projectiles"] = {["name"] = "projectiles", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["resistance"] = {["name"] = "resistance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["toughness"] = {["name"] = "toughness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["weathering"] = {["name"] = "weathering", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
+		def_list.class ={			
+			["vitality"] = {["name"] = "vitality", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["immunity"] = {["name"] = "immunity", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["bodyblock"] = {["name"] = "bodyblock", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["evadeblock"] = {["name"] = "evadeblock", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["pinchblock"] = {["name"] = "pinchblock", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["numbness"] = {["name"] = "numbness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["kaiboost"] = {["name"] = "kaiboost", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}, 
+			["kaitrance"] = {["name"] = "kaitrance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["regeneration"] = {["name"] = "regeneration", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["boostedregeneration"] = {["name"] = "boostedregeneration", ["keepup"] = false, ["serverside"]=false, ["defup"] = false, ["enabled"] = true},
+			["mindcloak"] = {["name"] = "mindcloak", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}, 
+			["mindnet"] = {["name"] = "mindnet", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["constitution"] = {["name"] = "constitution", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
+			["consciousness"] = {["name"] = "consciousness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["projectiles"] = {["name"] = "projectiles", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["resistance"] = {["name"] = "resistance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["toughness"] = {["name"] = "toughness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+            ["weathering"] = {["name"] = "weathering", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+		}
 	end
 	
 	
 	if TReX.s.class == "Occultist" then	
-		def_list.class["distortedaura"] = {["name"] = "distortedaura", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
-		def_list.class["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
-		def_list.class["devilmark"] = {["name"] = "devilmark", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["tentacles"] = {["name"] = "tentacles", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["astralform"] = {["name"] = "astralform", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["astralvision"] = {["name"] = "astralvision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["deviltarot"] = {["name"] = "deviltarot", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["simulacrum"] = {["name"] = "simulacrum", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}
-		def_list.class["heartstone"] = {["name"] = "heartstone", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}		
+		def_list.class = {
+			["distortedaura"] = {["name"] = "distortedaura", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["devilmark"] = {["name"] = "devilmark", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
+			["tentacles"] = {["name"] = "tentacles", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["astralform"] = {["name"] = "astralform", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["astralvision"] = {["name"] = "astralvision", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
+			["deviltarot"] = {["name"] = "deviltarot", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["simulacrum"] = {["name"] = "simulacrum", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
+			["heartstone"] = {["name"] = "heartstone", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
+		}		
 	end
 
 	--Paladin
 	  if TReX.s.class == "Paladin" then
-		def_list.class = {}
-         def_list.class ={
+         def_list.class ={            
             ["weathering"] = {["name"] = "weathering", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
             ["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
             ["fury"] = {["name"] = "fury", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -365,13 +387,12 @@ def_list = {
             ["resistance"] = {["name"] = "resistance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["blademastery"] = {["name"] = "blademastery", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["deflect"] = {["name"] = "deflect", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
-         }
+        }
          
     end
 
 	--Priest
 	if TReX.s.class == "Priest" then
-		def_list.class = {}
 		def_list.needs_full_bal["simultaneity"] = {["name"] = "simultaneity", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
 		def_list.class ={
 			["inspiration"] = {["name"] = "inspiration", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -381,8 +402,7 @@ def_list = {
 	
 	--Runewarden
 	  if TReX.s.class == "Runewarden" then
-		def_list.class = {}
-        def_list.class ={
+         def_list.class ={
             ["weathering"] = {["name"] = "weathering", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
             ["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
             ["fury"] = {["name"] = "fury", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -399,7 +419,6 @@ def_list = {
 	
 	-- Sentinel
 	if TReX.s.class == "Sentinel" then
-		def_list.class = {}
 		def_list.class = {
 			 ["fleetness"] = {["name"] = "fleetness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},  
 			 ["barkskin"] = {["name"] = "barkskin", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
@@ -420,7 +439,6 @@ def_list = {
 		
 	-- Serpent	 
 	if TReX.s.class == "Serpent" then
-		def_list.class = {}
 		def_list.class = {
 			 ["lipreading"] = {["name"] = "lipreading", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},  
 			 ["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},   
@@ -436,7 +454,6 @@ def_list = {
 	
 	--Shaman
 	if TReX.s.class == "Shaman" then
-		def_list.class = {}
 		def_list.class = {
 			["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["swiftcurse"] = {["name"] = "swiftcurse", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -447,9 +464,7 @@ def_list = {
 	--Sylvan
 	if TReX.s.class == "Sylvan" then
 		def_list.needs_full_bal["simultaneity"] = {["name"] = "simultaneity", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
-		def_list.class = {}
 		def_list.class = { 
-		
 			["circulate"] = {["name"] = "circulate", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			["viridian"] = {["name"] = "viridian", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["wildgrowth"] = {["name"] = "wildgrowth", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
@@ -466,7 +481,6 @@ def_list = {
 
 
 	if TReX.s.class == "Dragon" then	
-		def_list.class = {}
 		def_list.class = {
 			["dragonarmour"] = {["name"] = "dragonarmour", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["dragonbreath"] = {["name"] = "dragonbreath", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -474,9 +488,7 @@ def_list = {
 	end
 
 	if TReX.s.class == "Druid" then
-		def_list.class = {}
 		def_list.class = { -- any these you want on keepup or keep it like it is?
-
 			["affinity"] = {["name"] = "afinity", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["circulate"] = {["name"] = "circulate", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			["bonding"] = {["name"] = "bonding", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -489,7 +501,6 @@ def_list = {
 			--["spinningstaff"] = {["name"] = "spinningstaff", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			["flailingstaff"] = {["name"] = "flailingstaff", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
             ["melody"] = {["name"] = "melody", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
-			
 		}
 	
 	end -- if
