@@ -63,14 +63,22 @@ setup = ""..
 TReX.graphic..[[
 <white>			Setup
 
-<gray>	Step 1) <dim_grey>	Download Mudlet 3.0 or greater.
+<gray>	Step 1) <dim_grey>	Download Mudlet 3.7.1 or greater.
 <gray>	Step 2) <dim_grey>	Create NEW profile. Enable GMCP. Enable FORCE COMPRESSION OFF.
-<gray>	Step 3) <dim_grey>	Package TReX.mpackage in the package manager.
+<gray>	Step 3) <dim_grey>	Package TReX.mpackage or Zip file in the package manager.
 <gray>	Step 4) <dim_grey>	Empty Pipes.
-<gray>	Step 5) <dim_grey>	Restart.
-<gray>	Step 6) <dim_grey>	INSTALL
-<gray>	Step 7) <dim_grey>	Configure TReX system settings.
-<gray>	Step 8) <dim_grey>	QQ and RESTART mudlet Mudlet 3.0 or greater.
+<gray>	Step 5) <dim_grey>	QQ and RESTART mudlet Mudlet 3.7.1 or greater.
+<gray>	Step 6) <dim_grey>	DO, 'trex' into the mudlet cmd bar.
+<gray>	Step 7) <dim_grey>	FIND the 'setup' alias on the TReX menu list
+<gray>	Step 8) <dim_grey>	TYPE 'setup' into your mudlet command bar.                           
+<gray>	Step 9) <dim_grey>	TYPE 'install'
+<gray>	Step 10) <dim_grey>	Configure TReX system settings.
+<gray>	Step 11) <dim_grey>	QQ and RESTART mudlet Mudlet 3.7.1 or greater.
+<gray>  Step 12) <dim_grey> Ask around for an invite to the TReX clan ANYONE can invite.
+
+<gray>	You Tube:
+<white>	https://www.youtube.com/watch?v=Bwxqzt-qKFo&t=11s
+
 
 	<gray>	- <dim_grey>	Toggle defences with DD
 	<gray>	- <dim_grey>	Look through your aliases, 
@@ -129,7 +137,7 @@ TReX.graphic..[[
 
 <white>*<dim_grey>IN DEVELOPMENT<white>*
 	
-<white>You can ask for a clan invite from Nehmrah or Klendathu.
+<white>You can ask around for an invite to the TReX clan ANYONE can invite.
 ]].."", 
 
 -- BUG
@@ -167,7 +175,7 @@ TReX.graphic..[[
 
 <white>*<dim_grey>IN DEVELOPMENT<white>*
 	
-<white>You can ask for a clan invite from Nehmrah or Klendathu.
+<white>You can ask around for an invite to the TReX clan ANYONE can invite.
 
 <dim_grey>System Commands:<gray>
 ]].."",
@@ -179,7 +187,7 @@ TReX.graphic..[[
 
 <white>*<dim_grey>IN DEVELOPMENT<white>*
 	
-<white>You can ask for a clan invite from Nehmrah or Klendathu.
+<white>You can ask around for an invite to the TReX clan ANYONE can invite.
 ]].."",
 
 }
