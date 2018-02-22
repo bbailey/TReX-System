@@ -2283,6 +2283,8 @@ local defs2relax={"groundwatch","skywatch","alertness","nightsight","telesense",
 									send("relax grip")
 								elseif k=="heartsfury" then
 									send("queue add eqbal unstance")
+								elseif k=="balancing" then
+									send("relax balancing")										
 								elseif k=="drunkensailor" then
 									send("queue add eqbal unstance")									
 								elseif k=="blademastery" then
