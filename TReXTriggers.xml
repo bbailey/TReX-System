@@ -26080,4 +26080,7 @@ end
     <ActionPackage/>
     <ScriptPackage/>
     <KeyPackage/>
+    <HelpPackage>
+        <helpURL/>
+    </HelpPackage>
 </MudletPackage>

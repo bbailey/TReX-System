@@ -35,4 +35,7 @@
             </Key>
         </KeyGroup>
     </KeyPackage>
+    <HelpPackage>
+        <helpURL/>
+    </HelpPackage>
 </MudletPackage>

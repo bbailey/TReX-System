@@ -7439,4 +7439,7 @@ end</script>
         </ScriptGroup>
     </ScriptPackage>
     <KeyPackage/>
+    <HelpPackage>
+        <helpURL/>
+    </HelpPackage>
 </MudletPackage>
