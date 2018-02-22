@@ -30462,6 +30462,48 @@ end 	-- func </script>
                     <string>TReX lost aff</string>
                 </eventHandlerList>
             </Script>
+            <Script isActive="yes" isFolder="no">
+                <name>denizenhealth</name>
+                <packageName></packageName>
+                <script>function denizenhealth() 
+	if gmcp then 
+		if gmcp.IRE then 
+			if not (gmcp.IRE.Target) then 
+				return &quot;&quot; 
+			end 
+
+			if target == nil then
+				target = target or &quot;None&quot;
+			end
+
+			if denizen_id == nil then
+				denizen_id = &quot;None&quot;
+			elseif denizen_id ~= gmcp.IRE.Target.Info.id then
+				denizen_id = gmcp.IRE.Target.Info.id
+				denizen_slain = false
+			end
+			
+			if denizen_id == &quot;None&quot; then
+				denizenHPperc = &quot;&quot;
+			elseif tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2)) == -1 and not denizen_slain then
+				denizenHPperc = &quot;&quot;
+			elseif tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2)) ~= nil and not denizen_slain then
+				denizenHPperc = gmcp.IRE.Target.Info.hpperc
+			end
+			if denizenHPperc ~= &quot;100%&quot; then
+				if not t.stats[&quot;denizen_health_prompt&quot;].enabled then
+					cecho(&quot;\n&lt;green&gt;Denizen: &lt;white&gt;&quot;..denizen_id..&quot; &lt;yellow&gt;Health: &lt;cyan&gt;&quot;..denizenHPperc)
+				end
+			end
+		end
+	end
+
+end</script>
+                <eventHandlerList>
+                    <string>gmcp.IRE.Target</string>
+                    <string>denizenhealthcheck</string>
+                </eventHandlerList>
+            </Script>
         </ScriptGroup>
         <ScriptGroup isActive="yes" isFolder="yes">
             <name>class</name>

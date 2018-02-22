@@ -1101,7 +1101,7 @@ TReX.defs.alias_toggle=function(defs)
 				end
 				if defs == "devilmark" then 
 					if not table.contains({t.defs}, "devilmark") then
-						if TReX.stats.karma > 2 then				
+						if TReX.serverside.karma_check() > 2 then				
 							t.send("queue add eqbal devilmark")
 						else
 							if not table.contains(t.defs, defs) then
@@ -1113,7 +1113,7 @@ TReX.defs.alias_toggle=function(defs)
 				end
 				if defs == "astralvision" then 
 					if not table.contains({t.defs}, "astralvision") then
-						if TReX.stats.karma > 2 then
+						if TReX.serverside.karma_check() > 2 then
 							t.send("queue add eqbal astralvision")
 						else
 							if not table.contains(t.defs, defs) then
@@ -1125,14 +1125,14 @@ TReX.defs.alias_toggle=function(defs)
 				end
 				if defs == "simulacrum" then
 					if not table.contains({t.defs}, "simulacrum") then
-						if not table.contains({TReX.inv.inv}, "a simulacrum") and TReX.stats.karma > 2 then
+						if not table.contains({TReX.inv.inv}, "a simulacrum") and TReX.serverside.karma_check() > 2 then
 							t.send("queue add eqbal simulacrum")
 						end
 					end
 				end
 				if defs == "heartstone" then
 					if not table.contains({t.defs}, "heartstone") then
-						if not table.contains({TReX.inv.inv}, "a heartstone") and TReX.stats.karma > 2 then
+						if not table.contains({TReX.inv.inv}, "a heartstone") and TReX.serverside.karma_check() > 2 then
 							t.send("queue add eqbal heartstone")
 						end
 					end
@@ -1560,7 +1560,7 @@ end
 			end
 			if defs == "devilmark" then 
 				if not table.contains({t.defs}, "devilmark") then
-					if TReX.stats.karma > 2 then
+					if TReX.serverside.karma_check() > 2 then
 						t.send("queue add eqbal devilmark")
 					else
 						if not table.contains(t.defs, defs) then
@@ -1572,7 +1572,7 @@ end
 			end
 			if defs == "astralvision" then 
 				if not table.contains({t.defs}, "astralvision") then
-					if TReX.stats.karma > 2 then
+					if TReX.serverside.karma_check() > 2 then
 						t.send("queue add eqbal astralvision")
 					else
 						if not table.contains(t.defs, defs) then
@@ -1584,14 +1584,14 @@ end
 			end
 			if defs == "simulacrum" then
 				if not table.contains({t.defs}, "simulacrum") then
-					if not table.contains({TReX.inv.inv}, "a simulacrum") and TReX.stats.karma > 2 then
+					if not table.contains({TReX.inv.inv}, "a simulacrum") and TReX.serverside.karma_check() > 2 then
 						t.send("queue add eqbal simulacrum")
 					end
 				end
 			end
 			if defs == "heartstone" then
 				if not table.contains({t.defs}, "heartstone") then
-					if not table.contains({TReX.inv.inv}, "a heartstone") and TReX.stats.karma > 2 then
+					if not table.contains({TReX.inv.inv}, "a heartstone") and TReX.serverside.karma_check() > 2 then
 						t.send("queue add eqbal heartstone")
 					end
 				end
@@ -2017,7 +2017,7 @@ end
 				end
 			end
 			if defs == "devilmark" then 
-				if TReX.stats.karma > 2 then
+				if TReX.serverside.karma_check() > 2 then
 					if not table.contains({t.defs}, "devilmark") then
 						t.send("queue add eqbal devilmark")
 					end
@@ -2030,7 +2030,7 @@ end
 			end
 			if defs == "astralvision" then 
 				if not table.contains({t.defs}, "astralvision") then
-					if TReX.stats.karma > 2 then
+					if TReX.serverside.karma_check() > 2 then
 						t.send("queue add eqbal astralvision")
 					else
 						if not table.contains(t.defs, defs) then
@@ -2041,7 +2041,7 @@ end
 				end
 			end
 			if defs == "simulacrum" then
-				if not table.contains({t.defs}, "simulacrum") and TReX.stats.karma > 2 then
+				if not table.contains({t.defs}, "simulacrum") and TReX.serverside.karma_check() > 2 then
 					if not table.contains({TReX.inv.inv}, "a simulacrum shaped like " ..gmcp.Char.Status.name) then
 						t.send("queue add eqbal simulacrum")
 					end
@@ -2049,7 +2049,7 @@ end
 			end
 			if defs == "heartstone" then
 				if not table.contains({t.defs}, "heartstone") then
-					if not table.contains({TReX.inv.inv}, "a heartstone") and TReX.stats.karma > 2 then
+					if not table.contains({TReX.inv.inv}, "a heartstone") and TReX.serverside.karma_check() > 2 then
 						t.send("queue add eqbal heartstone")
 					end
 				end
