@@ -11,7 +11,7 @@
  
 ### Features
  - Serverside/GMCP
- - Multiclass Ready
- - Modularly Developed
- - Designed 4 Combat
+ - Multiclass ready
+ - Modularly developed
+ - Designed for combat
  
