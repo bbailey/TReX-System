@@ -5,13 +5,13 @@
  - https://www.youtube.com/watch?v=Bwxqzt-qKFo
 
 ## Requirements
- - Mudlet 3.0 +
+ - Mudlet 3.7.1 +
  - http://mudlet.org
  - https://github.com/Mudlet/Mudlet#mudlet
  
 ### Features
  - Serverside/GMCP
- - Multiclass Ready
- - Modularly Developed
- - Designed 4 Combat
+ - Multiclass ready
+ - Modularly developed
+ - Designed for combat
  
