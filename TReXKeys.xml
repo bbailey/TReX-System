@@ -6,8 +6,33 @@
     <AliasPackage/>
     <ActionPackage/>
     <ScriptPackage/>
-    <KeyPackage/>
-    <HelpPackage>
-        <helpURL></helpURL>
-    </HelpPackage>
+    <KeyPackage>
+        <KeyGroup isActive="yes" isFolder="yes">
+            <name>hunting</name>
+            <packageName></packageName>
+            <script></script>
+            <command></command>
+            <keyCode>72</keyCode>
+            <keyModifier>0</keyModifier>
+            <Key isActive="no" isFolder="no">
+                <name>start the killing spree</name>
+                <packageName></packageName>
+                <script>
+  if not huntVar.on then 
+  	huntVar.on = true 
+  end
+  if not huntVar.targetGone then
+  	t.serverside.green_echo(&quot;&lt;green&gt;[&lt;white&gt;Data&lt;green&gt;]&lt;white&gt;: Level: &lt;green&gt;&quot;..gmcp.Char.Status.level) 
+  	TReX.hunting.rotation()
+  else
+		t.serverside.green_echo(&quot;Room Cleared&quot;, false)
+	end	
+		
+</script>
+                <command></command>
+                <keyCode>96</keyCode>
+                <keyModifier>0</keyModifier>
+            </Key>
+        </KeyGroup>
+    </KeyPackage>
 </MudletPackage>
