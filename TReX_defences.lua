@@ -1271,6 +1271,9 @@ TReX.defs.alias_toggle=function(defs)
 		--	t.serverside.red_echo("Meditate")
 			--TReX.defs.reset_meditate()
 		--end
+		if defs=="insomnia" then
+			t.send("relax insomnia")
+		end
 
 		if defs=="gripping" then
 			t.send("relax grip")
@@ -1284,7 +1287,7 @@ TReX.defs.alias_toggle=function(defs)
 			TReX.defs.deathsight_remove(defs)
 		end
 		
-			if table.index_of({"groundwatch","skywatch","hypersight","alertness","telesense","insomnia","softfocusing"}, defs) then
+			if table.index_of({"groundwatch","skywatch","hypersight","alertness","telesense","softfocusing"}, defs) then
 				if t.def[defs] then
 					if defs == "softfocusing" then
 						t.send("softfocus off")
