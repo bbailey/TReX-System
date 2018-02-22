@@ -234,9 +234,11 @@ if not TReX.prios.default then -- fail safe
 end
 
 for k,v in pairs(t.class.list) do 
-	if TReX.prios.current[aff] ~= TReX.prios[v][aff] then 
-		t.send("curing priority "..aff.." "..TReX.prios.default[aff])
-		TReX.prios.current[aff] = TReX.prios.default[aff]
+	if t.class[v].enabled then
+		if TReX.prios.current[aff] ~= TReX.prios[v][aff] then 
+			t.send("curing priority "..aff.." "..TReX.prios.default[aff])
+			TReX.prios.current[aff] = TReX.prios.default[aff]
+		end
 	end
 end	
 

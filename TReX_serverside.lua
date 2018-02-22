@@ -2129,7 +2129,7 @@ TReX.serverside.affremove=function(aff)
 	--[[if gmcp table is empty then hard reset tables for good measure]]
 	if table.is_empty(t.serverside.gmcp_aff_table) then
 		if prioResetTimer then killTimer(tostring(prioResetTimer)) prioResetTimer=nil end
-		prioResetTimer = tempTimer(15, [[ TReX.class.reset() ]])  --[[TReX.serverside.affReset()]]
+		prioResetTimer = tempTimer(15, [[ TReX.class.reset() TReX.prios.reset() ]]) 
 	end
 		
 		--[[tell the system they can echo afflictions to the prompt]]
@@ -2247,7 +2247,7 @@ t.serverside.gmcpAffRemoved=function(aff) -- motherboard gmcpaff remove
 	--[[if gmcp table is empty then hard reset tables for good measure]]
 	if table.is_empty(t.serverside.gmcp_aff_table) then
 		if prioResetTimer then killTimer(tostring(prioResetTimer)) prioResetTimer=nil end
-		prioResetTimer = tempTimer(9.5, [[ TReX.class.reset() ]])  --[[TReX.serverside.affReset()]]
+		prioResetTimer = tempTimer(9.5, [[ TReX.class.reset() TReX.prios.reset() ]])
 	end
 		--[[for debbuging purposes]]
 		if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( t.serverside.gmcpAffRemoved ) ") end	
