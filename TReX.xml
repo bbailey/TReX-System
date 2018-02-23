@@ -254,6 +254,31 @@ end</script>
                     <integer>7</integer>
                 </regexCodePropertyList>
             </Trigger>
+            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                <name>blackout</name>
+                <script>TReX.serverside.affadd(&quot;blackout&quot;)
+if t.bals.tree then raiseEvent(&quot;TReX gained aff&quot;, &quot;blackout&quot;) end</script>
+                <triggerType>0</triggerType>
+                <conditonLineDelta>0</conditonLineDelta>
+                <mStayOpen>0</mStayOpen>
+                <mCommand></mCommand>
+                <packageName></packageName>
+                <mFgColor>#ff0000</mFgColor>
+                <mBgColor>#ffff00</mBgColor>
+                <mSoundFile></mSoundFile>
+                <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                <regexCodeList>
+                    <string>^\-$</string>
+                    <string>Vote-</string>
+                    <string>note-</string>
+                </regexCodeList>
+                <regexCodePropertyList>
+                    <integer>1</integer>
+                    <integer>2</integer>
+                    <integer>2</integer>
+                </regexCodePropertyList>
+            </Trigger>
         </TriggerGroup>
         <TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
             <name>config</name>
@@ -35042,28 +35067,16 @@ if not t.serverside.settings.sys_loaded then return end
 	end 
 
 	  	
-	if (aff == &quot;blackout&quot;) then 
-		if t.serverside[&quot;settings&quot;].tree and TReX.affs2tree[&quot;_by_class&quot;][&quot;blackout&quot;] &gt; 0 then 
-			TReX.serverside.autoTreeOn()
-		end -- if blackout and tree enabled set to a count of 1 in the menu
-
-		t.bals[&quot;tree&quot;] = false
-
-		if treeTimer then return end
-				treeTimer = tempTimer(15, [[
-					raiseEvent(&quot;trackable_event gained&quot;)
-					raiseEvent(&quot;TReX gained bal&quot;, &quot;tree&quot;)
-					treeTimer = nil
-								if t.affs.blackout then -- just in case we in black out and timer overlapped.
-									if t.bals.tree and t.serverside[&quot;settings&quot;].tree then  
-										t.serverside.red_echo(&quot;Tree Fired&quot;)
-										t.tree()
-									end
-								end
-
-						]]) 
-			
-	end -- if blackout
+if t.affs.blackout then 
+		if t.serverside.settings.tree and TReX.affs2tree[&quot;_by_class&quot;][&quot;blackout&quot;] &gt; 0 then 
+			if t.bals.tree then
+				t.bals.tree = false -- if last cmd = touch tree then set to false. to do later
+				t.send(&quot;touch tree&quot;)
+				if tree_timer then return end
+				tree_timer = tempTimer(15, [[t.bals.tree = true killTimer(tree_timer)]])
+			end
+		end
+	end
 
 	if (aff == &quot;corruption&quot;) then
 		TReX.cooldown.corruption = 0
