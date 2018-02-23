@@ -30334,11 +30334,14 @@ end
 
 --Get Gold Function
 TReX.shinies.Get_Gold = function()
-  if TReX.shinies.TargetSlain and TReX.shinies.GetGold then 
-  	send(&quot;queue prepend eqbal take coins &quot;..(TReX.config.cc or &quot;##&quot;)..&quot; put coins in &quot; .. t.inv[&quot;pack&quot;].id)
+  if TReX.shinies.TargetSlain and TReX.shinies.GetGold then
+      if t.inv[&quot;pack&quot;].id ~= nil then
+        send(&quot;queue prepend eqbal take coins &quot;..(TReX.config.cc or &quot;##&quot;)..&quot; put coins in &quot; .. t.inv[&quot;pack&quot;].id)
+         else
+        send(&quot;queue prepend eqbal take coins &quot;..(TReX.config.cc or &quot;##&quot;)..&quot; put coins in pack&quot;)
+      end
   end
 end
-
 --Gold Goals Function
 TReX.shinies.Gold_Goals = function()
 	if not TReX.shinies.GoldGoals then TReX.shinies.Gold_Reset() end
