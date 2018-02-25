@@ -239,11 +239,12 @@ TReX.config.login_load=function(event)
 			TReX.pipes.settings()   
 		 
 			--prompt
+			send("config prompt custom PROMPTCAPTURE")  
+			send("curing status", false) 
 			deletep = false
 			t.send("citizens")
 			TReX.tgt.set("", "none")
-			send("curing status", false) 
-			send("config prompt custom PROMPTCAPTURE")  
+			
 			
 			--serverside config
 			if not TReX.config.cc then 
@@ -266,7 +267,7 @@ TReX.config.login_load=function(event)
 					setBorderBottom(0)
 					TReX.serverside.container:hide()
 				end
-		
+				
 				t.send("settarget none")
 				t.send("target nothing")
 			
@@ -291,6 +292,9 @@ TReX.config.install=function()
 	TReX.pipes.settings()
 	TReX.config.settings()
 	TReX.config.score_sheet()
+	--TReX.config.color_sheet()
+	--TReX.config.saveDefences()
+	--if gmcp.Char.Status.name == "Nehmrah" then TReX.config.allowtells() end
 	send("config",false)
 	send("empty pipes",false)
 	t.serverside.prompt_capture = "config prompt all"
@@ -1369,7 +1373,6 @@ TReX.config.show=function (arg,arg2)
 		--elseif arg2 == "off" then TReX.disable_gui()
 		--end
 
-		--echo"\n"
 		if t.serverside.settings.Prompt then
 			deletep=false
 				if not table.contains({prompt_sent}, "sent") then
@@ -1377,7 +1380,6 @@ TReX.config.show=function (arg,arg2)
 				end
 			TReX.stats.custom_prompt()
 		end
-	
 end
 
 TReX.config.save=function() -- saves this file
