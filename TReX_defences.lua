@@ -51,14 +51,16 @@ end
 
 -- parses incoming defs from gmcp
 TReX.defs.gmcp_def_event_list=function()
+--TReX.defs.display_gui()	
 if t.serverside["settings"].installed then
 	for k, v in pairs(gmcp.Char.Defences.List) do
 		if v["name"] ~= "morph" then
 			if not table.contains({"parrying (head)","parrying (torso)","parrying (left leg)","parrying (right leg)","parrying (left arm)","parrying (right arm)"}, v["name"]) then
-					TReX.defs.sort(v["name"])
+					TReX.defs.sort(v["name"])	
 				if not (table.index_of(t.defs, v["name"])) then  
 					table.insert(t.defs,#t.defs+1,v["name"])
-		
+					TReX.defs.display_gui()	
+							
 				end
 			end
 		end
@@ -69,7 +71,8 @@ end -- func
 
 ---NEW UPDATES---
 TReX.defs.gmcp_def_event_add=function(defs) -- motherboard gmcp def add 
-local ignore={"megalithtattoo","fireflytattoo","mosstattoo","feathertattoo","shieldtattoo","mindseyetattoo","hammertattoo","cloaktattoo","belltattoo"
+--TReX.defs.display_gui()	
+local ignore={"boartattoo","megalithtattoo","fireflytattoo","mosstattoo","feathertattoo","shieldtattoo","mindseyetattoo","hammertattoo","cloaktattoo","belltattoo"
 ,"crystaltattoo","moontattoo","starbursttattoo","boartattoo","webtattoo","tentacletattoo","hourglasstattoo","braziertattoo","prismtattoo","treetattoo","oxtattoo"
 ,"chameleontattoo"}
 
@@ -84,13 +87,9 @@ local ignore={"megalithtattoo","fireflytattoo","mosstattoo","feathertattoo","shi
 				if not table.index_of(ignore, k) then
 					table.insert(t.defs, #t.defs+1, defs)
 					TReX.defs.sort(defs)
+					TReX.defs.display_gui()	
 				end
 			end
-			
-			
-				--if not table.index_of(ignore, k) then
-					--TReX.defs.sort(defs)
-				--end
 		end
 
 	for k,v in pairs(def_list.free) do
@@ -138,6 +137,7 @@ end -- func
 --calling highest affliction k,v function to set prio list.
 --removes from gmcp affliction table via gmcp
 TReX.defs.gmcp_def_event_remove=function() -- motherboard gmcpaff remove
+--TReX.defs.display_gui()			
     for _, defs in ipairs( gmcp.Char.Defences.Remove ) do
 		defs2,count = string.match( defs, "(%w+) %((%d+)%)" )
 		defs = defs
@@ -156,7 +156,7 @@ TReX.defs.gmcp_def_event_remove=function() -- motherboard gmcpaff remove
 				end -- if
 			end -- if
 
-			if x > -1 then table.remove(t.defs, table.index_of(t.defs, defs)) end
+			if x > -1 then table.remove(t.defs, table.index_of(t.defs, defs))  TReX.defs.display_gui() end
 			if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.gmcp_def_event_remove ) ") end	
 			
 	end -- for
@@ -1725,8 +1725,10 @@ end
 					table.insert(t.defs, defs)
 				end
 			else
-					if not table.contains({t.defs}, defs) then
-						table.insert(t.defs, defs)
+					if not table.contains({"alertness","nightsight","stealth","vitality","resistance"}, defs) then
+						if not table.contains({t.defs}, defs) then
+							table.insert(t.defs, defs)
+						end
 					end
 				
 			end
@@ -2190,9 +2192,11 @@ end
 					table.insert(t.defs, defs)
 				end
 			else
-				if not table.contains({t.defs}, defs) then
-					table.insert(t.defs, defs)
-				end
+					if not table.contains({"alertness","nightsight","stealth","vitality","resistance"}, defs) then
+						if not table.contains({t.defs}, defs) then
+							table.insert(t.defs, defs)
+						end
+					end
 			end
 
 
@@ -2249,7 +2253,7 @@ local ignore={"boartattoo","megalithtattoo","fireflytattoo","mosstattoo","feathe
 ,"chameleontattoo","blindness","deafness"}
 
 local defs2relax={"groundwatch","skywatch","alertness","nightsight","telesense","metawake","vigilance","hypersight","softfocusing"
-					, "dodging","acrobatics", "ing","balancing","gripping","heartsfury","drunkensailor"-- Bard
+					, "dodging","acrobatics", "arrowcatching","balancing","gripping","heartsfury","drunkensailor"-- Bard
 					, "mindnet", "projectiles", "consciousness", "regeneration", "mindcloak" -- Monk
 					, "waterwalking", "shinbinding", "retaliation"-- Blademaster
 					, "weaving" -- Serpent
@@ -2410,7 +2414,7 @@ TReX.defs.def_display=function(def_table)
 	local command = [[TReX.defs.toggle("]]..n..[[")]]
 		echoLink(nWithSpace, command, "Toggle " .. n, true)
 	end
-
+	TReX.defs.display_gui()
 	if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.def_display ) ") end
 
 
@@ -2437,7 +2441,7 @@ table_list = {
 		TReX.stats.custom_prompt()
 
 end
-
+	
 	
 -- [[ HARD DEFENCE TOGGLE ]]
 -- toggles serverside defence defup off and on
