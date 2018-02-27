@@ -37,6 +37,9 @@ end -- func
 TReX.defs.login=function()
 def_list = {}
 TReX.defs.list()
+
+--raiseEvent("gmcp.Char.Skills.Info")
+--TReX.defs.skillcheck()
 	if TReX.s.class == "Dragon" then
 		t.file["dragon"] = t.file["dragon"] or def_list	 -- adding in to test
 		def_list = t.file["dragon"] 	
@@ -51,14 +54,16 @@ end
 
 -- parses incoming defs from gmcp
 TReX.defs.gmcp_def_event_list=function()
+
 if t.serverside["settings"].installed then
 	for k, v in pairs(gmcp.Char.Defences.List) do
 		if v["name"] ~= "morph" then
 			if not table.contains({"parrying (head)","parrying (torso)","parrying (left leg)","parrying (right leg)","parrying (left arm)","parrying (right arm)"}, v["name"]) then
-					TReX.defs.sort(v["name"])
+					TReX.defs.sort(v["name"])	
 				if not (table.index_of(t.defs, v["name"])) then  
 					table.insert(t.defs,#t.defs+1,v["name"])
-		
+
+							
 				end
 			end
 		end
@@ -69,7 +74,8 @@ end -- func
 
 ---NEW UPDATES---
 TReX.defs.gmcp_def_event_add=function(defs) -- motherboard gmcp def add 
-local ignore={"megalithtattoo","fireflytattoo","mosstattoo","feathertattoo","shieldtattoo","mindseyetattoo","hammertattoo","cloaktattoo","belltattoo"
+
+local ignore={"boartattoo","megalithtattoo","fireflytattoo","mosstattoo","feathertattoo","shieldtattoo","mindseyetattoo","hammertattoo","cloaktattoo","belltattoo"
 ,"crystaltattoo","moontattoo","starbursttattoo","boartattoo","webtattoo","tentacletattoo","hourglasstattoo","braziertattoo","prismtattoo","treetattoo","oxtattoo"
 ,"chameleontattoo"}
 
@@ -84,6 +90,7 @@ local ignore={"megalithtattoo","fireflytattoo","mosstattoo","feathertattoo","shi
 				if not table.index_of(ignore, k) then
 					table.insert(t.defs, #t.defs+1, defs)
 					TReX.defs.sort(defs)
+
 				end
 			end
 			
@@ -156,7 +163,7 @@ TReX.defs.gmcp_def_event_remove=function() -- motherboard gmcpaff remove
 				end -- if
 			end -- if
 
-			if x > -1 then table.remove(t.defs, table.index_of(t.defs, defs)) end
+			if x > -1 then table.remove(t.defs, table.index_of(t.defs, defs))  end
 			if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.gmcp_def_event_remove ) ") end	
 			
 	end -- for
@@ -167,11 +174,7 @@ TReX.defs.list=function()
 TReX.s.class_spec()
 TReX.s.class_check()
 def_list = {
------------
---KEEPUPS--
------------
 	free = { 			
-	
 		--["meditate"] = {["name"] = "meditate", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},	
 		["blindness"] = {["name"] = "blindness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 		["deafness"] = {["name"] = "deafness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -193,11 +196,8 @@ def_list = {
 		["magicresist"] = {["name"] = "magicresist", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 		["coldresist"] = {["name"] = "coldresist", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 		["electricresist"] = {["name"] = "electricresist", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
-
 	},
-
 	needs_full_bal = {
-		
 		["alertness"] = {["name"] = "alertness", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 		["cloak"] = {["name"] = "cloak", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},	
 		["curseward"] = {["name"] = "curseward", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -211,17 +211,12 @@ def_list = {
 		["nightsight"] = {["name"] = "nightsight", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 		["deathsight"] = {["name"] = "deathsight", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 		["telesense"] = {["name"] = "telesense", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
-		--["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
-		--["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
-		
-	
+		["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+		["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 	},
-	
 }
-	--Alchemist
-	if TReX.s.class == "Alchemist" then -- need to edit
-		def_list.class ={
-			
+	if TReX.s.class == "Alchemist" then 
+		def_list.class ={			
 			["astronomy"] = {["name"] = "astronomy", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["mercury"] = {["name"] = "mercury", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["sulphur"] = {["name"] = "sulphur", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -229,13 +224,11 @@ def_list = {
 			--["compoundmask"] = {["name"] = "Compoundmask", ["keepup"] = true, ["defup"] = true, ["enabled"] = true},
 			--["enhancedform"] = {["name"] = "Enhancedform", ["keepup"] = true, ["defup"] = true, ["enabled"] = true},
 			--["ironform"] = {["name"] = "Ironform", ["keepup"] = true, ["defup"] = true, ["enabled"] = true},
-			
 		}
 	end
 	
-	if TReX.s.class == "Apostate" then -- need to edit
+	if TReX.s.class == "Apostate" then 
 		def_list.class ={
-			
 			["demonarmour"] = {["name"] = "demonarmour", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
@@ -243,15 +236,13 @@ def_list = {
 			["putrefaction"] = {["name"] = "putrefaction", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["vengeance"] = {["name"] = "vengeance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},  		
 			["truestare"] = {["name"] = "truestare", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true}, 			
-
 		}
 	end
 
 	--Bard
 	if TReX.s.class == "Bard" then
-		def_list.class ={
-			
-			["acrobatics"] = {["name"] = "acrobatics", ["keepup"] = false, ["defaraup"] = false, ["serverside"]=true, ["enabled"] = true},
+		def_list.class ={			
+			["acrobatics"] = {["name"] = "acrobatics", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["dodging"] = {["name"] = "dodging", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["arrowcatching"] = {["name"] = "arrowcatching", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["balancing"] = {["name"] = "balancing", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -262,14 +253,12 @@ def_list = {
 			["tune"] = {["name"] = "tune", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["aria"] = {["name"] = "aria", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true,},
 			["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
-
-		}
+		}			
 	end
 	
 	--Blademaster
 	if TReX.s.class == "Blademaster" then
-		def_list.class ={
-			
+		def_list.class ={			
 			["dodging"] = {["name"] = "dodging", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["immunity"] = {["name"] = "immunity", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["projectiles"] = {["name"] = "projectiles", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -285,13 +274,12 @@ def_list = {
 			["shinbinding"] = {["name"] = "shinbinding", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["shintrance"] = {["name"] = "shintrance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["shinclarity"] = {["name"] = "shinclarity", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
-		}
+		}		
 	end
 
 
 	if TReX.s.class == "Depthswalker" then
-		def_list.class ={
-			
+		def_list.class ={			
 			["disperse"] = {["name"] = "disperse", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["bodyaugment"] = {["name"] = "bodyaugment", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["precision"] = {["name"] = "precision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -305,7 +293,7 @@ def_list = {
 
 	--Infernal
 	 if TReX.s.class == "Infernal" then
-         def_list.class ={
+         def_list.class ={            
              ["weathering"] = {["name"] = "weathering", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
              ["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
              ["fury"] = {["name"] = "fury", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -318,12 +306,11 @@ def_list = {
 			 ["blademastery"] = {["name"] = "blademastery", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			 ["deflect"] = {["name"] = "deflect", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			 ["vengeance"] = {["name"] = "vengeance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},            
-         }
+         }	
     end
 
 	if TReX.s.class == "Jester" then
 		def_list.class = {
-			
 			["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["slippery"] = {["name"] = "slippery", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["balancing"] = {["name"] = "balancing", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -331,14 +318,13 @@ def_list = {
 			["deviltarot"] = {["name"] = "deviltarot", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true,},
 			["acrobatics"] = {["name"] = "acrobatics", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},			
 		}
-	
 	end
 
 	-- Magi
 	if TReX.s.class == "Magi" then
-	def_list.needs_full_bal["simultaneity"] = {["name"] = "simultaneity", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
-	--def_list.needs_full_bal["binding"] = {["name"] = "binding", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
+		def_list.needs_full_bal["simultaneity"] = {["name"] = "simultaneity", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
 		def_list.class ={
+			["binding"] = {["name"] = "bind all", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			["fortify"] = {["name"] = "fortify", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			["chargeshield"] = {["name"] = "chargeshield", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["diamondskin"] = {["name"] = "diamondskin", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -351,8 +337,7 @@ def_list = {
 	
 	-- Monk
 	if TReX.s.class == "Monk" then
-		def_list.class ={
-			
+		def_list.class ={			
 			["vitality"] = {["name"] = "vitality", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["immunity"] = {["name"] = "immunity", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["bodyblock"] = {["name"] = "bodyblock", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -388,12 +373,12 @@ def_list = {
 			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["simulacrum"] = {["name"] = "simulacrum", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			["heartstone"] = {["name"] = "heartstone", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
-		}
+		}		
 	end
 
 	--Paladin
 	  if TReX.s.class == "Paladin" then
-        def_list.class ={
+         def_list.class ={            
             ["weathering"] = {["name"] = "weathering", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
             ["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
             ["fury"] = {["name"] = "fury", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -403,6 +388,7 @@ def_list = {
 			["blademastery"] = {["name"] = "blademastery", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["deflect"] = {["name"] = "deflect", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
         }
+         
     end
 
 	--Priest
@@ -424,7 +410,8 @@ def_list = {
             ["resistance"] = {["name"] = "resistance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["blademastery"] = {["name"] = "blademastery", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["deflect"] = {["name"] = "deflect", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},			
-        }
+            
+         }
 
     end
 
@@ -477,12 +464,12 @@ def_list = {
 	--Sylvan
 	if TReX.s.class == "Sylvan" then
 		def_list.needs_full_bal["simultaneity"] = {["name"] = "simultaneity", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
-		--def_list.needs_full_bal["binding"] = {["name"] = "binding", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
 		def_list.class = { 
 			["circulate"] = {["name"] = "circulate", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			["viridian"] = {["name"] = "viridian", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["wildgrowth"] = {["name"] = "wildgrowth", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			["fortify"] = {["name"] = "fortify", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["binding"] = {["name"] = "bind all", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			["barkskin"] = {["name"] = "barkskin", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["panacea"] = {["name"] = "panacea", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["vigour"] = {["name"] = "vigour", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -502,7 +489,6 @@ def_list = {
 
 	if TReX.s.class == "Druid" then
 		def_list.class = { -- any these you want on keepup or keep it like it is?
-
 			["affinity"] = {["name"] = "afinity", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["circulate"] = {["name"] = "circulate", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			["bonding"] = {["name"] = "bonding", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -515,7 +501,6 @@ def_list = {
 			--["spinningstaff"] = {["name"] = "spinningstaff", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			["flailingstaff"] = {["name"] = "flailingstaff", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
             ["melody"] = {["name"] = "melody", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
-			
 		}
 	
 	end -- if
@@ -1024,6 +1009,7 @@ TReX.defs.alias_toggle=function(defs)
 			end
 		end
 
+		
 			if defs == "mass" then
 				TReX.defs.mass()
 			end
@@ -1066,9 +1052,7 @@ TReX.defs.alias_toggle=function(defs)
 				if defs == "aria" then 
 					if not table.contains(t.defs, "aria") then
 						if t.bals.eq and t.bals.voice then
-							if t.def.deafness then
-								t.send("queue prepend eq draw rapier##wield rapier left##auralbless me")
-							end
+							t.send("queue prepend eq draw rapier##wield rapier left##auralbless me")
 							t.send("queue add class sing aria at me")
 						end
 					end
@@ -1078,9 +1062,9 @@ TReX.defs.alias_toggle=function(defs)
 			
 			
 			if table.index_of({"Magi"}, TReX.s.class) then
-				-- if defs == "binding" then 
-					-- TReX.defs.bind_all()
-				-- end
+				if defs == "binding" then 
+					TReX.defs.binding_all()
+				end
 				if defs == "fortify" then
 					TReX.defs.fortify_all()
 				end
@@ -1287,13 +1271,10 @@ TReX.defs.alias_toggle=function(defs)
 		--	t.serverside.red_echo("Meditate")
 			--TReX.defs.reset_meditate()
 		--end
-
-		if defs == "blindness" then
-			if t.def.blindness then
-				t.send("apply epidermal##look")
-			end
+		if defs=="insomnia" then
+			t.send("relax insomnia")
 		end
-		
+
 		if defs=="gripping" then
 			t.send("relax grip")
 		end
@@ -1306,7 +1287,7 @@ TReX.defs.alias_toggle=function(defs)
 			TReX.defs.deathsight_remove(defs)
 		end
 		
-			if table.index_of({"groundwatch","skywatch","hypersight","alertness","telesense","insomnia","softfocusing"}, defs) then
+			if table.index_of({"groundwatch","skywatch","hypersight","alertness","telesense","softfocusing"}, defs) then
 				if t.def[defs] then
 					if defs == "softfocusing" then
 						t.send("softfocus off")
@@ -1353,9 +1334,9 @@ TReX.defs.alias_toggle=function(defs)
 		
 			
 			if table.index_of({"Magi"}, TReX.s.class) then
-				-- if defs == "binding" then 
-					-- TReX.defs.binding_off()
-				-- end
+				if defs == "binding" then 
+					TReX.defs.binding_off()
+				end
 				if defs == "fortify" then 
 					TReX.defs.fortify_down()
 				end
@@ -1393,9 +1374,9 @@ TReX.defs.alias_toggle=function(defs)
 						t.send("queue add eqbal unwield " ..t.inv["staff"].id)
 						TReX.rewield(t.inv["staff"].id, "x")
 					end
-					-- if defs == "binding" then 
-						-- TReX.defs.sever()
-					-- end
+					if defs == "binding" then 
+						TReX.defs.binding_off()
+					end
  			
 					if defs == "simultaneity" then
 						TReX.defs.simultaneity_down()
@@ -1535,9 +1516,9 @@ end
 		end
 		
 		if table.index_of({"Magi"}, TReX.s.class) then
-			-- if defs == "binding" then 
-				-- TReX.defs.bind_all()
-			-- end
+			if defs == "binding" then 
+				TReX.defs.binding_all()
+			end
 			if defs == "fortify" then
 				TReX.defs.fortify_all()
 			end
@@ -1556,11 +1537,8 @@ end
 			if defs == "aria" then 
 				if not table.contains(t.defs, "aria") then
 					if t.bals.eq and t.bals.voice then
-							if t.def.deafness then
-								t.send("queue prepend eq draw rapier##wield rapier left##auralbless me")
-							end
-							
-							t.send("queue add class sing aria at me")
+						t.send("queue prepend eq draw rapier##wield rapier left##auralbless me")
+						t.send("queue add class sing aria at me")
 					end
 				end
 			end
@@ -1805,9 +1783,9 @@ else
 			
 				
 		if table.index_of({"Magi"}, TReX.s.class) then
-			-- if defs == "binding" then 
-				-- TReX.defs.binding_off()
-			-- end
+			if defs == "binding" then 
+				TReX.defs.binding_off()
+			end
 			if defs == "fortify" then 
 			 	TReX.defs.fortify_down()
 			end
@@ -1846,9 +1824,9 @@ else
 						t.send("queue add eqbal unwield " ..t.inv["staff"].id)
 						TReX.rewield(t.inv["staff"].id, "x")
 					end
-					-- if defs == "binding" then 
-						-- TReX.defs.sever()
-					-- end
+					if defs == "binding" then 
+						TReX.defs.binding_off()
+					end
 					if defs == "simultaneity" then
 						TReX.defs.simultaneity_off()
 					end
@@ -1991,10 +1969,8 @@ end
 			if defs == "aria" then 
 				if not table.contains(t.defs, "aria") then
 					if t.bals.eq and t.bals.voice then
-							if t.def.deafness then
-								t.send("queue prepend eq draw rapier##wield rapier left##auralbless me")
-							end
-							t.send("queue add class sing aria at me")
+						t.send("queue prepend eq draw rapier##wield rapier left##auralbless me")
+						t.send("queue add class sing aria at me")
 					end
 				end
 			end
@@ -2009,9 +1985,9 @@ end
 		end
 
 		if table.index_of({"Magi"}, TReX.s.class) then
-			-- if defs == "binding" then 
-				-- TReX.defs.bind_all()
-			-- end
+			if defs == "binding" then 
+				TReX.defs.binding_all()
+			end
 			if defs == "fortify" then
 				TReX.defs.fortify_all()
 			end
@@ -2249,7 +2225,7 @@ local ignore={"boartattoo","megalithtattoo","fireflytattoo","mosstattoo","feathe
 ,"chameleontattoo","blindness","deafness"}
 
 local defs2relax={"groundwatch","skywatch","alertness","nightsight","telesense","metawake","vigilance","hypersight","softfocusing"
-					, "dodging","acrobatics", "ing","balancing","gripping","heartsfury","drunkensailor"-- Bard
+					, "dodging","acrobatics", "arrowcatching","balancing","gripping","heartsfury","drunkensailor"-- Bard
 					, "mindnet", "projectiles", "consciousness", "regeneration", "mindcloak" -- Monk
 					, "waterwalking", "shinbinding", "retaliation"-- Blademaster
 					, "weaving" -- Serpent
@@ -2311,7 +2287,7 @@ local defs2relax={"groundwatch","skywatch","alertness","nightsight","telesense",
 								elseif k=="heartsfury" then
 									send("queue add eqbal unstance")
 								elseif k=="balancing" then
-									send("relax balancing")									
+									send("relax balancing")										
 								elseif k=="drunkensailor" then
 									send("queue add eqbal unstance")									
 								elseif k=="blademastery" then
@@ -3231,17 +3207,17 @@ end
 	-- end
 -- end
 
--- TReX.defs.sever=function()
-	-- if not table.contains({t.defs}, "binding") then
-		-- t.send("queue add eqbal sever all")
-	-- end
--- end
+TReX.defs.binding_off=function()
+	if table.contains({t.defs}, "binding") then
+		t.send("queue add eqbal binding off")
+	end
+end
 
--- TReX.defs.bind_all=function()
-	-- if not table.contains({t.defs}, "binding") then
-		-- t.send("queue add eqbal bind all")
-	-- end
--- end
+TReX.defs.binding_all=function()
+	if not table.contains({t.defs}, "binding") then
+		t.send("queue add eqbal binding all")
+	end
+end
 
 TReX.defs.fortify_all=function()
 	if not table.contains({t.defs}, "fortify") then
