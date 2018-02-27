@@ -160,6 +160,8 @@ TReX.defs.gmcp_def_event_remove=function() -- motherboard gmcpaff remove
 			end -- if
 			if gmcp.Char.Name.name == "Nehmrah" then
 				if x > -1 then table.remove(t.defs, table.index_of(t.defs, defs))  TReX.defs.display_gui() end
+			else
+				if x > -1 then table.remove(t.defs, table.index_of(t.defs, defs))  end
 			end
 			if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.gmcp_def_event_remove ) ") end	
 			
