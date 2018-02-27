@@ -34,8 +34,6 @@ end -- func
 
 TReX.class.set=function(a, b, aff) -- this is the function throwing an error
 
-t.target = ""
-
 local a = tostring(a)
 local b = b or t.target
 local aff = tostring(aff)
@@ -44,7 +42,6 @@ local aff = tostring(aff)
 	if not (t.class[a].enabled) then
 		TReX.class.reset()
 		t.class[a].enabled = true
-			tempTimer(15, [[TReX.class.reset() t.serverside.green_echo("Reset Enemy Class")]])
 	end
 
 		--soft target
@@ -54,7 +51,8 @@ local aff = tostring(aff)
 	
 		--class check
 		TReX.class[a](aff) 
-
+	
+	
 end
 
 TReX.class.reset=function()
@@ -125,8 +123,8 @@ class_skill = {
 ["jester"] = {["tarot"]=false,},
 ["water"] = {["purify"]=false,},
 ["earth"] = {["extrusion"]=false,},
-["fire"] = {[""]=false,},
-["air"] = {[""]=false,},
+["fire"] = {["slough"]=false,},
+--["air"] = {[""]=false,},
 
 
 }
@@ -158,9 +156,9 @@ class_skill = {
 ["shaman"] = {["daina"]=class_skill.shaman.daina or false,},
 ["jester"] = {["tarot"]=class_skill.jester.tarot or false,},
 ["water"] = {["purify"]=class_skill.water.tarot or false,},
-["air"] = {[""]=class_skill.water.tarot or false,},
+--["air"] = {[""]=class_skill.water.tarot or false,}, -- passive
 ["earth"] = {["extrusion"]=class_skill.water.tarot or false,},
-["fire"] = {[""]=class_skill.water.tarot or false,},
+["fire"] = {["slough"]=class_skill.water.tarot or false,},
 
 }
 
@@ -229,10 +227,26 @@ TReX.prios.login_reset=function()
 	end
 end
 	
-TReX.prios.affPrioRestore=function(aff)
-	if TReX.prios.current[aff] ~= TReX.prios.default[aff] then
-		TReX.prios.switchPrios(aff, TReX.prios.default[aff])
+TReX.prios.affPrioRestore=function( aff )
+
+if not TReX.prios.default then -- fail safe
+	TReX.prios.default_settings()
+end
+
+for k,v in pairs(t.class.list) do 
+	if t.class[v].enabled then
+		if TReX.prios.current[aff] ~= TReX.prios[v][aff] then 
+			t.send("curing priority "..aff.." "..TReX.prios.default[aff])
+			TReX.prios.current[aff] = TReX.prios.default[aff]
+		end
 	end
+end	
+
+	if TReX.prios.current[aff] ~= TReX.prios.default[aff] then 
+		t.send("curing priority "..aff.." "..TReX.prios.default[aff])
+		TReX.prios.current[aff] = TReX.prios.default[aff]
+	end
+	
 end
 	
 TReX.prios.reset=function()
@@ -246,15 +260,13 @@ end
   
 TReX.prios.switchPrios=function(aff, pos, x)
 
+if x == 1 and TReX.prios.current[aff] ~= tonumber(pos) then 
+	if t.serverside["settings"].echos then t.serverside.red_echo(""..aff:upper().." <red>[<white>"..tonumber(pos).."<red>]") end
+end
 
 	if TReX.prios.current[aff] ~= pos then
-		send("curing priority "..aff.." "..pos)
 		TReX.prios.current[aff] = pos
-			if x == 1 and TReX.prios.current[aff] ~= tonumber(pos) then 
-				
-				if t.serverside["settings"].echos then t.serverside.red_echo(""..aff:upper().." <red>[<white>"..tonumber(pos).."<red>]") end
-			end
-
+		send("curing priority "..aff.." "..pos)
 	end
 		
 		if t.serverside["settings"].debugEnabled then 
@@ -280,15 +292,6 @@ TReX.prios.affPrioRestore=function( aff )
 if not TReX.prios.default then -- fail safe
 	TReX.prios.default_settings()
 end
-
-for k,v in pairs(t.class.list) do 
-	if t.class[v].enabled then
-		if TReX.prios.current[aff] ~= TReX.prios[v][aff] then 
-			t.send("curing priority "..aff.." "..TReX.prios.default[aff])
-			TReX.prios.current[aff] = TReX.prios.default[aff]
-		end
-	end
-end	
 
 	if TReX.prios.current[aff] ~= TReX.prios.default[aff] then 
 		t.send("curing priority "..aff.." "..TReX.prios.default[aff])

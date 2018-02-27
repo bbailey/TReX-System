@@ -25,8 +25,21 @@ TReX.p.tumble_dir_start=function()
 	enableTimer("tumble started")
 end
 
+TReX.p.somersault_dir_end=function()
+	gmcp.Room.WrongDir = "" -- resets wrong direction room check
+	t.send("clearqueue eqbal")
+	disableTimer("somersault started")
+	t.serverside.somersault_started=false-- resets hard pause on movement keys
+end
+
+TReX.p.somersault_dir_start=function()
+	t.serverside.tumble_started=true
+	enableTimer("somersault started")
+end
+
 
 TReX.p.room_num_check=function()
+--cecho("\n<red>test 0!")
 local room_num = gmcp.Room.Info.num
 	if room_num ~= current_room_num then
 		current_room_num = room_num -- resets the new current room name
@@ -34,16 +47,12 @@ local room_num = gmcp.Room.Info.num
 		
 		t.affs.retardation = false
 		
-		if gmcp.Char.Status.name == "Nehmrah" or gmcp.Char.Status.name == "Oblive" and TReX.s.class == "Bard" then
-			requestchase = false
-		end
-		
 
 			if table.contains({t.serverside.gmcp_aff_table}, "retardation") then	
 				table.remove(t.serverside.gmcp_aff_table, table.index_of(t.serverside.gmcp_aff_table), "retardation")
 			end
 				
-		t.serverside.flee_started=false -- resets hard pause on movement keys
+	
 		raiseEvent("room player check")
 		
 			tempTimer(.05, [[
@@ -102,14 +111,15 @@ end
 					if gmcp.Room.Players[k].name ~= gmcp.Char.Status.name then
 						table.insert(TReX.p.here, gmcp.Room.Players[k].name)
 							if gmcp.Char.Status.name == "Nehmrah" then 
-								if table.contains({ally_table}, gmcp.Room.Players[k].name) and not table.contains({raid.ally_table}, gmcp.Room.Players[k].name) then
-									t.send("ally "..gmcp.Room.Players[k].name)
-								end	
-								if not table.contains({ally_table}, gmcp.Room.Players[k].name) and not table.contains({enemy_table}, gmcp.Room.Players[k].name) then
-									if TReX.serverside.enemy_check() then
-										t.send("enemy " .. gmcp.Room.Players[k].name)
+								if (tgz==nil or not tgz) then return end
+									if table.contains({tgz.ally_table}, gmcp.Room.Players[k].name) and not table.contains({tgz.raid.ally_table}, gmcp.Room.Players[k].name) then
+										t.send("ally "..gmcp.Room.Players[k].name)
+									end	
+									if not table.contains({tgz.ally_table}, gmcp.Room.Players[k].name) and not table.contains({tgz.enemy_table}, gmcp.Room.Players[k].name) then
+										if TReX.serverside.enemy_check() then
+											t.send("enemy " .. gmcp.Room.Players[k].name)
+										end
 									end
-								end
 							end
 
 							if gmcp.Char.Status.name == "Erick" or gmcp.Char.Status.name == "Lucianus" then 

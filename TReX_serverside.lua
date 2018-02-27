@@ -28,7 +28,9 @@ registerAnonymousEventHandler("lost fracture", "TReX.serverside.fracturetree")
 registerAnonymousEventHandler("gmcp.Char.Items.List", "TReX.serverside.eh_items")
 registerAnonymousEventHandler("gmcp.Char.Items.Add", "TReX.serverside.eh_items")
 registerAnonymousEventHandler("gmcp.Char.Items.Remove", "TReX.serverside.eh_items")
+--registerAnonymousEventHandler("gmcp.Char.Vitals", "TReX.serverside.getProneLength")
 registerAnonymousEventHandler("gmcp.Char.Vitals", "TReX.serverside.clot_my_bleeding")
+registerAnonymousEventHandler("bleed_event check", "TReX.serverside.clot_my_bleeding")
 registerAnonymousEventHandler("gmcp.Char.Vitals", "TReX.serverside.karma_check")
 registerAnonymousEventHandler("gmcp.Char.Vitals", "TReX.serverside.sunlight_check")
 registerAnonymousEventHandler("gmcp.Char.Vitals", "TReX.serverside.lock_check")
@@ -709,7 +711,7 @@ wake = { type = "wake" },
 toggle = { type = "toggle" },
 herb = { type = "herb" },
 misc = { type = "misc" },
-rage = { type = "balance" },
+rage = { type = "balance"},
 eruption = { type = "balance"},
 purify = { type = "balance"},
 slough = { type = "balance"},
@@ -1486,7 +1488,7 @@ TReX.serverside.prompt_options = {
 
 TReX.serverside.affbar=function(mode)
 	if mode == "on" then
-		setBorderBottom(127)
+		setBorderBottom(27)
 		t.serverside.settings.affbar = true
 		setMiniConsoleFontSize("TReX.serverside.middle", 12)
 		TReX.serverside.container:show()
@@ -1494,7 +1496,7 @@ TReX.serverside.affbar=function(mode)
 		t.serverside.green_echo("AffBar On\n")
 		
 	else
-		setBorderBottom(100)
+		setBorderBottom(0)
 		t.serverside.settings.affbar = false
 		TReX.serverside.container:hide()
 		t.serverside.red_echo("AffBar Off\n")
@@ -1730,6 +1732,127 @@ if table.index_of({"Druid","Sentinel"}, TReX.s.class) then
 end
 	if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.sunlight_check ) ") end
 end
+
+-- TReX.serverside.clot_my_bleeding=function()
+
+	-- t.affs["bleed"] = TReX.serverside.bleed_check()
+	
+		-- if t.affs["bleed"] > 0 then
+			-- t.affs.bleeding = true
+			-- if not (table.contains({t.serverside.gmcp_aff_table}, "bleeding")) then
+				-- table.insert(t.serverside.gmcp_aff_table, "bleeding")
+			-- end
+			-- --t.serverside.gmcpAffShow()
+		-- else
+			-- t.affs.bleeding = false
+			-- if (table.contains({t.serverside.gmcp_aff_table}, "bleeding")) then
+				-- table.remove(t.serverside.gmcp_aff_table, table.index_of(t.serverside.gmcp_aff_table, "bleeding"))
+			-- end
+			-- --t.serverside.gmcpAffShow()
+		-- end
+		
+-- if t.affs.bleeding then
+	-- TReX.serverside.clotcalc()
+-- end
+
+-- --t.serverside.clottimer = tempTimer(.100, [[t.serverside.clot_timer_block=false]])
+-- -- if TReX.serverside.bleeding() then
+	-- -- if not t.serverside.settings.paused and not t.affs.stun then
+		-- -- ---match for how many clots to send
+		-- -- t.send("clot")
+	-- -- end
+-- -- end
+
+-- end
+
+-- TReX.serverside.clotcalc = function()
+
+-- t.inv["magirobes"] = t.inv["magirobes"] or false
+
+-- local magirobesmult = 1
+-- if t.inv["magirobes"] then		
+	-- magirobesmult = .66
+-- end
+
+-- priest, dualcutting
+-- local classreference = {shaman = {bleed = 140, mana = .8}, apostate = {bleed = 2000, mana = .6}, blademaster = {bleed = 70, mana = 0} }
+-- local bleeddanger = 0
+-- local manadanger = 0
+-- local manaperclot = 60 * magirobesmult --not sure
+-- local bleedperclot = 40
+-- local mana = TReX.stats.m 
+-- local maxmana = TReX.stats.maxm 
+-- local clotmana = (t.affs.bleed - t.serverside["settings_default"].clot_at)*(manaperclot/bleedperclot)
+
+-- if not (t.serverside.clotcd) then
+	-- t.serverside.clotcd = 0 --add to trex table
+-- end
+
+	-- if t.serverside.clotcd < os.clock () then
+		-- --cecho("pinged the clot function")
+		-- t.serverside.clotcd = os.clock() + 0.5
+
+		-- for v,k in ipairs(classreference) do
+			-- if t.class[v].enabled then
+				-- bleeddanger = k.bleed
+				-- manadanger = k.mana
+			-- end
+		-- end
+
+		-- local dangerflag = false
+
+		-- if (mana - clotmana)/maxmana < manadanger then 
+			-- availablemana = mana - dangermana
+			-- possibleclot = (mana - dangermana)/manaperclot 
+			-- dangerflag = true 
+		-- else
+			-- possibleclot = clotmana/manaperclot
+		-- end
+
+
+		-- if t.affs.bleed  > bleeddanger and dangerflag then
+			-- local bleedrequested = t.affs.bleed - bleeddanger 
+			-- possibleclot = bleedrequested/bleedperclot 
+		-- end
+
+		-- local clotstring = ""
+
+		-- if math.floor (possibleclot) > 0 then
+			-- for i = 1, math.floor(possibleclot), 1 do
+				-- clotstring = clotstring ..cc.."clot"
+			-- end
+		-- end
+		
+		-- t.serverside.bleedcd  = os.clock() + .5
+		-- if not(clotstring == "") then
+			-- t.serverside.bleedcd = os.clock() + .5
+			-- t.send(clotstring)
+		-- end 
+
+	-- end
+-- end
+
+
+
+-- TReX.serverside.healthaffscheck=function(aff)
+-- local num = tonumber(t.affs[aff]) or 0
+	-- if num > 4 then --- if frac count greater than four then lower applyhealthat percentage -10%
+		-- t.send("curing healthaffsabove "..t.serverside["settings_default"].fractures-10)
+		-- if t.serverside["settings"].echos then t.serverside.red_echo(aff.." <red>+ <white>Counts High", false) end
+	-- elseif num <= 4 and num >= 2 then --frac count in this range then use set serverside healthapply % 
+		-- t.send("curing healthaffsabove "..t.serverside["settings_default"].fractures+0)
+		-- if t.serverside["settings"].echos then t.serverside.red_echo(aff.." <yellow>+ <white>Fracs", false) end
+	-- else--frac count low and health above 90% then raise frac apply at percentage +10 % and echo You Feel Stronger & Healthier 
+		-- t.send("curing healthaffsabove "..t.serverside["settings_default"].fractures+10) 
+		-- if TReX.stats.h >= TReX.stats.h*.90 then if t.serverside["settings"].echos then t.serverside.green_echo(aff.." <white>*** <DarkSlateGrey>You Feel Stronger & Healthier <white>***", false) end	end
+			-- table.remove(t.serverside.gmcp_aff_table, table.index_of(t.serverside.gmcp_aff_table, aff))
+	-- end
+
+	-- if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.healthaffscount ) ") end
+
+-- end
+	
+
 
 	
 TReX.serverside.affadd=function(aff)
@@ -2006,7 +2129,7 @@ TReX.serverside.affremove=function(aff)
 	--[[if gmcp table is empty then hard reset tables for good measure]]
 	if table.is_empty(t.serverside.gmcp_aff_table) then
 		if prioResetTimer then killTimer(tostring(prioResetTimer)) prioResetTimer=nil end
-		prioResetTimer = tempTimer(15, [[ TReX.class.reset() TReX.prios.reset() ]])
+		prioResetTimer = tempTimer(15, [[ TReX.class.reset() TReX.prios.reset() ]]) 
 	end
 		
 		--[[tell the system they can echo afflictions to the prompt]]
@@ -2124,7 +2247,7 @@ t.serverside.gmcpAffRemoved=function(aff) -- motherboard gmcpaff remove
 	--[[if gmcp table is empty then hard reset tables for good measure]]
 	if table.is_empty(t.serverside.gmcp_aff_table) then
 		if prioResetTimer then killTimer(tostring(prioResetTimer)) prioResetTimer=nil end
-		prioResetTimer = tempTimer(9.5, [[ TReX.class.reset() TReX.prios.reset() ]]) 
+		prioResetTimer = tempTimer(9.5, [[ TReX.class.reset() TReX.prios.reset() ]])
 	end
 		--[[for debbuging purposes]]
 		if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( t.serverside.gmcpAffRemoved ) ") end	
