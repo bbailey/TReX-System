@@ -59,7 +59,7 @@ if t.serverside["settings"].installed then
 					TReX.defs.sort(v["name"])	
 				if not (table.index_of(t.defs, v["name"])) then  
 					table.insert(t.defs,#t.defs+1,v["name"])
-					if gmcp.Char.Name == "Nehmrah" then
+					if gmcp.Char.Name.name == "Nehmrah" then
 						TReX.defs.display_gui()	
 					end
 				end
@@ -88,7 +88,7 @@ local ignore={"boartattoo","megalithtattoo","fireflytattoo","mosstattoo","feathe
 				if not table.index_of(ignore, k) then
 					table.insert(t.defs, #t.defs+1, defs)
 					TReX.defs.sort(defs)
-					if gmcp.Char.Name == "Nehmrah" then
+					if gmcp.Char.Name.name == "Nehmrah" then
 						TReX.defs.display_gui()	
 					end	
 				end
@@ -158,7 +158,7 @@ TReX.defs.gmcp_def_event_remove=function() -- motherboard gmcpaff remove
 					if defs == v then x = k end
 				end -- if
 			end -- if
-			if gmcp.Char.Name == "Nehmrah" then
+			if gmcp.Char.Name.name == "Nehmrah" then
 				if x > -1 then table.remove(t.defs, table.index_of(t.defs, defs))  TReX.defs.display_gui() end
 			end
 			if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.gmcp_def_event_remove ) ") end	
@@ -2418,7 +2418,7 @@ TReX.defs.def_display=function(def_table)
 	local command = [[TReX.defs.toggle("]]..n..[[")]]
 		echoLink(nWithSpace, command, "Toggle " .. n, true)
 	end
-	if gmcp.Char.Name == "Nehmrah" then
+	if gmcp.Char.Name.name == "Nehmrah" then
 		TReX.defs.display_gui()	
 	end
 	if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.def_display ) ") end

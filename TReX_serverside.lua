@@ -1486,7 +1486,11 @@ TReX.serverside.prompt_options = {
 
 TReX.serverside.affbar=function(mode)
 	if mode == "on" then
+		if gmcp.Char.Name.name == "Nehmrah" then
 		setBorderBottom(127)
+		else
+		setBorderBottom(27)
+		end
 		t.serverside.settings.affbar = true
 		setMiniConsoleFontSize("TReX.serverside.middle", 12)
 		TReX.serverside.container:show()
@@ -1494,7 +1498,11 @@ TReX.serverside.affbar=function(mode)
 		t.serverside.green_echo("AffBar On\n")
 		
 	else
+		if gmcp.Char.Name.name == "Nehmrah" then
 		setBorderBottom(100)
+		else
+		setBorderBottom(0)
+		end
 		t.serverside.settings.affbar = false
 		TReX.serverside.container:hide()
 		t.serverside.red_echo("AffBar Off\n")

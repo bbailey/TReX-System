@@ -21,7 +21,7 @@ TReX.stats.prompt_options={
 	karma = function () if TReX.s.class=="Occultist" then return "<white>("..TReX.serverside.karma_check()..")%<green> " else return "" end end,
 	sunlight = function () if table.index_of({"Druid","Sylvan"}, TReX.s.class) then if TReX.stats.sunlight >= 1 then return "<white>("..TReX.stats.sunlight..")%<green> " else return "" end else return "" end end,
 	afftracker = function ()
-		opromptscoreup()
+		if gmcp.Char.Name.name == "Nehmrah" then opromptscoreup() end
 		if not promptset then
 			promptset={}
 		end
@@ -84,9 +84,9 @@ TReX.stats.prompt_options={
 
 				if not gmcp.IRE.Target.Info then return "" end
 				
-				if denizen_id == nil then
+				if denizen_id == nil and gmcp.IRE.Target.Info.id ~= nil then
 					denizen_id = "None"
-				elseif denizen_id ~= gmcp.IRE.Target.Info.id then
+				elseif denizen_id ~= gmcp.IRE.Target.Info.id and gmcp.IRE.Target.Info.id ~= nil then
 					denizen_id = gmcp.IRE.Target.Info.id
 					denizen_slain = false
 				end
@@ -369,10 +369,10 @@ TReX.stats.stat=function()
 		 end
 	 end
 		
-		
+	if gmcp.Char.Name.name == "Nehmrah" then
 		getVitals()
+	end
 		
-	
 end -- func
 
 
@@ -467,28 +467,31 @@ end
 
 function TReX.stats.requestdelete()
 
-deleteLine()
 
-deletep = true
 
-deletelines = 2
-
+if gmcp.Char.Name.name == "Nehmrah" then 
+ deleteLine()
+ deletep = true
+ deletelines = 2 
+else 
+	--raiseEvent("deletep event") --debug call for testing successful gags
+	deletep_request = true
+	deletep = true
+	selectString(line, 1)
+	deleteLine()
+end
 
 --raiseEvent("deletep event") --debug call for testing successful gags
---deletep_request = true
---deletep = true
---selectString(line, 1)
---deleteLine()
 end
 
 
 TReX.stats.custom_prompt=function()
-	--if deletep then return end -- if true then return
-	--prompt_sent=prompt_sent or {}
-	--if table.contains({prompt_sent}, "sent") then
-		--table.remove(prompt_sent, table.index_of(prompt_sent, "sent"))
+	if deletep then return end -- if true then return
 
-		
+	prompt_sent=prompt_sent or {}
+	if table.contains({prompt_sent}, "sent") or gmcp.Char.Name.name == "Nehmrah" then
+		table.remove(prompt_sent, table.index_of(prompt_sent, "sent"))
+	
 			local prompt_string = ""
 			if not (t.affs.blackout) then
 				if t.serverside["settings"].Prompt then
@@ -601,19 +604,21 @@ TReX.stats.custom_prompt=function()
 					if getCurrentLine() ~= "" then prompt_string = "\n"..prompt_string end
 						--if isPrompt() then cecho(prompt_string) end
 						cecho(prompt_string)
-						
-						--if table.is_empty(t.serverside.gmcp_aff_table) then 
-							--if not table.contains({t.serverside.prompt}, "empty") then
-							--	table.insert(t.serverside.prompt, "empty")
-						--		t.serverside.gmcpAffShow()
-							--end
-					   -- else
-						--	if table.contains({t.serverside.prompt}, "empty") then
-						--		table.remove(t.serverside.prompt,table.index_of(t.serverside.prompt,"empty"))
-						--	end
+					if gmcp.Char.Name.name ~= "Nehmrah" then
+						if table.is_empty(t.serverside.gmcp_aff_table) then 
+							if not table.contains({t.serverside.prompt}, "empty") then
+								table.insert(t.serverside.prompt, "empty")
 								t.serverside.gmcpAffShow()
-						--end
-						
+							end
+					    else
+							if table.contains({t.serverside.prompt}, "empty") then
+								table.remove(t.serverside.prompt,table.index_of(t.serverside.prompt,"empty"))
+							end
+								t.serverside.gmcpAffShow()
+						end
+					elseif gmcp.Char.Name.name == "Nehmrah" then
+						t.serverside.gmcpAffShow()
+					end
 					
 
 					-- if t.serverside["settings"].Prompt then
@@ -623,10 +628,10 @@ TReX.stats.custom_prompt=function()
 						-- end
 					-- end
 				
-				--end
-			--end
+				end
+			end
 		--end -- if installed
-		end
+	--end
 		
 
 		end 
