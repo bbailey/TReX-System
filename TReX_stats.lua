@@ -21,6 +21,7 @@ TReX.stats.prompt_options={
 	karma = function () if TReX.s.class=="Occultist" then return "<white>("..TReX.serverside.karma_check()..")%<green> " else return "" end end,
 	sunlight = function () if table.index_of({"Druid","Sylvan"}, TReX.s.class) then if TReX.stats.sunlight >= 1 then return "<white>("..TReX.stats.sunlight..")%<green> " else return "" end else return "" end end,
 	afftracker = function ()
+		if gmcp.Char.Name.name == "Nehmrah" then opromptscoreup() end
 		if not promptset then
 			promptset={}
 		end
@@ -69,37 +70,46 @@ TReX.stats.prompt_options={
 
 	end,
 
-	-- denizenhealth = function () 
-	
-		-- if gmcp then 
-			-- if gmcp.IRE then 
-				-- if not (gmcp.IRE.Target) then 
-					-- return "" 
-				-- end 
+	denizenhealth = function () 
+		
+		if gmcp then 
+			if gmcp.IRE then 
+				if not (gmcp.IRE.Target) then 
+					return "" 
+				end 
 
-					-- --if not gmcp.IRE.Target.Info.hpperc then
-						-- target = target or "None"
-					-- --end
+				if target == nil then
+					target = target or "None"
+				end
+
+				if not gmcp.IRE.Target.Info then return "" end
 				
-					-- if target == "None" then
-						-- return ""
-					-- elseif tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2)) == -1 then
-						-- return ""
-					-- elseif tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2)) ~= nil then
-						-- return TReX.stats.prompt_color_dh(gmcp.IRE.Target.Info.hpperc)..""..gmcp.IRE.Target.Info.hpperc..""
-					-- elseif not TReX.stats.denizenalive then 
-						-- return ""
-					-- else
-						-- return ""
-					-- end
-			-- else
-				-- return ""
-			-- end
+				if denizen_id == nil and gmcp.IRE.Target.Info.id ~= nil then
+					denizen_id = "None"
+				elseif denizen_id ~= gmcp.IRE.Target.Info.id and gmcp.IRE.Target.Info.id ~= nil then
+					denizen_id = gmcp.IRE.Target.Info.id
+					denizen_slain = false
+				end
+				
+				if denizen_id == "None" then
+					denizenHPperc = ""
+				elseif tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2)) == -1 and not denizen_slain then
+					denizenHPperc = ""
+				elseif tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2)) ~= nil and not denizen_slain then
+					denizenHPperc = gmcp.IRE.Target.Info.hpperc
+				end
+				if denizenHPperc == "0%" then
+					gmcp.IRE.Target = nil
+					return ""
+				end
+				if denizenHPperc ~= "100%" then
+					return ""..denizenHPperc..""
+					--cecho("\n<green>ID: <white>"..denizen_id.." <yellow>H: <cyan>"..denizenHPperc)
+				end
+			end
+		end
 
-		-- else
-			-- return ""
-		-- end
-	-- end,
+	end,
 
 	--roomexits = function () if gmcp then if gmcp.Room then exitStr = "" for k, v in pairs(gmcp.Room.Info.exits) do exitStr = exitStr.." "..k--[[:upper()]]..")" end if gmcp.Room.Info.details == "wilderness" then return "" else return ("<grey>"..exitStr) end else return "" end else return "" end end,
 	phealth = function () return "<dim_grey>("..TReX.stats.health_color_percentage(math.floor(TReX.stats.h*100/TReX.stats.maxh))..""..tostring(math.floor(TReX.stats.h*100/TReX.stats.maxh)).."<dim_grey>)%" end,
@@ -116,6 +126,7 @@ TReX.stats.prompt_options={
 	level = function () return "<grey>lvl <green>"..gmcp.Char.Status.level.." " end,
 	lightwall = function () if table.contains({TReX.serverside.itms.room}, "a lightwall") then return "<white>{<red>[<white>LW<red>]<white>}" else return "" end end,
 	heldbreath = function () if t.def.heldbreath then return "<sky_blue>[<white>B<sky_blue>]" else return "" end end,
+	--ferocity = function () if tgz.snb.ferocity >= 1 then return "("..tgz.snb.ferocity..")" else return "" end end,	
 	limbdisplay = function () return SLC_shortdisplay() end, 
 	kai = function () if not TReX.s.class=="Monk" then return "" end if gmcp.Char.Vitals.charstats[3] then return "<sky_blue>("..tostring(tonumber(string.sub(gmcp.Char.Vitals.charstats[3],5,string.len(gmcp.Char.Vitals.charstats[3])- 1))).."%)" else return "" end end,
 	--affs = function () return t.serverside.gmcp_aff_table else return "" end end,
@@ -187,7 +198,7 @@ t.stats								= { -- so anything you change in this table , gets saved to home 
 	["level_prompt"] 		   	= {["name"] = "dragon %", ["enabled"] = false},
 	["prone_prompt"]		   	= {["name"] = "prone", ["enabled"] = false},
 	["mono_prompt"]			   	= {["name"] = "monolith", ["enabled"] = false},
-	--["denizen_health_prompt"]  	= {["name"] = "denizen health %", ["enabled"] = false},
+	["denizen_health_prompt"]  	= {["name"] = "denizen health %", ["enabled"] = false},
 	["held_breath"]  			= {["name"] = "held breath", ["enabled"] = false},
 	["target_prompt"]  		   	= {["name"] = "target", ["enabled"] = false},
 	["eq_bal_prompt"]			= {["name"] = "eq & bal", ["enabled"] = false},
@@ -358,7 +369,10 @@ TReX.stats.stat=function()
 		 end
 	 end
 		
-	
+	if gmcp.Char.Name.name == "Nehmrah" then
+		getVitals()
+	end
+		
 end -- func
 
 
@@ -375,12 +389,12 @@ end -- func
 
 TReX.stats.prompt_color_dh=function()  
 
-	if not gmcp.IRE.Target.Info.hpperc then
+	if not denizenHPperc then
 		return ""
 	end
 
 	--local  hpcolor = string.match(gmcp.IRE.Target.Info.hpperc,"(%d+)")
-	local hpcolor = tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2))
+	local hpcolor = tonumber(denizenHPperc:sub(0,1))
 
 	if hpcolor < 25  then
 		return "<red>"
@@ -452,21 +466,32 @@ end
 
 
 function TReX.stats.requestdelete()
-raiseEvent("deletep event") --debug call for testing successful gags
-deletep_request = true
-deletep = true
-selectString(line, 1)
-deleteLine()
+
+
+
+if gmcp.Char.Name.name == "Nehmrah" then 
+ deleteLine()
+ deletep = true
+ deletelines = 2 
+else 
+	--raiseEvent("deletep event") --debug call for testing successful gags
+	deletep_request = true
+	deletep = true
+	selectString(line, 1)
+	deleteLine()
+end
+
+--raiseEvent("deletep event") --debug call for testing successful gags
 end
 
 
 TReX.stats.custom_prompt=function()
 	if deletep then return end -- if true then return
-	prompt_sent=prompt_sent or {}
-	if table.contains({prompt_sent}, "sent") then
-		table.remove(prompt_sent, table.index_of(prompt_sent, "sent"))
 
-		
+	prompt_sent=prompt_sent or {}
+	if table.contains({prompt_sent}, "sent") or gmcp.Char.Name.name == "Nehmrah" then
+		table.remove(prompt_sent, table.index_of(prompt_sent, "sent"))
+	
 			local prompt_string = ""
 			if not (t.affs.blackout) then
 				if t.serverside["settings"].Prompt then
@@ -552,7 +577,7 @@ TReX.stats.custom_prompt=function()
 					if t.stats["karma_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.karma() .. " <white>" else end
 					if t.stats["sunlight_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.sunlight() .. " <white>" else end
 					if t.stats["target_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.target() .. " <white>" else end
-					--if t.stats["denizen_health_prompt"].enabled  then prompt_string = prompt_string..TReX.stats.prompt_options.denizenhealth() .. " <white>" else end
+					if t.stats["denizen_health_prompt"].enabled  then prompt_string = prompt_string..TReX.stats.prompt_options.denizenhealth() .. " <white>" else end
 					--prompt_string = prompt_string..prompt_options.trance()
 					--prompt_string = prompt_string..prompt_options.vital()
 					--prompt_string = prompt_string..prompt_options.stance()
@@ -570,9 +595,7 @@ TReX.stats.custom_prompt=function()
 					--if t.stats["room_exits"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.roomexits() .. " <white>" else end
 					--prompt_string = prompt_string.. TReX.stats.prompt_options.ferocity() .. " "
 				
-				
-				
-				
+								
 					if t.stats["afftracker"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.afftracker() .. ""  else end
 
 
@@ -581,7 +604,7 @@ TReX.stats.custom_prompt=function()
 					if getCurrentLine() ~= "" then prompt_string = "\n"..prompt_string end
 						--if isPrompt() then cecho(prompt_string) end
 						cecho(prompt_string)
-						
+					if gmcp.Char.Name.name ~= "Nehmrah" then
 						if table.is_empty(t.serverside.gmcp_aff_table) then 
 							if not table.contains({t.serverside.prompt}, "empty") then
 								table.insert(t.serverside.prompt, "empty")
@@ -593,7 +616,9 @@ TReX.stats.custom_prompt=function()
 							end
 								t.serverside.gmcpAffShow()
 						end
-						
+					elseif gmcp.Char.Name.name == "Nehmrah" then
+						t.serverside.gmcpAffShow()
+					end
 					
 
 					-- if t.serverside["settings"].Prompt then

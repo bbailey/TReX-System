@@ -238,15 +238,6 @@ TReX.rewield=function(itm,hnd)
 		if (hnd == "r") then hand = "right" end
 		if (hnd == "l") then hand = "left" end
 		
-		if TReX.s.class=="Bard" and gmcp.Char.Status.name == "Nehmrah" then 
-			if itm == 342361 then
-				t.send("draw "..itm) 
-			end 
-			if itm == 149267 then
-				t.send("get "..itm.." from "..t.inv["backstrap"].id)
-			end
-		end
-		
 		t.send("QUEUE PREPEND EQBAL wield "..hand.." "..itm, false)
 		
 	end
