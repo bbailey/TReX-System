@@ -70,46 +70,46 @@ TReX.stats.prompt_options={
 
 	end,
 
-	denizenhealth = function () 
+	-- denizenhealth = function () 
 		
-		if gmcp then 
-			if gmcp.IRE then 
-				if not (gmcp.IRE.Target) then 
-					return "" 
-				end 
+	-- 	if gmcp then 
+	-- 		if gmcp.IRE then 
+	-- 			if not (gmcp.IRE.Target) then 
+	-- 				return "" 
+	-- 			end 
 
-				if target == nil then
-					target = target or "None"
-				end
+	-- 			if target == nil then
+	-- 				target = target or "None"
+	-- 			end
 
-				if not gmcp.IRE.Target.Info then return "" end
+	-- 			if not gmcp.IRE.Target.Info then return "" end
 				
-				if denizen_id == nil and gmcp.IRE.Target.Info.id ~= nil then
-					denizen_id = "None"
-				elseif denizen_id ~= gmcp.IRE.Target.Info.id and gmcp.IRE.Target.Info.id ~= nil then
-					denizen_id = gmcp.IRE.Target.Info.id
-					denizen_slain = false
-				end
+	-- 			if denizen_id == nil and gmcp.IRE.Target.Info.id ~= nil then
+	-- 				denizen_id = "None"
+	-- 			elseif denizen_id ~= gmcp.IRE.Target.Info.id and gmcp.IRE.Target.Info.id ~= nil then
+	-- 				denizen_id = gmcp.IRE.Target.Info.id
+	-- 				denizen_slain = false
+	-- 			end
 				
-				if denizen_id == "None" then
-					denizenHPperc = ""
-				elseif tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2)) == -1 and not denizen_slain then
-					denizenHPperc = ""
-				elseif tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2)) ~= nil and not denizen_slain then
-					denizenHPperc = gmcp.IRE.Target.Info.hpperc
-				end
-				if denizenHPperc == "0%" then
-					gmcp.IRE.Target = nil
-					return ""
-				end
-				if denizenHPperc ~= "100%" then
-					return ""..denizenHPperc..""
-					--cecho("\n<green>ID: <white>"..denizen_id.." <yellow>H: <cyan>"..denizenHPperc)
-				end
-			end
-		end
+	-- 			if denizen_id == "None" then
+	-- 				denizenHPperc = ""
+	-- 			elseif tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2)) == -1 and not denizen_slain then
+	-- 				denizenHPperc = ""
+	-- 			elseif tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2)) ~= nil and not denizen_slain then
+	-- 				denizenHPperc = gmcp.IRE.Target.Info.hpperc
+	-- 			end
+	-- 			if denizenHPperc == "0%" then
+	-- 				gmcp.IRE.Target = nil
+	-- 				return ""
+	-- 			end
+	-- 			if denizenHPperc ~= "100%" then
+	-- 				return ""..denizenHPperc..""
+	-- 				--cecho("\n<green>ID: <white>"..denizen_id.." <yellow>H: <cyan>"..denizenHPperc)
+	-- 			end
+	-- 		end
+	-- 	end
 
-	end,
+	-- end,
 
 	--roomexits = function () if gmcp then if gmcp.Room then exitStr = "" for k, v in pairs(gmcp.Room.Info.exits) do exitStr = exitStr.." "..k--[[:upper()]]..")" end if gmcp.Room.Info.details == "wilderness" then return "" else return ("<grey>"..exitStr) end else return "" end else return "" end end,
 	phealth = function () return "<dim_grey>("..TReX.stats.health_color_percentage(math.floor(TReX.stats.h*100/TReX.stats.maxh))..""..tostring(math.floor(TReX.stats.h*100/TReX.stats.maxh)).."<dim_grey>)%" end,
@@ -198,7 +198,7 @@ t.stats								= { -- so anything you change in this table , gets saved to home 
 	["level_prompt"] 		   	= {["name"] = "dragon %", ["enabled"] = false},
 	["prone_prompt"]		   	= {["name"] = "prone", ["enabled"] = false},
 	["mono_prompt"]			   	= {["name"] = "monolith", ["enabled"] = false},
-	["denizen_health_prompt"]  	= {["name"] = "denizen health %", ["enabled"] = false},
+	--["denizen_health_prompt"]  	= {["name"] = "denizen health %", ["enabled"] = false},
 	["held_breath"]  			= {["name"] = "held breath", ["enabled"] = false},
 	["target_prompt"]  		   	= {["name"] = "target", ["enabled"] = false},
 	["eq_bal_prompt"]			= {["name"] = "eq & bal", ["enabled"] = false},
@@ -387,25 +387,25 @@ end -- func
 	
 -- end
 
-TReX.stats.prompt_color_dh=function()  
+-- TReX.stats.prompt_color_dh=function()  
 
-	if not denizenHPperc then
-		return ""
-	end
+-- 	if not denizenHPperc then
+-- 		denizenHPperc = ""
+-- 	end
 
-	--local  hpcolor = string.match(gmcp.IRE.Target.Info.hpperc,"(%d+)")
-	local hpcolor = tonumber(denizenHPperc:sub(0,1))
+-- 	--local  hpcolor = string.match(gmcp.IRE.Target.Info.hpperc,"(%d+)")
+-- 	local hpcolor = tonumber(denizenHPperc:sub(0,1))
 
-	if hpcolor < 25  then
-		return "<red>"
-	elseif hpcolor <= 75 then
-		return "<dark_orange>"
-	elseif hpcolor <= 100 then
-		return "<dark_green>"
-	else
-		return "<brown>"
-	end
-end
+-- 	if hpcolor < 25  then
+-- 		return "<red>"
+-- 	elseif hpcolor <= 75 then
+-- 		return "<dark_orange>"
+-- 	elseif hpcolor <= 100 then
+-- 		return "<dark_green>"
+-- 	else
+-- 		return "<brown>"
+-- 	end
+-- end
 
 TReX.stats.mana_color_percentage=function(perc)  
 	if perc < 1 then
@@ -577,7 +577,7 @@ TReX.stats.custom_prompt=function()
 					if t.stats["karma_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.karma() .. " <white>" else end
 					if t.stats["sunlight_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.sunlight() .. " <white>" else end
 					if t.stats["target_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.target() .. " <white>" else end
-					if t.stats["denizen_health_prompt"].enabled  then prompt_string = prompt_string..TReX.stats.prompt_options.denizenhealth() .. " <white>" else end
+					--if t.stats["denizen_health_prompt"].enabled  then prompt_string = prompt_string..TReX.stats.prompt_options.denizenhealth() .. " <white>" else end
 					--prompt_string = prompt_string..prompt_options.trance()
 					--prompt_string = prompt_string..prompt_options.vital()
 					--prompt_string = prompt_string..prompt_options.stance()
