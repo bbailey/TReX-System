@@ -28227,7 +28227,14 @@ if t.inv[&quot;magirobes&quot;] then
 	magirobesmult = .66
 end
 
-local classreference = {priest = {bleed = 2000, mana = .8}, dualc = {bleed = 2000, mana = .2}, shaman = {bleed = 140, mana = .8}, apostate = {bleed = 2000, mana = .7}, blademaster = {bleed = 70, mana = 0}, water = {bleed = 70, mana = 0}}
+local classreference = {alchemist = {bleed = 70, mana = 0}, bard = {bleed = 70, mana = 0}, priest = {bleed = 2000, mana = .8}, 
+												dualc = {bleed = 2000, mana = .2}, shaman = {bleed = 140, mana = .8}, apostate = {bleed = 2000, mana = .7}, 
+												blademaster = {bleed = 70, mana = 0}, water = {bleed = 70, mana = 0}, depthswalker = {bleed = 70, mana = 0},
+												dragon = {bleed = 70, mana = 0},druid = {bleed = 70, mana = 0},jester = {bleed = 70, mana = 0},
+												magi = {bleed = 70, mana = 0},monk = {bleed = 70, mana = 0},occultist = {bleed = 70, mana = 0},
+												sentinel = {bleed = 70, mana = 0},serpent = {bleed = 70, mana = 0},sylvan = {bleed = 70, mana = 0},
+												snb = {bleed = 70, mana = 0},twoh = {bleed = 70, mana = 0},dualb = {bleed = 70, mana = 0},
+												air = {bleed = 70, mana = 0},fire = {bleed = 70, mana = 0},earth = {bleed = 70, mana = 0},}
 local bleeddanger = 0
 local manadanger = 0
 local manaperclot = 60 * magirobesmult -- not sure
@@ -30001,6 +30008,8 @@ end
 	t.stats[&quot;battle_rage&quot;].enabled = true
 	raiseEvent(&quot;TReX prompt&quot;)
 	t.serverside.green_echo(&quot;Hunting Script On\n&quot;)
+	t.send(&quot;curing tree on&quot;)
+	t.send(&quot;curing clot on&quot;)
 
 
 	else
@@ -30020,6 +30029,8 @@ end
 		t.stats[&quot;battle_rage&quot;].enabled = false
 		raiseEvent(&quot;TReX prompt&quot;)
 		t.serverside.green_echo(&quot;Hunting Script Off\n&quot;)
+		t.send(&quot;curing tree off&quot;)
+		t.send(&quot;curing clot off&quot;)
 		ragestatus:hide()
 
 	end
