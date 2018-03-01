@@ -51,7 +51,6 @@ end
 
 -- parses incoming defs from gmcp
 TReX.defs.gmcp_def_event_list=function()
---TReX.defs.display_gui()	
 if t.serverside["settings"].installed then
 	for k, v in pairs(gmcp.Char.Defences.List) do
 		if v["name"] ~= "morph" then
@@ -59,9 +58,6 @@ if t.serverside["settings"].installed then
 					TReX.defs.sort(v["name"])	
 				if not (table.index_of(t.defs, v["name"])) then  
 					table.insert(t.defs,#t.defs+1,v["name"])
-					if gmcp.Char.Name.name == "Nehmrah" then
-						TReX.defs.display_gui()	
-					end
 				end
 			end
 		end
@@ -72,7 +68,6 @@ end -- func
 
 ---NEW UPDATES---
 TReX.defs.gmcp_def_event_add=function(defs) -- motherboard gmcp def add 
---TReX.defs.display_gui()	
 local ignore={"boartattoo","megalithtattoo","fireflytattoo","mosstattoo","feathertattoo","shieldtattoo","mindseyetattoo","hammertattoo","cloaktattoo","belltattoo"
 ,"crystaltattoo","moontattoo","starbursttattoo","boartattoo","webtattoo","tentacletattoo","hourglasstattoo","braziertattoo","prismtattoo","treetattoo","oxtattoo"
 ,"chameleontattoo"}
@@ -88,9 +83,6 @@ local ignore={"boartattoo","megalithtattoo","fireflytattoo","mosstattoo","feathe
 				if not table.index_of(ignore, k) then
 					table.insert(t.defs, #t.defs+1, defs)
 					TReX.defs.sort(defs)
-					if gmcp.Char.Name.name == "Nehmrah" then
-						TReX.defs.display_gui()	
-					end	
 				end
 			end
 		end
@@ -159,7 +151,7 @@ TReX.defs.gmcp_def_event_remove=function() -- motherboard gmcpaff remove
 				end -- if
 			end -- if
 			if gmcp.Char.Name.name == "Nehmrah" then
-				if x > -1 then table.remove(t.defs, table.index_of(t.defs, defs))  TReX.defs.display_gui() end
+				if x > -1 then table.remove(t.defs, table.index_of(t.defs, defs))  end
 			else
 				if x > -1 then table.remove(t.defs, table.index_of(t.defs, defs))  end
 			end
@@ -2421,7 +2413,7 @@ TReX.defs.def_display=function(def_table)
 		echoLink(nWithSpace, command, "Toggle " .. n, true)
 	end
 	if gmcp.Char.Name.name == "Nehmrah" then
-		TReX.defs.display_gui()	
+		--[[TReX.defs.display_gui()	]]
 	end
 	if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.def_display ) ") end
 
