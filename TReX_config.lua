@@ -374,32 +374,11 @@ TReX.config.deepcopy=function(orig)
     return copy
 end
 
-TReX.config.onprompt=function()
-	TReX.serverside.BlackoutDetection()
-	if isPrompt() then
-		--raiseEvent("TReX prompt")
-	end
-end
-
 
 TReX.config.bloodleech=function()
 	TReX.config.onprompt_beforeaction_add("deleteLine", function() end)
 end
 
--- this is for blackout, havnt finished it.
-TReX.config.setup_prompt=function()
-  if line == "-" or line:find("^%-%d+%-$") or line == " Vote-" then
-    --t.bals.bal = true
-   -- t.bals.eq = true
-
-   --for monks below
-   -- t.bals.rightarm = true
-   -- t.bals.leftarm = true
-  else
-    t.bals.bal = false
-    t.bals.eq = false
-  end
-end
 
 TReX.config.highlight=function(self, colour, background, specifics)
 	if not specifics then
@@ -514,12 +493,6 @@ local sortMount = {}
 
 		end
 		
-		echo"\n"
-		deletep=false
-			if not table.contains({prompt_sent}, "sent") then
-				table.insert(prompt_sent, "sent")
-			end
-		TReX.stats.custom_prompt()
 
 end
 
@@ -552,11 +525,7 @@ if type(mount_list[variable].enabled) == "boolean" then
 	
 		TReX.config.showMounts()
 		echo"\n\n"
-		deletep=false
-			if not table.contains({prompt_sent}, "sent") then
-				table.insert(prompt_sent, "sent")
-			end
-		TReX.stats.custom_prompt()
+
 	end 
 end
 
@@ -1297,11 +1266,6 @@ TReX.class.skill_check()
 		end
 		
 		echo"\n\n"
-		--deletep=false
-		--	if not table.contains({prompt_sent}, "sent") then
-		--		table.insert(prompt_sent, "sent")
-		--	end
-		--TReX.stats.custom_prompt()
 
 end
 
@@ -1360,26 +1324,8 @@ TReX.config.show=function (arg,arg2)
 		t.serverside.green_echo("(enter '<dim_grey>trex<white>' for list of valid commands)")
 	end
 	
-		--elseif arg == "reset" then
-		--if arg2 == nil then
-			--TReX.reset_player(target)
-		--else
-		--	TReX.reset_player(arg2)
-		--end
-	--elseif arg == "report" then TReX.report()
-	--elseif arg == "gui" then
-		--if arg2 == nil       then TReX.toggle_gui()
-		--elseif arg2 == "on"  then TReX.enable_gui()
-		--elseif arg2 == "off" then TReX.disable_gui()
-		--end
 
-		if t.serverside.settings.Prompt then
-			deletep=false
-				if not table.contains({prompt_sent}, "sent") then
-					table.insert(prompt_sent, "sent")
-				end
-			TReX.stats.custom_prompt()
-		end
+
 end
 
 TReX.config.save=function() -- saves this file

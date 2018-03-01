@@ -2441,12 +2441,6 @@ table_list = {
 		TReX.defs.def_display(def_table)
 	end
 	
-		echo"\n\n"
-		deletep=false
-			if not table.contains({prompt_sent}, "sent") then
-				table.insert(prompt_sent, "sent")
-			end
-		TReX.stats.custom_prompt()
 
 end
 	

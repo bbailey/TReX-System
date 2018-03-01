@@ -58,11 +58,6 @@ cecho("\n\t<white>Precache Settings\n\n")
   end
   
 		echo"\n"
-		--deletep=false
-		--	if not table.contains({prompt_sent}, "sent") then
-		--		table.insert(prompt_sent, "sent")
-		--	end
-		--TReX.stats.custom_prompt()
   
  		
 end 

@@ -31,41 +31,12 @@
                 <colorTriggerFgColor>#00b300</colorTriggerFgColor>
                 <colorTriggerBgColor>#000000</colorTriggerBgColor>
                 <regexCodeList>
-                    <string>PROMPTCAPTURE-</string>
+                    <string></string>
                     <string>** Illusion **</string>
                 </regexCodeList>
                 <regexCodePropertyList>
                     <integer>7</integer>
                     <integer>3</integer>
-                </regexCodePropertyList>
-            </Trigger>
-            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-                <name>capture</name>
-                <script>deleteLine()
-prompt_sent=prompt_sent or {}
-if not table.contains({prompt_sent}, &quot;sent&quot;) then
-  table.insert(prompt_sent, &quot;sent&quot;)
-end
-
-prompt_capture() --calls this
-</script>
-                <triggerType>0</triggerType>
-                <conditonLineDelta>1</conditonLineDelta>
-                <mStayOpen>0</mStayOpen>
-                <mCommand></mCommand>
-                <packageName></packageName>
-                <mFgColor>#ff0000</mFgColor>
-                <mBgColor>#ffff00</mBgColor>
-                <mSoundFile></mSoundFile>
-                <colorTriggerFgColor>#000000</colorTriggerFgColor>
-                <colorTriggerBgColor>#000000</colorTriggerBgColor>
-                <regexCodeList>
-                    <string>PROMPTCAPTURE-</string>
-                    <string></string>
-                </regexCodeList>
-                <regexCodePropertyList>
-                    <integer>0</integer>
-                    <integer>7</integer>
                 </regexCodePropertyList>
             </Trigger>
             <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
@@ -205,32 +176,6 @@ disableTrigger&quot;TReX Mudlet Mapper prompt trigger&quot;
                 </regexCodePropertyList>
             </Trigger>
             <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-                <name>TReX Prompt Trigger</name>
-                <script>if TReX_Prompt_Trigger_Request and TReX_Prompt_Trigger_Request ~= nil then
-  if not table.contains({prompt_sent}, &quot;sent&quot;) then
-    table.insert(prompt_sent, &quot;sent&quot;)
-  end
-	TReX.stats.custom_prompt()
-  TReX_Prompt_Trigger_Request = false
-end</script>
-                <triggerType>0</triggerType>
-                <conditonLineDelta>0</conditonLineDelta>
-                <mStayOpen>0</mStayOpen>
-                <mCommand></mCommand>
-                <packageName></packageName>
-                <mFgColor>#ff0000</mFgColor>
-                <mBgColor>#ffff00</mBgColor>
-                <mSoundFile></mSoundFile>
-                <colorTriggerFgColor>#000000</colorTriggerFgColor>
-                <colorTriggerBgColor>#000000</colorTriggerBgColor>
-                <regexCodeList>
-                    <string>^Your enhanced senses inform you that (\w+) has entered (.+?)(?:, to the| at your) (\w+)\.$</string>
-                </regexCodeList>
-                <regexCodePropertyList>
-                    <integer>7</integer>
-                </regexCodePropertyList>
-            </Trigger>
-            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                 <name>delete default prompt</name>
                 <script>if t.serverside[&quot;settings&quot;].installed then
   if not t.serverside[&quot;settings&quot;].sys_loaded then
@@ -248,7 +193,7 @@ end</script>
                 <colorTriggerFgColor>#000000</colorTriggerFgColor>
                 <colorTriggerBgColor>#000000</colorTriggerBgColor>
                 <regexCodeList>
-                    <string>^Your enhanced senses inform you that (\w+) has entered (.+?)(?:, to the| at your) (\w+)\.$</string>
+                    <string>^\-$</string>
                 </regexCodeList>
                 <regexCodePropertyList>
                     <integer>7</integer>
@@ -277,6 +222,26 @@ if t.bals.tree then raiseEvent(&quot;TReX gained aff&quot;, &quot;blackout&quot;
                     <integer>1</integer>
                     <integer>2</integer>
                     <integer>2</integer>
+                </regexCodePropertyList>
+            </Trigger>
+            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                <name>prompt</name>
+                <script>showprompt()</script>
+                <triggerType>0</triggerType>
+                <conditonLineDelta>0</conditonLineDelta>
+                <mStayOpen>0</mStayOpen>
+                <mCommand></mCommand>
+                <packageName></packageName>
+                <mFgColor>#ff0000</mFgColor>
+                <mBgColor>#ffff00</mBgColor>
+                <mSoundFile></mSoundFile>
+                <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                <regexCodeList>
+                    <string>PROMPTCAPTURE-</string>
+                </regexCodeList>
+                <regexCodePropertyList>
+                    <integer>3</integer>
                 </regexCodePropertyList>
             </Trigger>
         </TriggerGroup>
@@ -28058,6 +28023,29 @@ registerAnonymousEventHandler(&quot;sysLoadEvent&quot;, &quot;TReX.load&quot;)
                 <eventHandlerList/>
             </Script>
             <Script isActive="yes" isFolder="no">
+                <name>prompt</name>
+                <packageName></packageName>
+                <script>function requestdelete()
+  deleteLine()
+  deletep = true
+  deletelines = 2
+end
+
+function showprompt()
+	if deletep and deletelines &gt; 0 then
+		deleteLine()
+		deletep = false
+	else
+		deletep = false
+		lastpromptreceived = laststringreceived
+		wasprompt = 1
+		deleteLine()
+		TReX.stats.custom_prompt()
+end
+end</script>
+                <eventHandlerList/>
+            </Script>
+            <Script isActive="yes" isFolder="no">
                 <name>trex_delay</name>
                 <packageName></packageName>
                 <script>function trex_delay()
@@ -29063,59 +29051,6 @@ disableTrigger&quot;TReX Mudlet Mapper prompt trigger&quot;
 end</script>
                 <eventHandlerList>
                     <string>TReX alertness prompt</string>
-                </eventHandlerList>
-            </Script>
-            <Script isActive="yes" isFolder="no">
-                <name>gmcp_prompt_check</name>
-                <packageName></packageName>
-                <script>function gmcp_prompt_check()
-  if t.serverside.settings.sys_loaded then 
-   --if (gmcp.Room ~= nil) and (gmcp.Char ~=nil) then
-  	 --if (currentroom ~= gmcp.Room.Info.num) or (gmcp.Char and gmcp.Char ~= nil) then
-   if (gmcp.Char ~=nil) then
-  	 if (gmcp.Char and gmcp.Char ~= nil) then
-      TReX_Prompt_Trigger_Request = true
-      --set current room
-      --currentroom = gmcp.Room.Info.num
-     end
-	 end
-  end
-end
-</script>
-                <eventHandlerList>
-                    <string>gmcp.Char.Status</string>
-                    <string>gmcp.Char.Afflictions.List</string>
-                </eventHandlerList>
-            </Script>
-            <Script isActive="yes" isFolder="no">
-                <name>prompt_capture</name>
-                <packageName></packageName>
-                <script>function prompt_capture() --right here.
-
-if table.contains({prompt_sent}, &quot;sent&quot;) and not deletep_request then
---if table.contains({prompt_sent}, &quot;sent&quot;) then
-	deletep=false
-	TReX.stats.custom_prompt()
-elseif deletep_request then
-  deletep = true
-	deletep_request = false
-	if table.contains({prompt_sent}, &quot;sent&quot;) then
-		table.remove(prompt_sent, table.index_of(prompt_sent, &quot;sent&quot;))
-	end
-end
-
-end</script>
-                <eventHandlerList/>
-            </Script>
-            <Script isActive="no" isFolder="no">
-                <name>deleteprompt - debugger</name>
-                <packageName></packageName>
-                <script>function deleteprompt() -- leave disabled unless you need to bebug prompt gags
-cecho(&quot;&lt;red&gt; -echo 1&quot;) --test call for all successful gags.
---tempTimer(trex_delay(), [[deletep_request = false]]) 
-end</script>
-                <eventHandlerList>
-                    <string>deletep event</string>
                 </eventHandlerList>
             </Script>
         </ScriptGroup>

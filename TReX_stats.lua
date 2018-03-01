@@ -21,19 +21,14 @@ TReX.stats.prompt_options={
 	karma = function () if TReX.s.class=="Occultist" then return "<white>("..TReX.serverside.karma_check()..")%<green> " else return "" end end,
 	sunlight = function () if table.index_of({"Druid","Sylvan"}, TReX.s.class) then if TReX.stats.sunlight >= 1 then return "<white>("..TReX.stats.sunlight..")%<green> " else return "" end else return "" end end,
 	afftracker = function ()
-		if gmcp.Char.Name.name == "Nehmrah" then opromptscoreup() end
 		if not promptset then
 			promptset={}
+			opromptscoreup()
 		end
 			if not target then 
 				return "" 
 			elseif #promptset > 0 then
-				--moveCursorEnd("main")
-				--if getCurrentLine() ~= "" then
-					return "\n<red>[<white>"..table.concat(promptset, ", ").."<red>]<white>".." "
-				--else	
-					--return "<red>[<white>"..table.concat(promptset, ", ").."<red>]<white>".." "
-				--end
+				return "\n<red>[<white>"..table.concat(promptset, ", ").."<red>]<white>".." "
 			else
 				return ""
 			end
@@ -352,15 +347,6 @@ TReX.stats.stat=function()
 			end
 		end	
 	end
-		--if not TReX.stats.class_check() or quickclass() == "none" then
-			--if not t.serverside.settings_default.sip == "Health" then
-				--t.serverside["settings_default"].sip = tostring("Health")
-				--t.send("curing priority health", false)
-			--end
-		--else
-			--TReX.stats[quickclass()]()
-		--end			
-	--end
 	
 	 if t.affs.blackout then
 		 if t.serverside.settings_default.sip ~= "Health" then
@@ -369,43 +355,9 @@ TReX.stats.stat=function()
 		 end
 	 end
 		
-	if gmcp.Char.Name.name == "Nehmrah" then
-		getVitals()
-	end
 		
 end -- func
 
-
-
--- TReX.stats.class_check=function()
-	-- for k,v in pairs(t.class) do 
-		-- if t.class[k].enabled then
-			-- return true
-		-- end
-	-- end
-		-- return false
-	
--- end
-
--- TReX.stats.prompt_color_dh=function()  
-
--- 	if not denizenHPperc then
--- 		denizenHPperc = ""
--- 	end
-
--- 	--local  hpcolor = string.match(gmcp.IRE.Target.Info.hpperc,"(%d+)")
--- 	local hpcolor = tonumber(denizenHPperc:sub(0,1))
-
--- 	if hpcolor < 25  then
--- 		return "<red>"
--- 	elseif hpcolor <= 75 then
--- 		return "<dark_orange>"
--- 	elseif hpcolor <= 100 then
--- 		return "<dark_green>"
--- 	else
--- 		return "<brown>"
--- 	end
--- end
 
 TReX.stats.mana_color_percentage=function(perc)  
 	if perc < 1 then
@@ -467,30 +419,19 @@ end
 
 function TReX.stats.requestdelete()
 
-
-
-if gmcp.Char.Name.name == "Nehmrah" then 
  deleteLine()
  deletep = true
  deletelines = 2 
-else 
-	--raiseEvent("deletep event") --debug call for testing successful gags
-	deletep_request = true
-	deletep = true
-	selectString(line, 1)
-	deleteLine()
-end
 
---raiseEvent("deletep event") --debug call for testing successful gags
 end
 
 
 TReX.stats.custom_prompt=function()
-	if deletep then return end -- if true then return
+	-- if deletep then return end -- if true then return
 
-	prompt_sent=prompt_sent or {}
-	if table.contains({prompt_sent}, "sent") or gmcp.Char.Name.name == "Nehmrah" then
-		table.remove(prompt_sent, table.index_of(prompt_sent, "sent"))
+	-- prompt_sent=prompt_sent or {}
+	-- if table.contains({prompt_sent}, "sent") or gmcp.Char.Name.name == "Nehmrah" then
+		-- table.remove(prompt_sent, table.index_of(prompt_sent, "sent"))
 	
 			local prompt_string = ""
 			if not (t.affs.blackout) then
@@ -634,7 +575,7 @@ TReX.stats.custom_prompt=function()
 	--end
 		
 
-		end 
+	--end 
 
 		--deletep = true
 		
@@ -1013,11 +954,6 @@ local sortPrompt = {}
 		
 	end
 		echo"\n\n"
-		--deletep=false
-		--	if not table.contains({prompt_sent}, "sent") then
-			--	table.insert(prompt_sent, "sent")
-			--end
-		--TReX.stats.custom_prompt()
 end
 
 TReX.stats.on_click=function(variable, toggle, toggle2)

@@ -867,9 +867,6 @@ TReX.serverside.humourUp=function(h)
 	table.insert(t.serverside.gmcp_aff_table, tostring(humour))
   end
   
-	--TReX.stats.prompt_flag = true
-	--raiseEvent("TReX prompt")
-	--t.serverside.gmcpAffShow()
   
 if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.humourUp ) ") end
 
@@ -892,10 +889,6 @@ TReX.serverside.humourDown=function(h)
 		end
 
   end
-
-  		--TReX.stats.prompt_flag = true
-		--raiseEvent("TReX prompt")
-		--t.serverside.gmcpAffShow()
   
 if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.humourDown ) ") end
  
@@ -910,9 +903,6 @@ TReX.serverside.humourReset=function(h)
   --enable system prompt echo
   table.remove(t.serverside.gmcp_aff_table, table.index_of(t.serverside.gmcp_aff_table, humour)) 
   
-	--TReX.stats.prompt_flag = true
-	--raiseEvent("TReX prompt")
-	--t.serverside.gmcpAffShow()
   
         if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.humourReset ) ") end
 
@@ -998,9 +988,6 @@ if (t.serverside["settings"].installed) then
 		TReX.prios.switchPrios(affliction, TReX.prios.default[affliction])
 	end
   end
-	--TReX.stats.prompt_flag = true
-	--raiseEvent("TReX prompt")
-	--t.serverside.gmcpAffShow()
 
 end    
     if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.humourcured ) ") end
@@ -1020,7 +1007,6 @@ if (t.serverside["settings"].installed) then
 	  t.send("curing clot on", false)
       t.send("curing clotat "..t.serverside["settings_default"].clot_at, false)
     end
-	 --raiseEvent("TReX prompt")
   end
 end 
  if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.corruptionhandling ) ") end
@@ -1486,11 +1472,7 @@ TReX.serverside.prompt_options = {
 
 TReX.serverside.affbar=function(mode)
 	if mode == "on" then
-		if gmcp.Char.Name.name == "Nehmrah" then
-		setBorderBottom(127)
-		else
 		setBorderBottom(27)
-		end
 		t.serverside.settings.affbar = true
 		setMiniConsoleFontSize("TReX.serverside.middle", 12)
 		TReX.serverside.container:show()
@@ -1498,11 +1480,7 @@ TReX.serverside.affbar=function(mode)
 		t.serverside.green_echo("AffBar On\n")
 		
 	else
-		if gmcp.Char.Name.name == "Nehmrah" then
-		setBorderBottom(100)
-		else
 		setBorderBottom(0)
-		end
 		t.serverside.settings.affbar = false
 		TReX.serverside.container:hide()
 		t.serverside.red_echo("AffBar Off\n")
@@ -3052,11 +3030,7 @@ TReX.serverside.update()
     cecho(" <dim_grey>[ <white>"..num.." <dim_grey>] <gray>" .. class:title() .. " \n")  --dark_orchid
   end
   		echo"\n"
-		--deletep=false
-			--if not table.contains({prompt_sent}, "sent") then
-			--	table.insert(prompt_sent, "sent")
-		--	end
-		--TReX.stats.custom_prompt()
+
 end
 
 TReX.serverside.treeDown=function(class, num)
