@@ -201,7 +201,6 @@ TReX.logout=function()
 	end
 
 	TReX.defs.reset()
-	t.serverside["settings"].sys_loaded = false
 	send("config prompt all") -- set prompt back to normal prompt
 	send("curing defences off")
 	expandAlias("dismount")
@@ -211,24 +210,17 @@ TReX.logout=function()
 	setBorderBottom(0)
 	TReX.config.saveSettings(true)
 	TReX.serverside.container:hide()
-
+	t.serverside["settings"].sys_loaded = false
+	
 end
 
 TReX.config.login_load=function(event)
-
-
-
 	TReX.config.loadSettings() 
-	
-	
-		
 		
 		if t.serverside["settings"].installed then
-
-			t.def={}
-			t.defs={}
+		
+			send("config prompt custom PROMPTCAPTURE")
 			
-			--settings
 			TReX.serverside.login_settings() 
 			TReX.prios.default_settings()
 			TReX.prios.reset() 
@@ -237,40 +229,27 @@ TReX.config.login_load=function(event)
 			TReX.class.skill_check()
 			TReX.prios.login_reset()    
 			TReX.pipes.settings()   
-		 
-			--prompt
-			send("config prompt custom PROMPTCAPTURE")  
-			send("curing status", false) 
 			deletep = false
-			t.send("citizens")
-			TReX.tgt.set("", "none")
 			
-			
-			--serverside config
 			if not TReX.config.cc then 
 				t.send("config",false)  
 			end
-
-				TReX.config.saveSettings()
- 
-				tempTimer(1, [[t.serverside["settings"].sys_loaded = true]])   
-				tempTimer(30, [[TReX.inv.set_id_table()]])
-				playSoundFile(getMudletHomeDir().. [[/TReX/TReX.mp3]])  
-			
-			
-				if t.serverside.settings.affbar then
-					setBorderBottom(27)
-					setMiniConsoleFontSize("TReX.serverside.middle", 12)
-					TReX.serverside.container:show()
-					t.serverside.gmcpAffShow()
-				else
-					setBorderBottom(0)
-					TReX.serverside.container:hide()
-				end
+			TReX.config.saveSettings()
+			tempTimer(1, [[t.serverside["settings"].sys_loaded = true]])   
+			tempTimer(30, [[TReX.inv.set_id_table()]])
+			playSoundFile(getMudletHomeDir().. [[/TReX/TReX.mp3]])  
+			if t.serverside.settings.affbar then
+				setBorderBottom(28)
+				setMiniConsoleFontSize("TReX.serverside.middle", 12)
+				TReX.serverside.container:show()
+				t.serverside.gmcpAffShow()
+			else
+				setBorderBottom(0)
+				TReX.serverside.container:hide()
+			end
+		
+				trex_image()
 				
-				t.send("settarget none")
-				t.send("target nothing")
-			
 		else
 			t.serverside.green_echo("TReX not installed, or the file is corrupt; best to reinstall.", false)
 		end
@@ -280,7 +259,6 @@ end
 
 TReX.config.install=function()
 
-	--install
 	TReX.defs.list()
 	TReX.class.skill_set()
 	TReX.serverside.settings() 
@@ -292,17 +270,9 @@ TReX.config.install=function()
 	TReX.pipes.settings()
 	TReX.config.settings()
 	TReX.config.score_sheet()
-	--TReX.config.color_sheet()
-	--TReX.config.saveDefences()
-	--if gmcp.Char.Status.name == "Nehmrah" then TReX.config.allowtells() end
-	send("config",false)
-	send("empty pipes",false)
-	t.serverside.prompt_capture = "config prompt all"
-	send(t.serverside.prompt_capture)
+	t.send("config prompt custom PROMPTCAPTURE")
 	t.serverside["settings"].installed = true
 	TReX.config.saveSettings()
-	
-	expandAlias("trex")
 
 end
 
