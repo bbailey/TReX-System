@@ -29504,11 +29504,12 @@ registerAnonymousEventHandler(&quot;mmapper updated pdb&quot;, &quot;refresh_lab
                 <script>-- THANK YOU KOGAN
 
 trex_image= function()
+
 skinColor = &quot;forest_green&quot;
-eyeColor = &quot;a_brown&quot;
-noseColor = &quot;a_brown&quot;
+eyeColor = &quot;red&quot;
+noseColor = &quot;brown&quot;
 teethColor = &quot;white&quot;
-mouthColor = &quot;a_darkred&quot;
+mouthColor = &quot;tomato&quot;
 
 cecho(&quot;\n&quot;)
 cecho(&quot;\n             &lt;&quot;..skinColor..&quot;&gt;.-=-==--==--.&quot;)

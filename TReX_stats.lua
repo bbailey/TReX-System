@@ -23,7 +23,7 @@ TReX.stats.prompt_options={
 	afftracker = function ()
 		if not promptset then
 			promptset={}
-			opromptscoreup()
+			--opromptscoreup()
 		end
 			if not target then 
 				return "" 
