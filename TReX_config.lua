@@ -204,8 +204,14 @@ TReX.logout=function()
 	send("config prompt all") -- set prompt back to normal prompt
 	send("curing defences off")
 	expandAlias("dismount")
-	huntToggle("off") -- hunting off
+
 	expandAlias("hsave") -- hunting save
+
+	if huntVar.on then
+		huntToggle("off") -- hunting off
+		TReX.shinies.GetGold = false
+	end
+	
 	send("inr all", false)
 	setBorderBottom(0)
 	TReX.config.saveSettings(true)
@@ -219,8 +225,6 @@ TReX.config.login_load=function(event)
 		
 		if t.serverside["settings"].installed then
 		
-			send("config prompt custom PROMPTCAPTURE")
-			
 			TReX.serverside.login_settings() 
 			TReX.prios.default_settings()
 			TReX.prios.reset() 
@@ -234,10 +238,13 @@ TReX.config.login_load=function(event)
 			if not TReX.config.cc then 
 				t.send("config",false)  
 			end
-			TReX.config.saveSettings()
-			tempTimer(1, [[t.serverside["settings"].sys_loaded = true]])   
-			tempTimer(30, [[TReX.inv.set_id_table()]])
-			playSoundFile(getMudletHomeDir().. [[/TReX/TReX.mp3]])  
+
+			if t.serverside.settings.Prompt then
+				send("config prompt custom PROMPTCAPTURE")
+			else
+				send("config prompt all")
+			end
+			
 			if t.serverside.settings.affbar then
 				setBorderBottom(28)
 				setMiniConsoleFontSize("TReX.serverside.middle", 12)
@@ -245,9 +252,17 @@ TReX.config.login_load=function(event)
 				t.serverside.gmcpAffShow()
 			else
 				setBorderBottom(0)
-				send("config prompt all")
+
 				TReX.serverside.container:hide()
 			end
+			
+			TReX.config.saveSettings()
+			
+			tempTimer(1, [[t.serverside["settings"].sys_loaded = true]])   
+			tempTimer(30, [[TReX.inv.set_id_table()]])
+			
+			playSoundFile(getMudletHomeDir().. [[/TReX/TReX.mp3]])  
+
 						
 		else
 			t.serverside.green_echo("TReX not installed, or the file is corrupt; best to reinstall.", false)
