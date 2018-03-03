@@ -101,25 +101,27 @@ end
 				for k,v in pairs(gmcp.Room.Players) do
 					if gmcp.Room.Players[k].name ~= gmcp.Char.Status.name then
 						table.insert(TReX.p.here, gmcp.Room.Players[k].name)
-							if gmcp.Char.Status.name == "Nehmrah" then 
-								if table.contains({ally_table}, gmcp.Room.Players[k].name) and not table.contains({raid.ally_table}, gmcp.Room.Players[k].name) then
-									t.send("ally "..gmcp.Room.Players[k].name)
-								end	
-								if not table.contains({ally_table}, gmcp.Room.Players[k].name) and not table.contains({enemy_table}, gmcp.Room.Players[k].name) then
-									if TReX.serverside.enemy_check() then
-										t.send("enemy " .. gmcp.Room.Players[k].name)
+							if hl.raid then
+								if gmcp.Char.Status.name == "Nehmrah" then 
+									if table.contains({ally_table}, gmcp.Room.Players[k].name) and not table.contains({raid.ally_table}, gmcp.Room.Players[k].name) then
+										t.send("ally "..gmcp.Room.Players[k].name)
+									end	
+									if not table.contains({ally_table}, gmcp.Room.Players[k].name) and not table.contains({enemy_table}, gmcp.Room.Players[k].name) then
+										if TReX.serverside.enemy_check() then
+											t.send("enemy " .. gmcp.Room.Players[k].name)
+										end
 									end
 								end
-							end
 
-							if gmcp.Char.Status.name == "Erick" or gmcp.Char.Status.name == "Lucianus" then 
-								if (jcl == nil or not jcl) then return end
-									if table.contains({jcl.ally_table}, gmcp.Room.Players[k].name) and not table.contains(jcl.raid.ally_table, gmcp.Room.Players[k].name) then
-										t.send("ally "..gmcp.Room.Players[k].name)
-									end
-									if not table.contains({jcl.ally_table}, gmcp.Room.Players[k].name) and not table.contains(jcl.enemy_table, gmcp.Room.Players[k].name) then
-										t.send("enemy " .. gmcp.Room.Players[k].name)
-									end							
+								if gmcp.Char.Status.name == "Erick" or gmcp.Char.Status.name == "Lucianus" then 
+									if (jcl == nil or not jcl) then return end
+										if table.contains({jcl.ally_table}, gmcp.Room.Players[k].name) and not table.contains(jcl.raid.ally_table, gmcp.Room.Players[k].name) then
+											t.send("ally "..gmcp.Room.Players[k].name)
+										end
+										if not table.contains({jcl.ally_table}, gmcp.Room.Players[k].name) and not table.contains(jcl.enemy_table, gmcp.Room.Players[k].name) then
+											t.send("enemy " .. gmcp.Room.Players[k].name)
+										end							
+								end
 							end
 						
 					end

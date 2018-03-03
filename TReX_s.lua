@@ -155,6 +155,18 @@ end
 		TReX.serverside.karma_check()
 	end
 
+	if TReX.s.class == "water Elemental Lord" then
+		t.bals["purify"] = true
+	else
+		t.bals["purify"] = nil
+	end
+	
+	if TReX.s.class == "earth Elemental Lord" then
+		t.bals["extrusion"] = true
+	else
+		t.bals["extrusion"] = nil
+	end
+	
 	for _,v in pairs({"Occultist","Jester"}) do
 		if TReX.s.class == v then
 			t.bals["fool"] = true

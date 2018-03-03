@@ -245,11 +245,10 @@ TReX.config.login_load=function(event)
 				t.serverside.gmcpAffShow()
 			else
 				setBorderBottom(0)
+				send("config prompt all")
 				TReX.serverside.container:hide()
 			end
-		
-				trex_image()
-				
+						
 		else
 			t.serverside.green_echo("TReX not installed, or the file is corrupt; best to reinstall.", false)
 		end
@@ -567,11 +566,11 @@ TReX.config.settings=function() -- this is the settings file, what needs to happ
 		
 	t.config.settings_default = {
 
-		time_out 					= 30,	
+		time_out 					= 10,	
 		plants 						= "Yes",
 		prompt 						= "all",
 		map_show 					= "none",
-		page_length 				= 250,
+		page_length 				= 0,
 		screen_width 				= 0,
 		use_queueing 				= "No",
 		loyal_slain_msg 			= "Yes",
@@ -609,103 +608,6 @@ TReX.config.settings=function() -- this is the settings file, what needs to happ
   		t.send("config " ..(t.config.settings_dict[k] or k).. " " ..(t.config.settings_dict[v] or v), false)
 	end
 	
-end
-
--- CONFIG 'SCORE' SHEET	
-TReX.config.score_sheet=function()	
-	t.config.score_sheet = {
-		character 				= {enabled = true},
-		about 					= {enabled = true},
-		vitals 					= {enabled = true},
-		statistics 				= {enabled = true},
-		resources 				= {enabled = true},
-	}
-	for k,v in pairs(t.config.score_sheet) do
-		if v.enabled then
-			t.send("config scoreshow add " ..tostring(k), false)
-		end
-	end
-
-end
-	
--- CONFIG 'COLOUR' SETTINGS
-TReX.config.color_sheet=function()		
-
-	t.config.color_sheet = {
-
-		--SPECIAL	
-		H1						= {fg = 11, bg = 0, enabled = true},	
-		H2						= {fg = 3,  bg = 0, enabled = true},	
-		H3						= {fg = 2,  bg = 0, enabled = true},	
-		H4						= {fg = 6,  bg = 0, enabled = true},
-		deathsight				= {fg = 9,  bg = 0, enabled = true},
-		balance 				= {fg = 6,  bg = 0, enabled = true},	
-		affmessages				= {fg = 6,  bg = 0, enabled = true},
-	
-		--COMMUNICATION
-		says					= {fg = 14, bg = 0, enabled = true},	
-		shouts					= {fg = 6,  bg = 0, enabled = true},	
-		tells					= {fg = 11, bg = 0, enabled = true},	
-		HNT 					= {fg = 11, bg = 0, enabled = true},
-		citytells				= {fg = 7,  bg = 0, enabled = true},
-		ordertells 				= {fg = 7,  bg = 0, enabled = true},	
-		newbie					= {fg = 10, bg = 0, enabled = true},
-		emotes 					= {fg = 7,  bg = 0, enabled = true},
-		arenatells 				= {fg = 7,  bg = 0, enabled = true},
-		market 					= {fg = 7,  bg = 0, enabled = true},
-		partytells 				= {fg = 7,  bg = 0, enabled = true},
-		armytells 				= {fg = 7,  bg = 0, enabled = true},
-		grouptells 				= {fg = 7,  bg = 0, enabled = true},
-		riddletalk 				= {fg = 8,  bg = 0, enabled = true},
-		shiprace 				= {fg = 8,  bg = 0, enabled = true},
-		messages 				= {fg = 3,  bg = 0, enabled = true},
-		mail_Messages 			= {fg = 7,  bg = 0, enabled = true},
-		news_Messages 			= {fg = 7,  bg = 0, enabled = true},
-		rage_Messages 			= {fg = 7,  bg = 0, enabled = true},
-		--clantells 			= {fg = 7,  bg = 0, enabled = true},
-
-		-- ROOM DESCRIPTION
-		room_title 				= {fg = 10,  bg = 0, enabled = true},
-		room_desc 				= {fg = 15,  bg = 0, enabled = true},
-		things					= {fg = 6,  bg = 0, enabled = true},
-		plant 					= {fg = 5,  bg = 0, enabled = true},
-		players 				= {fg = 11, bg = 0, enabled = true},
-		exits 					= {fg = 3,  bg = 0, enabled = true},
-
-	}	
-	
-	for k,v in pairs(t.config.color_sheet) do
-		if v.enabled then
-			t.send("config colour " ..tostring(k).. " " ..v.fg.." "..v.bg)
-		end
-	end
-
-end	
-
-TReX.config.allowtells=function() 
-
- 	TReX.config.allowtells = {
-	
- 	"Ysela",
- 	"Seragorn",
- 	"Emett",
- 	"Laetetia",
- 	"Herenicus",
-	"Driden",
- 	"Mindshell",
- 	"Lucianus",
- 	 --"" = , -- leaving empty for immediate in game need.
-		
- 	}
-	
-	t.send("allowtells remove all", false)
-	t.send("config allowtells off", false)
-	t.send("config tellsoffmsg I am currently away. Please send me a quick message.", false)
-
-		for k,v in pairs(TReX.config.allowtells) do
-			t.send("allowtells add " ..v)
-		end	-- for
-		
 end
 
 
@@ -845,7 +747,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 		end
 
 		if (t.serverside["settings"][variable]) then -- if toggling to true
-			--"parry","meditate"
+
 			if table.contains({"extrusion","purify","deathsight","tarot","daina","alleviate","salt","accelerate","fitness","rage","bloodboil","might","shrugging","dragonheal","transmute","echos","timestamp","override","debugEnabled","restore","paused","Prompt","fool","afflictions","insomnia","vault","reporting","focus","clot","defences","recovery","tree","moss","sipping","affbar"}, variable) then
 				t.serverside["settings"][variable] = true 				
 			end
@@ -853,7 +755,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 			if table.contains({"afflictions","insomnia","vault","reporting","focus","clot","defences","sipping","tree"}, variable) then
 				t.serverside["settings_default"][variable] = "Yes"
 			end
-				--"parry","meditate"
+
 				if not table.contains({"extrusion","purify","tree","clot","deathsight","rage","tarot","daina","alleviate","salt","fitness","recovery","bloodboil","accelerate","vault","fool","moss","echos","timestamp","Prompt","restore","might","shrugging","dragonheal","transmute","override","debugEnabled","paused","affbar"}, variable) then
 					t.send("curing "..variable.." on", false)
 				end
@@ -923,22 +825,11 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 					TReX.class.skill_check()
 				end						
 
-				
-				--for k,v in pairs(class_skill) do
-				--if TReX.s.class:lower()==k then
-						--for p,j in pairs(class_skill[k]) do 
-							--class_skill[k][p] =j
-						--end
-					--end
-				--end
-								
+
 				TReX.config.show("settings")
 			
 					if (variable == "Prompt") then
-						--if not t.serverside.prompt_capture == "config prompt custom PROMPTCAPTURE" then
-							t.serverside.prompt_capture = "config prompt custom PROMPTCAPTURE"
-							send(t.serverside.prompt_capture)
-						--end	
+						send("config prompt custom PROMPTCAPTURE")
 					end
 			
 					if (variable == "transmutation") then
@@ -967,9 +858,6 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 						TReX.defs.keepup()
 					end 
 					
-					--if (variable == "parry") then
-						--TReX.parry.toggle("on")
-					--end
 					
 					if table.index_of({"echos","deathsight","restore","timestamp"},variable) then
 						t.serverside.green_echo(variable.." on")
@@ -978,7 +866,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 
 		else -- if toggling to false
 
-			--"parry",
+
 			if table.contains({"extrusion","purify","affbar","deathsight","daina","tarot","alleviate","salt","accelerate","fitness","rage","bloodboil","might","shrugging","dragonheal","transmute","echos","timestamp","override","debugEnabled","restore","paused","Prompt","fool","afflictions","insomnia","vault","reporting","focus","clot","defences","recovery","tree","moss","sipping"}, variable) then
 				t.serverside["settings"][variable] = false
 			end
@@ -986,7 +874,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 			if table.contains({"afflictions","insomnia","vault","reporting","focus","clot","defences","sipping","tree"}, variable) then
 				t.serverside["settings_default"][variable] = "No"
 			end
-				--"parry",
+
 				if not table.contains({"extrusion","purify","affbar","tree","clot","deathsight","rage","daina","tarot","alleviate","salt","fitness","recovery","bloodboil","accelerate","vault","fool","moss","echos","timestamp","Prompt","restore","might","shrugging","dragonheal","transmute","override","debugEnabled","paused"}, variable) then
 					t.send("curing "..variable.." off", false)
 				end
