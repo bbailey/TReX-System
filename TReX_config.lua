@@ -222,8 +222,26 @@ end
 
 TReX.config.login_load=function(event)
 	TReX.config.loadSettings() 
-		
+
 		if t.serverside["settings"].installed then
+
+
+			if t.serverside.settings.Prompt then
+				send("config prompt custom PROMPTCAPTURE")
+			else
+				send("config prompt all")
+			end
+			
+			if t.serverside.settings.affbar then
+				setBorderBottom(128)
+				setMiniConsoleFontSize("TReX.serverside.middle", 12)
+				TReX.serverside.container:show()
+				t.serverside.gmcpAffShow()
+			else
+				setBorderBottom(100)
+				TReX.serverside.container:hide()
+			end
+
 		
 			TReX.serverside.login_settings() 
 			TReX.prios.default_settings()
@@ -239,22 +257,7 @@ TReX.config.login_load=function(event)
 				t.send("config",false)  
 			end
 
-			if t.serverside.settings.Prompt then
-				send("config prompt custom PROMPTCAPTURE")
-			else
-				send("config prompt all")
-			end
-			
-			if t.serverside.settings.affbar then
-				setBorderBottom(28)
-				setMiniConsoleFontSize("TReX.serverside.middle", 12)
-				TReX.serverside.container:show()
-				t.serverside.gmcpAffShow()
-			else
-				setBorderBottom(0)
 
-				TReX.serverside.container:hide()
-			end
 			
 			TReX.config.saveSettings()
 			
