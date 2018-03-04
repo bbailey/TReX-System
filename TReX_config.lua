@@ -862,7 +862,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 
 					if (variable == "clot") then
 						t.serverside.green_echo("Clotting on")
-						t.send("curing useclot on")
+						--t.send("curing useclot on")
 					end
 
 					if (variable == "tree") then
@@ -991,7 +991,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 					
 					if (variable == "clot") then
 						t.serverside.red_echo("Clotting off")
-						t.send("curing useclot off")
+						--t.send("curing useclot off")
 					end		
 
 					if (variable == "tree") then
