@@ -233,12 +233,12 @@ TReX.config.login_load=function(event)
 			end
 			
 			if t.serverside.settings.affbar then
-				setBorderBottom(128)
+				setBorderBottom(28)
 				setMiniConsoleFontSize("TReX.serverside.middle", 12)
 				TReX.serverside.container:show()
 				t.serverside.gmcpAffShow()
 			else
-				setBorderBottom(100)
+				setBorderBottom(0)
 				TReX.serverside.container:hide()
 			end
 
