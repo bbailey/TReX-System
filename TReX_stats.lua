@@ -978,9 +978,9 @@ TReX.stats.on_click=function(variable, toggle, toggle2)
 	TReX.stats.showSettings()
 
 		deletep=false
-			if not table.contains({prompt_sent}, "sent") then
-				table.insert(prompt_sent, "sent")
-			end
+			--if not table.contains({prompt_sent}, "sent") then
+			--	table.insert(prompt_sent, "sent")
+			--end
 		TReX.stats.custom_prompt()
 	
 end		
