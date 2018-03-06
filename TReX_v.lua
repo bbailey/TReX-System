@@ -73,23 +73,6 @@ TReX.v.eventhandler=function()
 if t.serverside["settings"].installed then
 
 
-	t.bals.bal = true
-	t.bals.eq = true
-	t.bals.voice = true
-	t.bals.sip = true
-	t.bals.immunity = true
-	t.bals.tree = true
-	t.bals.focus = true
-	t.bals.fitness = true
-	t.bals.bloodboil = true
-	t.bals.rage = true
-	t.bals.salve = true
-	t.bals.herb = true
-	t.bals.smoke = true
-	t.bals.alleviate = true
-	t.bals.accelerate = true
-
-
 	-------------------------------------------------------------------------
 	-- BALANCE TRACKING -----------------------------------------------------
 	-------------------------------------------------------------------------

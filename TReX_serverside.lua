@@ -1472,7 +1472,7 @@ TReX.serverside.prompt_options = {
 
 TReX.serverside.affbar=function(mode)
 	if mode == "on" then
-		setBorderBottom(27)
+		setBorderBottom(28)
 		t.serverside.settings.affbar = true
 		setMiniConsoleFontSize("TReX.serverside.middle", 12)
 		TReX.serverside.container:show()
@@ -1518,15 +1518,7 @@ TReX.serverside.eh_items=function(event, arg)
 		end
 	end
 	
-		if table.contains({TReX.serverside.itms.room}, "a lightwall") then
-			darkShadeTimer = tempTimer(3.5, [[
-				if TReX.prios.current["darkshade"] ~= 1 then
-					TReX.prios.switchPrios("darkshade", 1, 1)
-				end
-											]])
-		end
-										 
-		 if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.eh_items ) ") end
+	if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.eh_items ) ") end
 		 
 
 end
@@ -2317,6 +2309,24 @@ t.serverside.settings_dict = {
 end
 
 TReX.serverside.login_settings=function()
+
+t.bals.bal = true
+t.bals.eq = true
+t.bals.voice = true
+t.bals.sip = true
+t.bals.immunity = true
+t.bals.tree = true
+t.bals.focus = true
+t.bals.fitness = true
+t.bals.bloodboil = true
+t.bals.rage = true
+t.bals.salve = true
+t.bals.herb = true
+t.bals.smoke = true
+t.bals.alleviate = true
+t.bals.accelerate = true
+t.bals.purify = true
+t.bals.extrusion = true
 
 t.affs.stun = false
 t.affs.addiction = false
