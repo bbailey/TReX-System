@@ -38,8 +38,7 @@ t.target = ""
 
 local a = tostring(a)
 local b = b or t.target
-local aff = tostring(aff)
-
+local aff = aff or ""
 	-- enable class im fighting
 	if not (t.class[a].enabled) then
 		TReX.class.reset()
@@ -53,7 +52,9 @@ local aff = tostring(aff)
 		end
 	
 		--class check
-		TReX.class[a](aff) 
+        if not(aff == "") then
+            TReX.class[a](aff) 
+        end
 
 end
 
