@@ -224,6 +224,8 @@ def_list = {
 			["mercury"] = {["name"] = "mercury", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["sulphur"] = {["name"] = "sulphur", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["tin"] = {["name"] = "tin", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 			--["compoundmask"] = {["name"] = "Compoundmask", ["keepup"] = true, ["defup"] = true, ["enabled"] = true},
 			--["enhancedform"] = {["name"] = "Enhancedform", ["keepup"] = true, ["defup"] = true, ["enabled"] = true},
 			--["ironform"] = {["name"] = "Ironform", ["keepup"] = true, ["defup"] = true, ["enabled"] = true},
@@ -260,6 +262,8 @@ def_list = {
 			["tune"] = {["name"] = "tune", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["aria"] = {["name"] = "aria", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true,},
 			["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 
 		}
 	end
@@ -283,6 +287,8 @@ def_list = {
 			["shinbinding"] = {["name"] = "shinbinding", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["shintrance"] = {["name"] = "shintrance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["shinclarity"] = {["name"] = "shinclarity", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 		}
 	end
 
@@ -297,6 +303,8 @@ def_list = {
 			["antiforce"] = {["name"] = "antiforce", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["shadowveil"] = {["name"] = "shadowveil", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["bloodquell"] = {["name"] = "bloodquell", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 		}
 	end
 
@@ -328,6 +336,8 @@ def_list = {
 			["arrowcatching"] = {["name"] = "arrowcatching", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["deviltarot"] = {["name"] = "deviltarot", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true,},
 			["acrobatics"] = {["name"] = "acrobatics", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},			
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 		}
 	
 	end
@@ -344,6 +354,8 @@ def_list = {
 			["stoneskin"] = {["name"] = "stoneskin", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["efreeti"] = {["name"] = "efreeti", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["waterweird"] = {["name"] = "waterweird", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 		}
 	end
 	
@@ -370,6 +382,8 @@ def_list = {
 			["toughness"] = {["name"] = "toughness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
             ["weathering"] = {["name"] = "weathering", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 		}
 	end
 	
@@ -400,6 +414,8 @@ def_list = {
             ["resistance"] = {["name"] = "resistance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["blademastery"] = {["name"] = "blademastery", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["deflect"] = {["name"] = "deflect", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
         }
     end
 
@@ -409,6 +425,8 @@ def_list = {
 		def_list.class ={
 			["inspiration"] = {["name"] = "inspiration", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["fortify"] = {["name"] = "fortify", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 		}
 	end
 	
@@ -422,6 +440,8 @@ def_list = {
             ["resistance"] = {["name"] = "resistance", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["blademastery"] = {["name"] = "blademastery", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["deflect"] = {["name"] = "deflect", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},			
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
         }
 
     end
@@ -442,6 +462,8 @@ def_list = {
 			 ["resistance"] = {["name"] = "resistance", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true,},
 			 ["spinspear"] = {["name"] = "spinspear", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			 ["melody"] = {["name"] = "melody", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
+			 ["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			 ["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 
 			-- ["mask"]
 		}
@@ -452,13 +474,14 @@ def_list = {
 	if TReX.s.class == "Serpent" then
 		def_list.class = {
 			 ["lipreading"] = {["name"] = "lipreading", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},  
-			 ["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},   
-			 ["ghost"] = {["name"] = "ghost", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
-			 ["secondsight"] = {["name"] = "secondsight", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
-			 ["hiding"] = {["name"] = "hiding", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
-			 ["scales"] = {["name"] = "scales", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
-			 ["weaving"] = {["name"] = "weaving", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
-			 ["phased"] = {["name"] = "phased", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
+			 ["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},   
+			 ["ghost"] = {["name"] = "ghost", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			 ["secondsight"] = {["name"] = "secondsight", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			 ["hiding"] = {["name"] = "hiding", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			 ["scales"] = {["name"] = "scales", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			 ["weaving"] = {["name"] = "weaving", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			 ["phased"] = {["name"] = "phased", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+		  	 ["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 		}
 	
 	end
@@ -468,6 +491,8 @@ def_list = {
 		def_list.class = {
 			["gripping"] = {["name"] = "gripping", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["swiftcurse"] = {["name"] = "swiftcurse", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 		}
 	
 	end
@@ -487,6 +512,8 @@ def_list = {
 			--["spinningstaff"] = {["name"] = "spinningstaff", ["keepup"] = false, ["defup"] = true, ["serverside"]=false, ["enabled"] = true},
 			["flailingstaff"] = {["name"] = "flailingstaff", ["keepup"] = false, ["defup"] = true, ["serverside"]=false, ["enabled"] = true},
 			["reflections"] = {["name"] = "reflections", ["keepup"] = false, ["defup"] = true, ["serverside"]=false, ["enabled"] = true},
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 		}
 	end
 
@@ -495,6 +522,8 @@ def_list = {
 		def_list.class = {
 			["dragonarmour"] = {["name"] = "dragonarmour", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["dragonbreath"] = {["name"] = "dragonbreath", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 		}
 	end
 
@@ -513,25 +542,38 @@ def_list = {
 			--["spinningstaff"] = {["name"] = "spinningstaff", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			["flailingstaff"] = {["name"] = "flailingstaff", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
             ["melody"] = {["name"] = "melody", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
-			
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 		}
 	
 	end -- if
 	
 		 if TReX.s.class == "water Elemental Lord" then
-         def_list.class ={}    
+         def_list.class ={
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},         
+     	}    
          end
 		 
 		 if TReX.s.class == "air Elemental Lord" then
-         def_list.class ={}    
+         def_list.class ={
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
+	     }    
          end
 		 
 		 if TReX.s.class == "fire Elemental Lord" then
-         def_list.class ={}    
+         def_list.class ={
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
+     	}    
          end
 		 
 		 if TReX.s.class == "earth Elemental Lord" then
-         def_list.class ={}    
+         def_list.class ={
+			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},         
+     	}    
          end
 
 		if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.list ) ") end
@@ -2831,7 +2873,8 @@ local swap = swap
 end -- func
 
 TReX.serverside.focusblockcheck=function()
-	for _,i in pairs(misc_cure_table["focus"].blocks) do   -- check affliction blocks before using.
+	--for _,i in pairs(misc_cure_table["focus"].blocks) do   -- check affliction blocks before using.
+	if t.affs.impatience then
 		if t.affs[i] then 
 			for k, v in pairs(TReX.prios.default) do	 								-- iterate through defsault table
 					if TReX.prios.current[k] ~= TReX.prios.default[k] then				-- check against defsault table.
@@ -2848,12 +2891,14 @@ TReX.serverside.focusblockcheck=function()
 			
 			end
 				if isPrompt() then 
-					t.serverside.red_echo("focus blocked by " ..i) 
+					--t.serverside.red_echo("focus blocked by " ..i)
+					t.serverside.red_echo("focus blocked by impatience") 
 					return true 
 				end
 		end
 			return false
 	end
+	--end
 end
 
 TReX.defs.def_defup_toggle=function(def)

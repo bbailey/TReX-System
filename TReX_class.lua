@@ -34,13 +34,15 @@ end -- func
 
 TReX.class.set=function(a, b, aff) -- this is the function throwing an error
 
-t.target = ""
+--t.target = ""
 
-local a = tostring(a)
+local a = a
 local b = b or t.target
-local aff = tostring(aff)
+local aff = aff or ""
+--cecho("<red>\n"..a)
+--cecho("<blue>\n"..b)
+--cecho("<green>\n"..aff) --luci's debug echos
 
-	-- enable class im fighting
 	if not (t.class[a].enabled) then
 		TReX.class.reset()
 		t.class[a].enabled = true
@@ -53,7 +55,9 @@ local aff = tostring(aff)
 		end
 	
 		--class check
-		TReX.class[a](aff) 
+        if not(aff == "") and aff ~= nil then
+            TReX.class[a](aff) 
+        end
 
 end
 
