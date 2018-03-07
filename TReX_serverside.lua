@@ -2930,9 +2930,9 @@ TReX.serverside.treeblockcheck=function()
 
 	for k,v in pairs({"paralysis"}) do
 		if table.contains({t.serverside.gmcp_aff_table}, v) then
-			return false
-		else
 			return true
+		else
+			return false
 		end
 	end
 	--for _,i in pairs(misc_cure_table["tree"].blocks) do   -- check affliction blocks before using.
