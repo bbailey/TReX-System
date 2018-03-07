@@ -2873,7 +2873,8 @@ local swap = swap
 end -- func
 
 TReX.serverside.focusblockcheck=function()
-	for _,i in pairs(misc_cure_table["focus"].blocks) do   -- check affliction blocks before using.
+	--for _,i in pairs(misc_cure_table["focus"].blocks) do   -- check affliction blocks before using.
+	if t.affs.impatience then
 		if t.affs[i] then 
 			for k, v in pairs(TReX.prios.default) do	 								-- iterate through defsault table
 					if TReX.prios.current[k] ~= TReX.prios.default[k] then				-- check against defsault table.
@@ -2890,12 +2891,14 @@ TReX.serverside.focusblockcheck=function()
 			
 			end
 				if isPrompt() then 
-					t.serverside.red_echo("focus blocked by " ..i) 
+					--t.serverside.red_echo("focus blocked by " ..i)
+					t.serverside.red_echo("focus blocked by impatience") 
 					return true 
 				end
 		end
 			return false
 	end
+	--end
 end
 
 TReX.defs.def_defup_toggle=function(def)

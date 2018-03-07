@@ -2927,10 +2927,18 @@ TReX.serverside.numberOfLockAffs=function()
 end
 
 TReX.serverside.treeblockcheck=function()
-	for _,i in pairs(misc_cure_table["tree"].blocks) do   -- check affliction blocks before using.
-		if t.affs[i] then t.serverside.echo_red("tree blocked by " ..i,false) return true end
+
+	for k,v in pairs({"paralysis"}) do
+		if table.contains({t.serverside.gmcp_aff_table}, v) then
 			return false
+		else
+			return true
+		end
 	end
+	--for _,i in pairs(misc_cure_table["tree"].blocks) do   -- check affliction blocks before using.
+	--	if t.affs[i] then t.serverside.echo_red("tree blocked by " ..i,false) return true end
+	--		return false
+	--end
 end
 
 TReX.serverside.treeAffGained=function()
