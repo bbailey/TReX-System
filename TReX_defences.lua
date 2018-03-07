@@ -2873,30 +2873,27 @@ local swap = swap
 end -- func
 
 TReX.serverside.focusblockcheck=function()
-	--for _,i in pairs(misc_cure_table["focus"].blocks) do   -- check affliction blocks before using.
 	if t.affs.impatience then
-		if t.affs[i] then 
+	--for _,i in pairs(misc_cure_table["focus"].blocks) do   -- check affliction blocks before using.
+		--if t.affs[i] then 
 			for k, v in pairs(TReX.prios.default) do	 								-- iterate through defsault table
-					if TReX.prios.current[k] ~= TReX.prios.default[k] then				-- check against defsault table.
-						if not table.index_of({"brokenleftleg","brokenrightleg","damagedleftleg","damagedrightleg","mangledleftleg","mangledrightleg"
-							,"brokenleftarm","brokenrightarm","damagedleftarm","damagedrightarm","mangledleftarm","mangledrightarm"
-							,"mildtrauma","serioustrauma"
-							,"concussion","mangledhead","damagedhead"},k) then
-								
-								TReX.prios.switchPrios(k,TReX.prios.default[k])
-								
-						end
-
+				if TReX.prios.current[k] ~= TReX.prios.default[k] then				-- check against defsault table.
+					if not table.index_of({"brokenleftleg","brokenrightleg","damagedleftleg","damagedrightleg","mangledleftleg","mangledrightleg"
+						,"brokenleftarm","brokenrightarm","damagedleftarm","damagedrightarm","mangledleftarm","mangledrightarm"
+						,"mildtrauma","serioustrauma"
+						,"concussion","mangledhead","damagedhead"},k) then								
+							TReX.prios.switchPrios(k,TReX.prios.default[k])								
 					end
-			
+				end
 			end
 				if isPrompt() then 
 					--t.serverside.red_echo("focus blocked by " ..i)
 					t.serverside.red_echo("focus blocked by impatience") 
 					return true 
 				end
-		end
-			return false
+		--end
+	else
+		return false
 	end
 	--end
 end
