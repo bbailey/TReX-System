@@ -12405,40 +12405,6 @@ TReX.class.set(&quot;dualc&quot;, matches[2]) </script>
                             <integer>1</integer>
                         </regexCodePropertyList>
                     </Trigger>
-                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
-                        <name>jabs</name>
-                        <script>TReX.class.set(&quot;dualc&quot;, matches[2])  </script>
-                        <triggerType>0</triggerType>
-                        <conditonLineDelta>0</conditonLineDelta>
-                        <mStayOpen>0</mStayOpen>
-                        <mCommand></mCommand>
-                        <packageName></packageName>
-                        <mFgColor>#ff0000</mFgColor>
-                        <mBgColor>#ffff00</mBgColor>
-                        <mSoundFile></mSoundFile>
-                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
-                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
-                        <regexCodeList>
-                            <string>^(\w+) swings a .+  at you with all h(is|er) might\.$</string>
-                            <string>^(\w+) slashes into you with a .+\!$</string>
-                            <string>^Lightning-quick, (\w+) jabs you with .+\.$</string>
-                            <string>^Lightning-quick, (\w+) stabs you with .+\.$</string>
-                            <string>^(\w+) slashes into your .+ with a .+\.$</string>
-                            <string>^(\w+) swings a .+ at your .+ with all h(is|er) might\.$</string>
-                            <string>^Lightning-quick, (\w+) jabs your .+ with a .+\.$</string>
-                            <string>^Lightning-quick, (\w+) stabs your .+ with a .+\.$</string>
-                        </regexCodeList>
-                        <regexCodePropertyList>
-                            <integer>1</integer>
-                            <integer>1</integer>
-                            <integer>1</integer>
-                            <integer>1</integer>
-                            <integer>1</integer>
-                            <integer>1</integer>
-                            <integer>1</integer>
-                            <integer>1</integer>
-                        </regexCodePropertyList>
-                    </Trigger>
                     <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                         <name>lunge</name>
                         <script>TReX.serverside.affadd(&quot;stun&quot;)
@@ -12462,6 +12428,134 @@ TReX.class.set(&quot;dualc&quot;, multimatches[1][2])</script>
                             <integer>1</integer>
                         </regexCodePropertyList>
                     </Trigger>
+                    <TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>Doubleslash</name>
+                        <script>--Nehmrah viciously jabs a Soulpiercer into your right leg.</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList/>
+                        <regexCodePropertyList/>
+                        <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                            <name>Doubleslash 1</name>
+                            <script>local trex_bardweapons = {&quot;Soulpiercer&quot;, &quot;Eagle's Scream&quot;,&quot;rapier&quot;}
+
+for i in pairs(trex_bardweapons) do
+ if not string.find(matches[3], trex_bardweapons[i]) then
+	TReX.class.set(&quot;dualc&quot;, matches[2])
+ end
+end</script>
+                            <triggerType>0</triggerType>
+                            <conditonLineDelta>1</conditonLineDelta>
+                            <mStayOpen>0</mStayOpen>
+                            <mCommand></mCommand>
+                            <packageName></packageName>
+                            <mFgColor>#ff0000</mFgColor>
+                            <mBgColor>#ffff00</mBgColor>
+                            <mSoundFile></mSoundFile>
+                            <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                            <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                            <regexCodeList>
+                                <string>^(\w+) viciously \w+ ([^\.]+) into you\.$</string>
+                                <string>^(\w+) viciously \w+ ([^\.]+) into your (.*)\.$</string>
+                            </regexCodeList>
+                            <regexCodePropertyList>
+                                <integer>1</integer>
+                                <integer>1</integer>
+                            </regexCodePropertyList>
+                        </Trigger>
+                        <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                            <name>Doubleslash 2</name>
+                            <script>local trex_bardweapons = {&quot;Soulpiercer&quot;, &quot;Eagle's Scream&quot;,&quot;rapier&quot;}
+
+for i in pairs(trex_bardweapons) do
+ if not string.find(matches[3], trex_bardweapons[i]) then
+	TReX.class.set(&quot;dualc&quot;, matches[2])
+ end
+end</script>
+                            <triggerType>0</triggerType>
+                            <conditonLineDelta>1</conditonLineDelta>
+                            <mStayOpen>0</mStayOpen>
+                            <mCommand></mCommand>
+                            <packageName></packageName>
+                            <mFgColor>#ff0000</mFgColor>
+                            <mBgColor>#ffff00</mBgColor>
+                            <mSoundFile></mSoundFile>
+                            <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                            <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                            <regexCodeList>
+                                <string>^(\w+) slashes into your .+ with ([^\.]+)\.$</string>
+                                <string>^(\w+) slashes into you with a ([^\.]+)\!$</string>
+                            </regexCodeList>
+                            <regexCodePropertyList>
+                                <integer>1</integer>
+                                <integer>1</integer>
+                            </regexCodePropertyList>
+                        </Trigger>
+                        <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                            <name>Doubleslash 3</name>
+                            <script>local trex_bardweapons = {&quot;Soulpiercer&quot;, &quot;Eagle's Scream&quot;,&quot;rapier&quot;}
+
+for i in pairs(trex_bardweapons) do
+ if not string.find(matches[3], trex_bardweapons[i]) then
+	TReX.class.set(&quot;dualc&quot;, matches[2])
+ end
+end</script>
+                            <triggerType>0</triggerType>
+                            <conditonLineDelta>1</conditonLineDelta>
+                            <mStayOpen>0</mStayOpen>
+                            <mCommand></mCommand>
+                            <packageName></packageName>
+                            <mFgColor>#ff0000</mFgColor>
+                            <mBgColor>#ffff00</mBgColor>
+                            <mSoundFile></mSoundFile>
+                            <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                            <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                            <regexCodeList>
+                                <string>^(\w+) swings ([^\.]+) at your (.*) with all \w+ might\.$</string>
+                                <string>^(\w+) swings ([^\.]+) at you with all h(is|er) might\.$</string>
+                            </regexCodeList>
+                            <regexCodePropertyList>
+                                <integer>1</integer>
+                                <integer>1</integer>
+                            </regexCodePropertyList>
+                        </Trigger>
+                        <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                            <name>Doubleslash 4</name>
+                            <script>local trex_bardweapons = {&quot;Soulpiercer&quot;, &quot;Eagle's Scream&quot;,&quot;rapier&quot;}
+
+for i in pairs(trex_bardweapons) do
+ if not string.find(matches[3], trex_bardweapons[i]) then
+	TReX.class.set(&quot;dualc&quot;, matches[2])
+ end
+end</script>
+                            <triggerType>0</triggerType>
+                            <conditonLineDelta>1</conditonLineDelta>
+                            <mStayOpen>0</mStayOpen>
+                            <mCommand></mCommand>
+                            <packageName></packageName>
+                            <mFgColor>#ff0000</mFgColor>
+                            <mBgColor>#ffff00</mBgColor>
+                            <mSoundFile></mSoundFile>
+                            <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                            <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                            <regexCodeList>
+                                <string>^Lightning-quick, (\w+) \w+ your .+ with ([^\.]+)\.$</string>
+                                <string>^Lightning-quick, (\w+) \w+ you with ([^\.]+)\.$</string>
+                            </regexCodeList>
+                            <regexCodePropertyList>
+                                <integer>1</integer>
+                                <integer>1</integer>
+                            </regexCodePropertyList>
+                        </Trigger>
+                    </TriggerGroup>
                     <TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                         <name>Infernal</name>
                         <script></script>
@@ -16176,6 +16270,134 @@ TReX.class.set(&quot;priest&quot;, matches[2]) </script>
                 <colorTriggerBgColor>#000000</colorTriggerBgColor>
                 <regexCodeList/>
                 <regexCodePropertyList/>
+                <TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                    <name>Jab</name>
+                    <script>--Nehmrah viciously jabs a Soulpiercer into your right leg.</script>
+                    <triggerType>0</triggerType>
+                    <conditonLineDelta>0</conditonLineDelta>
+                    <mStayOpen>0</mStayOpen>
+                    <mCommand></mCommand>
+                    <packageName></packageName>
+                    <mFgColor>#ff0000</mFgColor>
+                    <mBgColor>#ffff00</mBgColor>
+                    <mSoundFile></mSoundFile>
+                    <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                    <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                    <regexCodeList/>
+                    <regexCodePropertyList/>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>Bard Jab 1</name>
+                        <script>local trex_bardweapons = {&quot;Soulpiercer&quot;, &quot;Eagle's Scream&quot;,&quot;rapier&quot;}
+
+for i in pairs(trex_bardweapons) do
+ if string.find(matches[3], trex_bardweapons[i]) then
+	TReX.class.set(&quot;bard&quot;, matches[2])
+ end
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>1</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>^(\w+) viciously \w+ ([^\.]+) into you\.$</string>
+                            <string>^(\w+) viciously \w+ ([^\.]+) into your (.*)\.$</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>1</integer>
+                            <integer>1</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>Bard Jab 2</name>
+                        <script>local trex_bardweapons = {&quot;Soulpiercer&quot;, &quot;Eagle's Scream&quot;,&quot;rapier&quot;}
+
+for i in pairs(trex_bardweapons) do
+ if string.find(matches[3], trex_bardweapons[i]) then
+	TReX.class.set(&quot;bard&quot;, matches[2])
+ end
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>1</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>^Lightning-quick, (\w+) \w+ your .+ with ([^\.]+)\.$</string>
+                            <string>^Lightning-quick, (\w+) \w+ you with ([^\.]+)\.$</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>1</integer>
+                            <integer>1</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>Bard Slash 1</name>
+                        <script>local trex_bardweapons = {&quot;Soulpiercer&quot;, &quot;Eagle's Scream&quot;,&quot;rapier&quot;}
+
+for i in pairs(trex_bardweapons) do
+ if string.find(matches[3], trex_bardweapons[i]) then
+	TReX.class.set(&quot;bard&quot;, matches[2])
+ end
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>1</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>^(\w+) slashes into your .+ with ([^\.]+)\.$</string>
+                            <string>^(\w+) slashes into you with a ([^\.]+)\!$</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>1</integer>
+                            <integer>1</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>Bard Slash 2</name>
+                        <script>local trex_bardweapons = {&quot;Soulpiercer&quot;, &quot;Eagle's Scream&quot;,&quot;rapier&quot;}
+
+for i in pairs(trex_bardweapons) do
+ if string.find(matches[3], trex_bardweapons[i]) then
+	TReX.class.set(&quot;bard&quot;, matches[2])
+ end
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>1</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>^(\w+) swings ([^\.]+) at your (.*) with all \w+ might\.$</string>
+                            <string>^(\w+) swings ([^\.]+) at you with all h(is|er) might\.$</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>1</integer>
+                            <integer>1</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                </TriggerGroup>
                 <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>contradanse</name>
                     <script>TReX.serverside.unknown_count()
