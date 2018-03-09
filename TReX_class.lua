@@ -46,7 +46,11 @@ local aff = aff or ""
 	if not (t.class[a].enabled) then
 		TReX.class.reset()
 		t.class[a].enabled = true
-			tempTimer(15, [[TReX.class.reset() t.serverside.green_echo("Reset Enemy Class")]])
+	 if TReX_Class_Reset_Timer and TReX_Class_Reset_Timer ~= nil then 
+	 	killTimer(TReX_Class_Reset_Timer)
+	 	TReX_Class_Reset_Timer = nil 
+	 end
+   	 TReX_Class_Reset_Timer = tempTimer(15, [[TReX.class.reset() t.serverside.green_echo("Reset Enemy Class")]])
 	end
 
 		--soft target
