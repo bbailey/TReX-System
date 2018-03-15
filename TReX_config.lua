@@ -286,7 +286,6 @@ TReX.config.install=function()
 	TReX.stats.settings()
 	TReX.pipes.settings()
 	TReX.config.settings()
-	--TReX.config.score_sheet() -- nil error alert
 	t.send("config prompt custom PROMPTCAPTURE")
 	t.serverside["settings"].installed = true
 	TReX.config.saveSettings()

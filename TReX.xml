@@ -345,9 +345,11 @@ trex_image()
                 <colorTriggerBgColor>#000000</colorTriggerBgColor>
                 <regexCodeList>
                     <string>Unbearable pain crushes your soul,</string>
+                    <string>You will your body to enter the Flame of Yggdrasil, deciding to embrace its life giving powers. You are reborn!</string>
                 </regexCodeList>
                 <regexCodePropertyList>
                     <integer>2</integer>
+                    <integer>3</integer>
                 </regexCodePropertyList>
             </Trigger>
         </TriggerGroup>
@@ -27746,7 +27748,7 @@ if string.char(homeDir:byte()) == &quot;/&quot; then
 end
 table.save(homeDir.. sep .. huntVar.fileName..&quot;.lua&quot;, huntVar.userAreaList)
 table.save(homeDir.. sep .. huntVar.fileNameFull..&quot;.lua&quot;, fixedHuntVar.areaList)
-t.serverside.green_echo(&quot;Hunting System Saved\n&quot;)</script>
+</script>
                 <command></command>
                 <packageName></packageName>
                 <regex>^hsave$</regex>
@@ -28489,11 +28491,6 @@ end
 			end
 		end
 
-		if t.serverside[&quot;settings&quot;].sys_loaded then
-			t.serverside.green_echo(&quot;System File Loaded\n&quot;, false)
-		elseif not t.serverside[&quot;settings&quot;].installed then
-			t.serverside.green_echo(&quot;System File Loaded\n&quot;, false)
-		end
 end
 
 TReX.config.saveSettings=function()
@@ -28527,11 +28524,6 @@ end
 			table.save(configDir .._sep .. file .. &quot;.lua&quot;, myTable)
 		end
 		
-		if t.serverside[&quot;settings&quot;].sys_loaded then
-			t.serverside.green_echo(&quot;System File Saved\n&quot;, false) 
-		elseif not t.serverside[&quot;settings&quot;].installed then
-			t.serverside.green_echo(&quot;System File Saved\n&quot;, false)
-		end
 end
 
 </script>
@@ -29757,7 +29749,6 @@ function huntTracker:sysLoadEvent()
 	table.load(homeDir.. sep .. huntVar.fileName..&quot;.lua&quot;, huntVar.userAreaList)
 	table.load(homeDir.. sep .. huntVar.fileNameFull..&quot;.lua&quot;, fixedHuntVar.areaList)
 	huntTableCheck()
-	t.serverside.green_echo(&quot;&lt;white&gt;Hunting System Loaded\n&quot;)
 	--huntVar.on = false
 end
 
@@ -29770,7 +29761,7 @@ function huntTracker:sysExitEvent()
 	end
 	table.save(homeDir.. sep .. huntVar.fileName..&quot;.lua&quot;, huntVar.userAreaList)
 	table.save(homeDir.. sep .. huntVar.fileNameFull..&quot;.lua&quot;, fixedHuntVar.areaList)
-	t.serverside.green_echo(&quot;Hunting System Saved\n&quot;)
+
 end
 
 function insertID(id, priority)
