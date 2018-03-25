@@ -96,8 +96,7 @@ local ignore={"boartattoo","megalithtattoo","fireflytattoo","mosstattoo","feathe
 						--print(k)
 				end
 			end
-		end
-		
+		end		
 	end	
 
 		
@@ -108,23 +107,25 @@ local ignore={"boartattoo","megalithtattoo","fireflytattoo","mosstattoo","feathe
 					send("curing prio def "..k.." reset")
 				end
 			end
+		end		
+	end
+
+	if def_list.class ~= nil then
+	for k,v in pairs(def_list.class) do
+		if k ~= nil then
+			if k == defs then
+				if not v.keepup then
+					if not table.contains({ignore}, k) then
+							--table.remove(t.defs, table.index_of(t.defs, k))
+							send("curing prio def "..k.." reset")
+							--print(k)
+					end
+				end
+			end		
 		end
-		
+	end
 	end
 	
-	for k,v in pairs(def_list.class) do
-		if k == defs then
-			if not v.keepup then
-				if not table.contains({ignore}, k) then
-						--table.remove(t.defs, table.index_of(t.defs, k))
-						send("curing prio def "..k.." reset")
-						--print(k)
-				end
-			end
-		end
-		
-	end	
-		
 		if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.gmcp_def_event_add ) ") end
 				
 end -- func
@@ -480,7 +481,7 @@ def_list = {
 			 ["hiding"] = {["name"] = "hiding", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			 ["scales"] = {["name"] = "scales", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			 ["weaving"] = {["name"] = "weaving", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
-			 ["phased"] = {["name"] = "phased", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			 --["phased"] = {["name"] = "phased", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = false},
 		  	 ["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 		}
 	
@@ -2265,13 +2266,13 @@ TReX.defs.reset=function()
 			t.send("curing prio def "..k.." reset", false)
 		end
 	end
-
-	for k,v in pairs(def_list.class) do
-		if k ~= "meditate" then
-			t.send("curing prio def "..k.." reset", false)
+	if def_list.class ~= nil then
+		for k,v in pairs(def_list.class) do
+			if k ~= "meditate" then
+				t.send("curing prio def "..k.." reset", false)
+			end
 		end
 	end
-
 	for _,v in pairs(t.defs) do
 		if v ~= "meditate" then
 			t.send("curing prio def "..v.." reset", false)
