@@ -285,10 +285,10 @@ if t.bals.tree then raiseEvent(&quot;TReX gained aff&quot;, &quot;blackout&quot;
             </Trigger>
             <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                 <name>config - login load</name>
-                <script>TReX.load()
-trex_image()
-
-</script>
+                <script>t.def = {}
+t.defs = {}
+TReX.load()
+trex_image()</script>
                 <triggerType>0</triggerType>
                 <conditonLineDelta>0</conditonLineDelta>
                 <mStayOpen>0</mStayOpen>
