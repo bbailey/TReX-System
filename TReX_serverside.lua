@@ -11,8 +11,6 @@ local humourafftable={
 
 -- ITEMS EVENT HANDLER
 
-t.serverside.gmcp_aff_table			= t.serverside.gmcp_aff_table or {}
-
 TReX.serverside.itms					= TReX.serverside.itms or {}
 TReX.serverside.itms.room			    = TReX.serverside.itms.room or {}
 TReX.serverside.gingerlevel = 1
