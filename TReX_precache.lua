@@ -57,7 +57,9 @@ cecho("\n\t<white>Precache Settings\n\n")
       end
   end
   
-		echo"\n"
+		echo"\n\n"
+		deletep = false
+		showprompt()
   
  		
 end 

@@ -65,46 +65,6 @@ TReX.stats.prompt_options={
 
 	end,
 
-	-- denizenhealth = function () 
-		
-	-- 	if gmcp then 
-	-- 		if gmcp.IRE then 
-	-- 			if not (gmcp.IRE.Target) then 
-	-- 				return "" 
-	-- 			end 
-
-	-- 			if target == nil then
-	-- 				target = target or "None"
-	-- 			end
-
-	-- 			if not gmcp.IRE.Target.Info then return "" end
-				
-	-- 			if denizen_id == nil and gmcp.IRE.Target.Info.id ~= nil then
-	-- 				denizen_id = "None"
-	-- 			elseif denizen_id ~= gmcp.IRE.Target.Info.id and gmcp.IRE.Target.Info.id ~= nil then
-	-- 				denizen_id = gmcp.IRE.Target.Info.id
-	-- 				denizen_slain = false
-	-- 			end
-				
-	-- 			if denizen_id == "None" then
-	-- 				denizenHPperc = ""
-	-- 			elseif tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2)) == -1 and not denizen_slain then
-	-- 				denizenHPperc = ""
-	-- 			elseif tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2)) ~= nil and not denizen_slain then
-	-- 				denizenHPperc = gmcp.IRE.Target.Info.hpperc
-	-- 			end
-	-- 			if denizenHPperc == "0%" then
-	-- 				gmcp.IRE.Target = nil
-	-- 				return ""
-	-- 			end
-	-- 			if denizenHPperc ~= "100%" then
-	-- 				return ""..denizenHPperc..""
-	-- 				--cecho("\n<green>ID: <white>"..denizen_id.." <yellow>H: <cyan>"..denizenHPperc)
-	-- 			end
-	-- 		end
-	-- 	end
-
-	-- end,
 
 	--roomexits = function () if gmcp then if gmcp.Room then exitStr = "" for k, v in pairs(gmcp.Room.Info.exits) do exitStr = exitStr.." "..k--[[:upper()]]..")" end if gmcp.Room.Info.details == "wilderness" then return "" else return ("<grey>"..exitStr) end else return "" end else return "" end end,
 	phealth = function () return "<dim_grey>("..TReX.stats.health_color_percentage(math.floor(TReX.stats.h*100/TReX.stats.maxh))..""..tostring(math.floor(TReX.stats.h*100/TReX.stats.maxh)).."<dim_grey>)%" end,
@@ -187,7 +147,7 @@ t.stats								= { -- so anything you change in this table , gets saved to home 
 	["p_endurance"] 		   	= {["name"] = "endurance %", ["enabled"] = false},
 	["endurance_prompt"]	   	= {["name"] = "endurance #", ["enabled"] = false},
 	["time_stamp_prompt"]	   	= {["name"] = "timestamp", ["enabled"] = false},
-	--["limb_display_prompt"]	   	= {["name"] = "slc", ["enabled"] = false},
+	["limb_display_prompt"]	   	= {["name"] = "slc", ["enabled"] = false},
 	["battle_rage"]				= {["name"] = "battle rage", ["enabled"] = false},
 	--["dragon_breath"]		   	= {["name"] = "dragon breath", ["enabled"] = false},
 	["level_prompt"] 		   	= {["name"] = "dragon %", ["enabled"] = false},
@@ -280,7 +240,10 @@ TReX.stats.stat=function()
 	end
 
 	if TReX.stats.h == 0 then
-		if isPrompt() then TReX.config.display("Dead?") end
+		
+		expandAlias("mstop") 
+		TReX.config.display("Dead?")
+		
 			if TReX.stats.oh > 0 then
 
 				if TReX.s.class =="Apostate" then
@@ -354,6 +317,7 @@ TReX.stats.stat=function()
 			 t.send("curing priority health", false)
 		 end
 	 end
+		
 		
 		
 end -- func
@@ -529,7 +493,7 @@ TReX.stats.custom_prompt=function()
 					--prompt_string = prompt_string..prompt_options.ent_bal()
 					--prompt_string = prompt_string..prompt_options.dmark()
 					--prompt_string = prompt_string..prompt_options.uni() .. " "
-					--if t.stats["limb_display_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.limbdisplay() .. " " else end
+					if t.stats["limb_display_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.limbdisplay() .. " " else end
 					if t.stats["mono_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.mono() .. "<white>" else end
 					if t.stats["diff_health_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.diffhealth() .. "<white>" else end
 					if t.stats["diff_mana_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.diffmana() .. "<white>" else end
@@ -890,6 +854,10 @@ end -- func you_died
 TReX.stats.you_alive=function()
 -- new update
 if t.serverside["settings"].installed then
+	
+		t.def={}
+		t.defs={}
+
 	if t.serverside["settings_default"].defences == "No" then
 		TReX.defs.defence()
 	end	
@@ -954,6 +922,8 @@ local sortPrompt = {}
 		
 	end
 		echo"\n\n"
+		deletep = false
+		showprompt()
 end
 
 TReX.stats.on_click=function(variable, toggle, toggle2)
