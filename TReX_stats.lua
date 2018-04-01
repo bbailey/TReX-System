@@ -65,6 +65,46 @@ TReX.stats.prompt_options={
 
 	end,
 
+	-- denizenhealth = function () 
+		
+	-- 	if gmcp then 
+	-- 		if gmcp.IRE then 
+	-- 			if not (gmcp.IRE.Target) then 
+	-- 				return "" 
+	-- 			end 
+
+	-- 			if target == nil then
+	-- 				target = target or "None"
+	-- 			end
+
+	-- 			if not gmcp.IRE.Target.Info then return "" end
+				
+	-- 			if denizen_id == nil and gmcp.IRE.Target.Info.id ~= nil then
+	-- 				denizen_id = "None"
+	-- 			elseif denizen_id ~= gmcp.IRE.Target.Info.id and gmcp.IRE.Target.Info.id ~= nil then
+	-- 				denizen_id = gmcp.IRE.Target.Info.id
+	-- 				denizen_slain = false
+	-- 			end
+				
+	-- 			if denizen_id == "None" then
+	-- 				denizenHPperc = ""
+	-- 			elseif tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2)) == -1 and not denizen_slain then
+	-- 				denizenHPperc = ""
+	-- 			elseif tonumber(gmcp.IRE.Target.Info.hpperc:sub(1,2)) ~= nil and not denizen_slain then
+	-- 				denizenHPperc = gmcp.IRE.Target.Info.hpperc
+	-- 			end
+	-- 			if denizenHPperc == "0%" then
+	-- 				gmcp.IRE.Target = nil
+	-- 				return ""
+	-- 			end
+	-- 			if denizenHPperc ~= "100%" then
+	-- 				return ""..denizenHPperc..""
+	-- 				--cecho("\n<green>ID: <white>"..denizen_id.." <yellow>H: <cyan>"..denizenHPperc)
+	-- 			end
+	-- 		end
+	-- 	end
+
+	-- end,
 
 	--roomexits = function () if gmcp then if gmcp.Room then exitStr = "" for k, v in pairs(gmcp.Room.Info.exits) do exitStr = exitStr.." "..k--[[:upper()]]..")" end if gmcp.Room.Info.details == "wilderness" then return "" else return ("<grey>"..exitStr) end else return "" end else return "" end end,
 	phealth = function () return "<dim_grey>("..TReX.stats.health_color_percentage(math.floor(TReX.stats.h*100/TReX.stats.maxh))..""..tostring(math.floor(TReX.stats.h*100/TReX.stats.maxh)).."<dim_grey>)%" end,
@@ -82,7 +122,7 @@ TReX.stats.prompt_options={
 	lightwall = function () if table.contains({TReX.serverside.itms.room}, "a lightwall") then return "<white>{<red>[<white>LW<red>]<white>}" else return "" end end,
 	heldbreath = function () if t.def.heldbreath then return "<sky_blue>[<white>B<sky_blue>]" else return "" end end,
 	--ferocity = function () if tgz.snb.ferocity >= 1 then return "("..tgz.snb.ferocity..")" else return "" end end,	
-	--limbdisplay = function () return SLC_shortdisplay() end, 
+	limbdisplay = function () return SLC_shortdisplay() end, 
 	kai = function () if not TReX.s.class=="Monk" then return "" end if gmcp.Char.Vitals.charstats[3] then return "<sky_blue>("..tostring(tonumber(string.sub(gmcp.Char.Vitals.charstats[3],5,string.len(gmcp.Char.Vitals.charstats[3])- 1))).."%)" else return "" end end,
 	--affs = function () return t.serverside.gmcp_aff_table else return "" end end,
 	--uni = function () if uniroom() then return "<yellow>-UNI-" else return "" end end,
@@ -240,10 +280,7 @@ TReX.stats.stat=function()
 	end
 
 	if TReX.stats.h == 0 then
-		
-		expandAlias("mstop") 
-		TReX.config.display("Dead?")
-		
+		if isPrompt() then TReX.config.display("Dead?") end
 			if TReX.stats.oh > 0 then
 
 				if TReX.s.class =="Apostate" then
@@ -317,7 +354,6 @@ TReX.stats.stat=function()
 			 t.send("curing priority health", false)
 		 end
 	 end
-		
 		
 		
 end -- func
@@ -854,10 +890,6 @@ end -- func you_died
 TReX.stats.you_alive=function()
 -- new update
 if t.serverside["settings"].installed then
-	
-		t.def={}
-		t.defs={}
-
 	if t.serverside["settings_default"].defences == "No" then
 		TReX.defs.defence()
 	end	
@@ -922,8 +954,6 @@ local sortPrompt = {}
 		
 	end
 		echo"\n\n"
-		deletep = false
-		showprompt()
 end
 
 TReX.stats.on_click=function(variable, toggle, toggle2)

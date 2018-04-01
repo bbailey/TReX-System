@@ -198,20 +198,28 @@ end
 
 local herb = herb
 
-TReX.pipes.skullcap.puffs = TReX.pipes.skullcap.puffs or 0
-TReX.pipes.elm.puffs = TReX.pipes.elm.puffs or 0
-TReX.pipes.valerian.puffs = TReX.pipes.valerian.puffs or 0
-
 if herb == tostring("realgar") or herb == tostring("valerian") then
 	TReX.pipes.valerian.puffs = TReX.pipes.valerian.puffs - 1
 		if t.serverside["settings"].echos then t.serverside.green_echo(" "..herb:title().." (" ..TReX.pipes.valerian.puffs..") puffs left") end
+			-- if TReX.pipes.valerian.puffs <= tonumber(t.pipes.refill) and not (t.affs.slickness) then 
+				-- t.send("curing priority defence selfishness reset", false)  
+				-- t.send("queue add eqbal empty " ..TReX.pipes.valerian.id)
+			-- end
 elseif herb == tostring("slippery elm") or herb == tostring("cinnabar") then
 	if herb == tostring("slippery elm") then herb = tostring("elm") end
 	TReX.pipes.elm.puffs = TReX.pipes.elm.puffs - 1
 		if t.serverside["settings"].echos then t.serverside.green_echo(" "..herb:title().." (" ..TReX.pipes.elm.puffs.. ") puffs left") end
+			-- if TReX.pipes.elm.puffs <= tonumber(t.pipes.refill) then 
+				-- send("curing priority defence selfishness reset", false)  
+				-- send("queue add eqbal empty " ..TReX.pipes.elm.id)
+			-- end
 elseif herb == tostring("skullcap") or herb == tostring("malachite") then
 	TReX.pipes.skullcap.puffs = TReX.pipes.skullcap.puffs - 1
 		if t.serverside["settings"].echos then t.serverside.green_echo(" "..herb:title().." (" ..TReX.pipes.skullcap.puffs..") puffs left") end
+			-- if TReX.pipes.skullcap.puffs < tonumber(t.pipes.refill) then   
+				-- t.send("curing priority defence selfishness reset", false)  
+				-- t.send("queue add eqbal empty " ..TReX.pipes.skullcap.id)
+			-- end
 end 
      if (t.serverside["settings"].debugEnabled) then TReX.debugMessage("( skullcap refill )") end
 end -- func

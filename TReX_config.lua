@@ -213,9 +213,9 @@ TReX.logout=function()
 	end
 	
 	send("inr all", false)
+	setBorderBottom(0)
 	TReX.config.saveSettings(true)
 	TReX.serverside.container:hide()
-	setBorderBottom(0)
 	t.serverside["settings"].sys_loaded = false
 	
 end
@@ -233,19 +233,19 @@ TReX.config.login_load=function(event)
 			end
 			
 			if t.serverside.settings.affbar then
+				setBorderBottom(28)
 				setMiniConsoleFontSize("TReX.serverside.middle", 12)
 				TReX.serverside.container:show()
-				setBorderBottom(27)
 				t.serverside.gmcpAffShow()
 			else
-				TReX.serverside.container:hide()
 				setBorderBottom(0)
+				TReX.serverside.container:hide()
 			end
 
 		
 			TReX.serverside.login_settings() 
 			TReX.prios.default_settings()
-			TReX.prios.reset()
+			TReX.prios.reset() 
 			TReX.defs.login()  
 			TReX.class.reset()   
 			TReX.class.skill_check()
@@ -266,14 +266,10 @@ TReX.config.login_load=function(event)
 			
 			playSoundFile(getMudletHomeDir().. [[/TReX/TReX.mp3]])  
 
-			
+						
 		else
 			t.serverside.green_echo("TReX not installed, or the file is corrupt; best to reinstall.", false)
 		end
-
-		
-		
-
 
 		
 end
@@ -282,14 +278,15 @@ TReX.config.install=function()
 
 	TReX.defs.list()
 	TReX.class.skill_set()
-	TReX.serverside.settings()
-	TReX.serverside.tree_by_class()
+	TReX.serverside.settings() 
+	TReX.serverside.tree_by_class()	
 	TReX.prios.default_settings()
 	TReX.prios.reset()
-	TReX.precache.settings()
+	TReX.precache.settings() 
 	TReX.stats.settings()
 	TReX.pipes.settings()
 	TReX.config.settings()
+	t.send("config prompt custom PROMPTCAPTURE")
 	t.serverside["settings"].installed = true
 	TReX.config.saveSettings()
 
@@ -426,10 +423,11 @@ TReX.config.showMounts=function()
 	echo("\n")
 	for k,v in pairs(mount_list) do 
 		if v.number == t.serverside["settings_default"].mount then
+			--echo("\n - ") cecho("<light_blue>Current<white>: "..k..""..t.serverside["settings_default"].mount)
 			echo("\n - ") cecho("<light_blue>Current<white>: "..t.serverside["settings_default"].mount)
 		end
 	end
-
+	--echo("\n - ") echoLink("Current Mount: "..t.serverside["settings_default"].mount, "clearCmdLine() appendCmdLine'mount add '", "mount add <name> <id>")
 	echo("\n - ") echoLink("Add Mount", "clearCmdLine() appendCmdLine'mount add '", "mount add <name> <id>")
 	echo("\n - ") echoLink("Remove Mount", "clearCmdLine() appendCmdLine'mount remove '", "mount remove <name>")
 	echo("\n")
@@ -445,34 +443,43 @@ local sortMount = {}
 	 			 
 		for i, n in ipairs(sortMount) do
 				x = x + 1
+
 		     	d = "<dim_grey>[<white>"
+
+
 		 		if mount_list[n].enabled then
 		 			d = d .. " <light_blue>+ "
 		 		else
 		 			d = d .. " <red>- "
 		 		end
+
+
 	     		d = d .. "<dim_grey>]<white> " 
+
+
 				if (x-1)%3 == 0 then
 					echo("\n")
 				end  
+		
 		   	local nWithSpace = n:title()
+
 				if nWithSpace:len() < 25 and (x-1) %3~=2 then
 					local pad = 25 - nWithSpace:len()
 					nWithSpace = nWithSpace .. string.rep(" ", pad)
 				elseif nWithSpace:len() > 25 then
 					nWithSpace = nWithSpace:cut(25)
 		     	end
+	 
 			local command
 				fg("white")
 				cecho(d)
+			
 			local command = [[TReX.config.mount_list_toggle("]]..n..[[")]]
 			echoLink(nWithSpace, command, "Toggle " .. n:title(), true)
+
 		end
 		
-		echo"\n\n"
-		deletep = false
-		showprompt()
-		
+
 end
 
 TReX.config.mount_list_toggle=function(variable)
@@ -504,8 +511,6 @@ if type(mount_list[variable].enabled) == "boolean" then
 	
 		TReX.config.showMounts()
 		echo"\n\n"
-		deletep = false
-		showprompt()
 
 	end 
 end
@@ -581,7 +586,7 @@ TReX.config.settings=function() -- this is the settings file, what needs to happ
 		time_out 					= 10,	
 		plants 						= "Yes",
 		prompt 						= "all",
-		map_show 					= "Yes",
+		map_show 					= "none",
 		page_length 				= 0,
 		screen_width 				= 0,
 		use_queueing 				= "No",
@@ -632,7 +637,6 @@ end
 		
 t.serverside.flee_direction = flee_direction 
 
-
 	if (t.affs.brokenrightleg or t.affs.damagedrightleg or t.affs.mangledrightleg) 
 	and not (t.affs.brokenleftleg or t.affs.damagedleftleg or t.affs.mangledleftleg) 
 	and not t.affs.prone 
@@ -647,14 +651,6 @@ t.serverside.flee_direction = flee_direction
 		t.send(TReX.rewield(t.inv["cane"].id, "l"))
 	end
 
-	--if TReX.s.class=="Bard" then
-		--t.serverside.movemethod = "cq all##queue prepend eqbal open door "..t.serverside.flee_direction.."##HS "..target..""
-		--t.send(t.serverside.movemethod)
-		--t.serverside.movemethod = "cq all##queue prepend eqbal open door "..t.serverside.flee_direction.."##BHS "..target.." "..t.serverside.flee_direction..""
-		--t.send(t.serverside.movemethod)
-	--end
-		
-	
 --if already fleeing return
 if t.serverside.flee_started then  -- if already tumbling check	--return 
 	--if hitting a wall, door, etc.. reset
@@ -671,13 +667,14 @@ end
 	end
 
 		if TReX.s.class == "Bard" and not t.serverside.flying then
-			t.serverside.movemethod = "cq all##queue prepend eqbal open door "..t.serverside.flee_direction.."##backflip"
+			t.serverside.movemethod = "cq all##queue prepend eqbal backflip"
 		else
-			t.serverside.movemethod = "cq all##queue prepend eqbal go "..t.serverside.flee_direction.."##go"
+			t.serverside.movemethod = "cq all##queue prepend eqbal go"
 		end	
 	
 	if not(TReX.serverside.inslowcuringmode()) and not t.affs.aeon and not t.affs.prone then
 		send(t.serverside.movemethod.." "..t.serverside.flee_direction)
+		enableTimer("flee started")
 	else
 
 		afftest = {"mangledleftleg", "brokenleftleg", "mangledleftarm", "brokenleftarm", "mangledrightleg", "brokenrightleg"
@@ -688,9 +685,9 @@ end
 		for i = 1, #afftest, 1 do
 			if t.affs[afftest[i]] then
 				if TReX.s.class == "Bard" then
-					t.serverside.movemethod = "cq all##queue prepend eqbal open door "..t.serverside.flee_direction.."##Somersault"
+					t.serverside.movemethod = "cq all##somersault"
 				else
-					t.serverside.movemethod = "cq all##queue prepend eqbal open door "..t.serverside.flee_direction.."##tumble"
+					t.serverside.movemethod = "cq all##tumble"
 				end
 			end
 		end
@@ -700,6 +697,59 @@ end
 	end
 		
 		if (t.serverside["settings"].debugEnabled) then TReX.debugMessage("( TReX.compass )") end
+end
+
+
+
+TReX.config.evade=function(backflip_direction) -- this is nice thing I am working on.
+
+t.bard.voicecraft.aria_watch = false
+
+if TReX.s.class=="Serpent" and not t.serverside.backflip_started and not t.affs.dizziness then 
+	t.serverside.backflip_started = true
+end
+
+t.serverside.backflip_direction = backflip_direction  
+
+	if (t.affs.brokenrightleg or t.affs.damagedrightleg or t.affs.mangledrightleg) 
+	and not (t.affs.brokenleftleg or t.affs.damagedleftleg or t.affs.mangledleftleg) 
+	and not t.affs.prone 
+	then
+		TReX.rewield(t.inv["cane"].id, "l")
+	end
+	
+	if (t.affs.brokenleftleg or t.affs.damagedleftleg or t.affs.mangledleftleg) 
+	and not (t.affs.brokenrightleg or t.affs.damagedrightleg or t.affs.mangledrightleg) 
+	and not t.affs.prone 
+	then
+		TReX.rewield(t.inv["cane"].id, "l")
+	end
+
+		--if sitting from manual sit, override and stand
+		if TReX.serverside.am_free() and TReX.serverside.am_functional() then
+			if t.serverside["settings"].override then
+				t.send("curing queue add stand", false)
+			end
+		end
+
+-- if already fleeing return
+if t.serverside.backflip_started then  
+	-- if hitting a wall, door, etc.. reset
+	if t.serverside.backflip_direction == gmcp.Room.WrongDir  then 
+		t.serverside.backflip_started = false
+		if isPrompt() then t.serverside.myecho("!WRONG DIRECTION!") end
+			return
+	end
+		
+end
+	
+	if TReX.s.class=="Serpent" and t.serverside.evade_started and t.bals.bal and not t.affs.dizziness then
+		enableTimer("backflip started")
+		send("cq all##queue prepend eqbal evade "..t.serverside.backflip_direction) -- if not broken legs or no walls then just move direction
+	else
+		send("cq all##queue prepend eqbal go "..t.serverside.backflip_direction) -- if not broken legs or no walls then just move direction
+	end
+			
 end
 
 
@@ -1151,9 +1201,7 @@ TReX.config.show=function (arg,arg2)
 		t.serverside.green_echo("(enter '<dim_grey>trex<white>' for list of valid commands)")
 	end
 	
-		echo"\n\n"
-		deletep = false
-		showprompt()
+
 
 end
 
