@@ -1758,7 +1758,7 @@ if table.contains({t.serverside.gmcp_aff_table}, aff) then return end
 			end
 
 											
-				for _,v in pairs({"snb","bard","magi","monk","druid","jester","priest","sylvan"
+				for _,v in pairs({"snb","bard","magi","monk","shikudo","druid","jester","priest","sylvan"
 									,"serpent","shaman","sentinel","occultist","apostate","alchemist"
 									,"dualb","dualc","blademaster","dragon","depthswalker","earth","air","water","fire"}) 
 				do
@@ -1838,7 +1838,7 @@ if table.contains({t.serverside.gmcp_aff_table}, aff) then return end
 			end
 		end
 		
-				for _,v in pairs({"snb","bard","magi","monk","druid","jester","priest","sylvan"
+				for _,v in pairs({"snb","bard","magi","monk","shikudo","druid","jester","priest","sylvan"
 									,"serpent","shaman","sentinel","occultist","apostate","alchemist"
 									,"dualb","dualc","blademaster","dragon","depthswalker","earth","air","water","fire"}) 
 				do
@@ -2088,7 +2088,7 @@ t.serverside.gmcpAffParse=function()
 				if not table.contains({t.serverside.gmcp_aff_table}, v["name"]) then                   -- does not add exclude items to gmcpAff table for visual and other purposes.
 					table.insert(t.serverside.gmcp_aff_table,#t.serverside.gmcp_aff_table+1,v["name"])
 
-						for _,v in pairs({"snb","bard","magi","monk","druid","jester","priest","sylvan"
+						for _,v in pairs({"snb","bard","magi","monk","shikudo","druid","jester","priest","sylvan"
 											,"serpent","shaman","sentinel","occultist","apostate","alchemist"
 											,"dualb","dualc","blademaster","dragon","depthswalker",}) 
 						do
@@ -2988,6 +2988,7 @@ TReX.serverside.tree_by_class=function()
     ["jester"] = {["default"] = 0}, 
     ["magi"] = {["default"] = 0}, 
     ["monk"] = {["default"] = 0}, 
+	["shikudo"] = {["default"] = 0},
     ["occultist"] = {["default"] = 0}, 
     ["priest"] = {["default"] = 0}, 
     ["serpent"] = {["default"] = 0}, 
