@@ -35901,6 +35901,184 @@ end
                     </Script>
                 </ScriptGroup>
             </ScriptGroup>
+            <ScriptGroup isActive="yes" isFolder="yes">
+                <name>shikudo</name>
+                <packageName></packageName>
+                <script>-------------------------------------------------
+--         Put your Lua functions here.        --
+--                                             --
+-- Note that you can also use external Scripts --
+-------------------------------------------------
+</script>
+                <eventHandlerList/>
+                <Script isActive="yes" isFolder="no">
+                    <name>shikduo</name>
+                    <packageName></packageName>
+                    <script>TReX.class.shikudo = function(aff)
+
+
+t.serverside.affs2tree4 = {&quot;brokenleftleg&quot;,&quot;brokenrightleg&quot;,&quot;brokenleftarm&quot;,&quot;brokenrightarm&quot;,&quot;concussion&quot;
+													,&quot;anorexia&quot;, &quot;slickness&quot;, &quot;asthma&quot;, &quot;impatience&quot;,&quot;scytherus&quot;,&quot;hypochondria&quot;,&quot;voyria&quot;,&quot;darkshade&quot;,&quot;clumsiness&quot;}
+ 
+	-- load new prio list
+	if t.class.earth.enabled then
+  	for k, v in pairs(TReX.prios.shikudo) do
+       TReX.prios.switchPrios(k,TReX.prios.shikudo[k], 2)
+    end
+	end 
+
+if t.serverside[&quot;settings&quot;].tree then
+	if TReX.serverside.numberOfLockAffs() &gt;= TReX.affs2tree[&quot;_by_class&quot;][&quot;shikudo&quot;] then    
+		raiseEvent(&quot;trackable_event got&quot;)
+	end
+end
+
+	
+
+end</script>
+                    <eventHandlerList/>
+                </Script>
+                <Script isActive="yes" isFolder="no">
+                    <name>shikudo prios</name>
+                    <packageName></packageName>
+                    <script>TReX.prios.serpent = {
+
+	
+	[&quot;prone&quot;] 								= 2, -- stand
+	[&quot;paralysis&quot;] 						= 2,
+	[&quot;aeon&quot;] 						  	  = 2, -- Smoke Elm / Smoke Cinnabar and Time
+		
+	[&quot;scytherus&quot;] 						= 3, -- Eat Ginseng / Eat Ferrum
+	[&quot;mangledleftleg&quot;] 				= 3,
+	[&quot;mangledrightleg&quot;] 			= 3,
+	
+	[&quot;hypochondria&quot;] 					= 4, -- Eat Kelp / Eat Aurum
+	[&quot;brokenleftleg&quot;] 				= 4,
+	[&quot;damagedleftleg&quot;] 			  = 4,
+	[&quot;heartseed&quot;] 						= 4, -- Apply Restoration To Body
+	
+	[&quot;timeflux&quot;]					    = 5, 
+	[&quot;brokenrightleg&quot;] 				= 5,
+	[&quot;damagedrightleg&quot;] 			= 5,
+	[&quot;impatience&quot;] 					  = 5, -- Eat Goldenseal / Eat Plumbum 
+	[&quot;hypothermia&quot;] 					= 5, -- Apply Restoration To Body
+ 
+	-- Eat Bloodroot / Eat Magnesium
+	[&quot;skullfractures&quot;] 				= 6, -- Apply health
+	[&quot;sleeping&quot;] 							= 6, -- wake
+	[&quot;mangledleftarm&quot;]				= 6,
+	[&quot;mangledrightarm&quot;]  			= 6,
+	[&quot;anorexia&quot;] 							= 6, -- focus, epidermal
+
+	[&quot;asthma&quot;] 								= 7, -- Eat Kelp / Eat Aurum	
+	[&quot;torntendons&quot;] 					= 7, -- Apply health
+	[&quot;damagedleftarm&quot;]				= 7,
+	[&quot;brokenleftarm&quot;]				  = 7,	
+
+	[&quot;timeloop&quot;] 							= 8, -- Eat Bellwort / Eat Cuprum	
+	[&quot;damagedrightarm&quot;]			  = 8,
+	[&quot;brokenrightarm&quot;]				= 8,
+	[&quot;clumsiness&quot;] 					  = 8, -- Eat Kelp / Eat Aurum
+
+
+	[&quot;hellsight&quot;] 						= 9,
+	[&quot;recklessness&quot;] 					= 9,
+	[&quot;darkshade&quot;] 						= 9, -- Eat Ginseng / Eat Ferrum
+	[&quot;weariness&quot;] 					  = 9, -- Eat Kelp / Eat Aurum
+
+	[&quot;sensitivity&quot;] 				  = 10, -- Eat Kelp / Eat Aurum
+	[&quot;mildtrauma&quot;]	  				= 10,
+	[&quot;serioustrauma&quot;]	  			= 10,
+	[&quot;slickness&quot;]					    = 10, -- Eat Bloodroot / Eat Magnesium
+	[&quot;depression&quot;]					  = 10, -- Eat Goldenseal / Eat Plumbum
+	
+	[&quot;mangledhead&quot;]	  				= 11,
+	[&quot;damagedhead&quot;]						=	11,
+	[&quot;darkshade&quot;] 					  = 11, -- Eat Ginseng / Eat Ferrum
+	[&quot;nausea&quot;] 						    = 11, -- Eat Ginseng / Eat Ferrum
+	[&quot;peace&quot;]						      = 11,
+  [&quot;shadowmadness&quot;]				  = 11,
+
+
+	[&quot;addiction&quot;] 					  = 12, -- Eat Ginseng / Eat Ferrum 
+	[&quot;temperedcholeric&quot;]			= 12,
+	[&quot;temperedmelancholic&quot;] 	= 12,
+	[&quot;temperedphlegmatic&quot;] 		= 12,
+	[&quot;temperedsanguine&quot;] 			= 12,
+
+	[&quot;concussion&quot;]	  				= 13,	
+  [&quot;retribution&quot;]						= 13,  --Eat Bellwort / Eat Cuprum	
+	[&quot;bound&quot;] 						  	= 13,
+	[&quot;daeggerimpale&quot;] 				= 13,
+	[&quot;impaled&quot;] 							= 13,
+	[&quot;entangled&quot;] 						= 13,
+	[&quot;transfixation&quot;] 				= 13,
+	[&quot;webbed&quot;] 						  	= 13,
+
+
+	[&quot;parasite&quot;]					  	= 14, -- Eat Kelp / Eat Aurum
+	[&quot;spiritdisrupt&quot;] 				= 14,
+	[&quot;confusion&quot;] 						= 14, -- Eat Ash / Eat Stannum and Focus Mind. (if confusion and t.bals.focus and not t.bals.herb then raise slot 1)
+	[&quot;hallucinations&quot;] 				= 14,
+	[&quot;hypersomnia&quot;]				  	= 14,
+	[&quot;disrupted&quot;] 						= 14,
+	
+	[&quot;stupidity&quot;] 						= 15,
+	[&quot;voyria&quot;] 						  	= 15,
+	[&quot;lovers&quot;] 						  	= 15, --  Eat Bellwort / Eat Cuprum and Focus Mind.
+	[&quot;itching&quot;] 							= 15, --  Apply Epidermal To Body.
+	[&quot;pacified&quot;] 					  	= 15, --  Eat Bellwort / Eat Cuprum and Focus Mind.
+
+	[&quot;airdisrupt&quot;] 						= 16,
+	[&quot;earthdisrupt&quot;] 					= 16,
+	[&quot;firedisrupt&quot;]				  	= 16,
+	[&quot;waterdisrupt&quot;] 					= 16,
+
+	[&quot;wristfractures&quot;] 				= 17,
+	[&quot;crackedribs&quot;] 					= 17,
+	[&quot;haemophilia&quot;]						= 17,
+	[&quot;lethargy&quot;] 					  	= 17,
+	[&quot;whisperingmadness&quot;] 		= 17,
+	[&quot;manaleech&quot;] 						= 17,
+
+	[&quot;frozen&quot;] 						  	= 18,
+	[&quot;generosity&quot;] 						= 18,
+	[&quot;justice&quot;] 					  	= 18,
+	[&quot;shivering&quot;] 						= 18,
+	[&quot;vertigo&quot;] 							= 18,
+
+	[&quot;disloyalty&quot;] 						= 19,
+	[&quot;dissonance&quot;] 						= 19,
+	[&quot;dizziness&quot;] 						= 19,
+	[&quot;shyness&quot;] 							= 19,
+	[&quot;deadening&quot;] 						= 19,
+	
+	[&quot;dementia&quot;] 					  	= 20,
+	[&quot;paranoia&quot;] 					  	= 20,
+	[&quot;epilepsy&quot;] 					  	= 20,
+	[&quot;degenerate&quot;]						= 20,
+	[&quot;loneliness&quot;] 						= 20,
+	[&quot;healthleech&quot;] 					= 20,
+
+	[&quot;burning&quot;] 							= 21,
+	[&quot;laceratedthroat&quot;] 			= 21,
+	[&quot;slashedthroat&quot;] 				= 21,
+	[&quot;stuttering&quot;] 						= 21,
+	[&quot;selarnia&quot;] 					  	= 21,
+	[&quot;deteriorate&quot;]						= 21,
+
+	[&quot;agoraphobia&quot;] 					= 22,
+	[&quot;claustrophobia&quot;] 				= 22,
+	[&quot;fear&quot;] 							  	= 22,
+	[&quot;masochism&quot;] 						= 22,
+	[&quot;dazed&quot;] 						  	= 22,
+	
+	[&quot;scalded&quot;] 						  = 26,
+				 
+	}</script>
+                    <eventHandlerList/>
+                </Script>
+            </ScriptGroup>
         </ScriptGroup>
     </ScriptPackage>
     <KeyPackage>
