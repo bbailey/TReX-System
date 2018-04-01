@@ -112,18 +112,21 @@ local ignore={"boartattoo","megalithtattoo","fireflytattoo","mosstattoo","feathe
 		
 	end
 	
+	if def_list.class ~= nil then
 	for k,v in pairs(def_list.class) do
-		if k == defs then
-			if not v.keepup then
-				if not table.contains({ignore}, k) then
-						--table.remove(t.defs, table.index_of(t.defs, k))
-						send("curing prio def "..k.." reset")
-						--print(k)
+		if k ~= nil then
+			if k == defs then
+				if not v.keepup then
+					if not table.contains({ignore}, k) then
+							--table.remove(t.defs, table.index_of(t.defs, k))
+							send("curing prio def "..k.." reset")
+							--print(k)
+					end
 				end
-			end
+			end		
 		end
-		
-	end	
+	end
+	end
 		
 		if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.gmcp_def_event_add ) ") end
 				
@@ -674,7 +677,10 @@ local table_list = {
 		end -- for
 	end  -- for
 
-	echo"\n"
+		echo"\n\n"
+		deletep = false
+		showprompt()
+		
 	if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.keepup ) ") end
 
 end -- func
@@ -830,7 +836,10 @@ local table_list = {
 		end -- for
 	end  -- for
 
-	echo"\n"
+		echo"\n\n"
+		deletep = false
+		showprompt()
+		
 	if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.keepup ) ") end
 
 end -- func
@@ -2266,9 +2275,11 @@ TReX.defs.reset=function()
 		end
 	end
 
-	for k,v in pairs(def_list.class) do
-		if k ~= "meditate" then
-			t.send("curing prio def "..k.." reset", false)
+	if def_list.class ~= nil then
+		for k,v in pairs(def_list.class) do
+			if k ~= "meditate" then
+				t.send("curing prio def "..k.." reset", false)
+			end
 		end
 	end
 
@@ -2401,7 +2412,7 @@ TReX.defs.def_display=function(def_table)
   ,"mindnet","reflexes","groundwatch","vigilance","treewatch","telesense","evadeblock", "pinchblock"
   ,"distortedaura","softfocusing","skywatch","hypersight","alertness","weaving","metawake"
   ,"balancing","arrowcatching","heartsfury","drunkensailor"}
-  local endUse = {"spinspear","acrobatics"}
+  local endUse = {"spinspear","acrobatics","dragonarmour","dragonbreath"}
   
  
   -- sort defs
@@ -2459,7 +2470,10 @@ TReX.defs.def_display=function(def_table)
 	end
 	if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.def_display ) ") end
 
-
+		echo"\n\n"
+		deletep = false
+		showprompt()
+	
 end
 
 
@@ -2886,11 +2900,11 @@ TReX.serverside.focusblockcheck=function()
 					end
 				end
 			end
-				if isPrompt() then 
+				--if isPrompt() then
 					--t.serverside.red_echo("focus blocked by " ..i)
 					t.serverside.red_echo("focus blocked by impatience") 
 					return true 
-				end
+				--end
 		--end
 	else
 		return false

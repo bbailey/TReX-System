@@ -11,6 +11,8 @@ local humourafftable={
 
 -- ITEMS EVENT HANDLER
 
+t.serverside.gmcp_aff_table             = t.serverside.gmcp_aff_table or {}
+
 TReX.serverside.itms					= TReX.serverside.itms or {}
 TReX.serverside.itms.room			    = TReX.serverside.itms.room or {}
 TReX.serverside.gingerlevel = 1
@@ -520,7 +522,7 @@ end
 
 TReX.serverside.diagnose=function()
 
-send("queue add eqbal diagnose")
+send("diagnose")
 
    if not (t.affs.aeon) and TReX.serverside.am_free() and TReX.serverside.am_functional() then
    
@@ -542,7 +544,10 @@ send("queue add eqbal diagnose")
 		end
 		
 		t.serverside.gmcpAffShow()
-	
+		echo"\n\n"
+		deletep = false
+		showprompt()
+		
     if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.diagnose ) ") end
     
 end -- func
@@ -994,24 +999,7 @@ end
 
 end
 
-TReX.serverside.corruptionhandling=function(event, affliction)
-if (t.serverside["settings"].installed) then
-  if event:find("got corruption") then
-    if affliction == "corruption" and t.class["alchemist"].enabled then
-      t.send("curing clot off", false)
-	  t.serverside.settings.clot = false
-    end
-  elseif event:find("lost corruption") then
-    if affliction == "corruption" then
-	  t.serverside.settings.clot = true
-	  t.send("curing clot on", false)
-      t.send("curing clotat "..t.serverside["settings_default"].clot_at, false)
-    end
-  end
-end 
- if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.corruptionhandling ) ") end
 
-end
 
 TReX.serverside.parryCheck=function()
 
@@ -1233,6 +1221,7 @@ local aff_abbrev = {
   corruption             = "<DarkKhaki>corrupt",
   conflagration          = "<white>[[<DarkKhaki>conflag<white>]]",
   crackedribs            = "<DarkKhaki>ribs <white>("..c.. ""..t.affs["crackedribs"].."<white>)",
+  crushedthroat          = "<DarkSlateGrey>crushedthroat",
   brokenleftarm   	     = "<white>{<firebrick>LA<white>(1)}",
   brokenleftleg   	     = "<white>{<firebrick>LL<white>(1)}",
   brokenrightarm  	     = "<white>{<firebrick>RA<white>(1)}",
@@ -1407,11 +1396,11 @@ TReX.serverside.prompt_options = {
 				
 				local aff = ""
 							   
-                if not t.affs.recklessness then
+                --if not t.affs.recklessness then
 					local aff = aff.."<white>"..c.."[<red>affs<white>"..c.."]<white>:".."" --firebrick
-				else
-					local aff = aff.."<red>{{affs<white>"..c.."}}<white>:".."" --firebrick
-				end
+				--else
+				--	local aff = aff.."<red>{{affs<white>"..c.."}}<white>:".."" --firebrick
+				--end
 				  
 				local aff = aff..TReX.serverside.prompt_options.softlock() .. ""
 				local aff = aff..TReX.serverside.prompt_options.venmlock() .. ""
@@ -1472,17 +1461,17 @@ TReX.serverside.prompt_options = {
 
 TReX.serverside.affbar=function(mode)
 	if mode == "on" then
-		setBorderBottom(28)
 		t.serverside.settings.affbar = true
 		setMiniConsoleFontSize("TReX.serverside.middle", 12)
 		TReX.serverside.container:show()
 		t.serverside.gmcpAffShow()
+		setBorderBottom(27)
 		t.serverside.green_echo("AffBar On\n")
 		
 	else
-		setBorderBottom(0)
 		t.serverside.settings.affbar = false
 		TReX.serverside.container:hide()
+		setBorderBottom(0)
 		t.serverside.red_echo("AffBar Off\n")
 	end
 end
@@ -1549,7 +1538,7 @@ end  -- for
 TReX.serverside.getProneLength=function()
 -- --handle cancelling of delayvenom in case of this being a DSL:
 -- --apply the cripples right away, so the cure of a potential mangled limb in the
--- --dsl, the venoms and the limb break get computed for cure at once on the prompt
+-- --dsl, the venoms and the limb break get computed for cure at once on the 
 
 	-- t.serverside.prTime = t.serverside.prTime or 0
 
@@ -1797,33 +1786,11 @@ if table.contains({t.serverside.gmcp_aff_table}, aff) then return end
 		--local aff,count = affliction or string.match( gmcp.Char.Afflictions.Add.name, "(%w+) %((%d+)%)" )
 		local aff = gmcp.Char.Afflictions.Add.name
 		if table.index_of({"burning (1)","burning (2)","burning (3)","burning (4)","burning (5)"}, aff) then return end
-			
-			-- t.affs["burn"] = t.affs["burn"] or 0
-				-- if (aff == "burning (1)") then
-					-- t.affs["burn"] = 1
-				
-				-- elseif (aff == "burning (2)") then
-					-- t.affs["burn"] = 2
-					
-				-- elseif (aff == "burning (3)") then
-					-- t.affs["burn"] = 3
-				
-				-- elseif (aff == "burning (4)") then
-					-- t.affs["burn"] = 4
-				
-				-- elseif (aff == "burning (5)") then
-					-- t.affs["burn"] = 5
-							
-				-- end
-			-- --print(aff)
-			-- --print(t.affs["burn"])
-		-- end
-
-		
+	
 		local affInfo = t.serverside.afflictions[aff]
 		local stacks = t.stacks
 		
-		
+
 		-- this function sets override to false so if we are sitting and get a random afflictin we will stand up..
 	   if aff == tostring("prone") and t.serverside["settings"].override then
 			t.serverside["settings"].override = true  
@@ -2670,7 +2637,7 @@ t.serverside.afflictions = {
   indifference = {"bellwort"},
   corruption = {"time"},
   laceratedthroat = {"restorationhead"},
-  firedisrupt = {"focus", "mental"},
+  firedisrupt = {"lobelia", "mental"},
   flamefisted = {"time"},
   skullfractures = {"healthhead","physical"},
   addiction = {"dheal", "ginseng",  "might",  "salt", "bloodboil",  "daina", "accelerate", "shrugging", "tree", "fool", "physical"},
@@ -2731,6 +2698,7 @@ t.serverside.afflictions = {
   torntendons = {"healthlegs","physical"},
   voyria = {"dheal", "immunity",  "might",  "salt",  "bloodboil", "daina", "accelerate", "shrugging", "tree", "fool", "physical"},
   burning = {"dheal",  "might", "bloodboil",  "salt",  "shrugging", "accelerate", "daina", "tree", "fool", "mendingbody", "physical"},
+  crushedthroat = {"mendinghead"},
   deadening = {"dheal",  "might", "bloodboil",   "salt", "shrugging", "daina", "accelerate", "tree", "elm", "fool", "physical"},
   dazed = {"elm"},
   dazzled = {"mendinghead"},
@@ -3047,7 +3015,9 @@ TReX.serverside.update()
     resetFormat()
     cecho(" <dim_grey>[ <white>"..num.." <dim_grey>] <gray>" .. class:title() .. " \n")  --dark_orchid
   end
-  		echo"\n"
+  		echo"\n\n"
+		deletep = false
+		showprompt()
 
 end
 

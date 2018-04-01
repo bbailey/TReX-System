@@ -46,11 +46,7 @@ local aff = aff or ""
 	if not (t.class[a].enabled) then
 		TReX.class.reset()
 		t.class[a].enabled = true
-	 if TReX_Class_Reset_Timer and TReX_Class_Reset_Timer ~= nil then 
-	 	killTimer(TReX_Class_Reset_Timer)
-	 	TReX_Class_Reset_Timer = nil 
-	 end
-   	 TReX_Class_Reset_Timer = tempTimer(15, [[TReX.class.reset() t.serverside.green_echo("Reset Enemy Class")]])
+			tempTimer(15, [[TReX.class.reset() t.serverside.green_echo("Reset Enemy Class")]])
 	end
 
 		--soft target
@@ -79,6 +75,7 @@ t.class.list = {
 	"jester",
 	"magi",
 	"monk",
+	"shikudo",
 	"occultist",
 	--"paladin",
 	"priest",
@@ -104,8 +101,8 @@ end
 
 for k,v in ipairs(t.class.list) do
 	t.class[v].enabled = false 
-	if TReX.prios.current[k] ~= TReX.prios.default[k] then
-		TReX.prios.switchPrios(k,TReX.prios.default[k])
+	if TReX.prios.current[v] ~= TReX.prios.default[v] then
+		TReX.prios.switchPrios(v,TReX.prios.default[v])
 	end
 end
 
