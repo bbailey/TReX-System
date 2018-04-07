@@ -9,8 +9,6 @@ local humourafftable={
   "haemophilia", "recklessness", "paralysis",
   } 
 
--- ITEMS EVENT HANDLER
-
 TReX.serverside.itms					= TReX.serverside.itms or {}
 TReX.serverside.itms.room			    = TReX.serverside.itms.room or {}
 TReX.serverside.gingerlevel = 1
@@ -617,7 +615,8 @@ TReX.serverside.class_check=function(aff)
 	"snb",
 	"twoh",
 	"dualb",
-	"dualc"
+	"dualc",
+	"shikudo",
 }
 	for _,v in pairs(t.class.list) do
 		if t.class[v].enabled then
@@ -1756,7 +1755,7 @@ if table.contains({t.serverside.gmcp_aff_table}, aff) then return end
 			end
 
 											
-				for _,v in pairs({"snb","bard","magi","monk","shikudo","druid","jester","priest","sylvan"
+				for _,v in pairs({"snb","bard","magi","monk", "shikudo", "druid","jester","priest","sylvan"
 									,"serpent","shaman","sentinel","occultist","apostate","alchemist"
 									,"dualb","dualc","blademaster","dragon","depthswalker","earth","air","water","fire"}) 
 				do
@@ -2273,26 +2272,7 @@ t.serverside.settings_dict = {
  
 end
 
-TReX.serverside.login_settings=function()
-
-t.bals.bal = true
-t.bals.eq = true
-t.bals.voice = true
-t.bals.sip = true
-t.bals.immunity = true
-t.bals.tree = true
-t.bals.focus = true
-t.bals.fitness = true
-t.bals.bloodboil = true
-t.bals.rage = true
-t.bals.salve = true
-t.bals.herb = true
-t.bals.smoke = true
-t.bals.alleviate = true
-t.bals.accelerate = true
-t.bals.purify = true
-t.bals.extrusion = true
-
+TReX.reset_taffs=function()
 t.affs.stun = false
 t.affs.addiction = false
 t.affs.aeon = false
@@ -2458,6 +2438,33 @@ t.affs.calcifiedskull = false
 t.affs.calcifiedtorso = false
 t.affs.latched = false
 t.affs.kkractlebrand = false
+end
+
+TReX.reset_tbals=function()
+t.bals.bal = true
+t.bals.eq = true
+t.bals.voice = true
+t.bals.sip = true
+t.bals.immunity = true
+t.bals.tree = true
+t.bals.focus = true
+t.bals.fitness = true
+t.bals.bloodboil = true
+t.bals.rage = true
+t.bals.salve = true
+t.bals.herb = true
+t.bals.smoke = true
+t.bals.alleviate = true
+t.bals.accelerate = true
+t.bals.purify = true
+t.bals.extrusion = true
+end
+
+TReX.serverside.login_settings=function()
+
+
+TReX.reset_tbals()
+TReX.reset_taffs()
 
 --check for mount to avoid issues
 local default_mount = "No"
@@ -2986,7 +2993,7 @@ TReX.serverside.tree_by_class=function()
     ["jester"] = {["default"] = 0}, 
     ["magi"] = {["default"] = 0}, 
     ["monk"] = {["default"] = 0}, 
-	["shikudo"] = {["default"] = 0},
+	["shikudo"] = {["default"] = 0}, 
     ["occultist"] = {["default"] = 0}, 
     ["priest"] = {["default"] = 0}, 
     ["serpent"] = {["default"] = 0}, 
