@@ -839,7 +839,13 @@ selectString(line, 1) setBold(true) setItalics(true) bg(&quot;black&quot;) fg(&q
                 <script>t.bals.salve = false
 raiseEvent(&quot;TReX lost bal&quot;, &quot;salve&quot;)
 selectString(line, 1) setBold(true) setItalics(true) bg(&quot;black&quot;) fg(&quot;tomato&quot;) resetFormat() deselect()
-</script>
+
+if matches[2]==&quot;head&quot; then
+  if t.class[&quot;dualb&quot;].enabled then
+  	waitforapply = false
+		ignoringlimbs = false
+  end
+end</script>
                 <triggerType>0</triggerType>
                 <conditonLineDelta>0</conditonLineDelta>
                 <mStayOpen>0</mStayOpen>
@@ -851,7 +857,7 @@ selectString(line, 1) setBold(true) setItalics(true) bg(&quot;black&quot;) fg(&q
                 <colorTriggerFgColor>#000000</colorTriggerFgColor>
                 <colorTriggerBgColor>#000000</colorTriggerBgColor>
                 <regexCodeList>
-                    <string>^You take out some salve and quickly rub it on your \w+\.$</string>
+                    <string>^You take out some salve and quickly rub it on your (\w+)\.$</string>
                     <string>You messily spread the salve over your body, to no effect.</string>
                 </regexCodeList>
                 <regexCodePropertyList>
@@ -9134,7 +9140,7 @@ table.insert(prompt_sent, &quot;sent&quot;)
                     <integer>1</integer>
                 </regexCodePropertyList>
             </Trigger>
-            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+            <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                 <name>kneeling</name>
                 <script>TReX.serverside.kneel()
 </script>
@@ -9275,6 +9281,66 @@ TReX.serverside.affadd(&quot;dizziness&quot;)</script>
                 </regexCodeList>
                 <regexCodePropertyList>
                     <integer>2</integer>
+                </regexCodePropertyList>
+            </Trigger>
+            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                <name>ignore affliction</name>
+                <script>TReX.prios.current[matches[2]] = nil</script>
+                <triggerType>0</triggerType>
+                <conditonLineDelta>0</conditonLineDelta>
+                <mStayOpen>0</mStayOpen>
+                <mCommand></mCommand>
+                <packageName></packageName>
+                <mFgColor>#ff0000</mFgColor>
+                <mBgColor>#ffff00</mBgColor>
+                <mSoundFile></mSoundFile>
+                <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                <regexCodeList>
+                    <string>^You have set the '(\w+)' affliction to the 26 priority\.$</string>
+                </regexCodeList>
+                <regexCodePropertyList>
+                    <integer>1</integer>
+                </regexCodePropertyList>
+            </Trigger>
+            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                <name>focusing off</name>
+                <script>t.serverside[&quot;settings_default&quot;].focus = &quot;No&quot;</script>
+                <triggerType>0</triggerType>
+                <conditonLineDelta>0</conditonLineDelta>
+                <mStayOpen>0</mStayOpen>
+                <mCommand></mCommand>
+                <packageName></packageName>
+                <mFgColor>#ff0000</mFgColor>
+                <mBgColor>#ffff00</mBgColor>
+                <mSoundFile></mSoundFile>
+                <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                <regexCodeList>
+                    <string>Automatic usage of focusing off</string>
+                </regexCodeList>
+                <regexCodePropertyList>
+                    <integer>3</integer>
+                </regexCodePropertyList>
+            </Trigger>
+            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                <name>focusing on</name>
+                <script>t.serverside[&quot;settings_default&quot;].focus = &quot;Yes&quot;</script>
+                <triggerType>0</triggerType>
+                <conditonLineDelta>0</conditonLineDelta>
+                <mStayOpen>0</mStayOpen>
+                <mCommand></mCommand>
+                <packageName></packageName>
+                <mFgColor>#ff0000</mFgColor>
+                <mBgColor>#ffff00</mBgColor>
+                <mSoundFile></mSoundFile>
+                <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                <regexCodeList>
+                    <string>Automatic usage of focusing activated.</string>
+                </regexCodeList>
+                <regexCodePropertyList>
+                    <integer>3</integer>
                 </regexCodePropertyList>
             </Trigger>
         </TriggerGroup>
@@ -19169,6 +19235,26 @@ end</script>
                         <integer>1</integer>
                     </regexCodePropertyList>
                 </Trigger>
+                <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                    <name>open door</name>
+                    <script>send(&quot;open door &quot;..matches[2])</script>
+                    <triggerType>0</triggerType>
+                    <conditonLineDelta>0</conditonLineDelta>
+                    <mStayOpen>0</mStayOpen>
+                    <mCommand></mCommand>
+                    <packageName></packageName>
+                    <mFgColor>#ff0000</mFgColor>
+                    <mBgColor>#ffff00</mBgColor>
+                    <mSoundFile></mSoundFile>
+                    <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                    <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                    <regexCodeList>
+                        <string>^There is a door in the way, to the (\w+)\.$</string>
+                    </regexCodeList>
+                    <regexCodePropertyList>
+                        <integer>1</integer>
+                    </regexCodePropertyList>
+                </Trigger>
             </TriggerGroup>
         </TriggerGroup>
         <TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
@@ -28414,7 +28500,7 @@ end</script>
 	--AFFBAR
     TReX.serverside.container = Geyser.Container:new({
     	name = &quot;TReX.serverside.container&quot;,
-    	    	x = &quot;0%&quot;, y = &quot;97%&quot;,
+    	    	x = &quot;13%&quot;, y = &quot;97%&quot;,
     				width = &quot;85.75%&quot;, 
     				height = &quot;2%&quot;,
 
@@ -29617,7 +29703,7 @@ function tick_usage_stats(event)
 	end
 end
 
-registerAnonymousEventHandler(&quot;gmcp.Char.Status&quot;, &quot;tick_usage_stats&quot;)
+--registerAnonymousEventHandler(&quot;gmcp.Char.Status&quot;, &quot;tick_usage_stats&quot;)
 </script>
                 <eventHandlerList/>
             </Script>
