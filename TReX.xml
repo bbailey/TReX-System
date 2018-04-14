@@ -8855,7 +8855,7 @@ end
 		TReX.stats.requestdelete()
 end
 
-if matches[2] == &quot;Yes&quot; and not t.serverside[&quot;settings_default&quot;].insomnia then
+if matches[2] == &quot;Yes&quot; and (t.serverside[&quot;settings_default&quot;].insomnia == &quot;No&quot; or t.serverside[&quot;settings_default&quot;].insomnia == nil or t.serverside[&quot;settings_default&quot;].insomnia == false) then
   t.send(&quot;curing insomnia off&quot;, false)
 elseif matches[2] == &quot;No&quot; and t.serverside[&quot;settings_default&quot;].insomnia then
   t.send(&quot;curing insomnia on&quot;, false)
@@ -26693,6 +26693,17 @@ end</script>
             <packageName></packageName>
             <time>00:01:27.000</time>
         </Timer>
+        <Timer isActive="no" isFolder="no" isTempTimer="no" isOffsetTimer="no">
+            <name>inventory updater</name>
+            <script>if not t.inv or table.is_empty(t.inv) then
+	TReX.inv.set_id_table() 
+else
+	disableTimer(&quot;inventory updater&quot;)
+end</script>
+            <command></command>
+            <packageName></packageName>
+            <time>00:00:01.000</time>
+        </Timer>
     </TimerPackage>
     <AliasPackage>
         <AliasGroup isActive="yes" isFolder="yes">
@@ -27689,6 +27700,17 @@ TReX.config.ppause(&quot;on&quot;)
                     <regex>^dragonform$</regex>
                 </Alias>
             </AliasGroup>
+            <Alias isActive="yes" isFolder="no">
+                <name>touch negation (hard reset)</name>
+                <script>t.def={}
+t.defs={}
+--TReX.defs.reset() --
+TReX.config.ppause(&quot;on&quot;)
+send(&quot;touch negation&quot;)</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^(tn|touch negation)$</regex>
+            </Alias>
         </AliasGroup>
         <AliasGroup isActive="yes" isFolder="yes">
             <name>defence</name>
