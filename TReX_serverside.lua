@@ -1363,7 +1363,7 @@ local aff_abbrev = {
   webbed                 = "<DarkKhaki>webbed",
   whisperingmadness      = "<firebrick>>>><white>madness<firebrick><<<",
   wristfractures         = "<DarkKhaki>wrist <white>("..c.. ""..t.affs["wristfractures"].."<white>)",
-  
+  scalded				 = "<firebrick>>>><white>scalded<firebrick><<<",
  
 }
 
@@ -2362,7 +2362,7 @@ t.affs.lapsingconsciousness = false
 t.affs.lethargy = false
 t.affs.loneliness = false
 t.affs.lovers = false
-t.affs.manaleech = false
+t.affs.manaleech = false 
 t.affs.mangledhead = false
 t.affs.mangledleftarm = false
 t.affs.mangledleftleg = false
@@ -2438,6 +2438,9 @@ t.affs.calcifiedskull = false
 t.affs.calcifiedtorso = false
 t.affs.latched = false
 t.affs.kkractlebrand = false
+
+darkshadecount=0
+
 end
 
 TReX.reset_tbals=function()
@@ -2718,6 +2721,7 @@ t.serverside.afflictions = {
   claustrophobia = {"dheal", "lobelia", "focus",  "salt",  "might", "bloodboil",  "daina", "accelerate", "shrugging", "tree", "fool", "mental"},
   itching = {"epidermalbody", "physical"},
   daeggerimpale = {"writhe"},
+  scalded = {"epidermalbody", "physical"},
   mildtrauma = {"restorationtorso","physical"},
   webbed = {"writhe"},
   hypochondria = {"dheal", "kelp",  "might", "daina",  "salt",  "accelerate", "shrugging", "bloodboil",  "tree", "fool", "physical"},
