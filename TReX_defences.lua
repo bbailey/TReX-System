@@ -534,17 +534,16 @@ def_list = {
 		def_list.class = { -- any these you want on keepup or keep it like it is?
 
 			["affinity"] = {["name"] = "afinity", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
-			["circulate"] = {["name"] = "circulate", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
-			["bonding"] = {["name"] = "bonding", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			["spiritbonded"] = {["name"] = "spiritbonded", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["wildgrowth"] = {["name"] = "wildgrowth", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["vitality"] = {["name"] = "vitality", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["panacea"] = {["name"] = "panacea", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["elusiveness"] = {["name"] = "elusiveness", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["stealth"] = {["name"] = "stealth", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["vigour"] = {["name"] = "vigour", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
-			--["spinningstaff"] = {["name"] = "spinningstaff", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			["flailingstaff"] = {["name"] = "flailingstaff", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
             ["melody"] = {["name"] = "melody", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
+			["resistance"] = {["name"] = "resistance", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true,},
 			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 		}
@@ -1145,8 +1144,8 @@ TReX.defs.alias_toggle=function(defs)
 			end	
 		
 			if table.index_of({"Druid"}, TReX.s.class) then
-				if defs == "bonding" then 
-					if not table.contains({t.defs}, "bonding") then
+				if defs == "spiritbonded" then 
+					if not table.contains({t.defs}, "spiritbonded") then
 						t.send("queue add eqbal bonding spirit")
 					end
 				end
@@ -1233,33 +1232,43 @@ TReX.defs.alias_toggle=function(defs)
 			
 			TReX.defs.metamorphosis()
 			
-				if table.contains({"alertness","nightsight","stealth",}, defs) then
+				if defs == "stealth" then
 					for k,v in pairs(def_list.metamorphosis) do
-						if table.contains({v}, defs) then
+						--if table.contains({v}, defs) then
 							if not table.contains({t.defs}, defs) then
-								if t.bals.bal and t.bals.eq then
-									if TReX.defs.morph_check():lower() ~= k and TReX.serverside.am_functional() and TReX.serverside.full_balance() then
-										t.send("morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check(), false) 
-										t.bals.eq = false -- cheat
-									end	
-										table.insert(t.defs, defs)
-										t.send("queue add eqbal "..defs.." on",false)
-											break										
-								end
+								--if t.bals.bal and t.bals.eq then
+									--t.bals.eq = false -- cheat
+										t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
+										--table.insert(t.defs, defs)
+								--end	
 							end
-						end
+						--end
 					end
 				end
-				
+
+				if defs == "elusiveness" then
+					for k,v in pairs(def_list.metamorphosis) do
+						--if table.contains({v}, defs) then
+							if not table.contains({t.defs}, defs) then
+								--if t.bals.bal and t.bals.eq then
+									--t.bals.eq = false -- cheat
+										t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
+										--table.insert(t.defs, defs)
+								--end	
+							end
+						--end
+					end
+				end
+
 				if defs == "vitality" then
 					for k,v in pairs(def_list.metamorphosis) do
 						--if table.contains({v}, defs) then
 							if not table.contains({t.defs}, defs) then
-								if t.bals.bal and t.bals.eq then
-									t.bals.eq = false -- cheat
+								--if t.bals.bal and t.bals.eq then
+									--t.bals.eq = false -- cheat
 										t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
-										table.insert(t.defs, defs)
-								end	
+										--table.insert(t.defs, defs)
+								--end	
 							end
 						--end
 					end
@@ -1267,29 +1276,29 @@ TReX.defs.alias_toggle=function(defs)
 				
 				if defs == "resistance" then
 					for k,v in pairs(def_list.metamorphosis) do
-						if table.contains({v}, defs) then
+						--if table.contains({v}, defs) then
 							if not table.contains({t.defs}, defs) then
-								if t.bals.bal and t.bals.eq then
-									t.bals.eq = false -- cheat
+								--if t.bals.bal and t.bals.eq then
+								--	t.bals.eq = false -- cheat
 										t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
-										table.insert(t.defs, defs)
-								end	
+								--		table.insert(t.defs, defs)
+								--end	
 							end
-						end
+						--end
 					end
 				end
 				
 				if defs == "melody" then
 					for k,v in pairs(def_list.metamorphosis) do
-						if table.contains({v}, defs) then
+						--if table.contains({v}, defs) then
 							if not table.contains({t.defs}, defs) then
-								if t.bals.bal and t.bals.eq then
-									t.bals.eq = false -- cheat
-										t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal sing "..defs)
-										table.insert(t.defs, defs)
-								end	
+								--if t.bals.bal and t.bals.eq then
+								--	t.bals.eq = false -- cheat
+										t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
+								--		table.insert(t.defs, defs)
+								--end	
 							end
-						end
+						--end
 					end
 				end
 				
@@ -1305,17 +1314,17 @@ TReX.defs.alias_toggle=function(defs)
 				
 			end
 
-				if not table.index_of({"Sentinel","Druid"}, TReX.s.class) then
+				--if not table.index_of({"Sentinel","Druid"}, TReX.s.class) then
 					if not table.contains({t.defs}, defs) then
 						table.insert(t.defs, defs)
 					end
-				else
-					if not table.contains({"alertness","nightsight","stealth","vitality","resistance"}, defs) then
-						if not table.contains({t.defs}, defs) then
-							table.insert(t.defs, defs)
-						end
-					end
-				end
+				--else
+				-- 	if not table.contains({"stealth","vitality","resistance","elusiveness"}, defs) then
+				-- 		if not table.contains({t.defs}, defs) then
+				-- 			table.insert(t.defs, defs)
+				-- 		end
+				-- 	end
+				-- end
 				
 					if not t.def[defs] then
 						t.def[defs]=true
@@ -1461,11 +1470,12 @@ TReX.defs.alias_toggle=function(defs)
 				
 			if table.index_of({"Sentinel","Druid"}, TReX.s.class) then
 				TReX.defs.metamorphosis()
-					if table.contains({"alertness","nightsight","stealth","vitality","resistance"}, defs) then
+					if table.contains({"stealth","vitality","resistance","elusiveness"}, defs) then
 						for k,v in pairs(def_list.metamorphosis) do
 							if table.contains({v}, defs) then
 								if table.contains({t.defs}, defs) then
 									if TReX.defs.morph_check():lower() ~= k and TReX.serverside.am_functional() and TReX.serverside.full_balance() then
+										cecho("\n<purple>test")
 										t.send("morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check(), false) 
 										t.bals.eq = false -- cheat
 									end	
@@ -1494,17 +1504,17 @@ TReX.defs.alias_toggle=function(defs)
 			end
 			
 		
-		if not table.index_of({"Sentinel","Druid"}, TReX.s.class) then
+--		if not table.index_of({"Sentinel","Druid"}, TReX.s.class) then
 			if table.contains({t.defs}, defs) then
 				table.remove(t.defs, table.index_of(t.defs, defs))
 			end
-		else
-			if not table.contains({"alertness","nightsight","stealth","vitality","resistance"}, defs) then
-				if table.contains({t.defs}, defs) then
-					table.remove(t.defs, table.index_of(t.defs, defs))
-				end
-			end
-		end
+--		else
+--			if not table.contains({"stealth","vitality","resistance", "elusiveness"}, defs) then
+--				if table.contains({t.defs}, defs) then
+--					table.remove(t.defs, table.index_of(t.defs, defs))
+--				end
+--			end
+--		end
 
 					if t.def[defs] then
 						t.def[defs]=false
@@ -1576,8 +1586,8 @@ end
 		end
 		
 		if table.index_of({"Druid"}, TReX.s.class) then
-			if defs == "bonding" then 
-				if not table.contains({t.defs}, "bonding") then
+			if defs == "spiritbonded" then 
+				if not table.contains({t.defs}, "spiritbonded") then
 					t.send("queue add eqbal bonding spirit")
 				end
 			end
@@ -1697,61 +1707,81 @@ end
 		if table.index_of({"Sentinel","Druid"}, TReX.s.class) then
 
 		TReX.defs.metamorphosis()
-			
-			if table.contains({"alertness","nightsight","stealth",}, defs) then
-				for k,v in pairs(def_list.metamorphosis) do
-					if table.contains({v}, defs) then
-						if t.bals.bal and t.bals.eq then
-							if TReX.defs.morph_check():lower() ~= k and TReX.serverside.am_functional() and TReX.serverside.full_balance() then
-								t.send("morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check(), false) 
-								t.bals.eq = false -- cheat
-							end	
-								table.insert(t.defs, defs)
-								t.send("queue add eqbal "..defs.." on",false)
-									break
+
+			if defs == "stealth" then
+				if not table.contains({t.defs}, "stealth") then
+					for k,v in pairs(def_list.metamorphosis) do
+						if table.contains({v}, defs) then
+							--if t.bals.bal and t.bals.eq then
+								--t.bals.eq = false -- cheat
+									t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
+								--	if not table.contains({t.defs}, defs) then
+								--		table.insert(t.defs, defs)
+								--	end
+							 --end
 						end
 					end
 				end
-			end
-			
+			end	
+
+			if defs == "elusiveness" then
+				if not table.contains({t.defs}, "elusiveness") then
+					for k,v in pairs(def_list.metamorphosis) do
+						if table.contains({v}, defs) then
+							--if t.bals.bal and t.bals.eq then
+								--t.bals.eq = false -- cheat
+									t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
+								--	if not table.contains({t.defs}, defs) then
+								--		table.insert(t.defs, defs)
+								--	end
+							 --end
+						end
+					end
+				end
+			end		
+
 			if defs == "vitality" then
 				for k,v in pairs(def_list.metamorphosis) do
-					--if table.contains({v}, defs) then
-						if t.bals.bal and t.bals.eq then
-							t.bals.eq = false -- cheat
+					if table.contains({v}, defs) then
+						--if t.bals.bal and t.bals.eq then
+							--t.bals.eq = false -- cheat
 								t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
-								if not table.contains({t.defs}, defs) then
-									table.insert(t.defs, defs)
-								end
-						end		
-					--end
+							--	if not table.contains({t.defs}, defs) then
+							--		table.insert(t.defs, defs)
+							--	end
+						 --end
+					end
 				end
 			end
 			
 			if defs == "resistance" then
-				for k,v in pairs(def_list.metamorphosis) do
-					if table.contains({v}, defs) then
-						if t.bals.bal and t.bals.eq then
-							t.bals.eq = false -- cheat
-								t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
-								if not table.contains({t.defs}, defs) then
-									table.insert(t.defs, defs)
-								end
-						 end		
+				if not table.contains({t.defs}, "resistance") then
+					for k,v in pairs(def_list.metamorphosis) do
+						if table.contains({v}, defs) then
+							--if t.bals.bal and t.bals.eq then
+								--t.bals.eq = false -- cheat
+									t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
+								--	if not table.contains({t.defs}, defs) then
+								--		table.insert(t.defs, defs)
+								--	end
+							 --end
+						end
 					end
 				end
-			end
+			end	
 
 			if defs == "melody" then
-				for k,v in pairs(def_list.metamorphosis) do
-					if table.contains({v}, defs) then
-						if t.bals.bal and t.bals.eq then
-							t.bals.eq = false -- cheat
-								t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal sing "..defs)
-								if not table.contains({t.defs}, defs) then
-									table.insert(t.defs, defs)
-								end
-						 end		
+				if not table.contains({t.defs}, "melody") then				
+					for k,v in pairs(def_list.metamorphosis) do
+						if table.contains({v}, defs) then
+							--if t.bals.bal and t.bals.eq then
+								--t.bals.eq = false -- cheat
+									t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
+								--	if not table.contains({t.defs}, defs) then
+								--		table.insert(t.defs, defs)
+								--	end
+							 --end
+						end
 					end
 				end
 			end			
@@ -1769,18 +1799,18 @@ end
 		end
 
 
-			if not table.index_of({"Sentinel","Druid"}, TReX.s.class) then
+			--if not table.index_of({"Sentinel","Druid"}, TReX.s.class) then
 				if not table.contains({t.defs}, defs) then
 					table.insert(t.defs, defs)
 				end
-			else
-					if not table.contains({"alertness","nightsight","stealth","vitality","resistance"}, defs) then
-						if not table.contains({t.defs}, defs) then
-							table.insert(t.defs, defs)
-						end
-					end
+			--else
+			--		if not table.contains({"stealth","vitality","resistance","elusiveness"}, defs) then
+			--			if not table.contains({t.defs}, defs) then
+			--				table.insert(t.defs, defs)
+			--			end
+			--		end
 				
-			end
+			--end
 	
 					if not t.def[defs] then
 						t.def[defs]=true
@@ -1915,12 +1945,13 @@ else
 				
 				if table.index_of({"Sentinel","Druid"}, TReX.s.class) then
 				TReX.defs.metamorphosis()
-					if table.contains({"alertness","nightsight","stealth"}, defs) then
+					if table.contains({"stealth","elusiveness"}, defs) then
 						for k,v in pairs(def_list.metamorphosis) do
 							if table.contains({v}, defs) then
 								if table.contains({t.defs}, defs) then
 								
 									if TReX.defs.morph_check():lower() ~= k and TReX.serverside.am_functional() and TReX.serverside.full_balance() then
+										cecho("\n<red>test")
 										t.send("morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()) 
 										t.bals.eq = false -- cheat
 									end	
@@ -2052,8 +2083,8 @@ end
 		end		
 		
 		if table.index_of({"Druid"}, TReX.s.class) then
-			if defs == "bonding" then 
-				if not table.contains({t.defs}, "bonding") then
+			if defs == "spiritbonded" then 
+				if not table.contains({t.defs}, "spiritbonded") then
 					t.send("queue add eqbal bonding spirit")
 				end
 			end
@@ -2162,62 +2193,104 @@ end
 		
 		TReX.defs.metamorphosis()
 		
-			if table.index_of({"alertness","nightsight","stealth",}, defs) then
-				for k,v in pairs(def_list.metamorphosis) do
+			-- if table.index_of({"alertness","nightsight","stealth","elusiveness"}, defs) then
+			-- 	for k,v in pairs(def_list.metamorphosis) do
 		
-					if table.contains({v}, defs) then
-						if not table.contains({t.defs}, defs) then
-							if TReX.defs.morph_check():lower() ~= k and TReX.serverside.am_functional() and TReX.serverside.full_balance() then
-								t.send("morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check(), false) 
-								t.bals.eq = false -- cheat
-							end	
-								table.insert(t.defs, defs)
-								t.send("queue add eqbal "..defs.." on",false)
-									break
+			-- 		if table.contains({v}, defs) then
+			-- 			if not table.contains({t.defs}, defs) then
+			-- 				if TReX.defs.morph_check():lower() ~= k and TReX.serverside.am_functional() and TReX.serverside.full_balance() then
+			-- 					cecho("\n<green>test")
+			-- 					t.send("morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check(), false) 
+			-- 					t.bals.eq = false -- cheat
+			-- 				end	
+			-- 					table.insert(t.defs, defs)
+			-- 					t.send("queue add eqbal "..defs.." on",false)
+			-- 						break
+			-- 			end
+			-- 		end
+			-- 	end
+			-- end
+
+			if defs == "stealth" then
+				if not table.contains({t.defs}, "stealth") then
+					for k,v in pairs(def_list.metamorphosis) do
+						if table.contains({v}, defs) then
+							--if not table.contains({t.defs}, defs) then
+							--	if t.bals.bal and t.bals.eq then
+							--		t.bals.eq = false -- cheat
+							--			table.insert(t.defs, defs)
+									t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
+
+							--	end	
+							--end
 						end
 					end
 				end
 			end
-			
-			if defs == "vitality" then
-				for k,v in pairs(def_list.metamorphosis) do
-					if table.contains({v}, defs) then
-						if not table.contains({t.defs}, defs) then
-							if t.bals.bal and t.bals.eq then
-								t.bals.eq = false -- cheat
-									table.insert(t.defs, defs)
-								t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
 
-							end	
+
+			if defs == "elusiveness" then
+				if not table.contains({t.defs}, "stealth") then
+					for k,v in pairs(def_list.metamorphosis) do
+						if table.contains({v}, defs) then
+							--if not table.contains({t.defs}, defs) then
+							--	if t.bals.bal and t.bals.eq then
+							--		t.bals.eq = false -- cheat
+							--			table.insert(t.defs, defs)
+									t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
+
+							--	end	
+							--end
+						end
+					end
+				end
+			end						
+
+			if defs == "vitality" then
+				if not table.contains({t.defs}, "vitality") then
+					for k,v in pairs(def_list.metamorphosis) do
+						if table.contains({v}, defs) then
+							--if not table.contains({t.defs}, defs) then
+							--	if t.bals.bal and t.bals.eq then
+							--		t.bals.eq = false -- cheat
+							--			table.insert(t.defs, defs)
+									t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
+
+							--	end	
+							--end
 						end
 					end
 				end
 			end
 			
 			if defs == "resistance" then
-				for k,v in pairs(def_list.metamorphosis) do
-					if table.contains({v}, defs) then
-						if not table.contains({t.defs}, defs) then
-							if t.bals.bal and t.bals.eq then
-								t.bals.eq = false -- cheat
-									table.insert(t.defs, defs)
-								t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
+				if not table.contains({t.defs}, "resistance") then
+					for k,v in pairs(def_list.metamorphosis) do
+						if table.contains({v}, defs) then
+							--if not table.contains({t.defs}, defs) then
+							--	if t.bals.bal and t.bals.eq then
+							--		t.bals.eq = false -- cheat
+							--			table.insert(t.defs, defs)
+									t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
 
-							end	
+							--	end	
+							--end
 						end
 					end
 				end
 			end
 			
 			if defs == "melody" then
-				for k,v in pairs(def_list.metamorphosis) do
-					if table.contains({v}, defs) then
-						if not table.contains({t.defs}, defs) then
-							if t.bals.bal and t.bals.eq then
-								t.bals.eq = false -- cheat
-									table.insert(t.defs, defs)
-								t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal sing "..defs)
-							end	
+				if not table.contains({t.defs}, "melody") then
+					for k,v in pairs(def_list.metamorphosis) do
+						if table.contains({v}, defs) then
+							if not table.contains({t.defs}, defs) then
+								if t.bals.bal and t.bals.eq then
+									t.bals.eq = false -- cheat
+										table.insert(t.defs, defs)
+									t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal sing "..defs)
+								end	
+							end
 						end
 					end
 				end
@@ -2236,17 +2309,17 @@ end
 		end
 
 
-			if not table.index_of({"Sentinel","Druid"}, TReX.s.class) then
+			--if not table.index_of({"Sentinel","Druid"}, TReX.s.class) then
 				if not table.contains({t.defs}, defs) then
 					table.insert(t.defs, defs)
 				end
-			else
-					if not table.contains({"alertness","nightsight","stealth","vitality","resistance"}, defs) then
-						if not table.contains({t.defs}, defs) then
-							table.insert(t.defs, defs)
-						end
-					end
-			end
+			--else
+			--		if not table.contains({"stealth","vitality","resistance","elusiveness"}, defs) then
+			--			if not table.contains({t.defs}, defs) then
+			--				table.insert(t.defs, defs)
+			--			end
+			--		end
+			--end
 
 
 		--failsafe
@@ -2310,6 +2383,7 @@ local defs2relax={"groundwatch","skywatch","alertness","nightsight","telesense",
 					, "weaving" -- Serpent
 					, "vengeance", "blademastery" -- Infernal
 					, "distortedaura", "devilmark" -- Occultist
+					, "elusiveness", "stealth" -- Druid
 				} 
 
 	for k,v in pairs(def_list.free) do
@@ -3093,16 +3167,18 @@ TReX.defs.priorityQueue=function(defs, defs_prio)
 				if table.contains({def_table}, defs) then
 					--fail safe
 					if table.index_of({"Sentinel","Druid"}, TReX.s.class) then
-						if not table.index_of({"alertness","nightsight","stealth","vitality","resistance"}, defs) then
+						if not table.index_of({"stealth","vitality","resistance", "elusiveness"}, defs) then
 						--	if not t.def[defs] then
 							if not table.contains({t.defs}, defs) then
 								t.send("curing priority defence "..defs.." "..defs_prio)
+								cecho("\n<white>curing priority defence <cyan>"..defs.." <red>"..defs_prio)
 							end
 						end 
 					else
 						--if not t.def[defs] then
 						if not table.contains({t.defs}, defs) then
 							t.send("curing priority defence "..defs.." "..defs_prio)
+							cecho("\n<white>curing priority defence <cyan>"..defs.." <red>"..defs_prio)
 						end
 					end
 				end
@@ -3136,30 +3212,28 @@ end
 end
 
 TReX.defs.metamorphosis=function()
-
+if table.index_of({"Druid"}, TReX.s.class) then
 	def_list.metamorphosis={
-		["squirrel"]={["powers"]={"forage"--[[,"dig"]]}, ["enabled"]=false},
-		["wildcat"]={["powers"]={--[["alertness",]]--[["nightsight",]]"scratch"},["enabled"]=false},
-		["wolf"]={["powers"]={--[["bite",]]--[["fitness",]]"howl",--[["nightsight",]]--[["scent",]]}, ["enabled"]=false},
-		["turtle"]={["powers"]={"fluidswim","snap"}, ["enabled"]=false},
-		--["jackdaw"]={["powers"]={-[["fly"]],--[["land"]]}, ["enabled"]=false},
-		--["cheetah"]={["powers"]={--[["alertness"]],--[["bite"]],--[["fitness"]],--[["leap"]],--[["nightsight"]],--[["scent"]],--[["sprint"]]}, ["enabled"]=false},
-		--["owl"]={["powers"]={--[["fly",]]--[["land",]]--[["nightsight",]]--[["spy",]]--[["swoop",]]} ["enabled"]=false},
-		--["cheetah"]={["powers"]={--[["alertness",]]--[["claw",]]--[["elusiveness",]]--[["fitness",]]--[["leap",]]--[["nightsight",]]--[["scent",]]"stealth"}, ["enabled"]=false},
-		--["eagle"]={["powers"]={--[["fly",]]--[["land",]]--[["nightsight",]]--[["scanarea",]]--[["spy",]]--[["swoop",]]--[["traverse",]]--[["view"]]}, ["enabled"]=false},
-		--["gopher"]={["powers"]={--[["burrow"]],--[["dig",]]--[["sniff"]]}, ["enabled"]=false},
+		["hyena"]={["powers"]={"elusiveness","stealth", "fitness"}, ["enabled"]=false},
 		["sloth"]={["powers"]={"rest"}, ["enabled"]=false},
-		["bear"]={["powers"]={--[["alertness",]]--[["block",]]--[["scent",]]"shred",--[["vitality",]]}, ["enabled"]=false},
-		["nightingale"]={["powers"]={--[["fly",]]--[["land",]]"melody"}, ["enabled"]=false},
-		["elephant"]={["powers"]={"block",--[["fitness",]]"stampede","trumpet","yank",--[["vitality"]]}, ["enabled"]=false},
-		["wolverine"]={["powers"]={"burrow","dig","claw",--[["elusiveness",]]--[["nightsight"]]"sniff","spring"}, ["enabled"]=false},
-		["jaguar"]={["powers"]={--[["alertness",]]"ambush",--[["elusiveness",]]"fitness",--[["leap",]]--[["maul",]]--[["might",]]--[["nightsight",]]"dismember",--[["resistance",]]--[["scent",]]--[["sprint",]]--[["stealth",]]--[["vitality"]]}, ["enabled"]=false},
-		["icewyrm"]={["powers"]={--[["alertness",]]"icebreath","maul","might","scent","sprint","temperance","vitality"}, ["enabled"]=false},
-		["eagle"]={["powers"]={"fly","hoist","land","nightsight","scanarea","spy","swoop","track","traverse","view"}, ["enabled"]=false},
-		["gorilla"]={["powers"]={"alertness","pound","leap","swinging"}, ["enabled"]=false},
-		["basilisk"]={["powers"]={"bite","elusiveness","flame","gaze","resistance","stealth","petrify"}, ["enabled"]=false},
-		
-							}
+		["nightingale"]={["powers"]={"melody"}, ["enabled"]=false},
+		["elephant"]={["powers"]={"block","fitness","stampede"}, ["enabled"]=false},
+		["icewyrm"]={["powers"]={--[["alertness",]]"might","temperance","vitality"}, ["enabled"]=false},
+		["hydra"]={["powers"]={"resistance"}, ["enabled"]=false},
+	}
+end
+
+if table.index_of({"Sentinel"}, TReX.s.class) then
+	def_list.metamorphosis={
+		["hyena"]={["powers"]={"elusiveness","stealth", "fitness"}, ["enabled"]=false},
+		["sloth"]={["powers"]={"rest"}, ["enabled"]=false},
+		["nightingale"]={["powers"]={"melody"}, ["enabled"]=false},
+		["elephant"]={["powers"]={"block","fitness","stampede"}, ["enabled"]=false},
+		["icewyrm"]={["powers"]={--[["alertness",]]"might","temperance","vitality"}, ["enabled"]=false},
+		["basilisk"]={["powers"]={"resistance"}, ["enabled"]=false},
+	}
+end
+
 end
 
 TReX.defs.metawake_up=function()
@@ -3248,7 +3322,7 @@ end
 
 TReX.defs.vigour_panacea_wildgrowth=function(defs)
 	if defs == "vigour" then
-		if tonumber(TReX.stats.sunlight) >= 300 then
+		if tonumber(TReX.serverside.sunlight_check()) >= 300 then
 			defs_prio=25
 		else
 			defs_prio="reset"
@@ -3258,7 +3332,7 @@ TReX.defs.vigour_panacea_wildgrowth=function(defs)
 		end
 	end
 	if defs == "panacea"  then
-		if tonumber(TReX.stats.sunlight) >= 250 then
+		if tonumber(TReX.serverside.sunlight_check()) >= 250 then
 			defs_prio=25
 		else
 			defs_prio="reset"
@@ -3268,7 +3342,7 @@ TReX.defs.vigour_panacea_wildgrowth=function(defs)
 		end
 	end
 	if defs == "wildgrowth" then
-		if tonumber(TReX.stats.sunlight) >= 200 then
+		if tonumber(TReX.serverside.sunlight_check()) >= 200 then
 			defs_prio=25
 		else
 			defs_prio="reset"
