@@ -19,7 +19,7 @@ TReX.stats.prompt_options={
 	timestamp = function () timestamp = tostring(getTime(true,"hh:mm:ss:zzz")) return("<dim_grey>"..timestamp) end,
 	rage = function () if not TReX.hunting.rage then TReX.hunting.rage = 0 end return("<dim_grey>(<red>R<white>: "..TReX.hunting.rage.."<dim_grey>)<white>") end,
 	karma = function () if TReX.s.class=="Occultist" then return "<white>("..TReX.serverside.karma_check()..")%<green> " else return "" end end,
-	sunlight = function () if table.index_of({"Druid","Sylvan"}, TReX.s.class) then if TReX.stats.sunlight >= 1 then return "<white>("..TReX.stats.sunlight..")%<green> " else return "" end else return "" end end,
+	sunlight = function () if table.index_of({"Druid","Sylvan"}, TReX.s.class)then return "<white>("..TReX.serverside.sunlight_check()..")%<green> " else return "" end end,
 	afftracker = function ()
 		if not promptset then
 			promptset={}
