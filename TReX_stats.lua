@@ -59,9 +59,9 @@ TReX.stats.prompt_options={
 		
 		if not target or target == "None" then
 			target = ""
-		end  
-			return "<tomato>"..target.." <white>"
-		
+		end
+
+		return "<tomato>"..target.." <white>"		
 
 	end,
 
