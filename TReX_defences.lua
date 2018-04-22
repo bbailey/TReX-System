@@ -504,7 +504,8 @@ def_list = {
 	if TReX.s.class == "Sylvan" then
 		def_list.needs_full_bal["simultaneity"] = {["name"] = "simultaneity", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
 		--def_list.needs_full_bal["binding"] = {["name"] = "binding", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true}
-		def_list.class = { 
+		def_list.class = {
+			["harmony"] = {["name"] = "harmony", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["circulate"] = {["name"] = "circulate", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
 			["viridian"] = {["name"] = "viridian", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["wildgrowth"] = {["name"] = "wildgrowth", ["keepup"] = false, ["defup"] = false, ["serverside"]=false, ["enabled"] = true},
@@ -532,7 +533,7 @@ def_list = {
 
 	if TReX.s.class == "Druid" then
 		def_list.class = { -- any these you want on keepup or keep it like it is?
-
+			["harmony"] = {["name"] = "harmony", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["affinity"] = {["name"] = "afinity", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["spiritbonded"] = {["name"] = "spiritbonded", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["wildgrowth"] = {["name"] = "wildgrowth", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
@@ -1146,9 +1147,13 @@ TReX.defs.alias_toggle=function(defs)
 			if table.index_of({"Druid"}, TReX.s.class) then
 				if defs == "spiritbonded" then 
 					if not table.contains({t.defs}, "spiritbonded") then
-						t.send("queue add eqbal bonding spirit")
+						t.send("queue add eqbal bond spirit")
 					end
 				end
+
+				if defs == "harmony" then 
+					t.send("queue add eqbal evoke harmony me")
+				end		
 			end
 
 			if table.index_of({"Jester"}, TReX.s.class) then
@@ -1225,12 +1230,21 @@ TReX.defs.alias_toggle=function(defs)
 				if defs == "reflections" then 
 					t.send("queue add eqbal cast reflection at me")
 				end
+				if defs == "harmony" then 
+					t.send("queue add eqbal evoke harmony me")
+				end				
 			end
 
 
 			if table.index_of({"Sentinel","Druid"}, TReX.s.class) then
 			
 			TReX.defs.metamorphosis()
+
+				if defs == "affinity" then
+					if not table.contains({t.defs}, defs) then
+						t.send("queue add eqbal morph wolf"..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal embrace spirit")
+					end
+				end			
 			
 				if defs == "stealth" then
 					for k,v in pairs(def_list.metamorphosis) do
@@ -1591,6 +1605,10 @@ end
 					t.send("queue add eqbal bonding spirit")
 				end
 			end
+
+			if defs == "harmony" then 
+				t.send("queue add eqbal evoke harmony me")
+			end
 		end
 		
 		if table.index_of({"Magi"}, TReX.s.class) then
@@ -1701,12 +1719,23 @@ end
 			if defs == "reflections" then 
 				t.send("queue add eqbal cast reflection at me")
 			end
+
+			if defs == "harmony" then 
+				t.send("queue add eqbal evoke harmony me")
+			end			
 		end
 
 
 		if table.index_of({"Sentinel","Druid"}, TReX.s.class) then
 
 		TReX.defs.metamorphosis()
+
+
+			if defs == "affinity" then
+				if not table.contains({t.defs}, defs) then
+					t.send("queue add eqbal morph wolf"..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal embrace spirit")
+				end
+			end	
 
 			if defs == "stealth" then
 				if not table.contains({t.defs}, "stealth") then
@@ -2085,9 +2114,12 @@ end
 		if table.index_of({"Druid"}, TReX.s.class) then
 			if defs == "spiritbonded" then 
 				if not table.contains({t.defs}, "spiritbonded") then
-					t.send("queue add eqbal bonding spirit")
+					t.send("queue add eqbal bond spirit")
 				end
 			end
+			if defs == "harmony" then 
+				t.send("queue add eqbal evoke harmony me")
+			end					
 		end
 
 		if table.index_of({"Magi"}, TReX.s.class) then
@@ -2186,6 +2218,9 @@ end
 			if defs == "reflections" then 
 				t.send("queue add eqbal cast reflection at me")
 			end
+			if defs == "harmony" then 
+				t.send("queue add eqbal evoke harmony me")
+			end					
 
 		end
 
