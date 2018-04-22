@@ -1152,7 +1152,9 @@ TReX.defs.alias_toggle=function(defs)
 				end
 
 				if defs == "harmony" then 
-					t.send("queue add eqbal evoke harmony me")
+					if not table.contains({t.defs}, "harmony") then
+						t.send("queue add eqbal evoke harmony me")
+					end
 				end		
 			end
 
@@ -1231,7 +1233,9 @@ TReX.defs.alias_toggle=function(defs)
 					t.send("queue add eqbal cast reflection at me")
 				end
 				if defs == "harmony" then 
-					t.send("queue add eqbal evoke harmony me")
+					if not table.contains({t.defs}, "harmony") then
+						t.send("queue add eqbal evoke harmony me")
+					end
 				end				
 			end
 
@@ -1607,8 +1611,10 @@ end
 			end
 
 			if defs == "harmony" then 
-				t.send("queue add eqbal evoke harmony me")
-			end
+				if not table.contains({t.defs}, "harmony") then
+					t.send("queue add eqbal evoke harmony me")
+				end
+			end	
 		end
 		
 		if table.index_of({"Magi"}, TReX.s.class) then
@@ -1721,8 +1727,10 @@ end
 			end
 
 			if defs == "harmony" then 
-				t.send("queue add eqbal evoke harmony me")
-			end			
+				if not table.contains({t.defs}, "harmony") then
+					t.send("queue add eqbal evoke harmony me")
+				end
+			end		
 		end
 
 
@@ -2118,8 +2126,10 @@ end
 				end
 			end
 			if defs == "harmony" then 
-				t.send("queue add eqbal evoke harmony me")
-			end					
+				if not table.contains({t.defs}, "harmony") then
+					t.send("queue add eqbal evoke harmony me")
+				end
+			end				
 		end
 
 		if table.index_of({"Magi"}, TReX.s.class) then
@@ -2219,7 +2229,9 @@ end
 				t.send("queue add eqbal cast reflection at me")
 			end
 			if defs == "harmony" then 
-				t.send("queue add eqbal evoke harmony me")
+				if not table.contains({t.defs}, "harmony") then
+					t.send("queue add eqbal evoke harmony me")
+				end
 			end					
 
 		end
