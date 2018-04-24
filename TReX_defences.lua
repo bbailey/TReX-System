@@ -2191,7 +2191,6 @@ end
 			
 		end
 
-
 				if not table.contains({t.defs}, defs) then
 					table.insert(t.defs, defs)
 				end
