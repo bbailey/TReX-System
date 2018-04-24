@@ -704,7 +704,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 
 		if (t.serverside["settings"][variable]) then -- if toggling to true
 
-			if table.contains({"extrusion","purify","deathsight","tarot","daina","alleviate","salt","accelerate","fitness","rage","bloodboil","might","shrugging","dragonheal","transmute","echos","timestamp","override","debugEnabled","restore","paused","Prompt","fool","afflictions","insomnia","vault","reporting","focus","clot","defences","recovery","tree","moss","sipping","affbar"}, variable) then
+			if table.contains({"extrusion","purify","deathsight","fool","daina","alleviate","salt","accelerate","fitness","rage","bloodboil","might","shrugging","dragonheal","transmute","echos","timestamp","override","debugEnabled","restore","paused","Prompt","fool","afflictions","insomnia","vault","reporting","focus","clot","defences","recovery","tree","moss","sipping","affbar"}, variable) then
 				t.serverside["settings"][variable] = true 				
 			end
 
@@ -712,7 +712,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 				t.serverside["settings_default"][variable] = "Yes"
 			end
 
-				if not table.contains({"extrusion","purify","tree","clot","deathsight","rage","tarot","daina","alleviate","salt","fitness","recovery","bloodboil","accelerate","vault","fool","moss","echos","timestamp","Prompt","restore","might","shrugging","dragonheal","transmute","override","debugEnabled","paused","affbar"}, variable) then
+				if not table.contains({"extrusion","purify","tree","clot","deathsight","rage","fool","daina","alleviate","salt","fitness","recovery","bloodboil","accelerate","vault","fool","moss","echos","timestamp","Prompt","restore","might","shrugging","dragonheal","transmute","override","debugEnabled","paused","affbar"}, variable) then
 					t.send("curing "..variable.." on", false)
 				end
 				
@@ -766,8 +766,8 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 					TReX.class.skill_check()
 				end
 				
-				if (variable == "tarot") then
-					class_skill[TReX.s.class:lower()].tarot = true
+				if (variable == "fool") then
+					class_skill[TReX.s.class:lower()].fool = true
 					TReX.class.skill_check()
 				end
 				
@@ -824,7 +824,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 		else -- if toggling to false
 
 
-			if table.contains({"extrusion","purify","affbar","deathsight","daina","tarot","alleviate","salt","accelerate","fitness","rage","bloodboil","might","shrugging","dragonheal","transmute","echos","timestamp","override","debugEnabled","restore","paused","Prompt","fool","afflictions","insomnia","vault","reporting","focus","clot","defences","recovery","tree","moss","sipping"}, variable) then
+			if table.contains({"extrusion","purify","affbar","deathsight","daina","fool","alleviate","salt","accelerate","fitness","rage","bloodboil","might","shrugging","dragonheal","transmute","echos","timestamp","override","debugEnabled","restore","paused","Prompt","fool","afflictions","insomnia","vault","reporting","focus","clot","defences","recovery","tree","moss","sipping"}, variable) then
 				t.serverside["settings"][variable] = false
 			end
 	
@@ -832,7 +832,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 				t.serverside["settings_default"][variable] = "No"
 			end
 
-				if not table.contains({"extrusion","purify","affbar","tree","clot","deathsight","rage","daina","tarot","alleviate","salt","fitness","recovery","bloodboil","accelerate","vault","fool","moss","echos","timestamp","Prompt","restore","might","shrugging","dragonheal","transmute","override","debugEnabled","paused"}, variable) then
+				if not table.contains({"extrusion","purify","affbar","tree","clot","deathsight","rage","daina","fool","alleviate","salt","fitness","recovery","bloodboil","accelerate","vault","fool","moss","echos","timestamp","Prompt","restore","might","shrugging","dragonheal","transmute","override","debugEnabled","paused"}, variable) then
 					t.send("curing "..variable.." off", false)
 				end
 				
@@ -885,8 +885,8 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 					TReX.class.skill_check()
 				end
 				
-				if (variable == "tarot") then
-					class_skill[TReX.s.class:lower()].tarot = false
+				if (variable == "fool") then
+					class_skill[TReX.s.class:lower()].fool = false
 					TReX.class.skill_check()
 				end
 

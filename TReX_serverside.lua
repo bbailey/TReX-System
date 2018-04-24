@@ -838,7 +838,7 @@ local queue_kelp = false
 	end
 	
 	for _,v in pairs({"Sentinel","Druid"}) do if TReX.s.class == v then t.might() end end
-	for _,v in pairs({"Occultist","Jester"}) do if TReX.s.class == v then t.fool() end end
+	--for _,v in pairs({"Occultist","Jester"}) do if TReX.s.class == v then t.fool() end end
  	for _,v in pairs({"Magi"}) do if TReX.s.class == v then t.bloodboil() end end
 	for _,v in pairs({"Dragon"}) do if TReX.s.class == v then t.dragonheal() end end
 	for _,v in pairs({"Serpent"}) do if TReX.s.class == v then t.shrugging() end end
@@ -2514,7 +2514,7 @@ end
 	["bloodboil"] = {"Magi"},
 	["fitness"] = {"Runewarden","Infernal","Paladin","Druid","Blademaster","Monk","Sentinel"},
 	["shrugging"] = {"Serpent"},
-	["fool"] = {"Occultist","Jester"},
+	--["fool"] = {"Occultist","Jester"},
 	["dragonheal"] = {"Dragon"},
 	["daina"] = {"Shaman"},
 	["accelerate"] = {"Depthswalker"},
