@@ -52,7 +52,11 @@ local aff = aff or ""
 	 	TReX_Class_Reset_Timer = nil 
 	 end
 <<<<<<< HEAD
+<<<<<<< HEAD
    	 TReX_Class_Reset_Timer = tempTimer(15, [[TReX.class.reset() t.serverside.green_echo("Reset Enemy Class")]]) 
+=======
+   	 TReX_Class_Reset_Timer = tempTimer(15, [[TReX.class.reset() t.serverside.green_echo("Reset Enemy Class")]])
+>>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
 =======
    	 TReX_Class_Reset_Timer = tempTimer(15, [[TReX.class.reset() t.serverside.green_echo("Reset Enemy Class")]])
 >>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b

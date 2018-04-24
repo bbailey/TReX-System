@@ -2139,6 +2139,9 @@ end
 			-- 		end
 			-- 	end
 			-- end
+<<<<<<< HEAD
+>>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
+=======
 >>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
 
 			if defs == "stealth" then
@@ -2146,8 +2149,11 @@ end
 					for k,v in pairs(def_list.metamorphosis) do
 						if table.contains({v}, defs) then
 <<<<<<< HEAD
+<<<<<<< HEAD
 							t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
 =======
+=======
+>>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
 							--if not table.contains({t.defs}, defs) then
 							--	if t.bals.bal and t.bals.eq then
 							--		t.bals.eq = false -- cheat
@@ -2156,6 +2162,9 @@ end
 
 							--	end	
 							--end
+<<<<<<< HEAD
+>>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
+=======
 >>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
 						end
 					end
@@ -2168,8 +2177,11 @@ end
 					for k,v in pairs(def_list.metamorphosis) do
 						if table.contains({v}, defs) then
 <<<<<<< HEAD
+<<<<<<< HEAD
 							t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
 =======
+=======
+>>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
 							--if not table.contains({t.defs}, defs) then
 							--	if t.bals.bal and t.bals.eq then
 							--		t.bals.eq = false -- cheat
@@ -2178,6 +2190,9 @@ end
 
 							--	end	
 							--end
+<<<<<<< HEAD
+>>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
+=======
 >>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
 						end
 					end
@@ -2189,8 +2204,11 @@ end
 					for k,v in pairs(def_list.metamorphosis) do
 						if table.contains({v}, defs) then
 <<<<<<< HEAD
+<<<<<<< HEAD
 							t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
 =======
+=======
+>>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
 							--if not table.contains({t.defs}, defs) then
 							--	if t.bals.bal and t.bals.eq then
 							--		t.bals.eq = false -- cheat
@@ -2199,6 +2217,9 @@ end
 
 							--	end	
 							--end
+<<<<<<< HEAD
+>>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
+=======
 >>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
 						end
 					end
@@ -2210,8 +2231,11 @@ end
 					for k,v in pairs(def_list.metamorphosis) do
 						if table.contains({v}, defs) then
 <<<<<<< HEAD
+<<<<<<< HEAD
 							t.send("queue add eqbal morph "..k..(TReX.config.cc or "##")..TReX.defs.sip_mana_check()..(TReX.config.cc or "##").."queue add eqbal "..defs)
 =======
+=======
+>>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
 							--if not table.contains({t.defs}, defs) then
 							--	if t.bals.bal and t.bals.eq then
 							--		t.bals.eq = false -- cheat
@@ -2220,6 +2244,9 @@ end
 
 							--	end	
 							--end
+<<<<<<< HEAD
+>>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
+=======
 >>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
 						end
 					end
@@ -2256,6 +2283,7 @@ end
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if not table.contains({t.defs}, defs) then
 					table.insert(t.defs, defs)
 				end
@@ -2265,6 +2293,12 @@ end
 				if not table.contains({t.defs}, defs) then
 					table.insert(t.defs, defs)
 				end
+=======
+			--if not table.index_of({"Sentinel","Druid"}, TReX.s.class) then
+				if not table.contains({t.defs}, defs) then
+					table.insert(t.defs, defs)
+				end
+>>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
 			--else
 			--		if not table.contains({"stealth","vitality","resistance","elusiveness"}, defs) then
 			--			if not table.contains({t.defs}, defs) then
@@ -2272,6 +2306,9 @@ end
 			--			end
 			--		end
 			--end
+<<<<<<< HEAD
+>>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
+=======
 >>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
 
 
