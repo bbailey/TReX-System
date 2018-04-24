@@ -144,6 +144,7 @@ if (t.serverside["settings"].debugEnabled) then TReX.debugMessage("( TReX.tgt.se
 	
         else
             TReX.tgt.echo("Target Remains: "..target)
+			t.target = t.target or ""
 				if t.target:lower():title()~= target then
 					t.target = target
 				end

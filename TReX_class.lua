@@ -46,7 +46,16 @@ local aff = aff or ""
 	if not (t.class[a].enabled) then
 		TReX.class.reset()
 		t.class[a].enabled = true
-			tempTimer(15, [[TReX.class.reset() t.serverside.green_echo("Reset Enemy Class")]])
+--			tempTimer(15, [[TReX.class.reset() t.serverside.green_echo("Reset Enemy Class")]])
+	 if TReX_Class_Reset_Timer and TReX_Class_Reset_Timer ~= nil then 
+	 	killTimer(TReX_Class_Reset_Timer)
+	 	TReX_Class_Reset_Timer = nil 
+	 end
+<<<<<<< HEAD
+   	 TReX_Class_Reset_Timer = tempTimer(15, [[TReX.class.reset() t.serverside.green_echo("Reset Enemy Class")]]) 
+=======
+   	 TReX_Class_Reset_Timer = tempTimer(15, [[TReX.class.reset() t.serverside.green_echo("Reset Enemy Class")]])
+>>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
 	end
 
 		--soft target
@@ -250,12 +259,10 @@ TReX.prios.reset=function()
 end
   
 TReX.prios.switchPrios=function(aff, pos, x)
-
-
 	if TReX.prios.current[aff] ~= pos then
 		send("curing priority "..aff.." "..pos)
 		TReX.prios.current[aff] = pos
-			if x == 1 and TReX.prios.current[aff] ~= tonumber(pos) then 
+			if x == 1 --[[and TReX.prios.current[aff] ~= tonumber(pos)]] then 
 				
 				if t.serverside["settings"].echos then t.serverside.red_echo(""..aff:upper().." <red>[<white>"..tonumber(pos).."<red>]") end
 			end

@@ -74,7 +74,8 @@ TReX.graphic..[[
 <gray>	Step 9) <dim_grey>	TYPE 'install'
 <gray>	Step 10) <dim_grey>	Configure TReX system settings.
 <gray>	Step 11) <dim_grey>	QQ and RESTART mudlet Mudlet 3.7.1 or greater.
-<gray>  Step 12) <dim_grey> Ask around for an invite to the TReX clan ANYONE can invite.
+<gray>	Step 12) <dim_grey>	Ask around for an invite to the TReX clan ANY member can invite.
+
 
 <gray>	You Tube:
 <white>	https://www.youtube.com/watch?v=Bwxqzt-qKFo&t=11s
@@ -215,12 +216,13 @@ TReX.logout=function()
 	send("inr all", false)
 	TReX.config.saveSettings(true)
 	TReX.serverside.container:hide()
-	setBorderBottom(0)
+	setBorderBottom(-10)
 	t.serverside["settings"].sys_loaded = false
 	
 end
 
 TReX.config.login_load=function(event)
+
 	TReX.config.loadSettings() 
 
 		if t.serverside["settings"].installed then
@@ -242,7 +244,6 @@ TReX.config.login_load=function(event)
 				setBorderBottom(0)
 			end
 
-		
 			TReX.serverside.login_settings() 
 			TReX.prios.default_settings()
 			TReX.prios.reset()
@@ -253,28 +254,26 @@ TReX.config.login_load=function(event)
 			TReX.pipes.settings()   
 			deletep = false
 			
+			send("citizens")
+			
 			if not TReX.config.cc then 
 				t.send("config",false)  
 			end
-
-
 			
 			TReX.config.saveSettings()
-			
-			tempTimer(1, [[t.serverside["settings"].sys_loaded = true]])   
-			tempTimer(30, [[TReX.inv.set_id_table()]])
-			
-			playSoundFile(getMudletHomeDir().. [[/TReX/TReX.mp3]])  
 
+			enableTimer("inventory updater")			
+			tempTimer(1, [[t.serverside["settings"].sys_loaded = true]])   
+<<<<<<< HEAD
+=======
+			enableTimer("inventory updater")
+
+>>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
+			playSoundFile(getMudletHomeDir().. [[/TReX/TReX.mp3]])  
 			
 		else
 			t.serverside.green_echo("TReX not installed, or the file is corrupt; best to reinstall.", false)
 		end
-
-		
-		
-
-
 		
 end
 
@@ -647,13 +646,7 @@ t.serverside.flee_direction = flee_direction
 		t.send(TReX.rewield(t.inv["cane"].id, "l"))
 	end
 
-	--if TReX.s.class=="Bard" then
-		--t.serverside.movemethod = "cq all##queue prepend eqbal open door "..t.serverside.flee_direction.."##HS "..target..""
-		--t.send(t.serverside.movemethod)
-		--t.serverside.movemethod = "cq all##queue prepend eqbal open door "..t.serverside.flee_direction.."##BHS "..target.." "..t.serverside.flee_direction..""
-		--t.send(t.serverside.movemethod)
-	--end
-		
+
 	
 --if already fleeing return
 if t.serverside.flee_started then  -- if already tumbling check	--return 
@@ -671,9 +664,9 @@ end
 	end
 
 		if TReX.s.class == "Bard" and not t.serverside.flying then
-			t.serverside.movemethod = "cq all##queue prepend eqbal open door "..t.serverside.flee_direction.."##backflip"
+			t.serverside.movemethod = "cq all##queue prepend eqbal backflip"
 		else
-			t.serverside.movemethod = "cq all##queue prepend eqbal go "..t.serverside.flee_direction.."##go"
+			t.serverside.movemethod = "cq all##queue prepend eqbal go"
 		end	
 	
 	if not(TReX.serverside.inslowcuringmode()) and not t.affs.aeon and not t.affs.prone then
@@ -682,15 +675,15 @@ end
 
 		afftest = {"mangledleftleg", "brokenleftleg", "mangledleftarm", "brokenleftarm", "mangledrightleg", "brokenrightleg"
 				  ,"mangledrightarm", "brokenrightarm", "bound", "impaled", "paralysis", "webbed", "roped", "disrupt", "stun"
-				  ,"prone", "pacified", "peace", "Lovers", "entangled", "transfixation","retardation"
+				  ,"prone", "pacified", "peace", "lovers", "entangled", "transfixation","retardation"
 				  ,}
 		
 		for i = 1, #afftest, 1 do
 			if t.affs[afftest[i]] then
 				if TReX.s.class == "Bard" then
-					t.serverside.movemethod = "cq all##queue prepend eqbal open door "..t.serverside.flee_direction.."##Somersault"
+					t.serverside.movemethod = "cq all##queue prepend eqbal somersault"
 				else
-					t.serverside.movemethod = "cq all##queue prepend eqbal open door "..t.serverside.flee_direction.."##tumble"
+					t.serverside.movemethod = "cq all##queue prepend eqbal tumble"
 				end
 			end
 		end

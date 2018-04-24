@@ -9,8 +9,6 @@ local humourafftable={
   "haemophilia", "recklessness", "paralysis",
   } 
 
--- ITEMS EVENT HANDLER
-
 TReX.serverside.itms					= TReX.serverside.itms or {}
 TReX.serverside.itms.room			    = TReX.serverside.itms.room or {}
 TReX.serverside.gingerlevel = 1
@@ -302,6 +300,14 @@ TReX.serverside.am_capable=function()
 
  if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.am_capable ) ") end
 
+end
+
+TReX.serverside.attack_check=function()
+	if TReX.serverside.am_capable() and TReX.serverside.am_functional() then
+		return true
+	else
+		return false
+	end
 end
 
 TReX.serverside.am_free=function()
@@ -617,7 +623,8 @@ TReX.serverside.class_check=function(aff)
 	"snb",
 	"twoh",
 	"dualb",
-	"dualc"
+	"dualc",
+	"shikudo",
 }
 	for _,v in pairs(t.class.list) do
 		if t.class[v].enabled then
@@ -1205,9 +1212,10 @@ local aff_abbrev = {
   blackout               = "<red>[<DarkKhaki>blackout<red>]",
   bleeding               = "<red>bleed <white>("..c.. "" ..t.affs["bleed"].."<white>)",
   blindness              = "<DarkSlateGrey>blind",
+  blistered              = "<red>blstrd",
   bound                  = "<DarkSlateGrey>bound",
   burning                = "<orange_red>burn <white>("..d.. "" ..t.affs["burn"].."<white>)",
-  charredburn            = ":charredburn: <white>(<firebrick>4<white>)",
+  charredburn            = "<orange_red>:charredburn: <white>(<firebrick>4<white>)",
   cadmuscurse		     = "<white>(<red>CADMUS<white>)",
   temperedcholeric       = "<DarkKhaki>chol <white>("..c.. ""..t.affs["temperedcholeric"].."<white>)",
   claustrophobia         = "<lemon_chiffon>clau:",
@@ -1272,7 +1280,7 @@ local aff_abbrev = {
   icefisted              = "<DodgerBlue>icefisted",
   itching                = "<DarkSlateGrey>itching",
   internalbleeding	     = "<red>intbld",
-  kkracktlebrand		 = "<dark_orange>kkractle",
+  kkractlebrand		 	 = "<dark_orange>kkbrand",
   latched		         = "<dark_orange>latched",	
   justice                = "<lemon_chiffon>((<white>JUSTICE<lemon_chiffon>))",
   retribution            = "<lemon_chiffon>retr",
@@ -1281,7 +1289,7 @@ local aff_abbrev = {
   lethargy               = "<blue>let",
   loneliness             = "<lemon_chiffon>lon",
   shadowmadness          = "<white>[<LightGoldenrod>SMAD<white>]",
-  lovers                 = "<lemon_chiffon>lust",
+  lovers                 = "<lemon_chiffon>lovers",
   madness                = "<DarkSlateGrey>madness",
   damagedleftarm         = "<yellow>{<firebrick>LA<white>(<yellow>2<white>)<yellow>}",
   damagedleftleg         = "<yellow>{<firebrick>LL<white>(<yellow>2<white>)<yellow>}",
@@ -1362,9 +1370,9 @@ local aff_abbrev = {
   weakenedmind           = "<DarkKhaki>weakmind",
   weariness			     = "<dark_orange>weary",
   webbed                 = "<DarkKhaki>webbed",
-  whisperingmadness      = "<firebrick>>>><white>madness<firebrick><<<",
+  whisperingmadness      = "<yellow>>>><white>madness<yellow><<<",
   wristfractures         = "<DarkKhaki>wrist <white>("..c.. ""..t.affs["wristfractures"].."<white>)",
-  
+  scalded				 = "<firebrick>>>><white>scalded<firebrick><<<",
  
 }
 
@@ -1756,7 +1764,7 @@ if table.contains({t.serverside.gmcp_aff_table}, aff) then return end
 			end
 
 											
-				for _,v in pairs({"snb","bard","magi","monk","shikudo","druid","jester","priest","sylvan"
+				for _,v in pairs({"snb","bard","magi","monk", "shikudo", "druid","jester","priest","sylvan"
 									,"serpent","shaman","sentinel","occultist","apostate","alchemist"
 									,"dualb","dualc","blademaster","dragon","depthswalker","earth","air","water","fire"}) 
 				do
@@ -2273,26 +2281,7 @@ t.serverside.settings_dict = {
  
 end
 
-TReX.serverside.login_settings=function()
-
-t.bals.bal = true
-t.bals.eq = true
-t.bals.voice = true
-t.bals.sip = true
-t.bals.immunity = true
-t.bals.tree = true
-t.bals.focus = true
-t.bals.fitness = true
-t.bals.bloodboil = true
-t.bals.rage = true
-t.bals.salve = true
-t.bals.herb = true
-t.bals.smoke = true
-t.bals.alleviate = true
-t.bals.accelerate = true
-t.bals.purify = true
-t.bals.extrusion = true
-
+TReX.reset_taffs=function()
 t.affs.stun = false
 t.affs.addiction = false
 t.affs.aeon = false
@@ -2382,7 +2371,7 @@ t.affs.lapsingconsciousness = false
 t.affs.lethargy = false
 t.affs.loneliness = false
 t.affs.lovers = false
-t.affs.manaleech = false
+t.affs.manaleech = false 
 t.affs.mangledhead = false
 t.affs.mangledleftarm = false
 t.affs.mangledleftleg = false
@@ -2459,6 +2448,36 @@ t.affs.calcifiedtorso = false
 t.affs.latched = false
 t.affs.kkractlebrand = false
 
+darkshadecount=0
+
+end
+
+TReX.reset_tbals=function()
+t.bals.bal = true
+t.bals.eq = true
+t.bals.voice = true
+t.bals.sip = true
+t.bals.immunity = true
+t.bals.tree = true
+t.bals.focus = true
+t.bals.fitness = true
+t.bals.bloodboil = true
+t.bals.rage = true
+t.bals.salve = true
+t.bals.herb = true
+t.bals.smoke = true
+t.bals.alleviate = true
+t.bals.accelerate = true
+t.bals.purify = true
+t.bals.extrusion = true
+end
+
+TReX.serverside.login_settings=function()
+
+
+TReX.reset_tbals()
+TReX.reset_taffs()
+
 --check for mount to avoid issues
 local default_mount = "No"
 if mount_list then
@@ -2501,9 +2520,9 @@ end
 	["accelerate"] = {"Depthswalker"},
 	["alleviate"] = {"Blademaster"},
 	["salt"] = {"Alchemist"},
-	["Purify"] = {"water Elemental Lord"}, -- 'purify'
-	["Eruption"] = {"earth Elemental Lord"}, -- 'terran eruption'
-	["Slough"] = {"fire Elemental Lord"}, -- 'slough impurities'
+	["purify"] = {"water Elemental Lord"}, -- 'purify'
+	["eruption"] = {"earth Elemental Lord"}, -- 'terran eruption'
+	["slough"] = {"fire Elemental Lord"}, -- 'slough impurities'
 
 	}
 
@@ -2584,51 +2603,52 @@ t.serverside.exclude = {
 
 t.serverside.afflictions = {
  
-
   homunculusmercury = {"time","ginger"}, -- techinally herb eat will remove it, but slows herb balance
   isolation = {"instant"},
   cadmuscurse = {"misc"},
-  hypersomnia = {"daina", "ash", "dheal",  "might",  "salt",  "bloodboil", "shrugging", "accelerate", "tree", "fool"},
+  hypersomnia = {"daina", "ash", "dheal",  "might", "slough", "purify", "eruption", "salt",  "bloodboil", "shrugging", "accelerate", "tree", "fool"},
   airdisrupt = {"focus", "mental"},
   airfisted = {"time"},
   enmesh = {"time"},
   conflagration = {"misc"},
-  generosity = {"daina", "rage", "bellwort", "dheal", "salt",  "accelerate", "might",  "bloodboil",  "shrugging", "tree", "fool"},
+  generosity = {"daina", "rage", "bellwort", "dheal", "salt", "slough", "purify", "eruption", "accelerate", "might",  "bloodboil",  "shrugging", "tree", "fool"},
   mangledhead = {"mendinghead","restorationhead"},
   transfixation = {"writhe"},
-  whisperingmadness = {"daina", "dheal", "accelerate", "salt",  "might",  "bloodboil", "shrugging", "tree", "elm", "fool"},
+  whisperingmadness = {"daina", "dheal", "accelerate", "salt", "slough", "purify", "eruption", "might",  "bloodboil", "shrugging", "tree", "elm", "fool"},
   pinshot = {"time"},
   hecatecurse = {"time"},
-  epilepsy = {"goldenseal", "daina","dheal", "focus",  "salt",  "accelerate",  "might",  "bloodboil", "shrugging", "tree", "fool", "mental"},
+  kkractlebrand = {"time"},
+  blistered = {"time"},
+  epilepsy = {"goldenseal", "daina","dheal", "focus",  "salt", "slough", "purify", "eruption", "accelerate",  "might",  "bloodboil", "shrugging", "tree", "fool", "mental"},
   damagedleftarm = {"restorationarms", "physical"},
   amnesia = {"time", --[["mental"]]},
-  slickness = {"bloodroot", "daina","dheal",  "might",  "salt",  "bloodboil",  "accelerate", "shrugging", "tree", "valerian", "fool", "physical"},
-  vertigo = {"dheal", "daina", "lobelia", "focus",  "might",  "salt",  "bloodboil",  "shrugging", "tree", "fool", "mental"},
+  slickness = {"bloodroot", "daina","dheal",  "might",  "salt",  "slough", "purify", "eruption", "bloodboil",  "accelerate", "shrugging", "tree", "valerian", "fool", "physical"},
+  vertigo = {"dheal", "daina", "lobelia", "focus",  "might",  "salt", "slough", "purify", "eruption", "bloodboil",  "shrugging", "tree", "fool", "mental"},
   inquisition = {"time"},
   icefisted = {"time"}, -- 15secs
   temperedmelancholic = {"ginger"},  --  melancholic does mana damage
-  recklessness = {"dheal", "daina","lobelia", "focus",  "might",  "salt",  "bloodboil", "shrugging", "tree", "fool", "mental"},
-  weariness = {"dheal", --[["focus",]] "kelp", "daina", "accelerate",   "salt", "might", "bloodboil",  "shrugging", "tree", "fool", "mental"}, -- does bloodboil cure weariness?
-  loneliness = {"dheal", "lobelia", "focus", "daina",  "salt", "accelerate",  "might", "bloodboil",  "shrugging", "tree", "fool", "mental"},
+  recklessness = {"dheal", "daina","lobelia", "focus",  "might",  "salt", "slough", "purify", "eruption", "bloodboil", "shrugging", "tree", "fool", "mental"},
+  weariness = {"dheal", --[["focus",]] "kelp", "daina", "accelerate", "slough", "purify", "eruption",  "salt", "might", "bloodboil",  "shrugging", "tree", "fool", "mental"}, -- does bloodboil cure weariness?
+  loneliness = {"dheal", "lobelia", "focus", "daina",  "salt", "accelerate", "slough", "purify", "eruption", "might", "bloodboil",  "shrugging", "tree", "fool", "mental"},
   --brokenarm = {"mendingskin", "physical"},
-  impatience = {"goldenseal", "dheal",  "daina", "might",  "salt",  "bloodboil",  "accelerate", "shrugging", "tree", "fool", "mental"},
-  paralysis = {"bloodroot", "dheal",  "daina", "might", "salt",  "bloodboil",   "accelerate", "shrugging", "fool", "physical"},
-  dizziness = {"goldenseal", "dheal", "daina", "focus", "salt",   "accelerate",  "might",  "bloodboil", "shrugging", "tree", "fool", "mental"},
+  impatience = {"goldenseal", "dheal",  "daina", "might",  "salt",  "bloodboil", "slough", "purify", "eruption", "accelerate", "shrugging", "tree", "fool", "mental"},
+  paralysis = {"bloodroot", "dheal",  "daina", "might", "salt",  "bloodboil", "slough", "purify", "eruption",  "accelerate", "shrugging", "fool", "physical"},
+  dizziness = {"goldenseal", "dheal", "daina", "focus", "salt",   "accelerate", "slough", "purify", "eruption", "might",  "bloodboil", "shrugging", "tree", "fool", "mental"},
   serioustrauma = {"restorationtorso","physical"},
   speared = {"writhe"},
-  brokenrightleg = {"restore", "dheal", "accelerate",  "salt", "daina", "might", "bloodboil", "shrugging", "fool", "tree", "mendinglegs", "mendingskin","physical"},
+  brokenrightleg = {"restore", "dheal", "accelerate",  "salt", "daina", "might", "slough", "purify", "eruption", "bloodboil", "shrugging", "fool", "tree", "mendinglegs", "mendingskin","physical"},
   webbed = {"flex", "writhe"},
   mangledrightarm = { "restorationarms","physical"},
-  stuttering = {"dheal", "might",  "bloodboil",  "salt", "daina", "shrugging",  "accelerate", "tree", "epidermalhead", "fool", "physical"},
+  stuttering = {"dheal", "might",  "bloodboil",  "salt", "daina", "shrugging", "slough", "purify", "eruption", "accelerate", "tree", "epidermalhead", "fool", "physical"},
   crackedribs = {"healthtorso"},
   damagedrightleg = {"restorationlegs","physical"},
   damagedhead = {"restorationhead","physical"},
-  haemophilia = {"dheal", "ginseng",  "might", "salt",  "daina", "accelerate", "shrugging", "tree", "fool", "physical"},
+  haemophilia = {"dheal", "ginseng",  "might", "salt",  "daina", "accelerate", "slough", "purify", "eruption","shrugging", "tree", "fool", "physical"},
   shivering = {"caloric", "physical"},
-  sensitivity = {"dheal", "kelp",  "might",  "salt",  "bloodboil", "daina", "accelerate", "shrugging", "tree", "fool", "physical"},
+  sensitivity = {"dheal", "kelp",  "might",  "salt",  "bloodboil", "daina", "slough", "purify", "eruption","accelerate", "shrugging", "tree", "fool", "physical"},
   entangled = {"flex", "writhe"},
   earthdisrupt = {"focus", "mental"},
-  dissonance = {"goldenseal", "dheal", "daina", "salt",  "might",  "bloodboil", "daina", "accelerate", "shrugging", "tree", "fool"},
+  dissonance = {"goldenseal", "dheal", "daina", "salt",  "might",  "bloodboil", "slough", "purify", "eruption","daina", "accelerate", "shrugging", "tree", "fool"},
   dehydrated = {"time"},
   demonstain = {"time"},
   deepsleep = {"wake"},
@@ -2638,40 +2658,40 @@ t.serverside.afflictions = {
   firedisrupt = {"lobelia", "mental"},
   flamefisted = {"time"},
   skullfractures = {"healthhead","physical"},
-  addiction = {"dheal", "ginseng",  "might",  "salt", "bloodboil",  "daina", "accelerate", "shrugging", "tree", "fool", "physical"},
+  addiction = {"dheal", "ginseng",  "might",  "salt", "bloodboil",  "daina", "slough", "purify", "eruption","accelerate", "shrugging", "tree", "fool", "physical"},
   frozen = {"caloric", "physical"},
   kaisurge = {"time"},
   selarnia = {"mendingtorso", "mendingbody"},
  -- climb = {"mendingskin"},
   slashedthroat = {"epidermalhead"},
   selfishness = {"generosity"},
-  hellsight = {"dheal",  "might",  "salt", "bloodboil", "shrugging", "daina", "accelerate", "tree", "valerian", "fool", "mental"},
+  hellsight = {"dheal",  "might",  "salt", "bloodboil", "shrugging", "daina", "slough", "purify", "eruption","accelerate", "tree", "valerian", "fool", "mental"},
   --cleg = {"restore", "dheal",  "might", "shrugging", "tree", "mendinglegs", "mendingskin", "fool"},
-  brokenrightarm = {"restore", "mendingarms", "dheal", "accelerate", "daina", "might",  "salt",  "shrugging", "fool", "tree", "mendingskin","physical"},
-  disloyalty = {"dheal",  "might", "bloodboil",  "salt",  "shrugging",  "accelerate",  "tree", "valerian", "fool"},
+  brokenrightarm = {"restore", "mendingarms", "dheal", "accelerate", "daina","slough", "purify", "eruption", "might",  "salt",  "shrugging", "fool", "tree", "mendingskin","physical"},
+  disloyalty = {"dheal",  "might", "bloodboil",  "salt",  "shrugging",  "slough", "purify", "eruption","accelerate",  "tree", "valerian", "fool"},
   manaleech = {"valerian"},
   unconciousness = {"time"},
-  confusion = {"ash", "dheal", "focus",  "might", "daina",  "salt",  "bloodboil", "accelerate", "shrugging", "tree", "fool", "mental"},
+  confusion = {"ash", "dheal", "focus",  "might", "daina",  "salt",  "bloodboil","slough", "purify", "eruption", "accelerate", "shrugging", "tree", "fool", "mental"},
   damagedleftleg = {"restorationlegs","physical"},
-  clumsiness = {"dheal", "kelp",  "might", "shrugging", "salt",  "daina", "bloodboil",  "accelerate", "tree", "fool", "physical"},
-  darkshade = {"dheal", "ginseng",  "might", "shrugging", "salt",  "daina",  "bloodboil", "accelerate", "tree", "fool", "physical"},
-  pacified = {"rage", "bellwort", "dheal", "focus",   "salt", "might", "bloodboil",  "daina", "accelerate", "shrugging", "tree", "fool", "mental"},
+  clumsiness = {"dheal", "kelp",  "might", "shrugging", "salt",  "daina", "bloodboil", "slough", "purify", "eruption", "accelerate", "tree", "fool", "physical"},
+  darkshade = {"dheal", "ginseng",  "might", "shrugging", "salt",  "daina",  "bloodboil","slough", "purify", "eruption", "accelerate", "tree", "fool", "physical"},
+  pacified = {"rage", "bellwort", "dheal", "focus",   "salt", "might", "bloodboil",  "daina", "slough", "purify", "eruption","accelerate", "shrugging", "tree", "fool", "mental"},
   impaled = {"writhe"},
   daeggerimpale = {"writhe"},
   disrupted = {"concentrate", "mental"},
   lapsingconsciousness = {"time"},
-  lovers = {"rage", "bellwort", "dheal", "focus",  "salt", "daina", "might",  "bloodboil",  "accelerate",  "shrugging", "tree", "fool", "mental"},
+  lovers = {"rage", "bellwort", "dheal", "focus",  "salt", "daina", "might",  "bloodboil", "slough", "purify", "eruption", "accelerate",  "shrugging", "tree", "fool", "mental"},
   bound = {"writhe"},
   voidfisted = {"time"},
   numbedleftarm = {"time"},
   numbedrightarm  = {"time"},
   slimeobscure = {"time"},
   damagedrightarm = {"restorationarms","physical"},
-  peace = {"rage", "bellwort", "dheal",  "might",  "salt", "bloodboil", "shrugging", "daina", "accelerate", "tree", "fool", "mental"},
-  stupidity = {"goldenseal", "dheal", "focus", "might", "accelerate", "shrugging", "tree", "fool", "mental"},
+  peace = {"rage", "bellwort", "dheal",  "might",  "salt", "bloodboil", "shrugging","slough", "purify", "eruption", "daina", "accelerate", "tree", "fool", "mental"},
+  stupidity = {"goldenseal", "dheal", "focus", "might", "accelerate", "slough", "purify", "eruption","shrugging", "tree", "fool", "mental"},
   mangledleftarm = {"restorationarms","physical"},
   hamstrung = {"time"},
-  healthleech = {"dheal", "kelp",  "salt",  "might", "bloodboil",  "daina", "accelerate", "shrugging", "tree", "fool", "physical"},
+  healthleech = {"dheal", "kelp",  "salt",  "might", "bloodboil",  "slough", "purify", "eruption", "daina", "accelerate", "shrugging", "tree", "fool", "physical"},
   fear = {"compose"},
   entropy = {"time"},
   hindered = {"time"},
@@ -2680,54 +2700,55 @@ t.serverside.afflictions = {
   weakenedmind = {"focus", "mental"},
   hypothermia = {"restorationbody", "physical"},
   spiritdisrupt = {"lobelia"},
-  dementia = {"focus", "ash", "dheal",  "might",  "salt",  "bloodboil", "daina", "accelerate", "shrugging", "tree", "fool", "mental"},
-  paranoia = {"focus", "ash", "dheal",  "might", "salt",   "bloodboil", "accelerate", "daina", "shrugging", "tree", "fool", "mental"},
+  dementia = {"focus", "ash", "dheal",  "might",  "salt",  "bloodboil", "daina","slough", "purify", "eruption", "accelerate", "shrugging", "tree", "fool", "mental"},
+  paranoia = {"focus", "ash", "dheal",  "might", "salt",   "bloodboil", "slough", "purify", "eruption","accelerate", "daina", "shrugging", "tree", "fool", "mental"},
  -- bleg = {"restorationarms", "restorationlegs"},
-  scytherus = {"dheal", "ginseng",  "might",  "salt",  "bloodboil", "daina", "accelerate", "shrugging", "tree", "fool", "physical"},
+  scytherus = {"dheal", "ginseng",  "might",  "salt",  "bloodboil", "daina","slough", "purify", "eruption", "accelerate", "shrugging", "tree", "fool", "physical"},
   mangledleftleg = {"restorationlegs","physical"},
-  lethargy = {"dheal", "ginseng",  "might",  "salt",  "bloodboil", "daina", "accelerate", "shrugging", "tree", "fool", "physical"},
+  lethargy = {"dheal", "ginseng",  "might",  "salt",  "bloodboil", "daina", "slough", "purify", "eruption","accelerate", "shrugging", "tree", "fool", "physical"},
   bleeding = {"clot"},
   bruisedribs = {"time"},
   internalbleeding = {"clot"},
   wristfractures = {"healtharms","physical"},
   spritidisrupt = {"lobelia"},
   vitiated = {"time"},
-  brokenleftarm = {"restore",  "mendingarms",  "salt",  "dheal", "accelerate", "daina", "might", "shrugging", "fool", "tree", "mendingskin", "fool","physical"},
+  brokenleftarm = {"restore",  "mendingarms",  "salt",  "dheal", "accelerate", "slough", "purify", "eruption","daina", "might", "shrugging", "fool", "tree", "mendingskin", "fool","physical"},
   torntendons = {"healthlegs","physical"},
-  voyria = {"dheal", "immunity",  "might",  "salt",  "bloodboil", "daina", "accelerate", "shrugging", "tree", "fool", "physical"},
-  burning = {"dheal",  "might", "bloodboil",  "salt",  "shrugging", "accelerate", "daina", "tree", "fool", "mendingbody", "physical"},
+  voyria = {"dheal", "immunity",  "might",  "salt",  "bloodboil", "daina", "slough", "purify", "eruption","accelerate", "shrugging", "tree", "fool", "physical"},
+  burning = {"dheal",  "might", "bloodboil",  "salt",  "shrugging", "slough", "purify", "eruption","accelerate", "daina", "tree", "fool", "mendingbody", "physical"},
   crushedthroat = {"mendinghead"},
-  deadening = {"dheal",  "might", "bloodboil",   "salt", "shrugging", "daina", "accelerate", "tree", "elm", "fool", "physical"},
+  deadening = {"dheal",  "might", "bloodboil",   "salt", "shrugging","slough", "purify", "eruption", "daina", "accelerate", "tree", "elm", "fool", "physical"},
   dazed = {"elm"},
   dazzled = {"mendinghead"},
-  tension = {"dheal",  "might",  "bloodboil", "shrugging", "salt",  "accelerate", "daina", "tree", "elm", "fool"},
+  tension = {"dheal",  "might",  "bloodboil", "shrugging", "salt", "slough", "purify", "eruption", "accelerate", "daina", "tree", "elm", "fool"},
   pressure = {"pear"},
-  aeon = {"dheal",  "might",  "bloodboil", "shrugging", "salt",  "accelerate", "daina", "tree", "elm", "fool"},
-  agoraphobia = {"dheal", "lobelia", "focus",  "might",  "salt", "bloodboil",  "daina", "accelerate", "shrugging", "tree", "fool", "mental"},
+  aeon = {"dheal",  "might",  "bloodboil", "shrugging", "salt", "slough", "purify", "eruption", "accelerate", "daina", "tree", "elm", "fool"},
+  agoraphobia = {"dheal", "lobelia", "focus",  "might",  "salt", "slough", "purify", "eruption","bloodboil",  "daina", "accelerate", "shrugging", "tree", "fool", "mental"},
   mangledrightleg = {"restorationlegs","physical"},
-  anorexia = {"epidermalbody", "dheal", "focus",  "might",  "salt", "bloodboil",  "daina", "accelerate", "shrugging", "tree", "fool", "mental"},
+  anorexia = {"epidermalbody", "dheal", "focus",  "might",  "salt", "slough", "purify", "eruption","bloodboil",  "daina", "accelerate", "shrugging", "tree", "fool", "mental"},
   temperedphlegmatic = {"ginger"},
-  masochism = {"dheal", "lobelia", "focus",  "might",  "salt",  "bloodboil", "daina", "accelerate", "shrugging", "tree", "fool", "mental"},
-  claustrophobia = {"dheal", "lobelia", "focus",  "salt",  "might", "bloodboil",  "daina", "accelerate", "shrugging", "tree", "fool", "mental"},
+  masochism = {"dheal", "lobelia", "focus",  "might",  "salt", "slough", "purify", "eruption", "bloodboil", "daina", "accelerate", "shrugging", "tree", "fool", "mental"},
+  claustrophobia = {"dheal", "lobelia", "focus",  "salt",  "might", "slough", "purify", "eruption","bloodboil",  "daina", "accelerate", "shrugging", "tree", "fool", "mental"},
   itching = {"epidermalbody", "physical"},
   daeggerimpale = {"writhe"},
+  scalded = {"epidermalbody", "physical"},
   mildtrauma = {"restorationtorso","physical"},
   webbed = {"writhe"},
-  hypochondria = {"dheal", "kelp",  "might", "daina",  "salt",  "accelerate", "shrugging", "bloodboil",  "tree", "fool", "physical"},
-  nausea = {"dheal", "ginseng",  "might",  "accelerate",  "salt",  "shrugging", "tree",  "bloodboil", "fool", "physical"},
-  hallucinations = {"focus", "ash", "dheal", "daina",  "salt",  "accelerate",  "might", "bloodboil",  "shrugging", "tree", "fool", "mental"},
-  shyness = {"goldenseal", "dheal", "focus", "daina",  "salt",  "accelerate",  "might", "bloodboil",  "shrugging", "tree", "fool", "mental"}, --DW UPDATE
-  shadowmadness = {"goldenseal", "dheal", "daina", "salt",  "accelerate",  "might",  "bloodboil", "shrugging", "fool"}, --DW UPDATE
-  depression = {"goldenseal", "dheal",  "daina", "salt",  "accelerate", "might", "bloodboil",  "shrugging", "tree", "fool"}, --DW UPDATE
+  hypochondria = {"dheal", "kelp",  "might", "daina",  "salt", "slough", "purify", "eruption", "accelerate", "shrugging", "bloodboil",  "tree", "fool", "physical"},
+  nausea = {"dheal", "ginseng",  "might",  "accelerate",  "salt", "slough", "purify", "eruption", "shrugging", "tree",  "bloodboil", "fool", "physical"},
+  hallucinations = {"focus", "ash", "dheal", "daina",  "salt", "slough", "purify", "eruption", "accelerate",  "might", "bloodboil",  "shrugging", "tree", "fool", "mental"},
+  shyness = {"goldenseal", "dheal", "focus", "daina",  "salt", "slough", "purify", "eruption", "accelerate",  "might", "bloodboil",  "shrugging", "tree", "fool", "mental"}, --DW UPDATE
+  shadowmadness = {"goldenseal", "dheal", "daina", "salt",  "accelerate","slough", "purify", "eruption",  "might",  "bloodboil", "shrugging", "fool"}, --DW UPDATE
+  depression = {"goldenseal", "dheal",  "daina", "salt",  "accelerate", "slough", "purify", "eruption","might", "bloodboil",  "shrugging", "tree", "fool"}, --DW UPDATE
   heartseed = {"restorationtorso", "physical"},
   temperedcholeric = {"ginger", }, -- choleric is health damage
   temperedsanguine = {"ginger", },  -- bleeding
-  asthma = {"fitness", "dheal", "kelp", "accelerate", "salt",  "daina", "might", "bloodboil",  "shrugging", "tree", "fool", "physical"},
-  parasite = {"fitness", "dheal", "kelp","accelerate", "salt",  "daina", "might", "bloodboil",  "shrugging", "tree", "fool", "physical"}, --DW UPDATE
-  justice = {"bellwort", "dheal", "rage","accelerate", "salt", "daina", "might", "bloodboil",  "shrugging", "tree", "fool", "physical"},
-  retribution = {"bellwort", "dheal", "rage", "accelerate", "salt",  "daina", "might", "bloodboil",  "shrugging", "tree", "fool", "physical"}, --DW UPDATE
-  timeloop = {"bellwort", "rage", "dheal", "accelerate", "salt", "daina", "might", "bloodboil", "shrugging", "fool", "tree",  "physical"}, --DW UPDATE
-  brokenleftleg = {"restore", "dheal", "accelerate", "salt", "daina", "might", "bloodboil", "shrugging", "fool", "tree", "mendinglegs", "mendingskin","physical"},
+  asthma = {"fitness", "dheal", "kelp", "accelerate", "salt", "slough", "purify", "eruption", "daina", "might", "bloodboil",  "shrugging", "tree", "fool", "physical"},
+  parasite = {"fitness", "dheal", "kelp","accelerate", "salt", "slough", "purify", "eruption", "daina", "might", "bloodboil",  "shrugging", "tree", "fool", "physical"}, --DW UPDATE
+  justice = {"bellwort", "dheal", "rage","accelerate", "salt", "slough", "purify", "eruption","daina", "might", "bloodboil",  "shrugging", "tree", "fool", "physical"},
+  retribution = {"bellwort", "dheal", "rage", "accelerate", "salt", "slough", "purify", "eruption", "daina", "might", "bloodboil",  "shrugging", "tree", "fool", "physical"}, --DW UPDATE
+  timeloop = {"bellwort", "rage", "dheal", "accelerate", "salt", "slough", "purify", "eruption","daina", "might", "bloodboil", "shrugging", "fool", "tree",  "physical"}, --DW UPDATE
+  brokenleftleg = {"restore", "dheal", "accelerate", "salt", "daina","slough", "purify", "eruption", "might", "bloodboil", "shrugging", "fool", "tree", "mendinglegs", "mendingskin","physical"},
   stun = {"time"},
   prone = {"stand"},
   blindness = {"epidermalbody"},
@@ -2780,6 +2801,9 @@ restorationbody = { type = "salve" },
 generosity = { type = "generosity" },
 tree = { type = "tree" },
 accelerate = { type = "balance" },
+slough = { type = "balance" },
+purify = { type = "balance" },
+eruption = { type = "balance" },
 alleviate = { type = "balance" },
 salt = { type = "balance" },
 bloodboil = { type = "balance" },
@@ -2986,7 +3010,7 @@ TReX.serverside.tree_by_class=function()
     ["jester"] = {["default"] = 0}, 
     ["magi"] = {["default"] = 0}, 
     ["monk"] = {["default"] = 0}, 
-	["shikudo"] = {["default"] = 0},
+	["shikudo"] = {["default"] = 0}, 
     ["occultist"] = {["default"] = 0}, 
     ["priest"] = {["default"] = 0}, 
     ["serpent"] = {["default"] = 0}, 

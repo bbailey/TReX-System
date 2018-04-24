@@ -19,7 +19,7 @@ TReX.stats.prompt_options={
 	timestamp = function () timestamp = tostring(getTime(true,"hh:mm:ss:zzz")) return("<dim_grey>"..timestamp) end,
 	rage = function () if not TReX.hunting.rage then TReX.hunting.rage = 0 end return("<dim_grey>(<red>R<white>: "..TReX.hunting.rage.."<dim_grey>)<white>") end,
 	karma = function () if TReX.s.class=="Occultist" then return "<white>("..TReX.serverside.karma_check()..")%<green> " else return "" end end,
-	sunlight = function () if table.index_of({"Druid","Sylvan"}, TReX.s.class) then if TReX.stats.sunlight >= 1 then return "<white>("..TReX.stats.sunlight..")%<green> " else return "" end else return "" end end,
+	sunlight = function () if table.index_of({"Druid","Sylvan"}, TReX.s.class)then return "<white>("..TReX.serverside.sunlight_check()..")%<green> " else return "" end end,
 	afftracker = function ()
 		if not promptset then
 			promptset={}
@@ -59,9 +59,9 @@ TReX.stats.prompt_options={
 		
 		if not target or target == "None" then
 			target = ""
-		end  
-			return "<tomato>"..target.." <white>"
-		
+		end
+
+		return "<tomato>"..target.." <white>"		
 
 	end,
 
@@ -81,7 +81,8 @@ TReX.stats.prompt_options={
 	level = function () return "<grey>lvl <green>"..gmcp.Char.Status.level.." " end,
 	lightwall = function () if table.contains({TReX.serverside.itms.room}, "a lightwall") then return "<white>{<red>[<white>LW<red>]<white>}" else return "" end end,
 	heldbreath = function () if t.def.heldbreath then return "<sky_blue>[<white>B<sky_blue>]" else return "" end end,
-	--ferocity = function () if tgz.snb.ferocity >= 1 then return "("..tgz.snb.ferocity..")" else return "" end end,	
+	--ferocity = function () if tgz.snb.ferocity >= 1 then return "("..tgz.snb.ferocity..")" else return "" end end,
+	shin = function () if TReX.s.class=="Blademaster" then return TReX.serverside.myShin() else return "" end end,
 	limbdisplay = function () return SLC_shortdisplay() end, 
 	kai = function () if not TReX.s.class=="Monk" then return "" end if gmcp.Char.Vitals.charstats[3] then return "<sky_blue>("..tostring(tonumber(string.sub(gmcp.Char.Vitals.charstats[3],5,string.len(gmcp.Char.Vitals.charstats[3])- 1))).."%)" else return "" end end,
 	--affs = function () return t.serverside.gmcp_aff_table else return "" end end,
@@ -147,13 +148,14 @@ t.stats								= { -- so anything you change in this table , gets saved to home 
 	["p_endurance"] 		   	= {["name"] = "endurance %", ["enabled"] = false},
 	["endurance_prompt"]	   	= {["name"] = "endurance #", ["enabled"] = false},
 	["time_stamp_prompt"]	   	= {["name"] = "timestamp", ["enabled"] = false},
-	--["limb_display_prompt"]	   	= {["name"] = "slc", ["enabled"] = false},
+	["limb_display_prompt"]	   	= {["name"] = "slc", ["enabled"] = false},
 	["battle_rage"]				= {["name"] = "battle rage", ["enabled"] = false},
 	--["dragon_breath"]		   	= {["name"] = "dragon breath", ["enabled"] = false},
 	["level_prompt"] 		   	= {["name"] = "dragon %", ["enabled"] = false},
 	["prone_prompt"]		   	= {["name"] = "prone", ["enabled"] = false},
 	["mono_prompt"]			   	= {["name"] = "monolith", ["enabled"] = false},
 	--["denizen_health_prompt"]  	= {["name"] = "denizen health %", ["enabled"] = false},
+	["shin"]  					= {["name"] = "shin", ["enabled"] = false},
 	["held_breath"]  			= {["name"] = "held breath", ["enabled"] = false},
 	["target_prompt"]  		   	= {["name"] = "target", ["enabled"] = false},
 	["eq_bal_prompt"]			= {["name"] = "eq & bal", ["enabled"] = false},
@@ -486,14 +488,14 @@ TReX.stats.custom_prompt=function()
 					--prompt_string = prompt_string..prompt_options.trance()
 					--prompt_string = prompt_string..prompt_options.vital()
 					--prompt_string = prompt_string..prompt_options.stance()
-					--prompt_string = prompt_string..prompt_options.shin()
+					if t.stats["shin"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.shin() .. " <white>" else end
 					--prompt_string = prompt_string..prompt_options.shintrance()
 					--prompt_string = prompt_string..prompt_options.bmstance()
 					--prompt_string = prompt_string..prompt_options.sulphur()
 					--prompt_string = prompt_string..prompt_options.ent_bal()
 					--prompt_string = prompt_string..prompt_options.dmark()
 					--prompt_string = prompt_string..prompt_options.uni() .. " "
-					--if t.stats["limb_display_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.limbdisplay() .. " " else end
+					if t.stats["limb_display_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.limbdisplay() .. " " else end
 					if t.stats["mono_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.mono() .. "<white>" else end
 					if t.stats["diff_health_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.diffhealth() .. "<white>" else end
 					if t.stats["diff_mana_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.diffmana() .. "<white>" else end
@@ -921,9 +923,9 @@ local sortPrompt = {}
 		echoLink(nWithSpace, command, "Toggle " .. n, true)
 		
 	end
-		echo"\n\n"
-		deletep = false
-		showprompt()
+		--echo"\n\n"
+		--deletep = false
+		--showprompt()
 end
 
 TReX.stats.on_click=function(variable, toggle, toggle2)
