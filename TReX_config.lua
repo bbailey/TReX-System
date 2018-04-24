@@ -264,17 +264,7 @@ TReX.config.login_load=function(event)
 
 			enableTimer("inventory updater")			
 			tempTimer(1, [[t.serverside["settings"].sys_loaded = true]])   
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-			enableTimer("inventory updater")
-=======
-			enableTimer("inventory updater")
 
-			playSoundFile(getMudletHomeDir().. [[/TReX/TReX.mp3]])  
->>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
-
->>>>>>> be4a6674c57fd57065a12cd0d5e88d234acf447b
 			playSoundFile(getMudletHomeDir().. [[/TReX/TReX.mp3]])  
 			
 		else
