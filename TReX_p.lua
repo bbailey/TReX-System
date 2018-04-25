@@ -103,10 +103,11 @@ end
 						table.insert(TReX.p.here, gmcp.Room.Players[k].name)
 							if hl.raid then
 								if gmcp.Char.Status.name == "Nehmrah" then 
-									if table.contains({tgz.ally_table}, gmcp.Room.Players[k].name) and not table.contains({tgz.raid.ally_table}, gmcp.Room.Players[k].name) then
+									if (trx == nil or not trx) then return end
+									if table.contains({trx.ally_table}, gmcp.Room.Players[k].name) and not table.contains({trx.raid.ally_table}, gmcp.Room.Players[k].name) then
 										t.send("ally "..gmcp.Room.Players[k].name)
 									end	
-									if not table.contains({tgz.ally_table}, gmcp.Room.Players[k].name) and not table.contains({tgz.enemy_table}, gmcp.Room.Players[k].name) then
+									if not table.contains({trx.ally_table}, gmcp.Room.Players[k].name) and not table.contains({trx.enemy_table}, gmcp.Room.Players[k].name) then
 										if TReX.serverside.enemy_check() then
 											t.send("enemy " .. gmcp.Room.Players[k].name)
 										end

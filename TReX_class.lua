@@ -51,9 +51,7 @@ local aff = aff or ""
 	 	killTimer(TReX_Class_Reset_Timer)
 	 	TReX_Class_Reset_Timer = nil 
 	 end
-
    	 TReX_Class_Reset_Timer = tempTimer(15, [[TReX.class.reset() t.serverside.green_echo("Reset Enemy Class")]]) 
-
 	end
 
 		--soft target
@@ -123,7 +121,7 @@ class_skill = {
 ["alchemist"] = {["salt"]=false,},
 ["dragon"] = {["dragonform"]=false,},
 ["monk"] = {["fitness"]=false,},
---["occultist"] = {["fool"]=false,},
+["occultist"] = {["tarot"]=false,},
 ["sentinel"] = {["might"]=false, ["fitness"]=false,},
 ["depthswalker"] = {["accelerate"]=false,},
 ["serpent"] = {["shrugging"]=false,},
@@ -134,7 +132,7 @@ class_skill = {
 ["druid"] = {["might"]=false, ["fitness"]=false,},
 ["magi"] = {["bloodboil"]=false,},
 ["shaman"] = {["daina"]=false,},
---["jester"] = {["fool"]=false,},
+["jester"] = {["tarot"]=false,},
 ["water"] = {["purify"]=false,},
 ["earth"] = {["extrusion"]=false,},
 ["fire"] = {[""]=false,},

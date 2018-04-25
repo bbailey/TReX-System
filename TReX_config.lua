@@ -261,10 +261,9 @@ TReX.config.login_load=function(event)
 			end
 			
 			TReX.config.saveSettings()
-
-			enableTimer("inventory updater")			
+			
 			tempTimer(1, [[t.serverside["settings"].sys_loaded = true]])   
-
+			enableTimer("inventory updater")
 			playSoundFile(getMudletHomeDir().. [[/TReX/TReX.mp3]])  
 			
 		else
@@ -278,6 +277,8 @@ TReX.config.install=function()
 	TReX.defs.list()
 	TReX.class.skill_set()
 	TReX.serverside.settings()
+	TReX.reset_taffs()
+	TReX.reset_tbals()
 	TReX.serverside.tree_by_class()
 	TReX.prios.default_settings()
 	TReX.prios.reset()
@@ -642,7 +643,6 @@ t.serverside.flee_direction = flee_direction
 		t.send(TReX.rewield(t.inv["cane"].id, "l"))
 	end
 
-
 	
 --if already fleeing return
 if t.serverside.flee_started then  -- if already tumbling check	--return 
@@ -677,9 +677,9 @@ end
 		for i = 1, #afftest, 1 do
 			if t.affs[afftest[i]] then
 				if TReX.s.class == "Bard" then
-					t.serverside.movemethod = "cq all##queue prepend eqbal somersault"
+					t.serverside.movemethod = "cq all##Somersault"
 				else
-					t.serverside.movemethod = "cq all##queue prepend eqbal tumble"
+					t.serverside.movemethod = "cq all##tumble"
 				end
 			end
 		end

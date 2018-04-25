@@ -784,11 +784,11 @@ TReX.lock.clear()
 --[[HARD LOCK]]		
 	if (t.affs.impatience) and (t.affs.asthma) and (t.affs.slickness) and (t.affs.anorexia) and (t.affs.paralysis) then 
 		t.lock["hard"] = true
-		--if not table.is_empty(tgz.bard.harmonics.table) and tgz.bard.harmonics.table_check then
+		--if not table.is_empty(trx.bard.harmonics.table) and trx.bard.harmonics.table_check then
 		--	if t.bals.eq and t.bals.bal then
 		--		t.send("call harmonics")
 			--	TReX.serverside.lock_class_skill_check()
-			--	tgz.bard.harmonics.table_check = false
+			--	trx.bard.harmonics.table_check = false
 		--	end
 		--end
 		--TReX.serverside.lock_class_skill_check()
@@ -1207,7 +1207,7 @@ local aff_abbrev = {
   airdisrupt             = "<DarkSlateGrey>adsr",
   airfisted              = "<violet>airfisted",
   anorexia               = "<violet>ano",
-  asphyxiating           = "<violet>asphyx"
+  asphyxiating           = "<violet>asphyx",
   sleeping               = "<white>[<firebrick>ASLEEP<white>]",
   asthma                 = "<orange>ast",
   blackout               = "<red>[<DarkKhaki>blackout<red>]",
