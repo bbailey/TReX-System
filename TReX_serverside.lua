@@ -1472,13 +1472,13 @@ TReX.serverside.affbar=function(mode)
 		setMiniConsoleFontSize("TReX.serverside.middle", 12)
 		TReX.serverside.container:show()
 		t.serverside.gmcpAffShow()
-		setBorderBottom(127)
+		setBorderBottom(27)
 		t.serverside.green_echo("AffBar On\n")
 		
 	else
 		t.serverside.settings.affbar = false
 		TReX.serverside.container:hide()
-		setBorderBottom(-10)
+		setBorderBottom(0)
 		t.serverside.red_echo("AffBar Off\n")
 	end
 end
