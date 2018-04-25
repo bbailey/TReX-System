@@ -677,7 +677,7 @@ end
 		for i = 1, #afftest, 1 do
 			if t.affs[afftest[i]] then
 				if TReX.s.class == "Bard" then
-					t.serverside.movemethod = "cq all##Somersault"
+					t.serverside.movemethod = "cq all##somersault"
 				else
 					t.serverside.movemethod = "cq all##tumble"
 				end
