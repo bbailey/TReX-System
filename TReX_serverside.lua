@@ -9,8 +9,8 @@ local humourafftable={
   "haemophilia", "recklessness", "paralysis",
   } 
 
-TReX.serverside.itms					= TReX.serverside.itms or {}
-TReX.serverside.itms.room			    = TReX.serverside.itms.room or {}
+TReX.serverside.items					= TReX.serverside.items or {}
+TReX.serverside.items.room			    = TReX.serverside.items.room or {}
 TReX.serverside.gingerlevel = 1
 
 registerAnonymousEventHandler("gmcp.Char.Afflictions.Add", "t.serverside.gmcpAffAdded") -- [[internal events]]
@@ -1490,9 +1490,9 @@ TReX.serverside.eh_items=function(event, arg)
 
 		-- ROOM ITEMS
 		if gmcp.Char.Items.List.location == "room" then
-			TReX.serverside.itms.room = {}
+			TReX.serverside.items.room = {}
 			for key,value in pairs(gmcp.Char.Items.List.items) do
-				if value.name then TReX.serverside.itms.room[value.id] = value.name end
+				if value.name then TReX.serverside.items.room[value.id] = value.name end
 
 			end
 			--gui.updateRoomInv()
@@ -1502,7 +1502,7 @@ TReX.serverside.eh_items=function(event, arg)
 		-- ROOM ITEMS
 		if gmcp.Char.Items.Add.location == "room" then
 			local value = gmcp.Char.Items.Add.item
-			TReX.serverside.itms.room[value.id] = value.name
+			TReX.serverside.items.room[value.id] = value.name
 
 		end
 
@@ -1510,7 +1510,7 @@ TReX.serverside.eh_items=function(event, arg)
 		-- ROOM ITEMS
 		if gmcp.Char.Items.Remove.location == "room" then
 			itemKey = gmcp.Char.Items.Remove.item.id
-			TReX.serverside.itms.room["" .. itemKey] = nil
+			TReX.serverside.items.room["" .. itemKey] = nil
 		end
 	end
 	
