@@ -1714,7 +1714,7 @@ if table.contains({t.serverside.gmcp_aff_table}, aff) then return end
 
 		local affInfo = t.serverside.afflictions[aff]
 		local stacks = t.stacks
-		
+
 		-- this function sets override to false so if we are sitting and get a random afflictin we will stand up..
 		if aff == tostring("prone") and t.serverside["settings"].override then
 			t.serverside["settings"].override = true  
@@ -1723,34 +1723,6 @@ if table.contains({t.serverside.gmcp_aff_table}, aff) then return end
 		end
 
 		
-		if table.index_of({"pressure (1)","pressure (2)","pressure (3)","pressure (4)","pressure (5)","pressure (6)","pressure (7)","pressure (8)","pressure (9)","pressure (10)"}, aff) then 
-		
-			if aff=="pressure (1)" then
-				t.affs.pres=1
-			elseif aff=="pressure (2)" then
-				t.affs.pres=2
-			elseif aff=="pressure (3)" then
-				t.affs.pres=3
-			elseif aff=="pressure (4)" then
-				t.affs.pres=4
-			elseif aff=="pressure (5)" then
-				t.affs.pres=5
-			elseif aff=="pressure (6)" then
-				t.affs.pres=6
-			elseif aff=="pressure (7)" then
-				t.affs.pres=7
-			elseif aff=="pressure (8)" then
-				t.affs.pres=8
-			elseif aff=="pressure (9)" then
-				t.affs.pres=9
-			elseif aff=="pressure (10)" then
-				t.affs.pres=10
-			end
-		
-				return
-		
-		end
-	   
 		if table.index_of({"burning (1)","burning (2)","burning (3)","burning (4)","burning (5)"}, aff) then 
 		
 			if aff=="burning (1)" then
@@ -1835,36 +1807,7 @@ if table.contains({t.serverside.gmcp_aff_table}, aff) then return end
 		--local aff,count = affliction or string.match( gmcp.Char.Afflictions.Add.name, "(%w+) %((%d+)%)" )
 		local aff = gmcp.Char.Afflictions.Add.name
 		
-		
-		
-		if table.index_of({"pressure (1)","pressure (2)","pressure (3)","pressure (4)","pressure (5)","pressure (6)","pressure (7)","pressure (8)","pressure (9)","pressure (10)"}, aff) then 
-		
-			if aff=="pressure (1)" then
-				t.affs.pres=1
-			elseif aff=="pressure (2)" then
-				t.affs.pres=2
-			elseif aff=="pressure (3)" then
-				t.affs.pres=3
-			elseif aff=="pressure (4)" then
-				t.affs.pres=4
-			elseif aff=="pressure (5)" then
-				t.affs.pres=5
-			elseif aff=="pressure (6)" then
-				t.affs.pres=6
-			elseif aff=="pressure (7)" then
-				t.affs.pres=7
-			elseif aff=="pressure (8)" then
-				t.affs.pres=8
-			elseif aff=="pressure (9)" then
-				t.affs.pres=9
-			elseif aff=="pressure (10)" then
-				t.affs.pres=10
-			end
-		
-				return
-		
-		end
-	   
+		  
 		if table.index_of({"burning (1)","burning (2)","burning (3)","burning (4)","burning (5)"}, aff) then 
 		
 			if aff=="burning (1)" then
