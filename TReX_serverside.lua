@@ -838,7 +838,7 @@ local queue_kelp = false
 	end
 	
 	for _,v in pairs({"Sentinel","Druid"}) do if TReX.s.class == v then t.might() end end
-	--for _,v in pairs({"Occultist","Jester"}) do if TReX.s.class == v then t.fool() end end
+	for _,v in pairs({"Occultist","Jester"}) do if TReX.s.class == v then t.fool() end end
  	for _,v in pairs({"Magi"}) do if TReX.s.class == v then t.bloodboil() end end
 	for _,v in pairs({"Dragon"}) do if TReX.s.class == v then t.dragonheal() end end
 	for _,v in pairs({"Serpent"}) do if TReX.s.class == v then t.shrugging() end end
@@ -1207,6 +1207,7 @@ local aff_abbrev = {
   airdisrupt             = "<DarkSlateGrey>adsr",
   airfisted              = "<violet>airfisted",
   anorexia               = "<violet>ano",
+  asphyxiating           = "<violet>asphyx"
   sleeping               = "<white>[<firebrick>ASLEEP<white>]",
   asthma                 = "<orange>ast",
   blackout               = "<red>[<DarkKhaki>blackout<red>]",
@@ -1214,7 +1215,7 @@ local aff_abbrev = {
   blindness              = "<DarkSlateGrey>blind",
   blistered              = "<red>blstrd",
   bound                  = "<DarkSlateGrey>bound",
-  burning                = "<orange_red>burn <white>("..d.. "" ..t.affs["burn"].."<white>)",
+  burning                = "<orange_red>burning <white>("..d.. "" ..t.affs["burn"].."<white>)",
   charredburn            = "<orange_red>:charredburn: <white>(<firebrick>4<white>)",
   cadmuscurse		     = "<white>(<red>CADMUS<white>)",
   temperedcholeric       = "<DarkKhaki>chol <white>("..c.. ""..t.affs["temperedcholeric"].."<white>)",
@@ -1351,7 +1352,7 @@ local aff_abbrev = {
   vitiated               = "<DarkKhaki>vitiated",
   voidfisted             = "<DarkKhaki>voidfisted",
   tension				 = "<dark_orange>tension",
-  pressure				 = "<dark_orange>pressure",
+  pressure				 = "<orange_red>pressure <white>("..d.. "" ..t.affs["pres"].."<white>)",
   coldfate				 = "<dark_orange>coldfate",
   torntendons            = "<DarkKhaki>ttendons <white>("..c.. ""..t.affs["torntendons"].."<white>)",
   transfixation          = "<DarkKhaki>transf",
@@ -1471,13 +1472,13 @@ TReX.serverside.affbar=function(mode)
 		setMiniConsoleFontSize("TReX.serverside.middle", 12)
 		TReX.serverside.container:show()
 		t.serverside.gmcpAffShow()
-		setBorderBottom(27)
+		setBorderBottom(127)
 		t.serverside.green_echo("AffBar On\n")
 		
 	else
 		t.serverside.settings.affbar = false
 		TReX.serverside.container:hide()
-		setBorderBottom(0)
+		setBorderBottom(-10)
 		t.serverside.red_echo("AffBar Off\n")
 	end
 end
@@ -1721,10 +1722,52 @@ if table.contains({t.serverside.gmcp_aff_table}, aff) then return end
 			t.serverside["settings"].override = false
 		end
 
+		
+		if table.index_of({"pressure (1)","pressure (2)","pressure (3)","pressure (4)","pressure (5)","pressure (6)","pressure (7)","pressure (8)","pressure (9)","pressure (10)"}, aff) then 
+		
+			if aff=="pressure (1)" then
+				t.affs.pres=1
+			elseif aff=="pressure (2)" then
+				t.affs.pres=2
+			elseif aff=="pressure (3)" then
+				t.affs.pres=3
+			elseif aff=="pressure (4)" then
+				t.affs.pres=4
+			elseif aff=="pressure (5)" then
+				t.affs.pres=5
+			elseif aff=="pressure (6)" then
+				t.affs.pres=6
+			elseif aff=="pressure (7)" then
+				t.affs.pres=7
+			elseif aff=="pressure (8)" then
+				t.affs.pres=8
+			elseif aff=="pressure (9)" then
+				t.affs.pres=9
+			elseif aff=="pressure (10)" then
+				t.affs.pres=10
+			end
+		
+				return
+		
+		end
 	   
-	   			if aff=="burning" then
-					t.affs.burn = 1
-				end
+		if table.index_of({"burning (1)","burning (2)","burning (3)","burning (4)","burning (5)"}, aff) then 
+		
+			if aff=="burning (1)" then
+				t.affs.burn=1
+			elseif aff=="burning (2)" then
+				t.affs.burn=2
+			elseif aff=="burning (3)" then
+				t.affs.burn=3
+			elseif aff=="burning (4)" then
+				t.affs.burn=4
+			elseif aff=="burning (5)" then
+				t.affs.burn=5
+			end
+		
+				return
+		
+		end
 	   		
 		
 		
@@ -1791,7 +1834,54 @@ if table.contains({t.serverside.gmcp_aff_table}, aff) then return end
 	   --[[collect current affliction data from gmcp]]
 		--local aff,count = affliction or string.match( gmcp.Char.Afflictions.Add.name, "(%w+) %((%d+)%)" )
 		local aff = gmcp.Char.Afflictions.Add.name
-		if table.index_of({"burning (1)","burning (2)","burning (3)","burning (4)","burning (5)"}, aff) then return end
+		
+		
+		
+		if table.index_of({"pressure (1)","pressure (2)","pressure (3)","pressure (4)","pressure (5)","pressure (6)","pressure (7)","pressure (8)","pressure (9)","pressure (10)"}, aff) then 
+		
+			if aff=="pressure (1)" then
+				t.affs.pres=1
+			elseif aff=="pressure (2)" then
+				t.affs.pres=2
+			elseif aff=="pressure (3)" then
+				t.affs.pres=3
+			elseif aff=="pressure (4)" then
+				t.affs.pres=4
+			elseif aff=="pressure (5)" then
+				t.affs.pres=5
+			elseif aff=="pressure (6)" then
+				t.affs.pres=6
+			elseif aff=="pressure (7)" then
+				t.affs.pres=7
+			elseif aff=="pressure (8)" then
+				t.affs.pres=8
+			elseif aff=="pressure (9)" then
+				t.affs.pres=9
+			elseif aff=="pressure (10)" then
+				t.affs.pres=10
+			end
+		
+				return
+		
+		end
+	   
+		if table.index_of({"burning (1)","burning (2)","burning (3)","burning (4)","burning (5)"}, aff) then 
+		
+			if aff=="burning (1)" then
+				t.affs.burn=1
+			elseif aff=="burning (2)" then
+				t.affs.burn=2
+			elseif aff=="burning (3)" then
+				t.affs.burn=3
+			elseif aff=="burning (4)" then
+				t.affs.burn=4
+			elseif aff=="burning (5)" then
+				t.affs.burn=5
+			end
+		
+				return
+		
+		end
 	
 		local affInfo = t.serverside.afflictions[aff]
 		local stacks = t.stacks
@@ -1804,10 +1894,6 @@ if table.contains({t.serverside.gmcp_aff_table}, aff) then return end
 			t.serverside["settings"].override = false
 	   end
 
-	   
-	   			if aff=="burning" then
-					t.affs.burn = 1
-				end
 	   
 	-- important to add the aff to the table.
 	-- this table adds gmcp afflictions to the t.serverside.gmcp_aff_table table, all but the ignored. 
@@ -1884,10 +1970,12 @@ TReX.serverside.affremove=function(aff)
 				t.affs.unknownany = 0
 			end
 	
+				if aff=="pressure" then
+					t.affs.press = 0
+				end
 	
  				if aff=="burning" then
 					t.affs.burn = 0
-
 				end
 	
 			--t.serverside.red_echo("Unknown Affliction Cured <white>[<LawnGreen>"..aff.."<white>]")
@@ -1975,27 +2063,16 @@ t.serverside.gmcpAffRemoved=function(aff) -- motherboard gmcpaff remove
 	if t.serverside["settings"].installed then
 	  
 		local aff = gmcp.Char.Afflictions.Remove[1] -- testing
-		
-		if table.index_of({"burning (1)","burning (2)","burning (3)","burning (4)","burning (5)"}, aff) then
-		--	aff = "burning"
-			--t.affs["burn"] = t.affs["burn"] - 1
-			--	if t.affs["burn"] < 1 then
-					--t.affs["burn"] = 0
-				--	table.remove(t.serverside.gmcp_aff_table, table.index_of(t.serverside.gmcp_aff_table, aff))
-			--	end
-			--print(aff)
-			--print(t.affs["burn"])
-				return
-		end
-		
 		local affInfo = t.serverside.afflictions[aff]
 		local stacks = t.stacks
 		local x = -1
  
-
  				if aff=="burning" then
 					t.affs.burn = 0
-
+				end
+				
+				if aff=="pressure" then
+					t.affs.pres = 0
 				end
  
 			 --[[manual table variable instatiation]]
@@ -2219,10 +2296,10 @@ t.serverside.settings_default = {
         sipping = "No",
         transmutation = "No",
         sip = "Health",
-        sip_health_at = 87,--math.ceil(TReX.v.sipHealth),
-        sip_mana_at = 77,--math.ceil(TReX.v.sipMana),
-        moss_health_at = 67,--math.ceil(TReX.v.mossHealth),
-        moss_mana_at = 57,--math.ceil(TReX.v.mossMana),
+        sip_health_at = 93,--math.ceil(TReX.v.sipHealth),
+        sip_mana_at = 83,--math.ceil(TReX.v.sipMana),
+        moss_health_at = 73,--math.ceil(TReX.v.mossHealth),
+        moss_mana_at = 63,--math.ceil(TReX.v.mossMana),
         focus = "No",
         focus_over_herbs = "Yes", -- make an settings option later <<<<<<
         tree = "No",
@@ -2231,7 +2308,7 @@ t.serverside.settings_default = {
         vault = "No",
         mount = "No", 
         insomnia = "No",
-        fractures = 33 ,  -- setting it low, with less fractures, the system will actually raise this internally, and lower it with more fracs; on a scale.
+        fractures = 66 ,  -- setting it low, with less fractures, the system will actually raise this internally, and lower it with more fracs; on a scale.
 		mana_threshold = t.serverside["settings_default"].sip_mana_at or 60,  -- setting the mana_threshold to the lowest cure point.
         batch = "Yes", -- make an settings option later <<<<<<
 
@@ -2273,7 +2350,7 @@ t.serverside.settings_dict = {
 		
 	t.config.settings_system = { 
 		pipes_refill = 3,
-		diag_at = 3, 
+		diag_at = 1, 
 	}
 		
 		
@@ -2290,6 +2367,7 @@ t.affs.airdisrupt = false
 t.affs.airfisted = false
 t.affs.amnesia = false
 t.affs.anorexia = false
+t.affs.asphyxiating = false
 t.affs.asthma = false
 t.affs.blackout = false
 t.affs.blindness = false
@@ -2300,6 +2378,7 @@ t.affs.brokenrightarm = false
 t.affs.brokenrightleg = false
 t.affs.bruisedribs = false
 t.affs.burning = false
+t.affs.burn=0
 t.affs.cadmuscurse = false
 t.affs.claustrophobia = false
 t.affs.clumsiness = false
@@ -2441,6 +2520,7 @@ t.affs.wristfractures = 0
 t.affs.retardation = false
 
 t.affs.tension = false
+t.affs.pres=0
 t.affs.pressure = false
 t.affs.coldfate = false
 t.affs.calcifiedskull = false
@@ -2514,7 +2594,7 @@ end
 	["bloodboil"] = {"Magi"},
 	["fitness"] = {"Runewarden","Infernal","Paladin","Druid","Blademaster","Monk","Sentinel"},
 	["shrugging"] = {"Serpent"},
-	--["fool"] = {"Occultist","Jester"},
+	["fool"] = {"Occultist","Jester"},
 	["dragonheal"] = {"Dragon"},
 	["daina"] = {"Shaman"},
 	["accelerate"] = {"Depthswalker"},
@@ -2619,6 +2699,7 @@ t.serverside.afflictions = {
   hecatecurse = {"time"},
   kkractlebrand = {"time"},
   blistered = {"time"},
+  asphyxiating = {"time"},
   epilepsy = {"goldenseal", "daina","dheal", "focus",  "salt", "slough", "purify", "eruption", "accelerate",  "might",  "bloodboil", "shrugging", "tree", "fool", "mental"},
   damagedleftarm = {"restorationarms", "physical"},
   amnesia = {"time", --[["mental"]]},
