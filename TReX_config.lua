@@ -234,16 +234,6 @@ TReX.config.login_load=function(event)
 				send("config prompt all")
 			end
 			
-			if t.serverside.settings.affbar then
-				setMiniConsoleFontSize("TReX.serverside.middle", 12)
-				TReX.serverside.container:show()
-				setBorderBottom(27)
-				t.serverside.gmcpAffShow()
-			else
-				TReX.serverside.container:hide()
-				setBorderBottom(0)
-			end
-
 			TReX.serverside.login_settings() 
 			TReX.prios.default_settings()
 			TReX.prios.reset()
@@ -255,6 +245,16 @@ TReX.config.login_load=function(event)
 			deletep = false
 			
 			send("citizens")
+
+			if t.serverside.settings.affbar then
+				setMiniConsoleFontSize("TReX.serverside.middle", 12)
+				TReX.serverside.container:show()
+				setBorderBottom(27)
+				t.serverside.gmcpAffShow()
+			else
+				TReX.serverside.container:hide()
+				setBorderBottom(0)
+			end
 			
 			if not TReX.config.cc then 
 				t.send("config",false)  
