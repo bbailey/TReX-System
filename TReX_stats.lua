@@ -148,7 +148,7 @@ t.stats								= { -- so anything you change in this table , gets saved to home 
 	["p_endurance"] 		   	= {["name"] = "endurance %", ["enabled"] = false},
 	["endurance_prompt"]	   	= {["name"] = "endurance #", ["enabled"] = false},
 	["time_stamp_prompt"]	   	= {["name"] = "timestamp", ["enabled"] = false},
-	["limb_display_prompt"]	   	= {["name"] = "slc", ["enabled"] = false},
+	--["limb_display_prompt"]	   	= {["name"] = "slc", ["enabled"] = false},
 	["battle_rage"]				= {["name"] = "battle rage", ["enabled"] = false},
 	--["dragon_breath"]		   	= {["name"] = "dragon breath", ["enabled"] = false},
 	["level_prompt"] 		   	= {["name"] = "dragon %", ["enabled"] = false},
@@ -495,7 +495,7 @@ TReX.stats.custom_prompt=function()
 					--prompt_string = prompt_string..prompt_options.ent_bal()
 					--prompt_string = prompt_string..prompt_options.dmark()
 					--prompt_string = prompt_string..prompt_options.uni() .. " "
-					if t.stats["limb_display_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.limbdisplay() .. " " else end
+					--if t.stats["limb_display_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.limbdisplay() .. " " else end
 					if t.stats["mono_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.mono() .. "<white>" else end
 					if t.stats["diff_health_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.diffhealth() .. "<white>" else end
 					if t.stats["diff_mana_prompt"].enabled then prompt_string = prompt_string..TReX.stats.prompt_options.diffmana() .. "<white>" else end

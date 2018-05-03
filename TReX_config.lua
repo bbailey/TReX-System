@@ -2,7 +2,7 @@
 -- System config
 
 local send							= send
-local cc							= TReX.config.cc or "##"
+local cc							= t.serverside.settings_dict.cmdsep or "##"
 local g 							= "<dark_slate_gray:black>"
 local b 							= "<blue:black>"
         
@@ -578,14 +578,14 @@ TReX.config.settings=function() -- this is the settings file, what needs to happ
 		plants 						= "Yes",
 		prompt 						= "all",
 		map_show 					= "Yes",
-		page_length 				= 0,
+		page_length 				= 80,
 		screen_width 				= 0,
 		use_queueing 				= "No",
 		loyal_slain_msg 			= "Yes",
 		show_self_in_who 			= "Yes",
 		show_queue_alerts 			= "Yes",
 		command_separator  			= "cmdsep",
-		mxp							= "Yes",
+		mxp							= "No",
 			
 	}
 		
@@ -613,7 +613,7 @@ TReX.config.settings=function() -- this is the settings file, what needs to happ
 
 	for k,v in pairs(t.config.settings_default) do
 		if isPrompt() then deleteFull() end
-  		t.send("config " ..(t.config.settings_dict[k] or k).. " " ..(t.config.settings_dict[v] or v), false)
+  		t.send("config " ..(t.config.settings_dict[k] or k).. " " ..(t.config.settings_dict[v] or v))
 	end
 	
 end
@@ -660,9 +660,9 @@ end
 	end
 
 		if TReX.s.class == "Bard" and not t.serverside.flying then
-			t.serverside.movemethod = "cq all##queue prepend eqbal backflip"
+			t.serverside.movemethod = "cq all"..(TReX.config.cc or "##").."queue prepend eqbal backflip"
 		else
-			t.serverside.movemethod = "cq all##queue prepend eqbal go"
+			t.serverside.movemethod = "cq all"..(TReX.config.cc or "##").."queue prepend eqbal go"
 		end	
 	
 	if not(TReX.serverside.inslowcuringmode()) and not t.affs.aeon and not t.affs.prone then
@@ -677,9 +677,9 @@ end
 		for i = 1, #afftest, 1 do
 			if t.affs[afftest[i]] then
 				if TReX.s.class == "Bard" then
-					t.serverside.movemethod = "cq all##somersault"
+					t.serverside.movemethod = "cq all"..(TReX.config.cc or "##").."somersault"
 				else
-					t.serverside.movemethod = "cq all##tumble"
+					t.serverside.movemethod = "cq all"..(TReX.config.cc or "##").."tumble"
 				end
 			end
 		end
@@ -959,6 +959,13 @@ TReX.config.sip_health_at=function(num)
 	TReX.config.showSettings("settings")
 end
 
+TReX.config.cmd_separator=function(arg)
+	TReX.config.cc = arg
+	t.serverside.settings_dict.cmdsep = arg
+	t.send("config commandseparator " .. arg)
+	TReX.config.showSettings("settings")
+end
+
 TReX.config.sip_mana_at=function(num)
 	t.serverside["settings_default"].sip_mana_at = num
 	t.send("curing sipmana " .. num)
@@ -1018,6 +1025,7 @@ TReX.config.showSettings=function()
 echo("\n")
 cecho("\n\t<white>System Settings")
 echo("\n")
+echo("\n - ") echoLink("CMD SEP", "clearCmdLine() appendCmdLine'cmdsep '", "command separator") cecho("<white>: "..t.serverside.settings_dict.cmdsep.."", false)
 echo("\n - ") echoLink("Sip Health at", "clearCmdLine() appendCmdLine'sip_health_at '", "sip health") cecho("<white>: "..t.serverside["settings_default"].sip_health_at.." %", false)
 echo("\n - ") echoLink("Sip Mana at", "clearCmdLine() appendCmdLine'sip_mana_at '", "sip mana") cecho("<white>: "..t.serverside["settings_default"].sip_mana_at.." %", false)
 echo("\n - ") echoLink("Moss Health at", "clearCmdLine() appendCmdLine'moss_health_at '", "moss health") cecho("<white>: "..t.serverside["settings_default"].moss_health_at.." %", false)

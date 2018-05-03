@@ -1093,7 +1093,7 @@ TReX.defs.alias_toggle=function(defs)
 					if not table.contains(t.defs, "aria") then
 						if t.bals.eq and t.bals.voice then
 							if t.def.deafness then
-								t.send("queue prepend eq draw rapier##wield rapier left##auralbless me")
+								t.send("queue prepend eq draw rapier"..(TReX.config.cc or "##").."wield rapier left"..(TReX.config.cc or "##").."auralbless me")
 							end
 							t.send("queue add class sing aria at me")
 						end
@@ -1600,7 +1600,7 @@ end
 				if not table.contains(t.defs, "aria") then
 					if t.bals.eq and t.bals.voice then
 							if t.def.deafness then
-								t.send("queue prepend eq draw rapier##wield rapier left##auralbless me")
+								t.send("queue prepend eq draw rapier"..(TReX.config.cc or "##").."wield rapier left"..(TReX.config.cc or "##").."auralbless me")
 							end
 							
 							t.send("queue add class sing aria at me")
@@ -2026,7 +2026,7 @@ end
 				if not table.contains(t.defs, "aria") then
 					if t.bals.eq and t.bals.voice then
 							if t.def.deafness then
-								t.send("queue prepend eq draw rapier##wield rapier left##auralbless me")
+								t.send("queue prepend eq draw rapier"..(TReX.config.cc or "##").."wield rapier left"..(TReX.config.cc or "##").."auralbless me")
 							end
 							t.send("queue add class sing aria at me")
 					end

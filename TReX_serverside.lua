@@ -2232,7 +2232,7 @@ t.serverside.settings = {
 
 t.serverside.settings_default = {
         -- serverside settings
-        enabled = "Yes",
+		enabled = "Yes",
         reporting = "No",
         afflictions = "No",
         defences = "No",
@@ -2254,6 +2254,7 @@ t.serverside.settings_default = {
         fractures = 66 ,  -- setting it low, with less fractures, the system will actually raise this internally, and lower it with more fracs; on a scale.
 		mana_threshold = t.serverside["settings_default"].sip_mana_at or 60,  -- setting the mana_threshold to the lowest cure point.
         batch = "Yes", -- make an settings option later <<<<<<
+		cmd  = "cmdsep",
 
 }
     
@@ -2261,6 +2262,7 @@ t.serverside.settings_dict = {
 
     Yes = "on",
     No = "off",
+	cmdsep  = "##",
     enabled = "on",
     sip = "priority",
     clot = "useclot",
@@ -2273,7 +2275,9 @@ t.serverside.settings_dict = {
     moss_health_at = "mosshealth",
     fractures = "healthaffsabove",
     mana_threshold = "manathreshold",
+	command_separator = "commandseparator",
     mount = "mount",
+	
     
 }
 
@@ -2871,6 +2875,7 @@ rage = { type = "balance" }
 			
     t.serverside.settings_login = {
         -- serverside settings
+		cmdsep = t.serverside["settings_dict"].cmdsep or "##",
         enabled = t.serverside["settings_default"].enabled or "Yes",
         reporting = t.serverside["settings_default"].reporting or "No",
         afflictions = t.serverside["settings_default"].afflictions or "No",
@@ -2893,6 +2898,7 @@ rage = { type = "balance" }
         fractures = t.serverside["settings_default"].fractures or 65 ,
         mana_threshold = t.serverside["settings_default"].moss_mana_at or 60, 
         batch = t.serverside["settings_default"].batch or "Yes",
+		
 
 }
 
@@ -2906,7 +2912,7 @@ rage = { type = "balance" }
         end
 			--print(t.serverside.settings_dict[k] or v)
 			--print(t.serverside.settings_dict[v] or v)
-	        t.send("curing " ..(t.serverside.settings_dict[k] or k).. " " ..(t.serverside.settings_dict[v] or v), false)
+	        t.send("curing " ..(t.serverside.settings_dict[k] or k).. " " ..(t.serverside.settings_login[v] or v), false)
     end
   
 

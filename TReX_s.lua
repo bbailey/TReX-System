@@ -94,15 +94,6 @@ end
 		TReX.class.reset()   
 		TReX.class.skill_check()
 			
-			if gmcp.Char.Status.name == "Nehmrah" then
-				if TReX.s.class=="Bard" then
-					if t.serverside.settings.sys_loaded then t.send("queue prepend remove armour##wear "..t.inv["leatherarmour"].id or "leatherarmour") end
-				elseif TReX.s.class=="Apostate" then
-					if t.serverside.settings.sys_loaded then t.send("queue prepend remove armour##wear "..t.inv["ringmail"].id or "ringmail") end
-				end
-			end
-
-	
 	if TReX.s.class == "Alchemist" then
 		t.bals["salt"] = true
 		t.serverside["settings"].salt = t.serverside["settings"].salt or false 

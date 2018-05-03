@@ -314,9 +314,9 @@ use_thrower=false
                     <integer>1</integer>
                 </regexCodePropertyList>
             </Trigger>
-            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                 <name>config - command separator</name>
-                <script>TReX.config.cc = multimatches[2][2]
+                <script>TReX.config.cc = matches[2]
 
 </script>
                 <triggerType>0</triggerType>
@@ -330,11 +330,29 @@ use_thrower=false
                 <colorTriggerFgColor>#000000</colorTriggerFgColor>
                 <colorTriggerBgColor>#000000</colorTriggerBgColor>
                 <regexCodeList>
-                    <string>^|\s+Moods\s+(?:YES|NO)\s+\|$</string>
-                    <string>^\|\s+CommandSeparator\s+(.*)\s+\|$</string>
+                    <string>\s+CommandSeparator\s+(.*)\s+\|$</string>
                 </regexCodeList>
                 <regexCodePropertyList>
                     <integer>1</integer>
+                </regexCodePropertyList>
+            </Trigger>
+            <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                <name>config - command separator</name>
+                <script>TReX.config.cc = matches[2]</script>
+                <triggerType>0</triggerType>
+                <conditonLineDelta>0</conditonLineDelta>
+                <mStayOpen>0</mStayOpen>
+                <mCommand></mCommand>
+                <packageName></packageName>
+                <mFgColor>#ff0000</mFgColor>
+                <mBgColor>#ffff00</mBgColor>
+                <mSoundFile></mSoundFile>
+                <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                <regexCodeList>
+                    <string>^Your command separator is now\: (.+)</string>
+                </regexCodeList>
+                <regexCodePropertyList>
                     <integer>1</integer>
                 </regexCodePropertyList>
             </Trigger>
@@ -11767,7 +11785,7 @@ end
                 </Trigger>
                 <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>right leg damaged</name>
-                    <script>TReX.boxDisplay(&quot;RIGHT LEG RIGHT LEG - DOWN&quot;, &quot;HotPink&quot;)</script>
+                    <script>TReX.boxDisplay(&quot;RIGHT LEG - DOWN&quot;, &quot;HotPink&quot;)</script>
                     <triggerType>0</triggerType>
                     <conditonLineDelta>0</conditonLineDelta>
                     <mStayOpen>0</mStayOpen>
@@ -11787,7 +11805,7 @@ end
                 </Trigger>
                 <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>left leg damaged</name>
-                    <script>TReX.boxDisplay(&quot;LEFT LEG LEFT LEG - DOWN&quot;, &quot;gold&quot;)</script>
+                    <script>TReX.boxDisplay(&quot;LEFT LEG - DOWN&quot;, &quot;gold&quot;)</script>
                     <triggerType>0</triggerType>
                     <conditonLineDelta>0</conditonLineDelta>
                     <mStayOpen>0</mStayOpen>
@@ -11807,7 +11825,7 @@ end
                 </Trigger>
                 <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>right arm damaged</name>
-                    <script>TReX.boxDisplay(&quot;RIGHT ARM RIGHT ARM&quot;, &quot;HotPink&quot;)</script>
+                    <script>TReX.boxDisplay(&quot;RIGHT ARM - DOWN&quot;, &quot;HotPink&quot;)</script>
                     <triggerType>0</triggerType>
                     <conditonLineDelta>0</conditonLineDelta>
                     <mStayOpen>0</mStayOpen>
@@ -11827,7 +11845,7 @@ end
                 </Trigger>
                 <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>left arm damaged</name>
-                    <script>TReX.boxDisplay(&quot;RIGHT LEG RIGHT LEG - DOWN&quot;, &quot;HotPink&quot;)</script>
+                    <script>TReX.boxDisplay(&quot;LEFT ARM - DOWN&quot;, &quot;HotPink&quot;)</script>
                     <triggerType>0</triggerType>
                     <conditonLineDelta>0</conditonLineDelta>
                     <mStayOpen>0</mStayOpen>
@@ -19051,10 +19069,10 @@ copy()
 --deleteLine()
 appendBuffer(&quot;Chatbox&quot;)
 
-if playList.on then
-	raiseEvent(&quot;playList&quot;)
-	tempTimer(2.5, [[raiseEvent(&quot;playList&quot;)]])
-end
+--if playList.on then
+	--raiseEvent(&quot;playList&quot;)
+	--tempTimer(2.5, [[raiseEvent(&quot;playList&quot;)]])
+--end
 
 playSoundFile(getMudletHomeDir().. [[/TReX/Chimes.wav]])	
 
@@ -24766,7 +24784,7 @@ end
                 <colorTriggerFgColor>#000000</colorTriggerFgColor>
                 <colorTriggerBgColor>#000000</colorTriggerBgColor>
                 <regexCodeList>
-                    <string>There's water ahead of you.</string>
+                    <string>^You have slain (.+?), retrieving the corpse\.$</string>
                 </regexCodeList>
                 <regexCodePropertyList>
                     <integer>7</integer>
@@ -24848,7 +24866,7 @@ end</script>
                         <colorTriggerFgColor>#000000</colorTriggerFgColor>
                         <colorTriggerBgColor>#000000</colorTriggerBgColor>
                         <regexCodeList>
-                            <string>^You can use (.+) again\.  Available abilities\: (.+)</string>
+                            <string>^You have slain (.+?), retrieving the corpse\.$</string>
                         </regexCodeList>
                         <regexCodePropertyList>
                             <integer>7</integer>
@@ -25128,7 +25146,7 @@ end</script>
 if not huntVar.targetGone then
 	if huntVar.on then
 		if TReX.hunting.denizen_shield and TReX.hunting.rage &gt;= 17 and not TReX.hunting.deadtarget then 
-			send(&quot;cq all##frostrive &quot;..target)
+			send(&quot;cq all&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;frostrive &quot;..target)
 			TReX.hunting.rage = TReX.hunting.rage - 17
 		--	t.serverside.green_echo(&quot;Frostrive Queued&quot;)
 		end
@@ -25162,7 +25180,7 @@ TReX.hunting.denizen_shield = false
 TReX.hunting.rage = TReX.hunting.rage - 17
 
 if not huntVar.targetGone then
-		send(&quot;cq all##queue add eqbal gut &quot;..target)
+		send(&quot;cq all&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;queue add eqbal gut &quot;..target)
 	--	TReX.display(&quot;Gut Queued&quot;)
 end
 end</script>
@@ -25254,7 +25272,7 @@ if huntVar.on then
 TReX.hunting.denizen_shield = false
 
 if not huntVar.targetGone then
-		send(&quot;cq all##queue add eqbal gut &quot;..target)
+		send(&quot;cq all&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;queue add eqbal gut &quot;..target)
 		--t.serverside.green_echo(&quot;Gut Queued&quot;)
 end
 end</script>
@@ -25284,7 +25302,7 @@ if huntVar.on then
 TReX.hunting.denizen_shield = false
 
 if not huntVar.targetGone then
-		send(&quot;cq all##queue add eqbal gut &quot;..target)
+		send(&quot;cq all&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;queue add eqbal gut &quot;..target)
 		--t.serverside.green_echo(&quot;Gut Queued&quot;)
 end
 
@@ -25306,6 +25324,377 @@ end</script>
                         <regexCodePropertyList>
                             <integer>2</integer>
                             <integer>1</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                </TriggerGroup>
+                <TriggerGroup isActive="yes" isFolder="yes" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                    <name>serpent</name>
+                    <script>--Mindshell tells you, &quot;Like a dragon will switch from gut to incantation because the latter works with two busted arms.&quot; </script>
+                    <triggerType>0</triggerType>
+                    <conditonLineDelta>0</conditonLineDelta>
+                    <mStayOpen>0</mStayOpen>
+                    <mCommand></mCommand>
+                    <packageName></packageName>
+                    <mFgColor>#ff0000</mFgColor>
+                    <mBgColor>#ffff00</mBgColor>
+                    <mSoundFile></mSoundFile>
+                    <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                    <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                    <regexCodeList/>
+                    <regexCodePropertyList/>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>rage abilites</name>
+                        <script>if huntVar.on and t.serverside[&quot;settings&quot;].sys_loaded then
+if TReX.s.class == &quot;Serpent&quot; then 
+	if TReX.hunting.rage &gt;= 14 and TReX.hunting.thrash and not TReX.hunting.deadtarget then send(&quot;thrash&quot;) TReX.hunting.thrash=false TReX.hunting.rage = TReX.hunting.rage - 14 end
+	if TReX.hunting.rage &gt;= 25 and TReX.hunting.flagellate and not TReX.hunting.deadtarget then send(&quot;flagellate&quot;) TReX.hunting.flagellate=false TReX.hunting.rage = TReX.hunting.rage - 25 end
+	if TReX.hunting.rage &gt;= 25 and TReX.hunting.snare and not TReX.hunting.deadtarget then send(&quot;snare&quot;) TReX.hunting.snare=false TReX.hunting.rage = TReX.hunting.rage - 25 end
+	if TReX.hunting.rage &gt;= 36 and TReX.hunting.throatrip and not TReX.hunting.deadtarget then send(&quot;throatrip&quot;) TReX.hunting.throatrip=false TReX.hunting.rage = TReX.hunting.rage - 36 end
+	if TReX.hunting.rage &gt;= 25 and TReX.hunting.obliviate and not TReX.hunting.deadtarget then send(&quot;obliviate&quot;) TReX.hunting.obliviate=false TReX.hunting.rage = TReX.hunting.rage - 41 end
+end
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>Your Thrash ability could be used again but you lack the necessary Rage.</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>7</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>garrote</name>
+                        <script>selectString(line, 1) setBold(true) bg(&quot;black&quot;) fg(&quot;LightSkyBlue&quot;) resetFormat() deselect()
+
+if huntVar.on then
+TReX.hunting.deadtarget = false
+TReX.hunting.denizen_shield = false
+
+
+	if not huntVar.targetGone then
+		TReX.hunting.rotation()
+	end
+
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>You slip behind</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>2</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>thrash +</name>
+                        <script>TReX.stats.requestdelete()
+if huntVar.on then
+TReX.hunting.thrash = true
+--t.serverside.green_echo(&quot;Thrash Enabled&quot;)
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>You can use Thrash again.</string>
+                            <string>Now Available: Thrash</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>1</integer>
+                            <integer>1</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>thrash -</name>
+                        <script>selectString(line, 1) setBold(true) bg(&quot;firebrick&quot;) fg(&quot;white&quot;) resetFormat() deselect()
+
+if huntVar.on then
+TReX.hunting.thrash = false
+--t.serverside.green_echo(&quot;Thrash Disabled&quot;)
+--replace(&quot;&gt;&gt; Thrash Disabled &lt;&lt;&quot;)
+
+tempTimer(16, [[
+	TReX.hunting.thrash = true
+--	t.serverside.green_echo(&quot;Thrash Enabled&quot;)
+]])
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>Your Thrash ability could be used again but you lack the necessary Rage.</string>
+                            <string>^You crack an iron-tipped whip over your head before repeatedly lashing .+ with it\.$</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>3</integer>
+                            <integer>1</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>flagellate +</name>
+                        <script>TReX.stats.requestdelete()
+if huntVar.on then
+TReX.hunting.flagellate = true
+--t.serverside.green_echo(&quot;flagellate Enabled&quot;)
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>You can use Flagellate again.</string>
+                            <string>Now Available: Flagellate</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>1</integer>
+                            <integer>1</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>flagellate -</name>
+                        <script>selectString(line, 1) setBold(true) bg(&quot;firebrick&quot;) fg(&quot;white&quot;) resetFormat() deselect()
+
+if huntVar.on then
+TReX.hunting.flagellate = false
+--t.serverside.green_echo(&quot;flagellate Disabled&quot;)
+--replace(&quot;&gt;&gt; flagellate Disabled &lt;&lt;&quot;)
+
+tempTimer(27, [[
+	TReX.hunting.flagellate = true
+--	t.serverside.green_echo(&quot;flagellate Enabled&quot;)
+]])
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>Your Flagellate ability could be used again but you lack the necessary Rage.</string>
+                            <string>^You crack an iron-tipped whip lightly against .+'s flesh, awakening sensitive nerves\.$</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>3</integer>
+                            <integer>1</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>throatrip +</name>
+                        <script>TReX.stats.requestdelete()
+if huntVar.on then
+TReX.hunting.throatrip = true
+--t.serverside.green_echo(&quot;Throatrip Enabled&quot;)
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>Now Available: Throatrip</string>
+                            <string>You can use Throatrip again.</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>1</integer>
+                            <integer>1</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>throatrip -</name>
+                        <script>selectString(line, 1) setBold(true) bg(&quot;firebrick&quot;) fg(&quot;white&quot;) resetFormat() deselect()
+
+if huntVar.on then
+TReX.hunting.throatrip = false
+--t.serverside.green_echo(&quot;throatrip Disabled&quot;)
+--replace(&quot;&gt;&gt; throatrip Disabled &lt;&lt;&quot;)
+
+tempTimer(23, [[
+	TReX.hunting.throatrip = true
+	--t.serverside.green_echo(&quot;throatrip Enabled&quot;)
+]])
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>Your Throatrip ability could be used again but you lack the necessary Rage.</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>3</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>Snare +</name>
+                        <script>TReX.stats.requestdelete()
+
+if not huntVar.targetGone then
+	if huntVar.on then
+		if TReX.hunting.denizen_shield and TReX.hunting.rage &gt;= 25 and not TReX.hunting.deadtarget then 
+			send(&quot;cq all&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;snare &quot;..target)
+			TReX.hunting.rage = TReX.hunting.rage - 25
+		--	t.serverside.green_echo(&quot;Snare Queued&quot;)
+		end
+	end
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>Now Available: Snare</string>
+                            <string>You can use Snare again.</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>1</integer>
+                            <integer>1</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>Snare -</name>
+                        <script>selectString(line, 1) setBold(true) bg(&quot;firebrick&quot;) fg(&quot;white&quot;) resetFormat() deselect()
+
+if huntVar.on then
+TReX.hunting.snare = false
+--t.serverside.green_echo(&quot;snare Disabled&quot;)
+--replace(&quot;&gt;&gt; snare Disabled &lt;&lt;&quot;)
+
+tempTimer(23, [[
+	TReX.hunting.snare = true
+	--t.serverside.green_echo(&quot;snare Enabled&quot;)
+]])
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>Your Snare ability could be used again but you lack the necessary Rage.</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>3</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>obliviate +</name>
+                        <script>TReX.stats.requestdelete()
+if huntVar.on then
+TReX.hunting.obliviate = true
+--TReX.display(&quot;obliviate Enabled&quot;)
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>Now Available: Obliviate</string>
+                            <string>You can use Obliviate again.</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>1</integer>
+                            <integer>1</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>obliviate -</name>
+                        <script>selectString(line, 1) setBold(true) bg(&quot;firebrick&quot;) fg(&quot;white&quot;) resetFormat() deselect()
+
+if huntVar.on then
+
+TReX.hunting.obliviate = false
+t.serverside.green_echo(&quot;obliviate Disabled&quot;)
+--replace(&quot;&gt;&gt; obliviate Disabled &lt;&lt;&quot;)
+
+tempTimer(41, [[
+	TReX.hunting.obliviate = true
+	t.serverside.green_echo(&quot;obliviate Enabled&quot;)
+]])
+end</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>Your Obliviate ability could be used again but you lack the necessary Rage.</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>3</integer>
                         </regexCodePropertyList>
                     </Trigger>
                 </TriggerGroup>
@@ -25340,6 +25729,14 @@ if TReX.s.class == &quot;Sentinel&quot; then
 end
 
 if TReX.s.class == &quot;Bard&quot; then
+	if not huntVar.targetGone then	
+		TReX.hunting.rotation()
+	else
+		t.serverside.green_echo(&quot;Room Cleared&quot;, false)
+	end
+end
+
+if TReX.s.class == &quot;Serpent&quot; then
 	if not huntVar.targetGone then	
 		TReX.hunting.rotation()
 	else
@@ -25454,7 +25851,7 @@ end</script>
                     <colorTriggerFgColor>#000000</colorTriggerFgColor>
                     <colorTriggerBgColor>#000000</colorTriggerBgColor>
                     <regexCodeList>
-                        <string>^You can use (.+) again\.  Available abilities\: (.+)</string>
+                        <string>^.+ pumps out</string>
                     </regexCodeList>
                     <regexCodePropertyList>
                         <integer>7</integer>
@@ -27103,7 +27500,7 @@ if TReX.s.class == &quot;Dragon&quot; then t.serverside.red_echo(&quot;You're in
 t.serverside[&quot;settings&quot;].override=false
 
 if matches[2]==&quot;urn&quot; then
-	send(&quot;cq all##queue prepend eqbal rub urn&quot;)
+	send(&quot;cq all&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;queue prepend eqbal rub urn&quot;)
 end
 
   if mount_list then
@@ -27138,7 +27535,7 @@ for k,v in pairs(mount_list) do
 		t.serverside.settings.vault = false
 		t.send(&quot;curing mount 0&quot;)
 		t.send(&quot;curing usevault off&quot;, false)
-		t.send(&quot;cq all##queue prepend eqbal dismount##order &quot;..mount_list[k].number..&quot; follow me&quot;, false)
+		t.send(&quot;cq all&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;queue prepend eqbal dismount&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;order &quot;..mount_list[k].number..&quot; follow me&quot;, false)
 	end
 end
 </script>
@@ -27812,7 +28209,7 @@ end</script>
                 <regex></regex>
                 <Alias isActive="yes" isFolder="no">
                     <name>dragonform</name>
-                    <script>t.send(&quot;queue add eqbal stand##dragonform&quot;)
+                    <script>t.send(&quot;queue add eqbal stand&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;dragonform&quot;)
 TReX.config.ppause(&quot;on&quot;)
 </script>
                     <command></command>
@@ -27830,6 +28227,13 @@ send(&quot;touch negation&quot;)</script>
                 <command></command>
                 <packageName></packageName>
                 <regex>^(tn|touch negation)$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>cmd separator</name>
+                <script>TReX.config.cmd_separator(matches[2])</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^cmdsep (.+)$</regex>
             </Alias>
         </AliasGroup>
         <AliasGroup isActive="yes" isFolder="yes">
@@ -28643,7 +29047,7 @@ end</script>
     TReX.serverside.container = Geyser.Container:new({
     	name = &quot;TReX.serverside.container&quot;,
     	    	x = &quot;0%&quot;, y = &quot;97%&quot;,
-    				width = &quot;85.75%&quot;, 
+    				width = &quot;100%&quot;, 
     				height = &quot;2%&quot;,
 
     })
@@ -29180,7 +29584,6 @@ TReX.serverside                    		= TReX.serverside or {}
 TReX.queue.trig									= TReX.queue.trig or {}		
 TReX.queue.cmds									= TReX.queue.cmds or {}
 TReX.queue.class									= TReX.queue.class or {}
-TReX.config.cc									= TReX.config.cc or &quot;##&quot;
 TReX.tgt.onColour                  		= &quot;green&quot;
 TReX.tgt.offColour                  		= &quot;red&quot;
 TReX.s.gametarget								= TReX.s.gametarget or {}
@@ -29555,7 +29958,7 @@ t.inv = t.inv or {}
 
 
 		if string.find(v.name, string.genNocasePattern(&quot;pack&quot;)) then 
-			t.inv[&quot;pack&quot;]={name=&quot;backstrap&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=true, enabled=true}
+			t.inv[&quot;pack&quot;]={name=&quot;pack&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=true, enabled=true}
 			--print(v.name)
 		end
 
@@ -30332,12 +30735,12 @@ TReX.config.allowtells=function()
 	
  	&quot;Ysela&quot;,
  	&quot;Seragorn&quot;,
- 	&quot;Emett&quot;,
- 	&quot;Laetetia&quot;,
- 	&quot;Herenicus&quot;,
-	&quot;Driden&quot;,
- 	&quot;Mindshell&quot;,
- 	&quot;Lucianus&quot;,
+ 	&quot;Orzaansyn&quot;,
+ 	&quot;Melodie&quot;,
+ 	&quot;Proficy&quot;,
+	&quot;Alrena&quot;,
+ 	&quot;Jarrod&quot;,
+ 	&quot;&quot;,
  	 --&quot;&quot; = , -- leaving empty for immediate in game need.
 		
  	}
@@ -30582,22 +30985,44 @@ TReX.consider	= TReX.consider or {}
                 <script>--Hunting Combo Rotation
 TReX.hunting.rotation=function()
 
+ if TReX.s.class == &quot;Serpent&quot; then
+		if TReX.hunting.denizen_shield and not TReX.hunting.deadtarget then 
+			if TReX.hunting.excoriate and TReX.hunting.rage &gt;= 17 then
+				if not t.affs.prone and not t.affs.stun then
+					send(&quot;cq eqbal&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;excoriate &quot;..target)
+					--t.serverside.green_echo(&quot;Excoriate Queued&quot;)	
+				end
+			else
+				if not t.affs.prone and not t.affs.stun then
+					send(&quot;cq eqbal&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;queue add eqbal flay &quot;..target)
+					--t.serverside.green_echo(&quot;Flay Queued&quot;)	
+				end				
+			end
+		else
+			if not t.affs.prone and not t.affs.stun then
+				send(&quot;cq eqbal&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;queue add eqbal garrote &quot;..target)
+				--t.serverside.green_echo(&quot;Garrote Queued&quot;)
+			end	
+		end
+	end
+
+
   if TReX.s.class == &quot;Dragon&quot; then
 		if TReX.hunting.denizen_shield and not TReX.hunting.deadtarget then 
 			if TReX.hunting.frostrive and TReX.hunting.rage &gt;= 17 then
 				if not t.affs.prone and not t.affs.stun then
-					send(&quot;cq eqbal##frostrive &quot;..target)
+					send(&quot;cq eqbal&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;frostrive &quot;..target)
 					--t.serverside.green_echo(&quot;Frostrive Queued&quot;)	
 				end
 			else
 				if not t.affs.prone and not t.affs.stun then
-					send(&quot;cq eqbal##queue add eqbal tailsmash &quot;..target)
+					send(&quot;cq eqbal&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;queue add eqbal tailsmash &quot;..target)
 					--t.serverside.green_echo(&quot;Tailsmash Queued&quot;)	
 				end				
 			end
 		else
 			if not t.affs.prone and not t.affs.stun then
-				send(&quot;cq eqbal##queue add eqbal gut &quot;..target)
+				send(&quot;cq eqbal&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;queue add eqbal gut &quot;..target)
 				--t.serverside.green_echo(&quot;Gut Queued&quot;)
 			end	
 		end
@@ -30959,8 +31384,6 @@ end
 
 function huntToggle(mode)
 
-
-
 ragestatus = Geyser.Label:new({
   name = &quot;ragestatus&quot;,
   x = &quot;60%&quot;,
@@ -30990,97 +31413,22 @@ if not gmcp.IRE then
 end
 
 	if mode == &quot;on&quot; then
+		ragewindow=ragewindow or false
+		--if matches[2] == nil and huntVar.on then
+			if not ragewindow then
+	     	TReX.hunting.rage = tonumber(gmcp.Char.Vitals.charstats[2]:sub(7))
+      	ragestatus:show()
+      	ragestatus2:echo(&quot;Rage = &quot;..TReX.hunting.rage,&quot;green&quot;,&quot;cb15&quot;)
+      	ragewindow = true	
+      end
 
-		if TReX.s.class == &quot;Blue Dragon&quot; then
-			TReX.hunting.dragonchill=true 
-			TReX.hunting.ague=true
-			TReX.hunting.glaciate=true
-			TReX.hunting.override=true
-			TReX.hunting.frostwave=true
-			TReX.hunting.frostrive=true
-		end
-
-		if TReX.class == &quot;Bard&quot; then
-			TReX.hunting.moulinet=true 
-			TReX.hunting.trill=true
-			TReX.hunting.resonance=true
-			TReX.hunting.howlslash=true
-			TReX.hunting.cyclone=true
-			TReX.hunting.charm=true
-		end
-
-		if TReX.class == &quot;Sentinel&quot; then
-				TReX.hunting.pester = true
-				TReX.hunting.goad = true
-				TReX.hunting.swarm = true
-				TReX.hunting.tame = true
-				TReX.hunting.skewer = true
-				TReX.hunting.bore=true
-		end
-
-  if TReX.class == &quot;Serpent&quot; then
-			TReX.hunting.thrash = true
-			TReX.hunting.flagellate = true
-			TReX.hunting.excoriate = true
-			TReX.hunting.throatrip = true
-			TReX.hunting.snare = true
-			TReX.hunting.obliviate = true
-	end
-
-ragewindow=ragewindow or false
---if matches[2] == nil and huntVar.on then
-if not ragewindow then
-	
-	TReX.hunting.rage = tonumber(gmcp.Char.Vitals.charstats[2]:sub(7))
-	ragestatus:show()
-	ragestatus2:echo(&quot;Rage = &quot;..TReX.hunting.rage,&quot;green&quot;,&quot;cb15&quot;)
-	ragewindow = true	
-	
-end
-
-	huntVar.on = true
-	t.stats[&quot;battle_rage&quot;].enabled = true
-	raiseEvent(&quot;TReX prompt&quot;)
-	t.serverside.green_echo(&quot;Hunting Script On\n&quot;)
+    	huntVar.on = true
+    	t.stats[&quot;battle_rage&quot;].enabled = true
+    	raiseEvent(&quot;TReX prompt&quot;)
+    	t.serverside.green_echo(&quot;Hunting Script On\n&quot;)
 
 	else
 
-		if TReX.class == &quot;Blue Dragon&quot; then
-			TReX.hunting.dragonchill=false 
-			TReX.hunting.ague=false
-			TReX.hunting.glaciate=false
-			TReX.hunting.override=false
-			TReX.hunting.frostwave=false
-			TReX.hunting.frostrive=false
-		end
-
-		if TReX.class == &quot;Bard&quot; then
-			TReX.hunting.moulinet=false 
-			TReX.hunting.trill=false
-			TReX.hunting.resonance=false
-			TReX.hunting.howlslash=false
-			TReX.hunting.cyclone=false
-			TReX.hunting.charm=false
-		end
-
-		if TReX.s.class == &quot;Sentinel&quot; then
-				TReX.hunting.pester = false
-				TReX.hunting.goad = false
-				TReX.hunting.swarm = false
-				TReX.hunting.tame = false
-				TReX.hunting.skewer = false
-				TReX.hunting.bore=false
-		end
-		
-  if TReX.class == &quot;Serpent&quot; then
-			TReX.hunting.thrash = false
-			TReX.hunting.flagellate = false
-			TReX.hunting.excoriate = false
-			TReX.hunting.throatrip = false
-			TReX.hunting.snare = false
-			TReX.hunting.obliviate = false
-	end		
-		
 		ragewindow = false
 		huntVar.on = false
 		t.stats[&quot;battle_rage&quot;].enabled = false
@@ -31142,6 +31490,10 @@ end</script>
                 <name>area list</name>
                 <packageName></packageName>
                 <script>areaList = {
+
+[&quot;the Valley of Lodi&quot;] = {&quot;a juvenile wildcat&quot;, &quot;an adult wildcat&quot;, &quot;a wildcat soldier&quot;, &quot;a wildcat servant&quot;,&quot;Scylina, Queen of the Wildcats&quot;},
+
+
 
 [&quot;Karbaz&quot;]= {&quot;Isti, an aspiring Kirlundin&quot;,&quot;a guard of Kirlundin Citadel&quot;,&quot;a furry kwal&quot;,&quot;a grey wolf&quot;,&quot;a ferocious mountain goat&quot;,&quot;Enuru, the Bane of Karbaz&quot;,&quot;a Rhaan of Enuru&quot;,&quot;Kuni, the overseer of Kaleu&quot;,&quot;Helshezag, hag of the Kaleu Cave&quot;,&quot;Mrughor, a spectral warlock&quot;,&quot;Gudrun, the Wretched&quot;},
 [&quot;a winding catacomb&quot;] ={&quot;a Tsol'teth berserker&quot;,&quot;a pirate lass&quot;,&quot;a drunken pirate&quot;,&quot;a pirate thug&quot;,&quot;a steel-encased Death Knight&quot;,&quot;a wight&quot;,&quot;an accursed skeleton&quot;,&quot;a ravenous ghoul&quot;,&quot;a ghast&quot;,&quot;a vampire&quot;,&quot;a cursed revenant&quot;,&quot;a cursed phantasm&quot;},
