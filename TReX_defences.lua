@@ -582,16 +582,13 @@ TReX.defs.deathsight_add=function(defs)
 	 if not table.contains({t.defs}, "deathsight") then
 		 if def_list.needs_full_bal["deathsight"].serverside then
 			if t.serverside["settings"].deathsight then
-				t.send("curing prio def deathsight 24", false)
-			else 
 				if t.serverside["settings"].transmutation then
 					t.send("queue add eqbal outr azurite"..(TReX.config.cc or "##").."eat azurite", false)
 				else
 					t.send("queue add eqbal outr skullcap"..(TReX.config.cc or "##").."eat skullcap", false)
 				end
 			end
-		 else
-			t.send("curing prio def deathsight reset", false)		 end
+		end
 			table.insert(t.defs, "deathsight")
 	 end				 
 
@@ -601,7 +598,6 @@ TReX.defs.deathsight_remove=function(defs)
  if (variable == "deathsight") then
 	 if table.contains({t.defs}, defs) then
 		 table.remove(t.defs, table.index_of(t.defs, defs))
-		 t.send("curing prio def deathsight reset", false)
 	 end	
  end
 end
