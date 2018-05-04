@@ -2289,7 +2289,7 @@ t.serverside.settings_dict = {
                 v = "second"
             end
         end
-			t.send("curing " ..(t.serverside.settings_dict[k] or k).. " " ..(t.serverside.settings_dict[v] or v), false)
+			t.send("curing " ..(t.serverside.settings_dict[k] or k).. " " ..(t.serverside.settings_dict[v] or v))
     end
 
 	    if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.settings ) ") end
@@ -2872,12 +2872,12 @@ rage = { type = "balance" }
                 t.stacks[k] = 0
             end
 
-			
-    t.serverside.settings_login = {
+	
+
+t.serverside.login_settings = {
         -- serverside settings
-		cmdsep = t.serverside["settings_dict"].cmdsep or "##",
-        enabled = t.serverside["settings_default"].enabled or "Yes",
-        reporting = t.serverside["settings_default"].reporting or "No",
+		enabled = t.serverside["settings_default"].enabled or "Yes",
+        reporting = t.serverside["settings_default"].reporting or "Yes",
         afflictions = t.serverside["settings_default"].afflictions or "No",
         defences = "Yes",
         sipping = t.serverside["settings_default"].sipping or "No",
@@ -2893,16 +2893,38 @@ rage = { type = "balance" }
         clot = "No",
         clot_at = t.serverside["settings_default"].clot_at or 70,--math.ceil(TReX.stats.h * .0010),
         vault = t.serverside["settings_default"].vault or "No",--t.serverside["settings"].vault,
-        mount = default_mount, -- make a select from menu for mounts.
+        --mount = default_mount, -- make a select from menu for mounts.
         insomnia = t.serverside["settings_default"].insomnia or "No",
         fractures = t.serverside["settings_default"].fractures or 65 ,
         mana_threshold = t.serverside["settings_default"].moss_mana_at or 60, 
-        batch = t.serverside["settings_default"].batch or "Yes",
-		
+		commandseparator  = "cmdsep",
 
 }
+    
+t.serverside.login_dict = {
 
-    for k,v in pairs(t.serverside.settings_login) do
+    Yes = "on",
+    No = "off",
+	cmdsep  = t.serverside.settings_dict.cmdsep or "##",
+    enabled = "on",
+    sip = "priority",
+    clot = "useclot",
+    vault = "usevault",
+    clot_at = "clotat",
+    sip_mana_at = "sipmana",
+    moss_mana_at = "mossmana",
+    focus_over_herbs = "focus",
+    sip_health_at = "siphealth",
+    moss_health_at = "mosshealth",
+    fractures = "healthaffsabove",
+    mana_threshold = "manathreshold",
+	--command_separator = "commandseparator",
+    --mount = "mount",
+	
+    
+}
+
+    for k,v in pairs(t.serverside.login_settings) do
         if k == "focus_over_herbs" then
             if v == "Yes" then
                 v = "first"
@@ -2912,7 +2934,11 @@ rage = { type = "balance" }
         end
 			--print(t.serverside.settings_dict[k] or v)
 			--print(t.serverside.settings_dict[v] or v)
-	        t.send("curing " ..(t.serverside.settings_dict[k] or k).. " " ..(t.serverside.settings_login[v] or v), false)
+		if k == "commandseparator" then
+			t.send("config " ..(t.serverside.login_dict[k] or k).. " " ..(t.serverside.login_dict[v] or v))
+		else
+	        t.send("curing " ..(t.serverside.login_dict[k] or k).. " " ..(t.serverside.login_dict[v] or v))
+		end
     end
   
 
