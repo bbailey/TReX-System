@@ -480,6 +480,7 @@ def_list = {
 			 ["weaving"] = {["name"] = "weaving", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			 ["phased"] = {["name"] = "phased", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 		  	 ["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
+			 ["pacing"] = {["name"] = "pacing", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 		}
 	
 	end
@@ -2364,7 +2365,7 @@ TReX.defs.def_display=function(def_table)
   ,"mindnet","reflexes","groundwatch","vigilance","treewatch","telesense","evadeblock", "pinchblock"
   ,"distortedaura","softfocusing","skywatch","hypersight","alertness","weaving","metawake"
   ,"balancing","arrowcatching","heartsfury","drunkensailor"}
-  local endUse = {"spinspear","acrobatics","dragonarmour","dragonbreath"}
+  local endUse = {"spinspear","acrobatics","dragonarmour","dragonbreath","pacing"}
   
  
   -- sort defs
