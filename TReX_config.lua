@@ -1131,7 +1131,7 @@ local sortSettings = {}
 TReX.class.skill_check()
 
   for k,v in pairs(t.serverside.settings) do
-	if not table.index_of({"debugEnabled", "paused", "meditate", "installed", "sys_loaded", "sipRingMana", "sipRingHealth", "override"}, k) then
+	if not table.index_of({"debugEnabled", "paused", "meditate", "installed", "sys_loaded", "sipRingMana", "sipRingHealth", "override","asbb","sbb","sbr","sbt","sbl"}, k) then
 		sortSettings[#sortSettings+1] = k
 		table.sort(sortSettings)
 	end
