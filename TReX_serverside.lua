@@ -442,17 +442,9 @@ TReX.serverside.endArenaSpar=function()
 		TReX.serverside.unknown_count_reset()
 		TReX.lock.clear()
 				
-		for k, v in pairs(t.serverside.gmcp_aff_table) do -- this needs a list I think.
-			if table.contains({"skullfractures","crackedribs","torntendons","wristfractures","temperedphlegmatic","temperedsanguine","temperedcholeric","temperedmelancholic", "unknownany"}, k) then
-				t.affs[k] = 0
-			else
-				t.affs[k] = false
-			end
-		end
+		TReX.serverside.affs_reset()
 			
-		for k, v in pairs(t.serverside.cures) do -- this sets aff count by cure type to 0.
-			t.stacks[k] = 0
-		end
+
 		
 		if TReX.serverside.am_free() then t.send("inr all", false) end
 			
@@ -533,19 +525,9 @@ send("diagnose")
 		t.serverside.gmcp_aff_table = {}
 		TReX.lock.clear()
 				
-		for k, v in pairs(t.serverside.gmcp_aff_table) do -- this needs a list I think.
-			if table.contains({"skullfractures","crackedribs","torntendons","wristfractures","temperedphlegmatic","temperedsanguine","temperedcholeric","temperedmelancholic", "unknownany"}, k) then
-				t.affs[k] = 0
-			else
-				t.affs[k] = false
-			end
-		end
-			
-			for k, v in pairs(t.serverside.cures) do -- this sets aff count by cure type to 0.
-				t.stacks[k] = 0
-			end
+		TReX.serverside.affs_reset()
 
-		end
+	end
 		
 		t.serverside.gmcpAffShow()
 		echo"\n\n"
@@ -653,6 +635,22 @@ TReX.lock.list = {
     if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.lock.clear ) ") end
 end -- [[func]]
 
+
+TReX.serverside.affs_reset=function()
+
+		for k, v in pairs(t.serverside.gmcp_aff_table) do -- this needs a list I think.
+			if table.contains({"skullfractures","crackedribs","torntendons","wristfractures","temperedphlegmatic","temperedsanguine","temperedcholeric","temperedmelancholic", "unknownany"}, k) then
+				t.affs[k] = 0
+			else
+				t.affs[k] = false
+			end
+		end
+		
+		for k, v in pairs(t.serverside.cures) do -- this sets aff count by cure type to 0.
+			t.stacks[k] = 0
+		end
+
+end
 
 TReX.serverside.lock_check=function()
 
@@ -2526,11 +2524,10 @@ end
     t.bals["focus"] = true
 
 	t.serverside.vivimode = t.serverside.vivimode or false
-	--t.serverside.heartseedmode = t.serverside.heartseedmode or false
-	
-    -- temporary hardcode until I work on a better fix.
-    --t.send("curing priority blindness reset", false)
-    --t.send("curing priority deafness reset", false)
+	-- t.serverside.heartseedmode = t.serverside.heartseedmode or false
+	-- temporary hard code until I work on a better fix.
+    -- t.send("curing priority blindness reset", false)
+    -- t.send("curing priority deafness reset", false)
 
 	
 --t.class.reset_heals=function()

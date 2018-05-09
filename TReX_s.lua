@@ -89,7 +89,8 @@ end
 		t.def  = {}
 		t.defs = {}
 		
-		TReX.defs.reset()
+		TReX.defs.def_reset()
+		TReX.defs.defs_reset()
 		TReX.defs.login()  
 		TReX.class.reset()   
 		TReX.class.skill_check()

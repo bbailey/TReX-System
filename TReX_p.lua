@@ -36,7 +36,8 @@ local room_num = gmcp.Room.Info.num
 		
 
 		requestchase = false
-	
+	    
+		def_list.needs_full_bal["shield"].keepup=false
 		
 
 			if table.contains({t.serverside.gmcp_aff_table}, "retardation") then	
@@ -102,8 +103,7 @@ end
 					if gmcp.Room.Players[k].name ~= gmcp.Char.Status.name then
 						table.insert(TReX.p.here, gmcp.Room.Players[k].name)
 							if hl.raid then
-								if gmcp.Char.Status.name == "Nehmrah" then 
-									if (trx == nil or not trx) then return end
+								if trx or jcl then
 									if table.contains({trx.ally_table}, gmcp.Room.Players[k].name) and not table.contains({trx.raid.ally_table}, gmcp.Room.Players[k].name) then
 										t.send("ally "..gmcp.Room.Players[k].name)
 									end	
@@ -112,21 +112,21 @@ end
 											t.send("enemy " .. gmcp.Room.Players[k].name)
 										end
 									end
-								end
-
-								if gmcp.Char.Status.name == "Erick" or gmcp.Char.Status.name == "Lucianus" then 
-									if (jcl == nil or not jcl) then return end
-										if table.contains({jcl.ally_table}, gmcp.Room.Players[k].name) and not table.contains({jcl.raid.ally_table}, gmcp.Room.Players[k].name) then
-											t.send("ally "..gmcp.Room.Players[k].name)
-										end	
+									if table.contains({jcl.ally_table}, gmcp.Room.Players[k].name) and not table.contains({jcl.raid.ally_table}, gmcp.Room.Players[k].name) then
+										t.send("ally "..gmcp.Room.Players[k].name)
+									end
+									 
 									if not table.contains({jcl.ally_table}, gmcp.Room.Players[k].name) and not table.contains({jcl.enemy_table}, gmcp.Room.Players[k].name) then
 										if TReX.serverside.enemy_check() then
 											t.send("enemy " .. gmcp.Room.Players[k].name)
 										end
-									end					
+									end
+								 
+								else	
+									return 
 								end
 							end
-						
+		
 					end
 				end
 		end

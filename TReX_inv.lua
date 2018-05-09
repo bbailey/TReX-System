@@ -235,6 +235,7 @@ end
 TReX.rewield=function(itm,hnd)
 	if not (TReX.checkWield(itm, hnd or "x")) then
 		
+		if (hnd == "x") then hand = "right" end
 		if (hnd == "r") then hand = "right" end
 		if (hnd == "l") then hand = "left" end
 		

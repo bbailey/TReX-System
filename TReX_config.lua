@@ -201,7 +201,7 @@ TReX.logout=function()
 	 send("put "..t.inv["coins"].id.." in "..t.inv["pack"].id, false)
 	end
 
-	TReX.defs.reset()
+	TReX.defs.defs_reset()
 	send("config prompt all") -- set prompt back to normal prompt
 	send("curing defences off")
 	expandAlias("dismount")
@@ -234,6 +234,9 @@ TReX.config.login_load=function(event)
 				send("config prompt all")
 			end
 			
+			TReX.defs.list()
+			TReX.defs.def_reset()
+			TReX.defs.defs_reset()	
 			TReX.serverside.login_settings() 
 			TReX.prios.default_settings()
 			TReX.prios.reset()
@@ -275,10 +278,13 @@ end
 TReX.config.install=function()
 
 	TReX.defs.list()
+	TReX.defs.def_reset()
+	TReX.defs.defs_reset()	
 	TReX.class.skill_set()
 	TReX.serverside.settings()
 	TReX.reset_taffs()
 	TReX.reset_tbals()
+	TReX.serverside.affs_reset()
 	TReX.serverside.tree_by_class()
 	TReX.prios.default_settings()
 	TReX.prios.reset()
@@ -676,6 +682,8 @@ end
 		
 		for i = 1, #afftest, 1 do
 			if t.affs[afftest[i]] then
+				--if TReX.s.class == "Serpent" then
+					--t.serverside.movemethod = "cq all"..(TReX.config.cc or "##").."evade"
 				if TReX.s.class == "Bard" then
 					t.serverside.movemethod = "cq all"..(TReX.config.cc or "##").."somersault"
 				else
@@ -924,7 +932,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 					end
 
 					if (variable == "defences") then
-						TReX.defs.reset()
+						TReX.defs.defs_reset()
 					end 
 					
 					if (variable == "clot") then

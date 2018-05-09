@@ -1335,7 +1335,7 @@ TReX.defs.alias_toggle=function(defs)
 
 		--if defs == "meditate" then
 		--	t.serverside.red_echo("Meditate")
-			--TReX.defs.reset_meditate()
+			--TReX.defs.defs_reset_meditate()
 		--end
 
 		if defs == "blindness" then
@@ -1822,7 +1822,7 @@ else
 
 		--if defs == "meditate" then
 			--t.serverside.red_echo("Meditate")
-			--TReX.defs.reset_meditate()
+			--TReX.defs.defs_reset_meditate()
 		--end
 
 		if defs=="gripping" then
@@ -2212,7 +2212,30 @@ end
 end			
 
 
-TReX.defs.reset=function()
+TReX.defs.def_reset=function()
+
+	for k,v in pairs(def_list.free) do
+		if k ~= "meditate" then
+			t.def[k]=false
+		end
+	end
+
+	for k,v in pairs(def_list.needs_full_bal) do
+		if k ~= "meditate" then
+			t.def[k]=false
+		end
+	end	
+	
+	for k,v in pairs(def_list.class) do
+		if k ~= "meditate" then
+			t.def[k]=false
+		end
+	end
+	
+end
+
+
+TReX.defs.defs_reset=function()
 -- new update
 
 	for k,v in pairs(def_list.free) do
@@ -2243,7 +2266,7 @@ TReX.defs.reset=function()
 
 
 	
-	if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.reset ) ") end
+	if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.defs_reset ) ") end
 
 end -- func
 
@@ -2333,7 +2356,9 @@ local defs2relax={"groundwatch","skywatch","alertness","nightsight","telesense",
 								elseif k=="retaliation" then
 									send("retaliation off")	
 								elseif k=="mindcloak" then
-									send("mindcloak off")	
+									send("mindcloak off")
+								elseif k=="pacing" then
+									send("relax pacing")
 								elseif k=="distortedaura" then
 									send("normalaura")
 								else
@@ -2346,7 +2371,7 @@ local defs2relax={"groundwatch","skywatch","alertness","nightsight","telesense",
 		--end
 	end
 
-	if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.reset ) ") end
+	if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.defs.defs_reset ) ") end
 
 end -- func
 
@@ -2450,7 +2475,7 @@ end
 -- toggles serverside defence defup off and on
 TReX.defs.defence=function()
 	if TReX.u.toBoolean(t.serverside["settings_default"].defences) then
-		TReX.defs.reset()
+		TReX.defs.defs_reset()
 		t.send("curing defences off")
 		t.serverside["settings_default"].defences = "No"
 		if (t.serverside["settings"].echos) then t.serverside.green_echo("<DarkSlateGrey>(<white>-<DarkSlateGrey>) <white>[ <DarkSlateGrey>DEFENCE <white>] ") end
