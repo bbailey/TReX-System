@@ -40,12 +40,22 @@ TReX.graphic..[[
 		defup			inventory
 		keepup			clan info
 		defs			projects (todo)
-		development
+		development		gui
 		
 ]].."",
+-- MISC
+gui = ""..   
+TReX.graphic..[[
+<white>			GUI 
+            	
+<white>	System Commands:<gray>
 
--- HELP
+<gray>	Playlist <LightSlateGray>	[<gray>	on<LightSlateGray>	|<gray>	off<LightSlateGray>	]
+<gray>	Daydream
+  
 
+]].."", 
+-- MISC
 misc = ""..   
 TReX.graphic..[[
 <white>			Misc 
@@ -216,7 +226,7 @@ TReX.logout=function()
 	send("inr all", false)
 	TReX.config.saveSettings(true)
 	TReX.serverside.container:hide()
-	setBorderBottom(-10)
+	setBorderBottom(0)
 	t.serverside["settings"].sys_loaded = false
 	
 end
@@ -247,21 +257,30 @@ TReX.config.login_load=function(event)
 			TReX.pipes.settings()   
 			deletep = false
 			
-			send("citizens")
-
-			if t.serverside.settings.affbar then
-				setMiniConsoleFontSize("TReX.serverside.middle", 12)
-				TReX.serverside.container:show()
-				setBorderBottom(27)
-				t.serverside.gmcpAffShow()
-			else
-				TReX.serverside.container:hide()
-				setBorderBottom(0)
-			end
-			
 			if not TReX.config.cc then 
 				t.send("config",false)  
 			end
+			
+		    local asbb=t.serverside.settings.asbb or 27
+			local sbb=t.serverside.settings.sbb or 0
+			local sbt=t.serverside.settings.sbt or 0
+			local sbr=t.serverside.settings.sbr or 0
+			local sbl=t.serverside.settings.sbl or 0
+
+			if t.serverside.settings.affbar then
+				setBorderBottom(tonumber(asbb))
+				setMiniConsoleFontSize("TReX.serverside.middle", 12)
+				TReX.serverside.container:show()
+				t.serverside.gmcpAffShow()
+			else
+				setBorderBottom(tonumber(sbb))
+				TReX.serverside.container:hide()
+			end
+
+			setBorderTop(tonumber(sbt))	
+			setBorderLeft(tonumber(sbl))
+			setBorderRight(tonumber(sbr))
+			
 			
 			TReX.config.saveSettings()
 			
@@ -959,7 +978,57 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 	
 	TReX.config.saveSettings()
 	
-end		
+end
+
+TReX.config.set_border_bottom_waffbar=function(num)
+	t.serverside.settings.asbb=num
+	
+		if t.serverside.settings.affbar then
+			setBorderBottom(tonumber(t.serverside.settings.asbb))
+			setMiniConsoleFontSize("TReX.serverside.middle", 12)
+			TReX.serverside.container:show()
+			t.serverside.gmcpAffShow()
+		else
+			setBorderBottom(tonumber(t.serverside.settings.sbb))
+			TReX.serverside.container:hide()
+		end
+		
+	TReX.config.showSettings("settings")
+end
+
+TReX.config.set_border_bottom_woaffbar=function(num)
+	t.serverside.settings.sbb=num
+	
+		if t.serverside.settings.affbar then
+			setBorderBottom(tonumber(t.serverside.settings.asbb))
+			setMiniConsoleFontSize("TReX.serverside.middle", 12)
+			TReX.serverside.container:show()
+			t.serverside.gmcpAffShow()
+		else
+			setBorderBottom(tonumber(t.serverside.settings.sbb))
+			TReX.serverside.container:hide()
+		end
+		
+	TReX.config.showSettings("settings")
+end
+
+TReX.config.set_border_top=function(num)
+	t.serverside.settings.sbt=num	
+	setBorderTop(tonumber(t.serverside.settings.sbt))		
+	TReX.config.showSettings("settings")	
+end
+
+TReX.config.set_border_right=function(num)
+	t.serverside.settings.sbr=num		
+	setBorderRight(tonumber(t.serverside.settings.sbr))
+	TReX.config.showSettings("settings")	
+end
+
+TReX.config.set_border_left=function(num)
+	t.serverside.settings.sbl=num	
+	setBorderLeft(tonumber(t.serverside.settings.sbl))
+	TReX.config.showSettings("settings")	
+end
 
 TReX.config.sip_health_at=function(num)
 	t.serverside["settings_default"].sip_health_at = num
@@ -1029,6 +1098,20 @@ TReX.config.remove_mount=function(name)
 
 end
 
+TReX.config.gui=function()
+echo("\n")
+cecho("\n\t<white>System GUI Settings")
+echo("\n")
+echo("\n - ") echoLink("Set Border Bottom (w/ affbar)", "clearCmdLine() appendCmdLine'asetbb '", "set border bottom") cecho("<white>: "..t.serverside.settings.asbb.." ", false)
+echo("\n - ") echoLink("Set Border Bottom (w/o affbar)", "clearCmdLine() appendCmdLine'setbb '", "set border bottom") cecho("<white>: "..t.serverside.settings.sbb.." ", false)
+echo("\n - ") echoLink("Set Border Top", "clearCmdLine() appendCmdLine'setbt '", "set border top") cecho("<white>: "..t.serverside.settings.sbt.." ", false)
+echo("\n - ") echoLink("Set Border Right", "clearCmdLine() appendCmdLine'setbr '", "set border right") cecho("<white>: "..t.serverside.settings.sbr.." ", false)
+echo("\n - ") echoLink("Set Border Left", "clearCmdLine() appendCmdLine'setbl '", "set border left") cecho("<white>: "..t.serverside.settings.sbl.." ", false)
+		echo"\n\n"
+		deletep = false
+		showprompt()
+end
+
 TReX.config.showSettings=function()
 echo("\n")
 cecho("\n\t<white>System Settings")
@@ -1041,7 +1124,7 @@ echo("\n - ") echoLink("Moss Mana at", "clearCmdLine() appendCmdLine'moss_mana_a
 echo("\n - ") echoLink("Apply to Fractures at", "clearCmdLine() appendCmdLine'set_fractures '", "fractures") cecho("<white>: "..t.serverside["settings_default"].fractures.." %", false)
 echo("\n - ") echoLink("Clot bleeding at", "clearCmdLine() appendCmdLine'clot_at '", "puff count") cecho("<white>: "..t.serverside["settings_default"].clot_at.." bleeding", false)
 echo("\n - ") echoLink("System will diagnose on", "clearCmdLine() appendCmdLine'unknown_diag_at '", "unknowns") cecho("<white>: "..t.config["settings_system"].diag_at.." unknown", false)
-echo("\n")
+echo"\n"
 	
 local sortSettings = {}
 
@@ -1097,7 +1180,9 @@ TReX.class.skill_check()
 
 		end
 		
-		echo"\n\n"
+		--echo"\n"
+		--deletep = false
+		--showprompt()
 
 end
 
@@ -1119,8 +1204,8 @@ TReX.config.show=function (arg,arg2)
 		TReX.defs.defup_current()
 	elseif arg == "keepup" then
 		TReX.defs.keepup_current()		
-	--elseif arg == "defs" then
-		--TReX.defs.display()
+	elseif arg == "gui" then
+		TReX.config.gui()
 	elseif arg == "lust" then
 		TReX.lust.whitelist()
 	elseif arg == "settings" then

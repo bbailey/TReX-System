@@ -31,7 +31,7 @@
                 <colorTriggerFgColor>#00b300</colorTriggerFgColor>
                 <colorTriggerBgColor>#000000</colorTriggerBgColor>
                 <regexCodeList>
-                    <string></string>
+                    <string>\t</string>
                     <string>** Illusion **</string>
                 </regexCodeList>
                 <regexCodePropertyList>
@@ -193,7 +193,7 @@ end</script>
                 <colorTriggerFgColor>#000000</colorTriggerFgColor>
                 <colorTriggerBgColor>#000000</colorTriggerBgColor>
                 <regexCodeList>
-                    <string>^\-$</string>
+                    <string>\b</string>
                 </regexCodeList>
                 <regexCodePropertyList>
                     <integer>7</integer>
@@ -291,11 +291,6 @@ if t.bals.tree then raiseEvent(&quot;TReX gained aff&quot;, &quot;blackout&quot;
 t.defs = {}
 TReX.load()
 trex_image()
-
-ship_shielded=false
-use_thrower=false
-
-
 </script>
                 <triggerType>0</triggerType>
                 <conditonLineDelta>0</conditonLineDelta>
@@ -17287,7 +17282,7 @@ end</script>
                         <integer>1</integer>
                     </regexCodePropertyList>
                 </Trigger>
-                <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>Willow</name>
                     <script>TReX.class.set(&quot;shikudo&quot;, matches[2])</script>
                     <triggerType>0</triggerType>
@@ -26320,11 +26315,9 @@ TReX.serverside.affadd(&quot;stun&quot;)</script>
                     <colorTriggerBgColor>#000000</colorTriggerBgColor>
                     <regexCodeList>
                         <string>Duchess Alorina brings her fist hurtling forward to slam into your jaw with a decidedly unladylike degree of force.</string>
-                        <string>Stepping forward abruptly, a knight of the Siroccian Order slams his tower shield</string>
                     </regexCodeList>
                     <regexCodePropertyList>
                         <integer>3</integer>
-                        <integer>2</integer>
                     </regexCodePropertyList>
                 </Trigger>
                 <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
@@ -27277,17 +27270,15 @@ end</script>
                 <script>t.serverside.gmcp_aff_table = {}
 t.serverside.gmcpAffShow()
 TReX.prios.reset()
-for k,v in pairs(t.affs) do
-	t.affs[k] = false
-end
+TReX.serverside.affs_reset()
 
 t.serverside.retardmode = false
-
 
 		t.def  = {}
 		t.defs = {}
 		
-		TReX.defs.reset()
+		TReX.defs.def_reset()
+		TReX.defs.defs_reset()
 		TReX.defs.login() 
 		TReX.class.skill_check()</script>
                 <command></command>
@@ -27469,6 +27460,13 @@ end</script>
                 <command></command>
                 <packageName></packageName>
                 <regex>^hh$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>gui</name>
+                <script>TReX.config.gui()</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^gui$</regex>
             </Alias>
         </AliasGroup>
         <AliasGroup isActive="yes" isFolder="yes">
@@ -28223,7 +28221,8 @@ TReX.config.ppause(&quot;on&quot;)
                 <name>touch negation (hard reset)</name>
                 <script>t.def={}
 t.defs={}
---TReX.defs.reset() --
+TReX.defs.def_reset()
+TReX.defs.defs_reset()
 TReX.config.ppause(&quot;on&quot;)
 send(&quot;touch negation&quot;)</script>
                 <command></command>
@@ -28236,6 +28235,43 @@ send(&quot;touch negation&quot;)</script>
                 <command></command>
                 <packageName></packageName>
                 <regex>^cmdsep (.+)$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>set border bottom with affbar</name>
+                <script>TReX.config.set_border_bottom_waffbar(matches[2])</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^asetbb (\d+)$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>set border bottom w/o affbar</name>
+                <script>TReX.config.set_border_bottom_woaffbar(matches[2])
+
+</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^setbb (\d+)$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>set border top</name>
+                <script>TReX.config.set_border_top(matches[2])</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^setbt (\d+)$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>set border right</name>
+                <script>TReX.config.set_border_right(matches[2])</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^setbr (\d+)$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>set border left</name>
+                <script>TReX.config.set_border_left(matches[2])</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^setbl (\d+)$</regex>
             </Alias>
         </AliasGroup>
         <AliasGroup isActive="yes" isFolder="yes">
@@ -29048,8 +29084,8 @@ end</script>
 	--AFFBAR
     TReX.serverside.container = Geyser.Container:new({
     	name = &quot;TReX.serverside.container&quot;,
-    	    	x = &quot;0%&quot;, y = &quot;97%&quot;,
-    				width = &quot;100%&quot;, 
+						x = &quot;0%&quot;, y = &quot;97%&quot;,
+    			  width = &quot;85.75%&quot;, 
     				height = &quot;2%&quot;,
 
     })
@@ -29085,19 +29121,6 @@ end</script>
     	color = &quot;black&quot;
     }, TReX.serverside.footer)
 		
-
-		if t.serverside.settings.affbar then
-  		setBorderBottom(27)
-  		setMiniConsoleFontSize(&quot;TReX.serverside.middle&quot;, 12)
-  		TReX.serverside.container:show()
-  		t.serverside.gmcpAffShow()
-		else
-  		setBorderBottom(0)
-  		TReX.serverside.container:hide()
-		end
-
-			
-
 
 -- store TReX.mDir for system files, so people can use module manager if they wish
 TReX.mDir												= TReX.mDir or getMudletHomeDir() -- default to profile
@@ -29460,7 +29483,6 @@ end
 				[&quot;mount_list&quot;] = mount_list,
 				[&quot;t.stats&quot;] = t.stats,
 				[&quot;t.file&quot;] = t.file,
-				[&quot;t.inv&quot;] = t.inv,	
 							}
 
 		for file, myTable in pairs(_save) do
@@ -29500,7 +29522,6 @@ end
 				[&quot;mount_list&quot;] = mount_list,
 				[&quot;t.stats&quot;] = t.stats,
 				[&quot;t.file&quot;] = t.file,
-				[&quot;t.inv&quot;] = t.inv,	
 			 			  }
 
 		for file, myTable in pairs(_save) do
@@ -29936,193 +29957,67 @@ end</script>
             <Script isActive="yes" isFolder="no">
                 <name>inventory</name>
                 <packageName></packageName>
-                <script>--[[
-	INSTRUCTIONS: enter into mudlet cmd bar: 'tlua TReX.inv.inv ' you can find your available 'known' inventory in this table.
-		REMOVE TRIGGER: Remove this trigger into your PERSONAL triggers B4 you update the system.
-]]
-
-TReX.inv.set_id_table = function()
-
-t.inv = t.inv or {}
-
---project for later
---t.inv.mount = {&quot;a scarred scorpion&quot;,&quot;a magnificent kelpie&quot;,&quot;a dreadful chimera&quot;}
-	for k,v in pairs(TReX.inv.inv) do
-		--pack
-
-
+                <script>local list={
+						
+	journal01=&quot;a personal journal&quot;,
 		
-		-- DECAYABLES
-		if string.find(v.name, string.genNocasePattern(&quot;armour&quot;)) then 
-			t.inv[&quot;armour&quot;]={name=&quot;armour&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=true, enabled=true}
-			--print(v.name)
-		end
+	artyvial01=&quot;a bone vial etched with runes&quot;,
+	artyvial02=&quot;an elegant diamond vial&quot;,
+
+	spear=&quot;a mithril spear&quot;,
+	staff=&quot;a vine-wreathed sylvanic quarterstaff&quot;,
+	axe=&quot;a throwing axe&quot;,
+
+	buckler=&quot;a buckler&quot;,
+	dirk=&quot;a plain, simple dirk&quot;,
+	whip=&quot;whip&quot;,
+	nagaquiver=&quot;a black banded quiver&quot;,
+	wristsheath=&quot;a stygian wrist sheath&quot;,
+	
+	dragonquiver=&quot;a dragonskin quiver&quot;,
 
 
-		if string.find(v.name, string.genNocasePattern(&quot;pack&quot;)) then 
-			t.inv[&quot;pack&quot;]={name=&quot;pack&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=true, enabled=true}
-			--print(v.name)
-		end
+  lyre=&quot;a bard's lyre&quot;,
 
-		if string.find(v.name, string.genNocasePattern(&quot;a crafted bamboo pipe&quot;)) then 
-			t.inv[&quot;tabac&quot;]={name=&quot;tabac&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=false, enabled=true}
-			--print(v.name)
-		end
+	pack=&quot;a canvas backpack&quot;,
+	stasisbag=&quot;bag of stasis&quot;,										
+	satchel=&quot;a rugged satchel of crocodile hide&quot;,
+	scalemail = &quot;a rugged suit of Eleusian scale mail&quot;,
+	tabacpipe = &quot;a crafted bamboo pipe&quot;,
+	darkbow = &quot;a kingwood darkbow inlaid with gold&quot;,
 
-
-		if string.find(v.name, string.genNocasePattern(&quot;a finely carved heartwood pot&quot;)) then 
-			t.inv[&quot;pot&quot;]={name=&quot;pot&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=false, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;a throwing axe&quot;)) then 
-			t.inv[&quot;handaxe&quot;]={name=&quot;handaxe&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=false, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;kitbag&quot;)) then 
-			t.inv[&quot;kitbag&quot;]={name=&quot;kitbag&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=true, enabled=true}
-			--print(v.name)
-		end
-
-
-		if string.find(v.name, string.genNocasePattern(&quot;bag of stasis&quot;)) then 
-			t.inv[&quot;bag&quot;]={name=&quot;bag&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=true, enabled=true}
-			--print(v.name)
-		end	
-
-		if string.find(v.name, string.genNocasePattern(&quot;a bard's lyre&quot;)) then 
-			t.inv[&quot;lyre&quot;]={name=&quot;lyre&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=false, enabled=true}
-			--print(v.name)
-		end		
-
-
---NON DECAY
-
-
-		if string.find(v.name, string.genNocasePattern(&quot;a rugged satchel of crocodile hide&quot;)) then 
-			t.inv[&quot;pack&quot;]={name=&quot;pack&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=true, enabled=true}
-		end
- 
- 		if string.find(v.name, string.genNocasePattern(&quot;an Odyssean tongue&quot;)) then 
-			t.inv[&quot;tongue&quot;]={name=&quot;tongue&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=true, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;a spiralled loop of mortal coil&quot;)) then 
-			t.inv[&quot;loop&quot;]={name=&quot;mortal coil&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=true, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;a vulture's talon&quot;)) then 
-			t.inv[&quot;talon&quot;]={name=&quot;talon&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=false, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;some gold sovereigns&quot;)) then 
-			t.inv[&quot;coins&quot;]={name=&quot;coins&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=false, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;Robes of the Magi&quot;)) then 
-			t.inv[&quot;magirobes&quot;]={name=&quot;magirobes&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=false, enabled=true}
-			--print(v.name)
-		end
-		
-		if string.find(v.name, string.genNocasePattern(&quot;Absorption&quot;)) then 
-			t.inv[&quot;soa&quot;]={name=&quot;soa&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=false, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;a sharpened Logosmas tree trunk&quot;)) then 
-			t.inv[&quot;pike&quot;]={name=&quot;pike&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=false, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;a bone vial etched with runes&quot;)) then 
-			t.inv[&quot;bonevial&quot;]={name=&quot;bonevial&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=false, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;an elegant diamond vial&quot;)) then 
-			t.inv[&quot;artyvial&quot;]={name=&quot;artyvial&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=false, enabled=true}
-			--print(v.name)
-		end
-
-	if string.find(v.name, string.genNocasePattern(&quot;a Soulpiercer&quot;)) then 
-			t.inv[&quot;a Soulpiercer&quot;]={name=&quot;a Soulpiercer&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=false, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;a Cane of the Quickening&quot;)) then 
-			t.inv[&quot;cane&quot;]={name=&quot;cane&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=false, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;a mithril spear&quot;)) then 
-			t.inv[&quot;behead&quot;]={name=&quot;behead&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=false, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;a scrying bowl&quot;)) then 
-			t.inv[&quot;scrybowl&quot;]={name=&quot;scrybowl&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=false, enabled=true}
-			--print(v.name)
-		end
-				
-
-
-		
-
-		--QUIVERS
-
-		if string.find(v.name, string.genNocasePattern(&quot;a dragonskin quiver&quot;))  then 
-			t.inv[&quot;quiver&quot;]={name=&quot;quiver&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=true, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;a personal journal&quot;)) then 
-			t.inv[&quot;journal&quot;]={name=&quot;personal journal&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=true, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;a fire pendant&quot;)) then 
-			t.inv[&quot;pendant&quot;]={name=&quot;fire pendant&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=true, enabled=true}
-			---print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;a shackle of Garash&quot;)) then 
-			t.inv[&quot;shackle&quot;]={name=&quot;shackle&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=true, enabled=true}
-			---print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;a Mayan ring&quot;)) then 
-			t.inv[&quot;healthsipring&quot;]={name=&quot;health sip ring&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=true, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;a pair of eagle's wings&quot;)) then 
-			t.inv[&quot;wings&quot;]={name=&quot;wings&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=true, enabled=true}
-			--print(v.name)
-		end
-
-		if string.find(v.name, string.genNocasePattern(&quot;an Aldar talisman&quot;)) then 
-			t.inv[&quot;diadem&quot;]={name=&quot;diadem&quot;, id=tonumber(k), attrib=v.attrib, arte=true, worn=true, enabled=true}
-			--print(v.name)
-		end
-
-
-			if table.index_of({&quot;Druid&quot;,&quot;Sylvan&quot;}, TReX.s.class) then
-				if string.find(v.name, string.genNocasePattern(&quot;a vine-wreathed sylvanic quarterstaff&quot;)) then 
-					t.inv[&quot;staff&quot;]={name=&quot;staff&quot;, id=tonumber(k), attrib=v.attrib, arte=false, worn=true, enabled=true}
-					--print(v.name)
-				end
-			end
-
-
-	end -- for k, v
+	pot=&quot;a finely carved heartwood pot&quot;,
 	
 
+  soulpiercer=&quot;a Soulpiercer&quot;,
+		
+					
+	soa=&quot;Absorption&quot;,
+	wings=&quot;a pair of eagle's wings&quot;,
+	mayanring=&quot;a Mayan ring&quot;,
+	scrybowl=&quot;a scrying bowl&quot;,
+	coq=&quot;a Cane of the Quickening&quot;,
+	tongue=&quot;an Odyssean tongue&quot;,
+	magirobes=&quot;Robes of the Magi&quot;,
+	talon=&quot;a vulture's talon&quot;,
+	shackle=&quot;a shackle of Garash&quot;,
+	talisman=&quot;an Aldar talisman&quot;,
+	diadem=&quot;an Aldar diadem&quot;,
+	pike=&quot;a sharpened Logosmas tree trunk&quot;,
+	mortalcoil=&quot;a spiralled loop of mortal coil&quot;,
+				
+				
+}
 
+TReX.inv.set_id_table = function()
+  t.inv = {}
+   	for k,v in pairs(TReX.inv.inv) do
+  		for i,j in pairs(list) do
+     		if string.find(v.name, string.genNocasePattern(j)) then 
+     			t.inv[i]={name=j, id=tonumber(k), attrib=v.attrib}
+     		end
+  		end
+  	end -- for k, v
 end -- func
 </script>
                 <eventHandlerList/>
@@ -30566,6 +30461,7 @@ if t.inv[&quot;magirobes&quot;] then
 	magirobesmult = .66
 end
 
+
 local classreference = {alchemist = {bleed = 75, mana = .7}, bard = {bleed = 70, mana = 0}, priest = {bleed = 2000, mana = .8}, 
 												dualc = {bleed = 2000, mana = .2}, shaman = {bleed = 140, mana = .8}, apostate = {bleed = 2000, mana = .7}, 
 												blademaster = {bleed = 70, mana = 0}, water = {bleed = 70, mana = 0}, depthswalker = {bleed = 70, mana = 0},
@@ -30574,6 +30470,7 @@ local classreference = {alchemist = {bleed = 75, mana = .7}, bard = {bleed = 70,
 												sentinel = {bleed = 70, mana = 0},serpent = {bleed = 70, mana = 0},sylvan = {bleed = 70, mana = 0},
 												snb = {bleed = 70, mana = 0},twoh = {bleed = 70, mana = 0},dualb = {bleed = 70, mana = 0},
 												air = {bleed = 70, mana = 0},fire = {bleed = 70, mana = 0},earth = {bleed = 70, mana = 0},}
+	
 												
 local bleeddanger = 0
 local manadanger = 0
@@ -31002,6 +30899,7 @@ TReX.hunting.rotation=function()
 			end
 		else
 			if not t.affs.prone and not t.affs.stun then
+				TReX.rewield(t.inv[&quot;whip&quot;].id, &quot;x&quot;)
 				send(&quot;cq eqbal&quot;..(TReX.config.cc or &quot;##&quot;)..&quot;queue add eqbal garrote &quot;..target)
 				--t.serverside.green_echo(&quot;Garrote Queued&quot;)
 			end	
@@ -31494,7 +31392,8 @@ end</script>
                 <script>areaList = {
 
 [&quot;the Valley of Lodi&quot;] = {&quot;a juvenile wildcat&quot;, &quot;an adult wildcat&quot;, &quot;a wildcat soldier&quot;, &quot;a wildcat servant&quot;,&quot;Scylina, Queen of the Wildcats&quot;},
-
+[&quot;a black warren&quot;] = {&quot;grizzled Pieranotzu, the Ravenous&quot;,&quot;a brown rat&quot;, &quot;a large brown rat&quot;,&quot;a young brown rat&quot;,&quot;A tiny brown rat&quot;,&quot;a small grey spider&quot;},
+[&quot;the land of Minia&quot;] = {&quot;a hellcat&quot;,&quot;Ord, the hellcat trainer&quot;,&quot;an imp captain&quot;,&quot;an imp servant&quot;,&quot;an imp guard&quot;,&quot;an imp mage&quot;,&quot;an imp archer&quot;,},
 
 
 [&quot;Karbaz&quot;]= {&quot;Isti, an aspiring Kirlundin&quot;,&quot;a guard of Kirlundin Citadel&quot;,&quot;a furry kwal&quot;,&quot;a grey wolf&quot;,&quot;a ferocious mountain goat&quot;,&quot;Enuru, the Bane of Karbaz&quot;,&quot;a Rhaan of Enuru&quot;,&quot;Kuni, the overseer of Kaleu&quot;,&quot;Helshezag, hag of the Kaleu Cave&quot;,&quot;Mrughor, a spectral warlock&quot;,&quot;Gudrun, the Wretched&quot;},
@@ -31934,7 +31833,7 @@ if not t.serverside.settings.sys_loaded then return end
 				t.send(&quot;&quot;)
 			end
 		
-			TReX.defs.reset()
+			TReX.defs.defs_reset()
 
 			--throw a tree check in here.
 	
@@ -35575,12 +35474,12 @@ end</script>
 	[&quot;mangledrightarm&quot;]  			= 6,
 	[&quot;anorexia&quot;] 							= 6, -- focus, epidermal
 
+	[&quot;timeloop&quot;] 							= 7, -- Eat Bellwort / Eat Cuprum	
 	[&quot;asthma&quot;] 								= 7, -- Eat Kelp / Eat Aurum	
-	[&quot;torntendons&quot;] 					= 7, -- Apply health
-	[&quot;damagedleftarm&quot;]				= 7,
+	[&quot;damagedleftarm&quot;]			  = 7,
 	[&quot;brokenleftarm&quot;]				  = 7,	
 
-	[&quot;timeloop&quot;] 							= 8, -- Eat Bellwort / Eat Cuprum	
+  [&quot;torntendons&quot;] 					= 8, -- Apply health
 	[&quot;damagedrightarm&quot;]			  = 8,
 	[&quot;brokenrightarm&quot;]				= 8,
 	[&quot;clumsiness&quot;] 					  = 8, -- Eat Kelp / Eat Aurum

@@ -1167,6 +1167,7 @@ t.serverside.gmcpAffShow=function()  -- this is your aff display
 
 local a,b,c,d
 
+t.affs["pres"] = t.affs["pres"] or 0
 t.affs["bleed"] = TReX.serverside.bleed_check()
 
 t.affs["unknownany"] = t.affs["unknownany"] or 0
@@ -2225,6 +2226,11 @@ t.serverside.settings = {
     insomnia = false,
 	deathsight = false,
 	affbar = false,
+	asbb=27,
+	sbb=0,
+	sbt=0,
+	sbl=0,
+	sbr=0,
     
 }
 
