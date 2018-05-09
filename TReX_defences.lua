@@ -2301,6 +2301,9 @@ local defs2relax={"groundwatch","skywatch","alertness","nightsight","telesense",
 							send("relax "..k)
 						end
 					end
+				else
+						table.remove(t.defs, table.index_of(t.defs, k))
+						send("curing prio def "..k.." reset", false)
 				end
 		end
 		end
@@ -2321,6 +2324,10 @@ local defs2relax={"groundwatch","skywatch","alertness","nightsight","telesense",
 									send("relax "..k)
 								end
 							end
+						else
+								table.remove(t.defs, table.index_of(t.defs, k))
+								send("curing prio def "..k.." reset", false)	
+					
 						end
 				end
 			end
@@ -2365,6 +2372,14 @@ local defs2relax={"groundwatch","skywatch","alertness","nightsight","telesense",
 									send("relax "..k)
 								end
 							end
+						else
+								table.remove(t.defs, table.index_of(t.defs, k))
+								send("curing prio def "..k.." reset", false)	
+
+								if k=="hiding" then
+									send("emerge")
+								end
+								
 						end
 				end
 			end
@@ -2510,7 +2525,7 @@ TReX.defs.defs_sort=function(defs)
 			defs_prio=25
 		end
 	end
-
+--print(defs)
 TReX.defs.priorityQueue(defs, defs_prio)
 
 end

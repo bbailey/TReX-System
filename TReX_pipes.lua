@@ -280,7 +280,7 @@ local herb  = tostring(pipenames[herbout])
 if table.contains({pipenames}, herbout) then
   if (t.bals.bal) then
     if not (t.serverside["settings"].paused) or (t.affs.stun) or (t.affs.aeon) then 
-      if herb == tostring("malachite") then
+      if herb == tostring("malachite") or herb == tostring("skullcap") then
         t.send("queue prepend eqbal light " .. TReX.pipes.skullcap.id)
       else
        t.send("queue prepend eqbal light " .. herb)
