@@ -2302,10 +2302,10 @@ local defs2relax={"groundwatch","skywatch","alertness","nightsight","telesense",
 						end
 					end
 				else
-								if def_list.free[k].defup or def_list.needs_full_bal[k].defup or def_list.class[k].defup then
-									table.remove(t.defs, table.index_of(t.defs, k))
-									send("curing prio def "..k.." reset", false)	
-								end
+								--if def_list.free[k].defup or def_list.needs_full_bal[k].defup or def_list.class[k].defup then
+									--table.remove(t.defs, table.index_of(t.defs, k))
+									--send("curing prio def "..k.." reset", false)	
+								--end
 				end
 		end
 		end
@@ -2327,10 +2327,10 @@ local defs2relax={"groundwatch","skywatch","alertness","nightsight","telesense",
 								end
 							end
 						else
-								if def_list.free[k].defup or def_list.needs_full_bal[k].defup or def_list.class[k].defup then
-									table.remove(t.defs, table.index_of(t.defs, k))
-									send("curing prio def "..k.." reset", false)	
-								end
+								--if def_list.free[k].defup or def_list.needs_full_bal[k].defup or def_list.class[k].defup then
+									--table.remove(t.defs, table.index_of(t.defs, k))
+									--send("curing prio def "..k.." reset", false)	
+								--end
 					
 						end
 				end
@@ -2377,14 +2377,14 @@ local defs2relax={"groundwatch","skywatch","alertness","nightsight","telesense",
 								end
 							end
 						else
-								if def_list.free[k].defup or def_list.needs_full_bal[k].defup or def_list.class[k].defup then
-									table.remove(t.defs, table.index_of(t.defs, k))
-									send("curing prio def "..k.." reset", false)	
+								--if def_list.free[k].defup or def_list.needs_full_bal[k].defup or def_list.class[k].defup then
+									--table.remove(t.defs, table.index_of(t.defs, k))
+									--send("curing prio def "..k.." reset", false)	
 								
 										if k=="hiding" then
 											send("emerge")
 										end
-								end
+								--end
 								
 						end
 				end
