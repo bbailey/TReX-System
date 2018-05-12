@@ -1192,7 +1192,7 @@ TReX.pipes.parseplistend()</script>
                     <colorTriggerFgColor>#000000</colorTriggerFgColor>
                     <colorTriggerBgColor>#000000</colorTriggerBgColor>
                     <regexCodeList>
-                        <string>Status  Pipe         Contents                       Puffs Months</string>
+                        <string> *(artf|out|lit) +pipe(\d+) +empty +(?:n/a|\d+)</string>
                     </regexCodeList>
                     <regexCodePropertyList>
                         <integer>7</integer>
@@ -1278,6 +1278,26 @@ TReX.pipes.parseplistend()</script>
                     </regexCodeList>
                     <regexCodePropertyList>
                         <integer>1</integer>
+                    </regexCodePropertyList>
+                </Trigger>
+                <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                    <name>check pipes on wake up</name>
+                    <script></script>
+                    <triggerType>0</triggerType>
+                    <conditonLineDelta>0</conditonLineDelta>
+                    <mStayOpen>0</mStayOpen>
+                    <mCommand></mCommand>
+                    <packageName></packageName>
+                    <mFgColor>#ff0000</mFgColor>
+                    <mBgColor>#ffff00</mBgColor>
+                    <mSoundFile></mSoundFile>
+                    <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                    <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                    <regexCodeList>
+                        <string>You open your eyes and stretch languidly, feeling deliciously well-rested.</string>
+                    </regexCodeList>
+                    <regexCodePropertyList>
+                        <integer>3</integer>
                     </regexCodePropertyList>
                 </Trigger>
             </TriggerGroup>
@@ -3813,6 +3833,30 @@ t.serverside.shrugging=true</script>
                         </regexCodeList>
                         <regexCodePropertyList>
                             <integer>1</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>not hiding</name>
+                        <script>send(&quot;curing prio def hiding reset&quot;)
+if table.contains({t.defs}, &quot;hiding&quot;) then
+	table.remove(t.defs, table.index_of(t.defs, &quot;hiding&quot;))
+end
+t.defs.hiding=false</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>Too many prying eyes prevent you from finding a suitable hiding place.</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>3</integer>
                         </regexCodePropertyList>
                     </Trigger>
                 </TriggerGroup>
@@ -17574,7 +17618,7 @@ end</script>
                         <integer>1</integer>
                     </regexCodePropertyList>
                 </Trigger>
-                <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                <Trigger isActive="no" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>Gaital</name>
                     <script>TReX.class.set(&quot;shikudo&quot;, matches[2])</script>
                     <triggerType>0</triggerType>
@@ -19057,23 +19101,17 @@ raiseEvent(&quot;mmapper updated pdb&quot;)</script>
                 <colorTriggerBgColor>#000000</colorTriggerBgColor>
                 <regexCodeList/>
                 <regexCodePropertyList/>
-                <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="yes" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>tells you</name>
-                    <script>selectString(line,1)
-copy()
---deleteLine()
-appendBuffer(&quot;Chatbox&quot;)
-
---if playList.on then
-	--raiseEvent(&quot;playList&quot;)
-	--tempTimer(2.5, [[raiseEvent(&quot;playList&quot;)]])
---end
-
-playSoundFile(getMudletHomeDir().. [[/TReX/Chimes.wav]])	
-
-if t.serverside.daydreaming then
-	tempTimer(2, [[send(&quot;reply Day-Dreamy. I'll be AWARE soon.&quot;)]])
+                    <script>if playList.on then
+	raiseEvent(&quot;playList&quot;)
+	tempTimer(2.5, [[raiseEvent(&quot;playList&quot;)]])
 end
+
+if t.serverside.settings.tells then
+	playSoundFile(getMudletHomeDir().. [[/TReX/Chimes.wav]])
+end	
+
 </script>
                     <triggerType>0</triggerType>
                     <conditonLineDelta>0</conditonLineDelta>
@@ -28173,20 +28211,6 @@ send(&quot;msg renumber&quot;)</script>
                     <regex>^inks (\w+)$</regex>
                 </Alias>
                 <Alias isActive="yes" isFolder="no">
-                    <name>daydream</name>
-                    <script>if t.serverside.daydreaming then
-	t.serverside.daydreaming = false
-	t.serverside.green_echo(&quot;daydream off&quot;)
-else
-	t.serverside.daydreaming = true
-	send(&quot;daydream&quot;)
-	t.serverside.green_echo(&quot;daydream on&quot;)
-end</script>
-                    <command></command>
-                    <packageName></packageName>
-                    <regex>^daydream$</regex>
-                </Alias>
-                <Alias isActive="yes" isFolder="no">
                     <name>buy inks</name>
                     <script>TReX.u.buyInks(matches[2])</script>
                     <command></command>
@@ -28272,6 +28296,38 @@ send(&quot;touch negation&quot;)</script>
                 <command></command>
                 <packageName></packageName>
                 <regex>^setbl (\d+)$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>login roar (toggle)</name>
+                <script>--and not t.serverside.settings.roar
+local toggle = &quot;on&quot;
+if matches[2] == nil and t.serverside.settings.roar then
+	toggle = &quot;off&quot;
+end
+if matches[2] == &quot;off&quot; then
+	toggle = &quot;off&quot;
+end
+
+TReX.config.roar_toggle(toggle)</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^troar\s?(on|off)?$</regex>
+            </Alias>
+            <Alias isActive="yes" isFolder="no">
+                <name>trex tells toggle</name>
+                <script>--and not t.serverside.settings.roar
+local toggle = &quot;on&quot;
+if matches[2] == nil and t.serverside.settings.tells then
+	toggle = &quot;off&quot;
+end
+if matches[2] == &quot;off&quot; then
+	toggle = &quot;off&quot;
+end
+
+TReX.config.tells_toggle(toggle)</script>
+                <command></command>
+                <packageName></packageName>
+                <regex>^ttells\s?(on|off)?$</regex>
             </Alias>
         </AliasGroup>
         <AliasGroup isActive="yes" isFolder="yes">
@@ -29084,9 +29140,13 @@ end</script>
 	--AFFBAR
     TReX.serverside.container = Geyser.Container:new({
     	name = &quot;TReX.serverside.container&quot;,
-						x = &quot;0%&quot;, y = &quot;97%&quot;,
-    			  width = &quot;85.75%&quot;, 
+				--		x = &quot;0%&quot;, y = &quot;97%&quot;,
+    		--	  width = &quot;85.75%&quot;, 
+    		--		height = &quot;2%&quot;,
+    	    	x = &quot;26%&quot;, y = &quot;86%&quot;,
+    				width = &quot;86%&quot;, 
     				height = &quot;2%&quot;,
+
 
     })
     TReX.serverside.header = Geyser.HBox:new({
@@ -29183,7 +29243,11 @@ TReX.mSep												= TReX.mSep or &quot;&quot;
 		dofile(v)
 	end
 
-
+			if t.serverside.settings.affbar then
+				setBorderBottom(tonumber(t.serverside.settings.asbb))
+				setMiniConsoleFontSize(&quot;TReX.serverside.middle&quot;, 12)
+			end
+			
 	t.serverside.green_echo(&quot;Loaded TReX Settings, Version &quot;..TReX.config.version..&quot;\n&quot;)
 
 
@@ -30127,7 +30191,7 @@ end
 </script>
                 <eventHandlerList/>
             </Script>
-            <Script isActive="yes" isFolder="no">
+            <Script isActive="no" isFolder="no">
                 <name>usage statistics</name>
                 <packageName></packageName>
                 <script>-- http://exiva.aucula.net:8000/trex 
