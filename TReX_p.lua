@@ -104,6 +104,7 @@ end
 						table.insert(TReX.p.here, gmcp.Room.Players[k].name)
 							if hl.raid then
 								if trx or jcl then
+								if trx then
 									if table.contains({trx.ally_table}, gmcp.Room.Players[k].name) and not table.contains({trx.raid.ally_table}, gmcp.Room.Players[k].name) then
 										t.send("ally "..gmcp.Room.Players[k].name)
 									end	
@@ -112,6 +113,8 @@ end
 											t.send("enemy " .. gmcp.Room.Players[k].name)
 										end
 									end
+								end
+								if jcl then	
 									if table.contains({jcl.ally_table}, gmcp.Room.Players[k].name) and not table.contains({jcl.raid.ally_table}, gmcp.Room.Players[k].name) then
 										t.send("ally "..gmcp.Room.Players[k].name)
 									end
@@ -121,6 +124,7 @@ end
 											t.send("enemy " .. gmcp.Room.Players[k].name)
 										end
 									end
+								end
 								 
 								else	
 									return 

@@ -286,7 +286,10 @@ TReX.config.login_load=function(event)
 			
 			tempTimer(1, [[t.serverside["settings"].sys_loaded = true]])   
 			enableTimer("inventory updater")
-			playSoundFile(getMudletHomeDir().. [[/TReX/TReX.mp3]])  
+			
+			if t.serverside["settings"].roar then
+				playSoundFile(getMudletHomeDir().. [[/TReX/TReX.mp3]]) 
+			end
 			
 		else
 			t.serverside.green_echo("TReX not installed, or the file is corrupt; best to reinstall.", false)
@@ -731,7 +734,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 
 		if (t.serverside["settings"][variable]) then -- if toggling to true
 
-			if table.contains({"extrusion","purify","deathsight","fool","daina","alleviate","salt","accelerate","fitness","rage","bloodboil","might","shrugging","dragonheal","transmute","echos","timestamp","override","debugEnabled","restore","paused","Prompt","fool","afflictions","insomnia","vault","reporting","focus","clot","defences","recovery","tree","moss","sipping","affbar"}, variable) then
+			if table.contains({"tells","roar","extrusion","purify","deathsight","fool","daina","alleviate","salt","accelerate","fitness","rage","bloodboil","might","shrugging","dragonheal","transmute","echos","timestamp","override","debugEnabled","restore","paused","Prompt","fool","afflictions","insomnia","vault","reporting","focus","clot","defences","recovery","tree","moss","sipping","affbar"}, variable) then
 				t.serverside["settings"][variable] = true 				
 			end
 
@@ -739,7 +742,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 				t.serverside["settings_default"][variable] = "Yes"
 			end
 
-				if not table.contains({"extrusion","purify","tree","clot","deathsight","rage","fool","daina","alleviate","salt","fitness","recovery","bloodboil","accelerate","vault","fool","moss","echos","timestamp","Prompt","restore","might","shrugging","dragonheal","transmute","override","debugEnabled","paused","affbar"}, variable) then
+				if not table.contains({"tells","roar","extrusion","purify","tree","clot","deathsight","rage","fool","daina","alleviate","salt","fitness","recovery","bloodboil","accelerate","vault","fool","moss","echos","timestamp","Prompt","restore","might","shrugging","dragonheal","transmute","override","debugEnabled","paused","affbar"}, variable) then
 					t.send("curing "..variable.." on", false)
 				end
 				
@@ -838,20 +841,29 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 						t.send("curing usevault on", false) 
 					end
 
+
+					if (variable == "roar") then
+						t.serverside.green_echo("System Login Roar!! Sound On")
+					end
+					
+					if (variable == "tells") then
+						t.serverside.green_echo("System Tells Sound On")
+					end						
+										
+					
 					if (variable == "defences") then
 						TReX.defs.keepup()
 					end 
 					
-					
 					if table.index_of({"echos","deathsight","restore","timestamp"},variable) then
-						t.serverside.green_echo(variable.." on")
+						t.serverside.green_echo(variable:title().." On")
 					end
 
 
 		else -- if toggling to false
 
 
-			if table.contains({"extrusion","purify","affbar","deathsight","daina","fool","alleviate","salt","accelerate","fitness","rage","bloodboil","might","shrugging","dragonheal","transmute","echos","timestamp","override","debugEnabled","restore","paused","Prompt","fool","afflictions","insomnia","vault","reporting","focus","clot","defences","recovery","tree","moss","sipping"}, variable) then
+			if table.contains({"tells","roar","extrusion","purify","affbar","deathsight","daina","fool","alleviate","salt","accelerate","fitness","rage","bloodboil","might","shrugging","dragonheal","transmute","echos","timestamp","override","debugEnabled","restore","paused","Prompt","fool","afflictions","insomnia","vault","reporting","focus","clot","defences","recovery","tree","moss","sipping"}, variable) then
 				t.serverside["settings"][variable] = false
 			end
 	
@@ -859,7 +871,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 				t.serverside["settings_default"][variable] = "No"
 			end
 
-				if not table.contains({"extrusion","purify","affbar","tree","clot","deathsight","rage","daina","fool","alleviate","salt","fitness","recovery","bloodboil","accelerate","vault","fool","moss","echos","timestamp","Prompt","restore","might","shrugging","dragonheal","transmute","override","debugEnabled","paused"}, variable) then
+				if not table.contains({"tells","roar","extrusion","purify","affbar","tree","clot","deathsight","rage","daina","fool","alleviate","salt","fitness","recovery","bloodboil","accelerate","vault","fool","moss","echos","timestamp","Prompt","restore","might","shrugging","dragonheal","transmute","override","debugEnabled","paused"}, variable) then
 					t.send("curing "..variable.." off", false)
 				end
 				
@@ -961,14 +973,22 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 
 					if (variable == "tree") then
 						t.serverside.red_echo("Tree off")
-					end							
+					end			
+
+					if (variable == "roar") then
+						t.serverside.red_echo("System Login Roar!! Sound Off")
+					end
+					
+					if (variable == "tells") then
+						t.serverside.red_echo("System Tells Sound Off")
+					end					
 					
 					--if (variable == "parry") then
 						--TReX.parry.toggle("off")
 					--end
 					
 					if table.index_of({"echos","deathsight","restore","timestamp"},variable) then
-						t.serverside.red_echo(variable.." off")
+						t.serverside.red_echo(variable:title().." Off")
 					end
 
 				
@@ -993,7 +1013,7 @@ TReX.config.set_border_bottom_waffbar=function(num)
 			TReX.serverside.container:hide()
 		end
 		
-	TReX.config.showSettings("settings")
+	TReX.config.gui()
 end
 
 TReX.config.set_border_bottom_woaffbar=function(num)
@@ -1009,25 +1029,25 @@ TReX.config.set_border_bottom_woaffbar=function(num)
 			TReX.serverside.container:hide()
 		end
 		
-	TReX.config.showSettings("settings")
+	TReX.config.gui()
 end
 
 TReX.config.set_border_top=function(num)
 	t.serverside.settings.sbt=num	
 	setBorderTop(tonumber(t.serverside.settings.sbt))		
-	TReX.config.showSettings("settings")	
+	TReX.config.gui()	
 end
 
 TReX.config.set_border_right=function(num)
 	t.serverside.settings.sbr=num		
 	setBorderRight(tonumber(t.serverside.settings.sbr))
-	TReX.config.showSettings("settings")	
+	TReX.config.gui()	
 end
 
 TReX.config.set_border_left=function(num)
 	t.serverside.settings.sbl=num	
 	setBorderLeft(tonumber(t.serverside.settings.sbl))
-	TReX.config.showSettings("settings")	
+	TReX.config.gui()	
 end
 
 TReX.config.sip_health_at=function(num)
@@ -1082,6 +1102,11 @@ TReX.config.set_mount=function(num)
 	t.serverside["settings_default"].mount=num
 end
 
+TReX.config.set_mount=function(num)
+	t.send("curing mount "..num)
+	t.serverside["settings_default"].mount=num
+end
+
 TReX.config.add_mount=function(name, number)
 	if not table.contains({mount_list}, name) then
 		mount_list[tostring(name)]={["number"]=number, ["enabled"]=false}
@@ -1089,12 +1114,27 @@ TReX.config.add_mount=function(name, number)
 		TReX.config.showMounts()
 end
 
-TReX.config.remove_mount=function(name)
+TReX.config.tells_toggle=function(arg)
 
-	if table.contains({mount_list}, name) then
-		table.removekey(mount_list, name)
-	end
-		TReX.config.showMounts()
+if arg=="on" then
+	t.serverside.green_echo("System Tells Sound On")
+	t.serverside["settings"].tells = true
+else
+	t.serverside.red_echo("System Tells Sound Off")
+	t.serverside["settings"].tells = false
+end
+
+end
+
+TReX.config.roar_toggle=function(arg)
+
+if arg=="on" then
+	t.serverside.green_echo("System Login Roar!! Sound On")
+	t.serverside["settings"].roar = true
+else
+	t.serverside.red_echo("System Login Roar!! Sound Off")
+	t.serverside["settings"].roar = false
+end
 
 end
 
