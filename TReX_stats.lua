@@ -261,6 +261,7 @@ TReX.stats.stat=function()
 				raiseEvent("TReX.stats.You Died")
 			end
 
+				
 	else
 
 		if TReX.stats.oh == 0 and TReX.stats.h > 0 then

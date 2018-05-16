@@ -2199,6 +2199,7 @@ end
 
 TReX.serverside.settings=function()
 
+
 t.serverside.settings = {
 
     --parry = false,
@@ -2225,6 +2226,7 @@ t.serverside.settings = {
 	sys_loaded = false,
     insomnia = false,
 	deathsight = false,
+	gag_pipes = "off",
 	affbar = false,
 	tells = false,
 	roar = false,
@@ -2295,7 +2297,9 @@ t.serverside.settings_dict = {
                 v = "second"
             end
         end
-			t.send("curing " ..(t.serverside.settings_dict[k] or k).. " " ..(t.serverside.settings_dict[v] or v))
+			if not t.serverside.settings_dict[k] == "on" or not t.serverside.settings_dict[k] == "cmd" then
+				t.send("curing " ..(t.serverside.settings_dict[k] or k).. " " ..(t.serverside.settings_dict[v] or v))
+			end
     end
 
 	    if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.settings ) ") end

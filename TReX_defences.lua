@@ -2377,7 +2377,7 @@ local defs2relax={"groundwatch","skywatch","alertness","nightsight","telesense",
 								end
 							end
 						else
-								--if def_list.free[k].defup or def_list.needs_full_bal[k].defup or def_list.class[k].defup then
+								--if v.defup then
 									--table.remove(t.defs, table.index_of(t.defs, k))
 									--send("curing prio def "..k.." reset", false)	
 								

@@ -1262,7 +1262,9 @@ TReX.pipes.parseplistend()</script>
                 <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>relight pipe</name>
                     <script>TReX.pipes.relight(matches[2])
-</script>
+if t.serverside.settings.gag_pipes == &quot;on&quot; then
+	TReX.stats.requestdelete()
+end</script>
                     <triggerType>0</triggerType>
                     <conditonLineDelta>0</conditonLineDelta>
                     <mStayOpen>0</mStayOpen>
@@ -1281,8 +1283,33 @@ TReX.pipes.parseplistend()</script>
                     </regexCodePropertyList>
                 </Trigger>
                 <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                    <name>gag pipes</name>
+                    <script>if t.serverside.settings.gag_pipes == &quot;on&quot; then
+	TReX.stats.requestdelete()
+end
+</script>
+                    <triggerType>0</triggerType>
+                    <conditonLineDelta>0</conditonLineDelta>
+                    <mStayOpen>0</mStayOpen>
+                    <mCommand></mCommand>
+                    <packageName></packageName>
+                    <mFgColor>#ff0000</mFgColor>
+                    <mBgColor>#ffff00</mBgColor>
+                    <mSoundFile></mSoundFile>
+                    <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                    <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                    <regexCodeList>
+                        <string>You carefully light your treasured pipe until it is smoking nicely.</string>
+                        <string>^You use .+ to make fire\.$</string>
+                    </regexCodeList>
+                    <regexCodePropertyList>
+                        <integer>3</integer>
+                        <integer>1</integer>
+                    </regexCodePropertyList>
+                </Trigger>
+                <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>check pipes on wake up</name>
-                    <script></script>
+                    <script>t.send(&quot;plist&quot;)</script>
                     <triggerType>0</triggerType>
                     <conditonLineDelta>0</conditonLineDelta>
                     <mStayOpen>0</mStayOpen>
@@ -1340,7 +1367,11 @@ TReX.pipes.parseplistend()</script>
                     <name>pipe refill</name>
                     <script>local line = matches[2]
 TReX.pipes.pipefull(matches[2])
-TReX.precache.countRemove(line)</script>
+TReX.precache.countRemove(line)
+
+if t.serverside.settings.gag_pipes == &quot;on&quot; then
+	TReX.stats.requestdelete()
+end</script>
                     <triggerType>0</triggerType>
                     <conditonLineDelta>1</conditonLineDelta>
                     <mStayOpen>0</mStayOpen>
@@ -3700,7 +3731,7 @@ end
                             <colorTriggerFgColor>#000000</colorTriggerFgColor>
                             <colorTriggerBgColor>#000000</colorTriggerBgColor>
                             <regexCodeList>
-                                <string></string>
+                                <string>Focusing inward, you purge your body of afflictions.</string>
                             </regexCodeList>
                             <regexCodePropertyList>
                                 <integer>7</integer>
@@ -3841,7 +3872,7 @@ t.serverside.shrugging=true</script>
 if table.contains({t.defs}, &quot;hiding&quot;) then
 	table.remove(t.defs, table.index_of(t.defs, &quot;hiding&quot;))
 end
-t.defs.hiding=false</script>
+t.def.hiding=false</script>
                         <triggerType>0</triggerType>
                         <conditonLineDelta>0</conditonLineDelta>
                         <mStayOpen>0</mStayOpen>
@@ -3856,6 +3887,29 @@ t.defs.hiding=false</script>
                             <string>Too many prying eyes prevent you from finding a suitable hiding place.</string>
                         </regexCodeList>
                         <regexCodePropertyList>
+                            <integer>3</integer>
+                        </regexCodePropertyList>
+                    </Trigger>
+                    <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
+                        <name>relax pacing</name>
+                        <script>table.remove(t.defs, table.index_of(t.defs, &quot;pacing&quot;))
+t.def.pacing=false</script>
+                        <triggerType>0</triggerType>
+                        <conditonLineDelta>0</conditonLineDelta>
+                        <mStayOpen>0</mStayOpen>
+                        <mCommand></mCommand>
+                        <packageName></packageName>
+                        <mFgColor>#ff0000</mFgColor>
+                        <mBgColor>#ffff00</mBgColor>
+                        <mSoundFile></mSoundFile>
+                        <colorTriggerFgColor>#000000</colorTriggerFgColor>
+                        <colorTriggerBgColor>#000000</colorTriggerBgColor>
+                        <regexCodeList>
+                            <string>That seems like a fruitless effort, since you're not pacing to begin with!</string>
+                            <string>You are no longer pacing yourself.</string>
+                        </regexCodeList>
+                        <regexCodePropertyList>
+                            <integer>3</integer>
                             <integer>3</integer>
                         </regexCodePropertyList>
                     </Trigger>
@@ -28031,6 +28085,21 @@ TReX.stats.p_n_willpower_on_prompt()</script>
                     <packageName></packageName>
                     <regex>^empty pipes$</regex>
                 </Alias>
+                <Alias isActive="yes" isFolder="no">
+                    <name>gag pipes</name>
+                    <script>local toggle = &quot;on&quot;
+if matches[2] == nil and t.serverside.settings.gag_pipes then
+	toggle = &quot;off&quot;
+end
+if matches[2] == &quot;off&quot; then
+	toggle = &quot;off&quot;
+end
+
+TReX.config.gag_pipes(toggle)</script>
+                    <command></command>
+                    <packageName></packageName>
+                    <regex>^gagpipes\s?(on|off)?$</regex>
+                </Alias>
             </AliasGroup>
             <AliasGroup isActive="yes" isFolder="yes">
                 <name>clotting</name>
@@ -28712,7 +28781,7 @@ if string.char(homeDir:byte()) == &quot;/&quot; then
 end
 table.save(homeDir.. sep .. huntVar.fileName..&quot;.lua&quot;, huntVar.userAreaList)
 table.save(homeDir.. sep .. huntVar.fileNameFull..&quot;.lua&quot;, fixedHuntVar.areaList)
-t.serverside.green_echo(&quot;Hunting System Saved\n&quot;)</script>
+t.serverside.green_echo(&quot;Hunting System Saved&quot;)</script>
                 <command></command>
                 <packageName></packageName>
                 <regex>^hsave$</regex>
@@ -30191,7 +30260,7 @@ end
 </script>
                 <eventHandlerList/>
             </Script>
-            <Script isActive="no" isFolder="no">
+            <Script isActive="yes" isFolder="no">
                 <name>usage statistics</name>
                 <packageName></packageName>
                 <script>-- http://exiva.aucula.net:8000/trex 
