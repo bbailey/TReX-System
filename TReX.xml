@@ -29244,12 +29244,14 @@ end</script>
 	--AFFBAR
     TReX.serverside.container = Geyser.Container:new({
     	name = &quot;TReX.serverside.container&quot;,
-				--		x = &quot;0%&quot;, y = &quot;97%&quot;,
-    		--	  width = &quot;85.75%&quot;, 
-    		--		height = &quot;2%&quot;,
-    	    	x = &quot;26%&quot;, y = &quot;86%&quot;,
-    				width = &quot;86%&quot;, 
+						x = &quot;0%&quot;, y = &quot;97%&quot;,
+    			  width = &quot;85.75%&quot;, 
     				height = &quot;2%&quot;,
+    	    
+					--  Nehmrah
+					--	x = &quot;26%&quot;, y = &quot;86%&quot;,
+    			--	width = &quot;86%&quot;, 
+    			--	height = &quot;2%&quot;,
 
 
     })

@@ -547,28 +547,28 @@ def_list = {
 	
 	end -- if
 	
-		 if TReX.s.class == "water Elemental Lord" then
+		 if TReX.s.class == "Water Elemental Lord" then
          def_list.class ={
 			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},         
      	}    
          end
 		 
-		 if TReX.s.class == "air Elemental Lord" then
+		 if TReX.s.class == "Air Elemental Lord" then
          def_list.class ={
 			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
 	     }    
          end
 		 
-		 if TReX.s.class == "fire Elemental Lord" then
+		 if TReX.s.class == "Fire Elemental Lord" then
          def_list.class ={
 			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},
      	}    
          end
 		 
-		 if TReX.s.class == "earth Elemental Lord" then
+		 if TReX.s.class == "Earth Elemental Lord" then
          def_list.class ={
 			["lifevision"] = {["name"] = "lifevision", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true},
 			["shroud"] = {["name"] = "shroud", ["keepup"] = false, ["defup"] = false, ["serverside"]=true, ["enabled"] = true,},         
