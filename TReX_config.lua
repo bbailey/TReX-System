@@ -287,7 +287,7 @@ TReX.config.login_load=function(event)
 			tempTimer(1, [[t.serverside["settings"].sys_loaded = true]])   
 			enableTimer("inventory updater")
 			
-			if t.serverside["settings"].roar then
+			if t.serverside["settings"].roar=="on" then
 				playSoundFile(getMudletHomeDir().. [[/TReX/TReX.mp3]]) 
 			end
 			
@@ -1118,10 +1118,10 @@ TReX.config.tells_toggle=function(arg)
 
 if arg=="on" then
 	t.serverside.green_echo("System Tells Sound On")
-	t.serverside["settings"].tells = true
+	t.serverside["settings"].tells = "on"
 else
 	t.serverside.red_echo("System Tells Sound Off")
-	t.serverside["settings"].tells = false
+	t.serverside["settings"].tells = "off"
 end
 		TReX.config.showSettings("settings")
 end
@@ -1130,10 +1130,10 @@ TReX.config.roar_toggle=function(arg)
 
 if arg=="on" then
 	t.serverside.green_echo("System Login Roar!! Sound On")
-	t.serverside["settings"].roar = true
+	t.serverside["settings"].roar = "on"
 else
 	t.serverside.red_echo("System Login Roar!! Sound Off")
-	t.serverside["settings"].roar = false
+	t.serverside["settings"].roar = "off"
 end
 		TReX.config.showSettings("settings")
 end
@@ -1168,15 +1168,17 @@ TReX.config.showSettings=function()
 echo("\n")
 cecho("\n\t<white>System Settings")
 echo("\n")
-echo("\n - ") echoLink("Gag Pipes", "clearCmdLine() appendCmdLine'gagpipes '", "gag pipes") cecho("<white>: "..t.serverside.settings.gag_pipes.."", false)
-echo("\n - ") echoLink("Sip Health at", "clearCmdLine() appendCmdLine'sip_health_at '", "sip health") cecho("<white>: "..t.serverside["settings_default"].sip_health_at.." %", false)
-echo("\n - ") echoLink("Sip Mana at", "clearCmdLine() appendCmdLine'sip_mana_at '", "sip mana") cecho("<white>: "..t.serverside["settings_default"].sip_mana_at.." %", false)
-echo("\n - ") echoLink("Moss Health at", "clearCmdLine() appendCmdLine'moss_health_at '", "moss health") cecho("<white>: "..t.serverside["settings_default"].moss_health_at.." %", false)
-echo("\n - ") echoLink("Moss Mana at", "clearCmdLine() appendCmdLine'moss_mana_at '", "moss mana") cecho("<white>: "..t.serverside["settings_default"].moss_mana_at.." %", false)
-echo("\n - ") echoLink("Command Separator", "clearCmdLine() appendCmdLine'cmdsep '", "command separator") cecho("<white>: "..t.serverside.settings_dict.cmdsep.."", false)
-echo("\n - ") echoLink("Apply to Fractures at", "clearCmdLine() appendCmdLine'set_fractures '", "fractures") cecho("<white>: "..t.serverside["settings_default"].fractures.." %", false)
-echo("\n - ") echoLink("Clot bleeding at", "clearCmdLine() appendCmdLine'clot_at '", "puff count") cecho("<white>: "..t.serverside["settings_default"].clot_at.." bleeding", false)
-echo("\n - ") echoLink("System will diagnose on", "clearCmdLine() appendCmdLine'unknown_diag_at '", "unknowns") cecho("<white>: "..t.config["settings_system"].diag_at.." unknown", false)
+echo("\n - ") echoLink("TReX Roar", "clearCmdLine() appendCmdLine'troar '", "toggle system login TREX roar") cecho("<white>: "..t.serverside.settings.roar.."", false)
+echo("\n - ") echoLink("Gag Pipes", "clearCmdLine() appendCmdLine'gagpipes '", "gag relighting pipes") cecho("<white>: "..t.serverside.settings.gag_pipes.."", false)
+echo("\n - ") echoLink("Tells Chime", "clearCmdLine() appendCmdLine'ttells '", "toggle incoming tells chime") cecho("<white>: "..t.serverside.settings.tells.."", false)
+echo("\n - ") echoLink("Sip Health at", "clearCmdLine() appendCmdLine'sip_health_at '", "sip health at what percent") cecho("<white>: "..t.serverside["settings_default"].sip_health_at.." %", false)
+echo("\n - ") echoLink("Sip Mana at", "clearCmdLine() appendCmdLine'sip_mana_at '", "sip mana at what percent") cecho("<white>: "..t.serverside["settings_default"].sip_mana_at.." %", false)
+echo("\n - ") echoLink("Moss Health at", "clearCmdLine() appendCmdLine'moss_health_at '", "moss health at what percent") cecho("<white>: "..t.serverside["settings_default"].moss_health_at.." %", false)
+echo("\n - ") echoLink("Moss Mana at", "clearCmdLine() appendCmdLine'moss_mana_at '", "moss mana at what percent") cecho("<white>: "..t.serverside["settings_default"].moss_mana_at.." %", false)
+echo("\n - ") echoLink("Command Separator", "clearCmdLine() appendCmdLine'cmdsep '", "set command separator to") cecho("<white>: "..t.serverside.settings_dict.cmdsep.."", false)
+echo("\n - ") echoLink("Apply to Fractures at", "clearCmdLine() appendCmdLine'set_fractures '", "apply to fractures at what percent") cecho("<white>: "..t.serverside["settings_default"].fractures.." %", false)
+echo("\n - ") echoLink("Clot bleeding at", "clearCmdLine() appendCmdLine'clot_at '", "cloat at what # bleeding") cecho("<white>: "..t.serverside["settings_default"].clot_at.." bleeding", false)
+echo("\n - ") echoLink("System will diagnose on", "clearCmdLine() appendCmdLine'unknown_diag_at '", "system diagnose at # unknowns") cecho("<white>: "..t.config["settings_system"].diag_at.." unknown", false)
 echo"\n"
 	
 local sortSettings = {}
@@ -1184,7 +1186,7 @@ local sortSettings = {}
 TReX.class.skill_check()
 
   for k,v in pairs(t.serverside.settings) do
-	if not table.index_of({"gag_pipes","debugEnabled", "paused", "meditate", "installed", "sys_loaded", "sipRingMana", "sipRingHealth", "override","asbb","sbb","sbr","sbt","sbl"}, k) then
+	if not table.index_of({"roar","tells","gag_pipes","debugEnabled", "paused", "meditate", "installed", "sys_loaded", "sipRingMana", "sipRingHealth", "override","asbb","sbb","sbr","sbt","sbl"}, k) then
 		sortSettings[#sortSettings+1] = k
 		table.sort(sortSettings)
 	end

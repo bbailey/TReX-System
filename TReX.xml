@@ -11878,7 +11878,15 @@ end
                 </Trigger>
                 <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>right leg damaged</name>
-                    <script>TReX.boxDisplay(&quot;RIGHT LEG - DOWN&quot;, &quot;HotPink&quot;)</script>
+                    <script>TReX.boxDisplay(&quot;RIGHT LEG - DOWN&quot;, &quot;HotPink&quot;)
+
+local illision_classes = {&quot;sylvan&quot;,&quot;bard&quot;,&quot;dragon&quot;,&quot;jester&quot;,&quot;magi&quot;,&quot;monk&quot;}
+
+	for _,v in pairs(illusion_classes) do
+		if t.class[v].enabled then	
+			cecho(&quot;\n&lt;yellow&gt;BE CAREFUL OF ILLUSIONS&quot;)
+		end
+	end</script>
                     <triggerType>0</triggerType>
                     <conditonLineDelta>0</conditonLineDelta>
                     <mStayOpen>0</mStayOpen>
@@ -11898,7 +11906,16 @@ end
                 </Trigger>
                 <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>left leg damaged</name>
-                    <script>TReX.boxDisplay(&quot;LEFT LEG - DOWN&quot;, &quot;gold&quot;)</script>
+                    <script>TReX.boxDisplay(&quot;LEFT LEG - DOWN&quot;, &quot;gold&quot;)
+
+
+local illision_classes = {&quot;sylvan&quot;,&quot;bard&quot;,&quot;dragon&quot;,&quot;jester&quot;,&quot;magi&quot;,&quot;monk&quot;}
+
+	for _,v in pairs(illusion_classes) do
+		if t.class[v].enabled then	
+			cecho(&quot;\n&lt;yellow&gt;BE CAREFUL OF ILLUSIONS&quot;)
+		end
+	end</script>
                     <triggerType>0</triggerType>
                     <conditonLineDelta>0</conditonLineDelta>
                     <mStayOpen>0</mStayOpen>
@@ -11918,7 +11935,16 @@ end
                 </Trigger>
                 <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>right arm damaged</name>
-                    <script>TReX.boxDisplay(&quot;RIGHT ARM - DOWN&quot;, &quot;HotPink&quot;)</script>
+                    <script>TReX.boxDisplay(&quot;RIGHT ARM - DOWN&quot;, &quot;HotPink&quot;)
+
+
+local illision_classes = {&quot;sylvan&quot;,&quot;bard&quot;,&quot;dragon&quot;,&quot;jester&quot;,&quot;magi&quot;,&quot;monk&quot;}
+
+	for _,v in pairs(illusion_classes) do
+		if t.class[v].enabled then	
+			cecho(&quot;\n&lt;yellow&gt;BE CAREFUL OF ILLUSIONS&quot;)
+		end
+	end</script>
                     <triggerType>0</triggerType>
                     <conditonLineDelta>0</conditonLineDelta>
                     <mStayOpen>0</mStayOpen>
@@ -11938,7 +11964,16 @@ end
                 </Trigger>
                 <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>left arm damaged</name>
-                    <script>TReX.boxDisplay(&quot;LEFT ARM - DOWN&quot;, &quot;HotPink&quot;)</script>
+                    <script>TReX.boxDisplay(&quot;LEFT ARM - DOWN&quot;, &quot;HotPink&quot;)
+
+
+local illision_classes = {&quot;sylvan&quot;,&quot;bard&quot;,&quot;dragon&quot;,&quot;jester&quot;,&quot;magi&quot;,&quot;monk&quot;}
+
+	for _,v in pairs(illusion_classes) do
+		if t.class[v].enabled then	
+			cecho(&quot;\n&lt;yellow&gt;BE CAREFUL OF ILLUSIONS&quot;)
+		end
+	end</script>
                     <triggerType>0</triggerType>
                     <conditonLineDelta>0</conditonLineDelta>
                     <mStayOpen>0</mStayOpen>
@@ -17880,7 +17915,7 @@ t.affs.pres=t.affs.pres+TReX.class.pressure_counts()
                 <Trigger isActive="yes" isFolder="no" isTempTrigger="no" isMultiline="no" isPerlSlashGOption="no" isColorizerTrigger="no" isFilterTrigger="no" isSoundTrigger="no" isColorTrigger="no" isColorTriggerFg="no" isColorTriggerBg="no">
                     <name>tension</name>
                     <script>TReX.class.set(&quot;air&quot;, &quot;&quot;)
-if t.affs.pres&gt;0 then
+if t.affs.pres&gt;=0 then
 	t.affs.pres=t.affs.pres+1
 end
 </script>
@@ -19162,7 +19197,7 @@ raiseEvent(&quot;mmapper updated pdb&quot;)</script>
 	tempTimer(2.5, [[raiseEvent(&quot;playList&quot;)]])
 end
 
-if t.serverside.settings.tells then
+if t.serverside.settings.tells==&quot;on&quot; then
 	playSoundFile(getMudletHomeDir().. [[/TReX/Chimes.wav]])
 end	
 
