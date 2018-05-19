@@ -3096,14 +3096,14 @@ TReX.defs.priorityQueue=function(defs, defs_prio)
 						--	if not t.def[defs] then
 							if not table.contains({t.defs}, defs) then
 								t.send("curing priority defence "..defs.." "..defs_prio)
-								cecho("\n<white>curing priority defence <cyan>"..defs.." <red>"..defs_prio)
+								if t.serverside.settings.echos then cecho("\n<white>curing priority defence <cyan>"..defs.." <red>"..defs_prio) end
 							end
 						end 
 					else
 						--if not t.def[defs] then
 						if not table.contains({t.defs}, defs) then
 							t.send("curing priority defence "..defs.." "..defs_prio)
-							cecho("\n<white>curing priority defence <cyan>"..defs.." <red>"..defs_prio)
+							if t.serverside.settings.echos then cecho("\n<white>curing priority defence <cyan>"..defs.." <red>"..defs_prio) end
 						end
 					end
 				end

@@ -734,7 +734,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 
 		if (t.serverside["settings"][variable]) then -- if toggling to true
 
-			if table.contains({"tells","roar","extrusion","purify","deathsight","fool","daina","alleviate","salt","accelerate","fitness","rage","bloodboil","might","shrugging","dragonheal","transmute","echos","timestamp","override","debugEnabled","restore","paused","Prompt","fool","afflictions","insomnia","vault","reporting","focus","clot","defences","recovery","tree","moss","sipping","affbar"}, variable) then
+			if table.contains({"tells","roar","extrusion","purify","deathsight","fool","daina","alleviate","salt","accelerate","fitness","rage","bloodboil","might","shrugging","dragonheal","transmute","echos","colors","timestamp","override","debugEnabled","restore","paused","Prompt","fool","afflictions","insomnia","vault","reporting","focus","clot","defences","recovery","tree","moss","sipping","affbar"}, variable) then
 				t.serverside["settings"][variable] = true 				
 			end
 
@@ -742,7 +742,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 				t.serverside["settings_default"][variable] = "Yes"
 			end
 
-				if not table.contains({"tells","roar","extrusion","purify","tree","clot","deathsight","rage","fool","daina","alleviate","salt","fitness","recovery","bloodboil","accelerate","vault","fool","moss","echos","timestamp","Prompt","restore","might","shrugging","dragonheal","transmute","override","debugEnabled","paused","affbar"}, variable) then
+				if not table.contains({"tells","roar","extrusion","purify","tree","clot","deathsight","rage","fool","daina","alleviate","salt","fitness","recovery","bloodboil","accelerate","vault","fool","moss","echos","colors","timestamp","Prompt","restore","might","shrugging","dragonheal","transmute","override","debugEnabled","paused","affbar"}, variable) then
 					t.send("curing "..variable.." on", false)
 				end
 				
@@ -855,7 +855,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 						TReX.defs.keepup()
 					end 
 					
-					if table.index_of({"echos","deathsight","restore","timestamp"},variable) then
+					if table.index_of({"echos","colors","deathsight","restore","timestamp"},variable) then
 						t.serverside.green_echo(variable:title().." On")
 					end
 
@@ -863,7 +863,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 		else -- if toggling to false
 
 
-			if table.contains({"tells","roar","extrusion","purify","affbar","deathsight","daina","fool","alleviate","salt","accelerate","fitness","rage","bloodboil","might","shrugging","dragonheal","transmute","echos","timestamp","override","debugEnabled","restore","paused","Prompt","fool","afflictions","insomnia","vault","reporting","focus","clot","defences","recovery","tree","moss","sipping"}, variable) then
+			if table.contains({"tells","roar","extrusion","purify","affbar","deathsight","daina","fool","alleviate","salt","accelerate","fitness","rage","bloodboil","might","shrugging","dragonheal","transmute","echos","colors","timestamp","override","debugEnabled","restore","paused","Prompt","fool","afflictions","insomnia","vault","reporting","focus","clot","defences","recovery","tree","moss","sipping"}, variable) then
 				t.serverside["settings"][variable] = false
 			end
 	
@@ -871,7 +871,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 				t.serverside["settings_default"][variable] = "No"
 			end
 
-				if not table.contains({"tells","roar","extrusion","purify","affbar","tree","clot","deathsight","rage","daina","fool","alleviate","salt","fitness","recovery","bloodboil","accelerate","vault","fool","moss","echos","timestamp","Prompt","restore","might","shrugging","dragonheal","transmute","override","debugEnabled","paused"}, variable) then
+				if not table.contains({"tells","roar","extrusion","purify","affbar","tree","clot","deathsight","rage","daina","fool","alleviate","salt","fitness","recovery","bloodboil","accelerate","vault","fool","moss","echos","colors","timestamp","Prompt","restore","might","shrugging","dragonheal","transmute","override","debugEnabled","paused"}, variable) then
 					t.send("curing "..variable.." off", false)
 				end
 				
@@ -987,7 +987,7 @@ TReX.config.on_click=function(variable, toggle, toggle2)
 						--TReX.parry.toggle("off")
 					--end
 					
-					if table.index_of({"echos","deathsight","restore","timestamp"},variable) then
+					if table.index_of({"echos","colors","deathsight","restore","timestamp"},variable) then
 						t.serverside.red_echo(variable:title().." Off")
 					end
 

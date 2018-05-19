@@ -42,13 +42,13 @@ t.pipes.refill             = t.pipes.refill or 3
   TReX.pipes.skullcap = TReX.pipes.skullcap
     
     if not (t.serverside["settings"].paused) or (t.affs.stun) or (t.affs.aeon) then
-    
         t.send("queue add eqbal pipelist", false)
-      
-    else
-    
-      TReX.config.display("Can't set pipes\t-\tSystem paused ")
-      
+    elseif t.serverside.settings.paused then
+       TReX.config.display("Can't set pipes\t-\tSystem PAUSED ")
+    elseif t.affs.aeon then
+       TReX.config.display("Can't set pipes\t-\tYou are in AEON ")
+    elseif t.faffs.stun then
+       TReX.config.display("Can't set pipes\t-\tYou are STUNNED ")	  
     end -- if
     
         if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.pipes.settings ) ") end

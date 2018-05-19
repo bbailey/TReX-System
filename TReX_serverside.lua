@@ -731,47 +731,25 @@ TReX.lock.clear()
 	end
 
     -- kelp stack check
-    if t.stacks["kelp"] >= 3 then
-		if isPrompt() then 
-			if t.serverside["settings"].echos then 
-				t.serverside.red_echo(" <white>---<red>[<white>KELP IS STACKED ON YOU<red>]<white>---", false) 
-			end 	
-		end
+    if t.stacks["kelp"] >= 2 then
+		if t.serverside["settings"].echos then 
+			t.serverside.red_echo(" <white>---<red>[<white>WATCH OUT FOR LOCK<red>]<white>---", false) 
+		end 	
     end
 	
 	    -- kelp stack check
-    if t.stacks["ginseng"] >= 3 then
-		if isPrompt() then 
-			if t.serverside["settings"].echos then 
-				t.serverside.red_echo(" <white>---<red>[<white>GINSENG IS STACKED ON YOU<red>]<white>---", false) 
-			end 	
-		end
+    if t.stacks["ginseng"] >= 2 then
+		if t.serverside["settings"].echos then 
+			t.serverside.red_echo(" <white>---<red>[<white>WATCH OUT FOR LOCK<red>]<white>---", false) 
+		end 	
     end
 	
 	--slickness
 	if t.stacks["valerian"] >= 1 and t.affs.asthma then
-		if isPrompt() then 
-			if t.serverside["settings"].echos then 
-				t.serverside.red_echo(" <white>---<red>[<white>WATCH OUT FOR LOCK<red>]<white>---", false) 
-			end 	
-		end
+		if t.serverside["settings"].echos then 
+			t.serverside.red_echo(" <white>---<red>[<white>WATCH OUT FOR LOCK<red>]<white>---", false) 
+		end 	
     end
-	
-	
-    --asthma weariness slickness check
-   -- if t.affs.slickness and ((t.affs.asthma and t.affs.weariness) or (t.affs.asthma and not (t.affs.sensitivity or t.affs.clumsiness or t.affs.hypochondria))) then --1 scenario
-       -- TReX.prios.switchPrios("asthma", 3)
-       -- TReX.prios.switchPrios("paralysis", 4)
-   -- elseif t.affs.asthma and t.affs.hellsight then
-       -- TReX.prios.switchPrios("hellsight", 3, 1)
-       -- TReX.prios.switchPrios("asthma", 4)
-       -- TReX.prios.switchPrios("paralysis", 5)
-   -- end
-    -- --confusion and disrupt
-   -- if t.affs.confusion and t.affs.disrupted and (t.bals.focus or t.affs.impatience) and not t.affs.whisperingmadness then --2 scenario
-       -- TReX.prios.switchPrios("confusion", 2, 1)
-       -- TReX.prios.switchPrios("paralysis", 3, 1)
-   -- end
    
 --[[TRUE LOCK]]	
 	if (t.affs.impatience) and (t.affs.asthma) and (t.affs.slickness) and (t.affs.anorexia) and (t.affs.paralysis) and (t.affs.confusion) and (t.affs.disruption) then 
@@ -782,14 +760,6 @@ TReX.lock.clear()
 --[[HARD LOCK]]		
 	if (t.affs.impatience) and (t.affs.asthma) and (t.affs.slickness) and (t.affs.anorexia) and (t.affs.paralysis) then 
 		t.lock["hard"] = true
-		--if not table.is_empty(trx.bard.harmonics.table) and trx.bard.harmonics.table_check then
-		--	if t.bals.eq and t.bals.bal then
-		--		t.send("call harmonics")
-			--	TReX.serverside.lock_class_skill_check()
-			--	trx.bard.harmonics.table_check = false
-		--	end
-		--end
-		--TReX.serverside.lock_class_skill_check()
 			return
 	end
 --[[VENOM LOCK]]	
@@ -817,17 +787,10 @@ end--[[func]]
 TReX.serverside.lock_class_skill_check=function()
 local queue_kelp = false
 
-	--if t.bals["tree"] then
-		if t.serverside["settings_default"].tree ~= "Yes" then
-			t.serverside["settings_default"].tree = "Yes"
-			t.send("curing tree on", false) 
-		end
-	--else
-	--	if t.serverside["settings_default"].tree ~= "No" then
-	--		t.serverside["settings_default"].tree = "No"
-	--		t.send("curing tree off", false) 
-	--	end
-	--end
+	if t.serverside["settings_default"].tree ~= "Yes" then
+		t.serverside["settings_default"].tree = "Yes"
+		t.send("curing tree on", false) 
+	end
 
 	for _,v in pairs({"Runewarden","Infernal","Paladin","Blademaster","Monk","Sentinel","Druid"}) do
 		if TReX.s.class == v then
@@ -2218,6 +2181,7 @@ t.serverside.settings = {
     override = false,
     timestamp = false,   
     echos = false,
+	colors= false,
     moss = false,
     sipRingMana = false,
     sipRingHealth = false,
