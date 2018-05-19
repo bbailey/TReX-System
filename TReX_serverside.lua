@@ -2262,7 +2262,7 @@ t.serverside.settings_default = {
         fractures = 66 ,  -- setting it low, with less fractures, the system will actually raise this internally, and lower it with more fracs; on a scale.
 		mana_threshold = t.serverside["settings_default"].sip_mana_at or 60,  -- setting the mana_threshold to the lowest cure point.
         batch = "Yes", -- make an settings option later <<<<<<
-		cmd  = "cmdsep",
+		commandseparator  = "cmdsep",
 
 }
     
@@ -2283,11 +2283,12 @@ t.serverside.settings_dict = {
     moss_health_at = "mosshealth",
     fractures = "healthaffsabove",
     mana_threshold = "manathreshold",
-	command_separator = "commandseparator",
     mount = "mount",
 	
     
 }
+
+
 
     for k,v in pairs(t.serverside.settings_default) do
         if k == "focus_over_herbs" then
@@ -2297,9 +2298,16 @@ t.serverside.settings_dict = {
                 v = "second"
             end
         end
-			if not t.serverside.settings_dict[k] == "on" or not t.serverside.settings_dict[k] == "cmd" then
-				t.send("curing " ..(t.serverside.settings_dict[k] or k).. " " ..(t.serverside.settings_dict[v] or v))
-			end
+
+		
+		if k == "enabled" then 
+			t.send("curing "..(t.serverside.settings_dict[v] or v))
+		elseif k == "commandseparator" then
+			t.send("config " ..(t.serverside.settings_dict[k] or k).. " " ..(t.serverside.settings_dict[v] or v))
+		else
+			t.send("curing " ..(t.serverside.settings_dict[k] or k).. " " ..(t.serverside.settings_dict[v] or v))
+		end
+		
     end
 
 	    if (t.serverside["settings"].debugEnabled) then TReX.debugMessage(" ( TReX.serverside.settings ) ") end
@@ -2309,7 +2317,6 @@ t.serverside.settings_dict = {
 		pipes_refill = 3,
 		diag_at = 1, 
 	}
-		
 		
 	
  
@@ -2927,8 +2934,6 @@ t.serverside.login_dict = {
     moss_health_at = "mosshealth",
     fractures = "healthaffsabove",
     mana_threshold = "manathreshold",
-	--command_separator = "commandseparator",
-    --mount = "mount",
 	
     
 }
@@ -2941,13 +2946,16 @@ t.serverside.login_dict = {
                 v = "second"
             end
         end
-			--print(t.serverside.settings_dict[k] or v)
-			--print(t.serverside.settings_dict[v] or v)
-		if k == "commandseparator" then
+
+		if k == "cmd" then
+		elseif k == "enabled" then 
+			t.send("curing "..(t.serverside.login_dict[v] or v))
+		elseif k == "commandseparator" then
 			t.send("config " ..(t.serverside.login_dict[k] or k).. " " ..(t.serverside.login_dict[v] or v))
 		else
-	        t.send("curing " ..(t.serverside.login_dict[k] or k).. " " ..(t.serverside.login_dict[v] or v))
+			t.send("curing " ..(t.serverside.login_dict[k] or k).. " " ..(t.serverside.login_dict[v] or v))
 		end
+		
     end
   
 
