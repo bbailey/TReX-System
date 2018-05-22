@@ -176,10 +176,12 @@ class_skill = {
 
 
 	for k,v in pairs(class_skill) do 
-		if TReX.s.class:lower()==k then
-			for p,j in pairs(class_skill[k]) do 
+		for p,j in pairs(class_skill[k]) do 
+			if TReX.s.class:lower()==k then
 				t.serverside.settings[p]=j
-			end
+			else
+				t.serverside.settings[p]=nil
+			end				
 		end
 	end
 
