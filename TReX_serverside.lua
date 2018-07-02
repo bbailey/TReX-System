@@ -1125,6 +1125,18 @@ function TReX.serverside.myShin()
  end
 end
 
+
+function TReX.serverside.myRage()
+ if gmcp.Char.Vitals then
+	for k, v in pairs(gmcp.Char.Vitals.charstats) do
+		if string.starts(v, "Rage") then
+			trex_rage = tonumber(string.match(v,"Rage: (%d+)"))
+			return  trex_rage
+		end
+	end
+ end
+end
+
 -- affliction table list echo
 t.serverside.gmcpAffShow=function()  -- this is your aff display
 

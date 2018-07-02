@@ -17,7 +17,8 @@ TReX.stats.prompt_options={
 	willpower = function () return TReX.stats.willpower_color_percentage(math.floor(TReX.stats.w*100/TReX.stats.maxw))..tostring(TReX.stats.w) end,
 	endurance = function () return TReX.stats.endurance_color_percentage(math.floor(TReX.stats.e*100/TReX.stats.maxe))..tostring(TReX.stats.e) end,
 	timestamp = function () timestamp = tostring(getTime(true,"hh:mm:ss:zzz")) return("<dim_grey>"..timestamp) end,
-	rage = function () if not TReX.hunting.rage then TReX.hunting.rage = 0 end return("<dim_grey>(<red>R<white>: "..TReX.hunting.rage.."<dim_grey>)<white>") end,
+	--rage = function () if not TReX.hunting.rage then TReX.hunting.rage = 0 end return("<dim_grey>(<red>R<white>: "..TReX.hunting.rage.."<dim_grey>)<white>") end,
+	rage = function () return("<dim_grey>(<red>R<white>: "..TReX.serverside.myRage() .."<dim_grey>)<white>") end,
 	karma = function () if TReX.s.class=="Occultist" then return "<white>("..TReX.serverside.karma_check()..")%<green> " else return "" end end,
 	sunlight = function () if table.index_of({"Druid","Sylvan"}, TReX.s.class) then if TReX.stats.sunlight >= 1 then return "<white>("..TReX.stats.sunlight..")%<green> " else return "" end else return "" end end,
 	afftracker = function ()
